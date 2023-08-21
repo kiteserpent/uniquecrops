@@ -10,6 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.nbt.CompoundTag;
 
+import java.util.Objects;
+
 public class Eula extends BaseCropsBlock {
 
     public Eula() {
@@ -20,13 +22,9 @@ public class Eula extends BaseCropsBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
 
-        CompoundTag data = ctx.getPlayer().getPersistentData();
-        if (!data.contains(UCStrings.TAG_EULA)) {
-            if (!ctx.getLevel().isClientSide) {
-                data.putBoolean(UCStrings.TAG_EULA, true);
-                if (ctx.getPlayer() instanceof ServerPlayer)
-                    UCPacketHandler.sendTo((ServerPlayer)ctx.getPlayer(), new PacketOpenBook(ctx.getPlayer().getId()));
-            }
+        if (!ctx.getLevel().isClientSide) {
+            if (ctx.getPlayer() instanceof ServerPlayer)
+                UCPacketHandler.sendTo((ServerPlayer)ctx.getPlayer(), new PacketOpenBook(ctx.getPlayer().getId()));
         }
         return super.getStateForPlacement(ctx);
     }

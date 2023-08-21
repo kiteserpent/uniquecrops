@@ -20,7 +20,6 @@ public class UCStrings {
     public static final String TAG_LOCK = "UC_tagLock";
     public static final String TAG_GROWTHSTAGES = "UC_FeroxiaGrowth";
     public static final String TAG_ABSTRACT = "UC_tagAbstractGrowth";
-    public static final String TAG_EULA = "UC_tagAgreedToEula";
     public static final String TAG_BIOME = "UC_tagSavedBiome";
     public static final String TAG_ENCHANTSTAGE = "UC_EnchantStage";
     public static final String TAG_ENCHANT_TIMER = "UC_EnchantingTimer";

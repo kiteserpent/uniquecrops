@@ -24,4 +24,4 @@ description="Unique crops, unique growth, unique drops"
 [[dependencies.uniquecrops]]
     modId="curios"
     mandatory=true
-    versionRange="[1.18.2-5.0.6.3,)"
+    versionRange="[1.18.2-5.0.9.1,)"

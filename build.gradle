@@ -31,7 +31,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 mixin {
     add sourceSets.main, "uniquecrops.refmap.json"
-    config 'uniquecrops.mixins.json'
+    config 'assets/uniquecrops/uniquecrops.mixins.json'
 }
 version = "${mod_version}-${minecraft_version}"
 group = 'com.bafomdad.uniquecrops'
@@ -104,15 +104,14 @@ repositories {
         url "https://maven.blamejared.com"
     }
     maven {
-        url "https://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name "curios"
-        url "https://maven.theillusivec4.top/"
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
     }
 }
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.68'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.76'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 	
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-67")
@@ -121,8 +120,8 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.4.3.122")
     compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.4.3.122:api")
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.6.3")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.6.3:api")
+    // implementation fg.deobf("curse.maven:curios-309927:4590652")
+    implementation fg.deobf("curse.maven:curios-309927:4590652-sources-api")
 }
 jar {
     manifest {

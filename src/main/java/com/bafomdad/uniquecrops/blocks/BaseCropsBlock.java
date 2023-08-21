@@ -46,7 +46,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     private final Supplier<BlockItem> seedGetter;
 
     private boolean bonemealable = true;
-    private boolean clickHarvest = true;
+    private boolean clickHarvest = false;
     private boolean includeSeed = true;
     private boolean ignoreGrowthRestrictions = false;
 
