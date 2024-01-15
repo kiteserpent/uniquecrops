@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "ucse:block/ruinedbricksred",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ucse:block/ruinedbricksred"
+    },
+    "axis=z": {
+      "model": "ucse:block/ruinedbricksred",
+      "x": 90
+    }
+  }
+}

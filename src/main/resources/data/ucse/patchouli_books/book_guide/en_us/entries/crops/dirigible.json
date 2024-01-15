@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_dirigible",
+    "icon": "ucse:seeddirigible",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_dirigible[age=6]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagedirigible"
+        }
+    ]
+}

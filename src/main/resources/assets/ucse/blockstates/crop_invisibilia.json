@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ucse:block/invisibilia1"
+    },
+    "age=1": {
+      "model": "ucse:block/invisibilia2"
+    },
+    "age=2": {
+      "model": "ucse:block/invisibilia2"
+    },
+    "age=3": {
+      "model": "ucse:block/invisibilia3"
+    },
+    "age=4": {
+      "model": "ucse:block/invisibilia3"
+    },
+    "age=5": {
+      "model": "ucse:block/invisibilia4"
+    },
+    "age=6": {
+      "model": "ucse:block/invisibilia4"
+    },
+    "age=7": {
+      "model": "ucse:block/invisibilia5"
+    }
+  }
+}

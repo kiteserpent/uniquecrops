@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "ucse:seedknowledge"
+  },
+  "ingredients": [
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "minecraft:enchanted_book"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    }
+  ]
+}

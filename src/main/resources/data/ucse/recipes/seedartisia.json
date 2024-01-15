@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "ucse:seednormal"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "item": "ucse:seedartisia"
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_succo",
+    "icon": "ucse:seedsucco",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_dummy[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagesucco"
+        }
+    ]
+}

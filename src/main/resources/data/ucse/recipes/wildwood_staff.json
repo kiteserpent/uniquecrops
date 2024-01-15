@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " SE",
+    " NS",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "N": {
+      "item": "ucse:endersnooker"
+    },
+    "E": {
+      "item": "ucse:savageessence"
+    }
+  },
+  "result": {
+    "item": "ucse:wildwood_staff"
+  }
+}

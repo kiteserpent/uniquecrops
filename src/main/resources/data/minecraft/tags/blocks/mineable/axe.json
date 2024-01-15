@@ -1,20 +1,20 @@
 {
   "replace": false,
   "values": [
-    "uniquecrops:abstractbarrel",
-    "uniquecrops:egg_basket",
-    "uniquecrops:flywood_leaves",
-    "uniquecrops:flywood_log",
-    "uniquecrops:flywood_planks",
-    "uniquecrops:flywood_stairs",
-    "uniquecrops:flywood_trapdoor",
-    "uniquecrops:harvest_trap",
-    "uniquecrops:normiecrate",
-    "uniquecrops:obtuse_platform",
-    "uniquecrops:rosewood_planks",
-    "uniquecrops:rosewood_slab",
-    "uniquecrops:rosewood_stairs",
-    "uniquecrops:rosewood_trapdoor",
-    "uniquecrops:totemhead"
+    "ucse:abstractbarrel",
+    "ucse:egg_basket",
+    "ucse:flywood_leaves",
+    "ucse:flywood_log",
+    "ucse:flywood_planks",
+    "ucse:flywood_stairs",
+    "ucse:flywood_trapdoor",
+    "ucse:harvest_trap",
+    "ucse:normiecrate",
+    "ucse:obtuse_platform",
+    "ucse:rosewood_planks",
+    "ucse:rosewood_slab",
+    "ucse:rosewood_stairs",
+    "ucse:rosewood_trapdoor",
+    "ucse:totemhead"
   ]
 }

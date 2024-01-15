@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_millennium",
+    "icon": "ucse:seedmillennium",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_millennium[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagemillennium"
+        }
+    ]
+}

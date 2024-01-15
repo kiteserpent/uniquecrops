@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_devilsnare",
+    "icon": "ucse:seeddevilsnare",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_devilsnare[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagedevilsnare"
+        }
+    ]
+}

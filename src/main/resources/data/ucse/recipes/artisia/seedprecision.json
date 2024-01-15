@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "ucse:seedprecision"
+  },
+  "ingredients": [
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "ucse:seedcollis"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "ucse:seedcollis"
+    },
+    {
+      "item": "minecraft:gold_nugget"
+    },
+    {
+      "item": "ucse:seedcollis"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "ucse:seedcollis"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    }
+  ]
+}

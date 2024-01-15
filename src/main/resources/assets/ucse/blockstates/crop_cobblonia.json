@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ucse:block/cobblonia1"
+    },
+    "age=1": {
+      "model": "ucse:block/cobblonia2"
+    },
+    "age=2": {
+      "model": "ucse:block/cobblonia2"
+    },
+    "age=3": {
+      "model": "ucse:block/cobblonia3"
+    },
+    "age=4": {
+      "model": "ucse:block/cobblonia3"
+    },
+    "age=5": {
+      "model": "ucse:block/cobblonia4"
+    },
+    "age=6": {
+      "model": "ucse:block/cobblonia4"
+    },
+    "age=7": {
+      "model": "ucse:block/cobblonia5"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    "DBD",
+    " D "
+  ],
+  "key": {
+    "D": {
+      "item": "ucse:seeddyeius"
+    },
+    "B": {
+      "item": "ucse:book_guide"
+    }
+  },
+  "result": {
+    "item": "ucse:book_multiblock"
+  }
+}

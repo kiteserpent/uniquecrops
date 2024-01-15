@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=x":     { "model": "ucse:block/flywood_log", "x": 90, "y": 90 },
+        "axis=y":    { "model": "ucse:block/flywood_log" },
+        "axis=z":     { "model": "ucse:block/flywood_log", "x": 90 }
+    }
+}

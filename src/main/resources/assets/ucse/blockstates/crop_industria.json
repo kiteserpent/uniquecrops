@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ucse:block/industria0"
+    },
+    "age=1": {
+      "model": "ucse:block/industria1"
+    },
+    "age=2": {
+      "model": "ucse:block/industria2"
+    },
+    "age=3": {
+      "model": "ucse:block/industria3"
+    },
+    "age=4": {
+      "model": "ucse:block/industria4"
+    },
+    "age=5": {
+      "model": "ucse:block/industria5"
+    },
+    "age=6": {
+      "model": "ucse:block/industria6"
+    },
+    "age=7": {
+      "model": "ucse:block/industria7"
+    }
+  }
+}

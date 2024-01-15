@@ -1,0 +1,36 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "minecraft:dirt",
+    "count": 3
+  },
+  "ingredients": [
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "minecraft:brown_dye"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    }
+  ]
+}

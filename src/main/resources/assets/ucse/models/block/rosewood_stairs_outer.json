@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "ucse:block/rosewood_planks",
+    "bottom": "ucse:block/rosewood_planks",
+    "top": "ucse:block/rosewood_planks"
+  }
+}

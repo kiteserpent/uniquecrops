@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "uniquecrops:flywood_stairs",
-    "uniquecrops:rosewood_stairs"
+    "ucse:flywood_stairs",
+    "ucse:rosewood_stairs"
   ]
 }

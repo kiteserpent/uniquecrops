@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_invisibilia",
+    "icon": "ucse:seedinvisibilia",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_invisibilia[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageinvisibilia"
+        }
+    ]
+}

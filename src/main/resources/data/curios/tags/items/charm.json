@@ -1,17 +1,17 @@
 {
   "replace": false,
   "values": [
-    "uniquecrops:emblem_transformation",
-	"uniquecrops:emblem_scarab",
-    "uniquecrops:emblem_ironstomach",
-    "uniquecrops:emblem_bookworm",
-    "uniquecrops:emblem_melee",
-    "uniquecrops:emblem_defense",
-    "uniquecrops:emblem_rainbow",
-    "uniquecrops:emblem_powerfist",
-    "uniquecrops:emblem_blacksmith",
-    "uniquecrops:emblem_weight",
-    "uniquecrops:emblem_leaf",
-    "uniquecrops:emblem_pacifism"
+    "ucse:emblem_transformation",
+	"ucse:emblem_scarab",
+    "ucse:emblem_ironstomach",
+    "ucse:emblem_bookworm",
+    "ucse:emblem_melee",
+    "ucse:emblem_defense",
+    "ucse:emblem_rainbow",
+    "ucse:emblem_powerfist",
+    "ucse:emblem_blacksmith",
+    "ucse:emblem_weight",
+    "ucse:emblem_leaf",
+    "ucse:emblem_pacifism"
   ]
 }

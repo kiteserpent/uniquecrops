@@ -1,0 +1,8 @@
+{
+  "variants": {
+		"facing=north": { "model": "ucse:block/abstractbarrel", "y": 0 },
+		"facing=south": { "model": "ucse:block/abstractbarrel", "y": 180 },
+		"facing=east": { "model": "ucse:block/abstractbarrel", "y": 90 },
+		"facing=west": { "model": "ucse:block/abstractbarrel", "y": 270 }
+  }
+}

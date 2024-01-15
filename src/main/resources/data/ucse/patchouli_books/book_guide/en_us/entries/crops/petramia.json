@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_petramia",
+    "icon": "ucse:seedpetramia",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_petramia[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagepetramia"
+        }
+    ]
+}

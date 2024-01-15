@@ -1,0 +1,20 @@
+{
+    "name": "block.ucse.weatherflesia",
+    "icon": "minecraft:writable_book",
+    "category": "ucse:multiblocks",
+    "pages": [
+        {
+            "type": "patchouli:multiblock",
+			"multiblock_id": "ucse:multiblocks/weatherflesia",
+			"text": "The biome painter"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.bookmultiblocks.page.weatherflesia"
+        },
+        {
+            "type": "ucse:recipecost",
+            "multiblock": "ucse:multiblocks/weatherflesia"
+        }
+    ]
+}

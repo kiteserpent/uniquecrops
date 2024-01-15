@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_maryjane",
+    "icon": "ucse:seedmaryjane",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_maryjane[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagemaryjane"
+        }
+    ]
+}

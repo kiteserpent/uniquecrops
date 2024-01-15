@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "ucse:dirigibleplum"
+    }
+  },
+  "result": {
+    "item": "ucse:large_plum"
+  }
+}

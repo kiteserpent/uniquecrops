@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_hexis",
+    "icon": "ucse:seedhexis",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_hexis[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagehexis"
+        }
+    ]
+}

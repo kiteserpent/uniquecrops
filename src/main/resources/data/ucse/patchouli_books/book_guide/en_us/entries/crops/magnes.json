@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_magnes",
+    "icon": "ucse:seedmagnes",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_magnes[age=7,polarity=true]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagemagnes"
+        }
+    ]
+}

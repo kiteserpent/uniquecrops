@@ -1,0 +1,12 @@
+{
+  "type": "ucse:hourglass",
+  "input": {
+    "name": "minecraft:grass_block",
+    "properties": {
+      "snowy": "false"
+    }
+  },
+  "output": {
+    "name": "ucse:oldgrass"
+  }
+}

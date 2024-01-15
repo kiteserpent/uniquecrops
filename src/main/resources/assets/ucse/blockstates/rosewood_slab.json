@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "ucse:block/rosewood_slab_top"
+    },
+    "type=bottom": {
+      "model": "ucse:block/rosewood_slab"
+    },
+    "type=double": {
+      "model": "ucse:block/rosewood_planks"
+    }
+  }
+}

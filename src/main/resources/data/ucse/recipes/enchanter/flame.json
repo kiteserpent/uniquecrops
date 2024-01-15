@@ -1,0 +1,24 @@
+{
+  "type": "ucse:enchanter",
+  "enchantment": "minecraft:flame",
+  "cost": 40,
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:bow"
+      },
+      {
+        "item": "ucse:seedmaryjane"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_rod"
+      },
+      {
+        "item": "ucse:seedmaryjane"
+      }
+    ]
+  ]
+}

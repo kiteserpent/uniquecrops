@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"": [
-			{ "model": "uniquecrops:block/lignator", "y": 90 },
-			{ "model": "uniquecrops:block/lignator" }
-		]
-	}
-}

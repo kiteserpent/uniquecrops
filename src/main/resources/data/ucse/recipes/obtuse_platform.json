@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TGT",
+    "GDG",
+    "TGT"
+  ],
+  "key": {
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "G": {
+      "item": "ucse:invisibilia_glass"
+    },
+    "T": {
+      "item": "ucse:lilytwine"
+    }
+  },
+  "result": {
+    "item": "ucse:obtuse_platform"
+  }
+}

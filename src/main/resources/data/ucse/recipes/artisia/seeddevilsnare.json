@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "ucse:seeddevilsnare"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:dead_bush"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:dead_bush"
+    },
+    {
+      "item": "ucse:seedpixelsius"
+    },
+    {
+      "item": "minecraft:dead_bush"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:dead_bush"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ]
+}

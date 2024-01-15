@@ -1,0 +1,10 @@
+{
+	"variants": {
+        "": [
+            { "model": "ucse:block/icelily" },
+            { "model": "ucse:block/icelily", "y": 90 },
+            { "model": "ucse:block/icelily", "y": 180 },
+            { "model": "ucse:block/icelily", "y": 270 }
+        ]
+    }
+}

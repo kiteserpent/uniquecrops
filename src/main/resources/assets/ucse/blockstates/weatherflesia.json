@@ -1,0 +1,14 @@
+{
+  "variants": {
+		"rafflesia=north": { "model": "ucse:block/weatherflesia_petal", "y": 0 },
+		"rafflesia=south": { "model": "ucse:block/weatherflesia_petal", "y": 180 },
+		"rafflesia=east": { "model": "ucse:block/weatherflesia_petal", "y": 90 },
+		"rafflesia=west": { "model": "ucse:block/weatherflesia_petal", "y": 270 },
+		"rafflesia=northeast": { "model": "ucse:block/weatherflesia_petalcorner", "y": 90 },
+		"rafflesia=northwest": { "model": "ucse:block/weatherflesia_petalcorner", "y": 0 },
+		"rafflesia=southeast": { "model": "ucse:block/weatherflesia_petalcorner", "y": 180 },
+		"rafflesia=southwest": { "model": "ucse:block/weatherflesia_petalcorner", "y": 270 },
+		"rafflesia=up": { "model": "ucse:block/weatherflesia_center" },
+		"rafflesia=down": { "model": "ucse:block/weatherflesia_center" }
+  }
+}

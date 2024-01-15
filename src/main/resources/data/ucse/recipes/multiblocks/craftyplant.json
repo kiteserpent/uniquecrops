@@ -1,0 +1,90 @@
+{
+  "type": "ucse:multiblock",
+  "catalyst": {
+    "item": "ucse:wildwood_staff",
+    "power": 20
+  },
+  "shape": [
+    "AAA",
+    "A0A",
+    "AAA"
+  ],
+  "shaperesult": [
+    "HNP",
+    "WCE",
+    "DSG"
+  ],
+  "origin": {
+    "x": 1,
+    "y": 1
+  },
+  "definition": {
+    "0": {
+      "states": [
+        "ucse:crop_artisia[age-0]"
+      ]
+    },
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "A": {
+      "states": [
+        "ucse:crop_artisia[age-0]"
+      ]
+    }
+  },
+  "definitionresult": {
+    "P": {
+      "states": [
+        "ucse:stalk[stalk-northeast]"
+      ]
+    },
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "C": {
+      "states": [
+        "ucse:stalk[stalk-down]"
+      ]
+    },
+    "S": {
+      "states": [
+        "ucse:stalk[stalk-south]"
+      ]
+    },
+    "D": {
+      "states": [
+        "ucse:stalk[stalk-southwest]"
+      ]
+    },
+    "E": {
+      "states": [
+        "ucse:stalk[stalk-east]"
+      ]
+    },
+    "W": {
+      "states": [
+        "ucse:stalk[stalk-west]"
+      ]
+    },
+    "G": {
+      "states": [
+        "ucse:stalk[stalk-southeast]"
+      ]
+    },
+    "H": {
+      "states": [
+        "ucse:stalk[stalk-northwest]"
+      ]
+    },
+    "N": {
+      "states": [
+        "ucse:stalk[stalk-north]"
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Introduction",
+    "icon": "minecraft:writable_book",
+    "category": "ucse:multiblocks",
+    "priority": true,
+    "pages": [
+        {
+            "type": "patchouli:image",
+			"images": [ "ucse:textures/gui/titlepage2.png" ]
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.bookmultiblocks.page.intro"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+	"variants": {
+        "": [
+            { "model": "ucse:block/junglelily" },
+            { "model": "ucse:block/junglelily", "y": 90 },
+            { "model": "ucse:block/junglelily", "y": 180 },
+            { "model": "ucse:block/junglelily", "y": 270 }
+        ]
+    }
+}

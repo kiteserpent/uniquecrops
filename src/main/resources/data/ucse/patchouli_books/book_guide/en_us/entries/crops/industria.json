@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_industria",
+    "icon": "ucse:seedindustria",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_industria[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageindustria"
+        }
+    ]
+}

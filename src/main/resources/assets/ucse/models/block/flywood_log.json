@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "ucse:block/flywood_log_top",
+        "side": "ucse:block/flywood_log"
+    }
+}

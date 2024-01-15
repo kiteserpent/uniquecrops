@@ -1,0 +1,37 @@
+{
+  "parent": "ucse:main/artisia_craft",
+  "display": {
+    "icon": {
+      "item": "ucse:seedabstract"
+    },
+    "title": {
+      "translate": "advancement.ucse:craftingAbstract"
+    },
+    "description": {
+      "translate": "advancement.ucse:craftingAbstract.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "seed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:seedabstract"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ]
+}

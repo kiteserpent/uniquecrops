@@ -1,0 +1,7 @@
+{
+	"oof": { "sounds":["ucse:oof"], "subtitle": "ucse.subtitle.oof" },
+	"neonsigns": { "sounds":[{"name": "ucse:neonsigns", "stream": true}] },
+	"taxi": { "sounds":[{"name": "ucse:taxi", "stream": true}] },
+	"simply": { "sounds":[{"name": "ucse:simply", "stream": true}] },
+	"faraway": { "sounds":[{"name": "ucse:faraway", "stream": true}] }
+}

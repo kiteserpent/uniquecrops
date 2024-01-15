@@ -1,0 +1,9 @@
+{
+  "type": "ucse:hourglass",
+  "input": {
+    "name": "minecraft:chiseled_stone_bricks"
+  },
+  "output": {
+    "name": "ucse:ruinedbrickscarved"
+  }
+}

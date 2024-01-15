@@ -1,0 +1,8 @@
+{
+  "variants": {
+		"facing=north": { "model": "ucse:block/dreamcatcher", "y": 0 },
+		"facing=south": { "model": "ucse:block/dreamcatcher", "y": 180 },
+		"facing=east": { "model": "ucse:block/dreamcatcher", "y": 90 },
+		"facing=west": { "model": "ucse:block/dreamcatcher", "y": 270 }
+  }
+}

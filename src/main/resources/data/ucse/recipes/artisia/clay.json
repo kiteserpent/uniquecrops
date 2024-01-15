@@ -1,0 +1,36 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "minecraft:clay",
+    "count": 8
+  },
+  "ingredients": [
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "minecraft:gray_dye"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    }
+  ]
+}

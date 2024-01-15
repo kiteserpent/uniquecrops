@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BAB",
+    "BBB"
+  ],
+  "key": {
+    "A": {
+      "item": "ucse:glasses_3d"
+    },
+    "B": {
+      "item": "ucse:pixels"
+    }
+  },
+  "result": {
+    "item": "ucse:glasses_pixels"
+  }
+}

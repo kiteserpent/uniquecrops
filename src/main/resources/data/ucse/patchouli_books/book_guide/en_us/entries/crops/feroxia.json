@@ -1,0 +1,19 @@
+{
+    "name": "block.ucse.crop_feroxia",
+    "icon": "ucse:seedferoxia",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_feroxia[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageferoxia"
+        },
+        {
+            "type": "ucse:growthsteps",
+            "text": "Feroxia Growth Steps"
+        }
+    ]
+}

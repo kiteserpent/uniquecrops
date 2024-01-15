@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EEE",
+    "E E",
+    "E E"
+  ],
+  "key": {
+    "E": {
+      "item": "ucse:ferromagnetic_iron"
+    }
+  },
+  "result": {
+    "item": "ucse:item_magnet"
+  }
+}

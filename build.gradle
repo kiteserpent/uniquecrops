@@ -30,12 +30,12 @@ apply plugin: 'org.spongepowered.mixin'
 //apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 mixin {
-    add sourceSets.main, "uniquecrops.refmap.json"
-    config 'assets/uniquecrops/uniquecrops.mixins.json'
+    add sourceSets.main, "ucse.refmap.json"
+    config 'assets/ucse/ucse.mixins.json'
 }
 version = "${mod_version}-${minecraft_version}"
-group = 'com.bafomdad.uniquecrops'
-archivesBaseName = 'uniquecrops'
+group = 'com.remag.ucse'
+archivesBaseName = 'ucse'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -48,7 +48,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            arg "-mixin.config=assets/uniquecrops/uniquecrops.mixins.json"
+            arg "-mixin.config=assets/ucse/ucse.mixins.json"
 
             property 'forge.logging.console.level', 'debug'
 
@@ -56,7 +56,7 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                uniquecrops {
+                ucse {
                     source sourceSets.main
                 }
             }
@@ -70,7 +70,7 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                uniquecrops {
+                ucse {
                     source sourceSets.main
                 }
             }
@@ -83,11 +83,11 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
-            args '--mod', 'uniquecrops', '--all', '--output', file('src/generated/resources/')
-//            args '--mod', 'uniquecrops', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'ucse', '--all', '--output', file('src/generated/resources/')
+//            args '--mod', 'ucse', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                uniquecrops {
+                ucse {
                     source sourceSets.main
                 }
             }
@@ -126,12 +126,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title": "uniquecrops",
+                "Specification-Title": "ucse",
                 "Specification-Version": "1",
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ss"),
-                "MixinConfigs": "assets/uniquecrops/uniquecrops.mixins.json"
+                "MixinConfigs": "assets/ucse/ucse.mixins.json"
         ])
     }
 }
@@ -141,12 +141,12 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
     manifest {
         attributes([
-                "Specification-Title": "uniquecrops",
+                "Specification-Title": "ucse",
                 "Specification-Version": "1",
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConnector": "com.bafomdad.uniquecrops.MixinConnector"
+                "MixinConnector": "com.remag.ucse.MixinConnector"
         ])
     }
 }

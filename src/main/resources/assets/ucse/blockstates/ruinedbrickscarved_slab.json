@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "ucse:block/ruinedbrickscarved_slab_top"
+    },
+    "type=bottom": {
+      "model": "ucse:block/ruinedbrickscarved_slab"
+    },
+    "type=double": {
+      "model": "ucse:block/ruinedbricksmooth"
+    }
+  }
+}

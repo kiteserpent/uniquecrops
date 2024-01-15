@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "uniquecrops:ruinedbricks"
-  },
-  "result": "uniquecrops:ruinedbricks_stairs",
-  "count": 1
-}

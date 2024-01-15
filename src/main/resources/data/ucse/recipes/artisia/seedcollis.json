@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "ucse:seedcollis"
+  },
+  "ingredients": [
+    {
+      "item": "ucse:seedcinderbella"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "ucse:seedcinderbella"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "ucse:seedcinderbella"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "ucse:seedcinderbella"
+    }
+  ]
+}

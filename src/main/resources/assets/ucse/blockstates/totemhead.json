@@ -1,0 +1,8 @@
+{
+  "variants": {
+        "facing=west": { "model": "ucse:block/totemhead", "y": 90 },
+        "facing=south": { "model": "ucse:block/totemhead" },
+        "facing=east": { "model": "ucse:block/totemhead", "y": 90 },
+        "facing=north": { "model": "ucse:block/totemhead" }
+  }
+}

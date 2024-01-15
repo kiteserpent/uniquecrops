@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ucse:block/eula_b"
+    },
+    "age=1": {
+      "model": "ucse:block/eula_a"
+    },
+    "age=2": {
+      "model": "ucse:block/eula_f"
+    },
+    "age=3": {
+      "model": "ucse:block/eula_o"
+    },
+    "age=4": {
+      "model": "ucse:block/eula_m"
+    },
+    "age=5": {
+      "model": "ucse:block/eula_d"
+    },
+    "age=6": {
+      "model": "ucse:block/eula_a"
+    },
+    "age=7": {
+      "model": "ucse:block/eula_d"
+    }
+  }
+}

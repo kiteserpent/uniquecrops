@@ -1,0 +1,37 @@
+{
+  "parent": "ucse:main/artisia_craft",
+  "display": {
+    "icon": {
+      "item": "ucse:seedmusica"
+    },
+    "title": {
+      "translate": "advancement.ucse:craftingMusica"
+    },
+    "description": {
+      "translate": "advancement.ucse:craftingMusica.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "seed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:seedmusica"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ]
+}

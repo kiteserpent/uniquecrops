@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "ucse:rosewood_planks"
+    }
+  },
+  "result": {
+    "item": "ucse:rosewood_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "ucse:block/flywood_slab_top"
+    },
+    "type=bottom": {
+      "model": "ucse:block/flywood_slab"
+    },
+    "type=double": {
+      "model": "ucse:block/flywood_planks"
+    }
+  }
+}

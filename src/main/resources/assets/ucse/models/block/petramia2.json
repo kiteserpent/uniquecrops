@@ -1,0 +1,6 @@
+{
+  "parent": "ucse:block/crossuc",
+  "textures": {
+    "crop": "ucse:block/petramia2"
+  }
+}

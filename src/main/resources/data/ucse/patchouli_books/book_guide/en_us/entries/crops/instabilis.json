@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_instabilis",
+    "icon": "ucse:seedinstabilis",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_instabilis[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageinstabilis"
+        }
+    ]
+}

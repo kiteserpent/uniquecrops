@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "ucse:seedindustria"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "item": "ucse:seedinstabilis"
+    },
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ]
+}

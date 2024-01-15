@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_merlinia",
+    "icon": "ucse:seedmerlinia",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_merlinia[age=0]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagemerlinia"
+        }
+    ]
+}

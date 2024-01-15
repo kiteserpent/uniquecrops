@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_musica",
+    "icon": "ucse:seedmusica",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_musica[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagemusica"
+        }
+    ]
+}

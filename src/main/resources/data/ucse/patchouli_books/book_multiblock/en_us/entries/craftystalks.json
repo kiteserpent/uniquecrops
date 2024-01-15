@@ -1,0 +1,20 @@
+{
+    "name": "Crafty Stalks",
+    "icon": "minecraft:writable_book",
+    "category": "ucse:multiblocks",
+    "pages": [
+        {
+            "type": "patchouli:multiblock",
+			"multiblock_id": "ucse:multiblocks/craftyplant",
+			"text": "Slightly improved crafting"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.bookmultiblocks.page.craftystalks"
+        },
+        {
+            "type": "ucse:recipecost",
+            "multiblock": "ucse:multiblocks/craftyplant"
+        }
+    ]
+}

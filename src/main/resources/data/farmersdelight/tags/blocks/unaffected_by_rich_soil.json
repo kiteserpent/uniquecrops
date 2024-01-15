@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-	"uniquecrops:crop_holy",
-	"uniquecrops:crop_devilsnare",
-	"uniquecrops:crop_dirigible",
-	"uniquecrops:crop_donutsteel",
-	"uniquecrops:crop_feroxia",
-	"uniquecrops:crop_hexis",
-	"uniquecrops:crop_imperia",
-	"uniquecrops:crop_industria",
-	"uniquecrops:crop_knowledge",
-	"uniquecrops:crop_malleatoris",
-	"uniquecrops:crop_maryjane",
-	"uniquecrops:crop_millennium",
-	"uniquecrops:crop_musica",
-	"uniquecrops:crop_precision",
-	"uniquecrops:crop_quarry",
-	"uniquecrops:crop_weepingbells"
+	"ucse:crop_holy",
+	"ucse:crop_devilsnare",
+	"ucse:crop_dirigible",
+	"ucse:crop_donutsteel",
+	"ucse:crop_feroxia",
+	"ucse:crop_hexis",
+	"ucse:crop_imperia",
+	"ucse:crop_industria",
+	"ucse:crop_knowledge",
+	"ucse:crop_malleatoris",
+	"ucse:crop_maryjane",
+	"ucse:crop_millennium",
+	"ucse:crop_musica",
+	"ucse:crop_precision",
+	"ucse:crop_quarry",
+	"ucse:crop_weepingbells"
   ]
 }

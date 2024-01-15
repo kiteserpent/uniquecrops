@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ucse:block/wafflonia1"
+    },
+    "age=1": {
+      "model": "ucse:block/wafflonia2"
+    },
+    "age=2": {
+      "model": "ucse:block/wafflonia2"
+    },
+    "age=3": {
+      "model": "ucse:block/wafflonia3"
+    },
+    "age=4": {
+      "model": "ucse:block/wafflonia3"
+    },
+    "age=5": {
+      "model": "ucse:block/wafflonia4"
+    },
+    "age=6": {
+      "model": "ucse:block/wafflonia4"
+    },
+    "age=7": {
+      "model": "ucse:block/wafflonia5"
+    }
+  }
+}

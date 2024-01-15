@@ -1,0 +1,16 @@
+{
+    "name": "Introduction",
+    "icon": "minecraft:writable_book",
+    "category": "ucse:seeds",
+    "priority": true,
+    "pages": [
+        {
+            "type": "patchouli:image",
+			"images": [ "ucse:textures/gui/titlepage.png" ]
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageintro"
+        }
+    ]
+}

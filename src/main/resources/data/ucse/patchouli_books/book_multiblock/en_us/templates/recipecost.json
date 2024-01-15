@@ -1,0 +1,12 @@
+{
+  "processor": "com.remag.ucse.integration.patchouli.processor.CostProcessor",
+  "components": [
+    {
+      "type": "patchouli:custom",
+      "class": "com.remag.ucse.integration.patchouli.component.CostComponent",
+      "x": 0,
+      "y": 50,
+      "multiblock": "#multiblock"
+    }
+  ]
+}

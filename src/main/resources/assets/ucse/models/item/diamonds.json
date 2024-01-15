@@ -1,0 +1,13 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "ucse:items/diamonds6"
+	},
+	"overrides": [
+		{ "predicate": { "ucse:diamonds": 0.0 }, "model": "ucse:item/diamonds" },
+		{ "predicate": { "ucse:diamonds": 1.0 }, "model": "ucse:item/diamonds_1" },
+		{ "predicate": { "ucse:diamonds": 2.0 }, "model": "ucse:item/diamonds_2" },
+		{ "predicate": { "ucse:diamonds": 3.0 }, "model": "ucse:item/diamonds_3" },
+		{ "predicate": { "ucse:diamonds": 4.0 }, "model": "ucse:item/diamonds_4" }
+	]
+}

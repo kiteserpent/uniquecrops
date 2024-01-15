@@ -1,0 +1,10 @@
+{
+  "components": [
+    {
+      "type": "custom",
+      "class": "com.remag.ucse.integration.patchouli.component.GrowthComponent",
+      "x": 0,
+      "y": 0
+    }
+  ]
+}

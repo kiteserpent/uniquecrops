@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+		"particle": "ucse:block/ruinedbricks2",
+		"down": "ucse:block/ruinedbricks2",
+		"up": "ucse:block/ruinedbricks2",
+		"north": "ucse:block/ruinedbricks1",
+		"east": "ucse:block/ruinedbricks1",
+		"south": "ucse:block/ruinedbricks1",
+		"west": "ucse:block/ruinedbricks1"
+  }
+}

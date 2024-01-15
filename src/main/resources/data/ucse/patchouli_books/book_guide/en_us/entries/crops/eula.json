@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_eula",
+    "icon": "ucse:seedeula",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_eula[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageeula"
+        }
+    ]
+}

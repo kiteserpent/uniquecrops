@@ -1,0 +1,9 @@
+{
+  "type": "ucse:hourglass",
+  "input": {
+    "name": "minecraft:diamond_block"
+  },
+  "output": {
+    "name": "ucse:olddiamond"
+  }
+}

@@ -1,0 +1,14 @@
+{
+	"name": "item.ucse.book_multiblock",
+	"landing_text": "Guide to the multiblocks created by this mod.",
+	"version": 1,
+	"book_texture": "ucse:textures/gui/book_lime.png",
+	"model": "ucse:book_multiblock",
+	"creative_tab": "ucse",
+	"dont_generate_book": true,
+	"custom_book_item": "ucse:book_multiblock",
+	"show_progress": false,
+	"show_toasts": false,
+	"i18n": true,
+	"pause_game": false
+}

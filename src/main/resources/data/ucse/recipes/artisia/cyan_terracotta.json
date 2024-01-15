@@ -1,0 +1,36 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "minecraft:cyan_terracotta",
+    "count": 16
+  },
+  "ingredients": [
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    }
+  ]
+}

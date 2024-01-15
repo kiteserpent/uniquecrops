@@ -1,0 +1,12 @@
+{
+    "parent": "minecraft:block/cube",
+    "textures": {
+        "particle": "ucse:block/crate1",
+        "down": "ucse:block/crate2",
+        "up": "ucse:block/crate3",
+        "north": "ucse:block/crate1",
+        "east": "ucse:block/crate2",
+        "south": "ucse:block/crate1",
+        "west": "ucse:block/crate2"
+    }
+}

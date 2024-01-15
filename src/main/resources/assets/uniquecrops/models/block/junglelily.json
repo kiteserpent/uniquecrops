@@ -1,6 +1,0 @@
-{
-  "parent": "uniquecrops:block/padcustom",
-  "textures": {
-    "pad": "uniquecrops:block/junglelily"
-  }
-}

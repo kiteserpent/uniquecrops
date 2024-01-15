@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "uniquecrops:ruinedbricks_slab",
-    "uniquecrops:ruinedbrickscarved_slab"
+    "ucse:ruinedbricks_slab",
+    "ucse:ruinedbrickscarved_slab"
   ]
 }

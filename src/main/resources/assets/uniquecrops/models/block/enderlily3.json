@@ -1,6 +1,0 @@
-{
-  "parent": "uniquecrops:block/crossuc",
-  "textures": {
-    "crop": "uniquecrops:block/enderlily3"
-  }
-}

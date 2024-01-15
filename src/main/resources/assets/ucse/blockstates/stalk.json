@@ -1,0 +1,14 @@
+{
+  "variants": {
+		"stalk=north": { "model": "ucse:block/benchstalk", "y": 0 },
+		"stalk=south": { "model": "ucse:block/benchstalk", "y": 180 },
+		"stalk=east": { "model": "ucse:block/benchstalk", "y": 90 },
+		"stalk=west": { "model": "ucse:block/benchstalk", "y": 270 },
+		"stalk=northeast": { "model": "ucse:block/diagstalk", "y": 90 },
+		"stalk=northwest": { "model": "ucse:block/diagstalk", "y": 0 },
+		"stalk=southeast": { "model": "ucse:block/diagstalk", "y": 180 },
+		"stalk=southwest": { "model": "ucse:block/diagstalk", "y": 270 },
+		"stalk=up": { "model": "ucse:block/craftstalk" },
+		"stalk=down": { "model": "ucse:block/centerstalk" }
+  }
+}

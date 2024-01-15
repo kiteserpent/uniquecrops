@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "minecraft:ghast_tear"
+  },
+  "ingredients": [
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    }
+  ]
+}

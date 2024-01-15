@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_16",
+  "package": "com.remag.ucse.mixin",
+  "refmap": "ucse.refmap.json",
+  "mixins": [
+    "AccessorRecipeManager",
+    "MixinItemFood",
+    "MixinFoodStats",
+    "MixinItemCombinerMenu",
+    "MixinAnvilMenu"
+  ],
+  "client": [
+    "MixinAnimatedTextureStitch",
+    "MixinRecipeLoad",
+    "MixinWorldRenderer",
+    "AccessorBS"
+  ],
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

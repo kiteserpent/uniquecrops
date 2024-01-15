@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_precision",
+    "icon": "ucse:seedprecision",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_precision[age=6]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageprecision"
+        }
+    ]
+}

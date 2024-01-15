@@ -1,0 +1,15 @@
+{
+  "type": "ucse:hourglass",
+  "input": {
+    "name": "minecraft:birch_sapling",
+    "properties": {
+      "stage": "0"
+    }
+  },
+  "output": {
+    "name": "ucse:flywood_sapling",
+    "properties": {
+      "stage": "0"
+    }
+  }
+}

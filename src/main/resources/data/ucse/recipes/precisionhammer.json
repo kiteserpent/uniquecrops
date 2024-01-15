@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "ucse:precision_hammer"
+  },
+  "pattern": [
+    "XP",
+    "SW"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "ucse:precision_shovel"
+    },
+    "P": {
+      "item": "ucse:precision_pick"
+    },
+	"W": {
+	  "item": "ucse:precision_sword"
+	},
+	"X": {
+	  "item": "ucse:precision_axe"
+	}
+  }
+}

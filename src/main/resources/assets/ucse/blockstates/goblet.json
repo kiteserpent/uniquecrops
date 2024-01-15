@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "filled=true":  { "model": "ucse:block/goblet_filled" },
+        "filled=false": { "model": "ucse:block/goblet_empty" }
+    }
+}

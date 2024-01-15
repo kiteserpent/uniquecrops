@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_knowledge",
+    "icon": "ucse:seedknowledge",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_knowledge[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pageknowledge"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ucse:oldiron"
+    }
+  ],
+  "result": {
+    "item": "minecraft:iron_ingot",
+    "count": 9
+  }
+}

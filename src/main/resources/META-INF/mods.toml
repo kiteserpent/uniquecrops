@@ -4,24 +4,24 @@ license="MIT"
 logoFile="logo.png"
 
 [[mods]]
-modId="uniquecrops"
+modId="ucse"
 version="${file.jarVersion}"
-displayName="Unique Crops"
+displayName="Unique Crops: Sandbox Edition"
 logoFile="logo.png"
-authors="bafomdad"
+authors="bafomdad, Remag"
 description="Unique crops, unique growth, unique drops"
 
-[[dependencies.uniquecrops]]
+[[dependencies.ucse]]
     modId="forge"
     mandatory=true #mandatory
     versionRange="[40.1.68,)"
 	
-[[dependencies.uniquecrops]]
+[[dependencies.ucse]]
     modId="patchouli"
     mandatory=true
     versionRange="[1.18.2-67,)"
 
-[[dependencies.uniquecrops]]
+[[dependencies.ucse]]
     modId="curios"
     mandatory=true
     versionRange="[1.18.2-5.0.9.1,)"

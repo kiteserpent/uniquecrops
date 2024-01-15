@@ -1,0 +1,20 @@
+{
+    "name": "block.ucse.itero",
+    "icon": "minecraft:writable_book",
+    "category": "ucse:multiblocks",
+    "pages": [
+        {
+            "type": "patchouli:multiblock",
+			"multiblock_id": "ucse:multiblocks/itero",
+			"text": "Simon says"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.bookmultiblocks.page.itero"
+        },
+        {
+            "type": "ucse:recipecost",
+            "multiblock": "ucse:multiblocks/itero"
+        }
+    ]
+}

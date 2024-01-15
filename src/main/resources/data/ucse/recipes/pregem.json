@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " N ",
+    "NDN",
+    " N "
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:gems/diamond"
+    },
+    "N": {
+      "item": "ucse:prenugget"
+    }
+  },
+  "result": {
+    "item": "ucse:pregem"
+  }
+}

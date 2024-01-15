@@ -1,0 +1,36 @@
+{
+  "type": "ucse:artisia",
+  "output": {
+    "item": "minecraft:fire_charge",
+    "count": 8
+  },
+  "ingredients": [
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    },
+    {
+      "item": "ucse:savageessence"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "block.ucse.crop_wafflonia",
+    "icon": "ucse:seedwafflonia",
+    "category": "ucse:seeds",
+    "pages": [
+        {
+            "type": "ucse:cropimage",
+            "blockstate": "ucse:crop_wafflonia[age=7]"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.book.pagewafflonia"
+        }
+    ]
+}

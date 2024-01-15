@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "ucse:flywood_planks"
+  },
+  "result": "ucse:flywood_stairs",
+  "count": 1
+}

@@ -1,0 +1,20 @@
+{
+    "name": "block.ucse.cocito",
+    "icon": "minecraft:writable_book",
+    "category": "ucse:multiblocks",
+    "pages": [
+        {
+            "type": "patchouli:multiblock",
+			"multiblock_id": "ucse:multiblocks/cocito",
+			"text": "Mass cooker"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "ucse.bookmultiblocks.page.cocito"
+        },
+        {
+            "type": "ucse:recipecost",
+            "multiblock": "ucse:multiblocks/cocito"
+        }
+    ]
+}
