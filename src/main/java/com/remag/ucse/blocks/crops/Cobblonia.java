@@ -44,10 +44,10 @@ public class Cobblonia extends BaseCropsBlock {
 
         int cobblegen = 0;
 
-        if (isFluidSource(world, north, FluidTags.WATER) && isFluidSource(world, south, FluidTags.LAVA)) cobblegen++;
-        if (isFluidSource(world, north, FluidTags.LAVA) && isFluidSource(world, south, FluidTags.WATER)) cobblegen++;
-        if (isFluidSource(world, west, FluidTags.WATER) && isFluidSource(world, east, FluidTags.LAVA)) cobblegen++;
-        if (isFluidSource(world, west, FluidTags.LAVA) && isFluidSource(world, east, FluidTags.WATER)) cobblegen++;
+        if (isFluidSource(world, north, FluidTags.WATER) && isFluidSource(world, south, FluidTags.LAVA)) cobblegen+= 3;
+        if (isFluidSource(world, north, FluidTags.LAVA) && isFluidSource(world, south, FluidTags.WATER)) cobblegen+= 3;
+        if (isFluidSource(world, west, FluidTags.WATER) && isFluidSource(world, east, FluidTags.LAVA)) cobblegen+= 3;
+        if (isFluidSource(world, west, FluidTags.LAVA) && isFluidSource(world, east, FluidTags.WATER)) cobblegen+= 3;
 
         if (cobblegen > 0) {
             cobblegen = boost ? 64 : cobblegen;
