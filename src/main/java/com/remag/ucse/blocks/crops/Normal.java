@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class Normal extends BaseCropsBlock {
 
+    private boolean clickHarvest = true;
+
     static final Item[] DROPS = new Item[] { Items.WHEAT, Items.BEETROOT, Items.CARROT, Items.POTATO };
 
     public Normal() {
@@ -21,5 +23,10 @@ public class Normal extends BaseCropsBlock {
     public Item getCrop() {
 
         return UCUtils.selectRandom(new Random(), DROPS);
+    }
+
+    public boolean isClickHarvest() {
+
+        return this.clickHarvest;
     }
 }

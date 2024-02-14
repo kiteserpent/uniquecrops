@@ -10,6 +10,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 
 public class Eula extends BaseCropsBlock {
 
+    private boolean clickHarvest = true;
+
     public Eula() {
 
         super(UCItems.LEGALSTUFF, UCItems.EULA_SEED);
@@ -23,5 +25,10 @@ public class Eula extends BaseCropsBlock {
                 UCPacketHandler.sendTo((ServerPlayer)ctx.getPlayer(), new PacketOpenBook(ctx.getPlayer().getId()));
         }
         return super.getStateForPlacement(ctx);
+    }
+
+    public boolean isClickHarvest() {
+
+        return this.clickHarvest;
     }
 }
