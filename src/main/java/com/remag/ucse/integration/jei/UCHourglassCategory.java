@@ -66,10 +66,10 @@ public class UCHourglassCategory implements IRecipeCategory<IHourglassRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, IHourglassRecipe recipe, IFocusGroup ingredients) {
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 23)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 100, 24)
                 .addItemStack(new ItemStack(recipe.getOutput().getBlock()));
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 10, 23)
+        builder.addSlot(RecipeIngredientRole.INPUT, 11, 24)
                 .addItemStack(new ItemStack(recipe.getInput().getBlock()));
 //        IGuiItemStackGroup layout = recipeLayout.getItemStacks();
 //

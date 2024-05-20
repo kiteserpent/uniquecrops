@@ -55,10 +55,10 @@ public class UCHeaterCategory implements IRecipeCategory<IHeaterRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, IHeaterRecipe recipe, IFocusGroup ingredients) {
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 23)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 100, 24)
                 .addItemStack(recipe.getResultItem());
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 10, 23)
+        builder.addSlot(RecipeIngredientRole.INPUT, 11, 24)
                 .addItemStack(recipe.getInput());
     }
 }

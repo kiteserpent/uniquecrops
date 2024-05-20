@@ -74,17 +74,17 @@ public class UCEnchanterCategory implements IRecipeCategory<IEnchanterRecipe> {
         var inputs = recipe.getIngredients();
         if (inputs.size() > 1) {
             for (int i = 0; i < inputs.size(); ++i) {
-                builder.addSlot(RecipeIngredientRole.INPUT, (i * 18) + 5, 63)
+                builder.addSlot(RecipeIngredientRole.INPUT, (i * 18) + 6, 64)
                         .addIngredients(inputs.get(i));
             }
         } else {
             for (int i = 0; i < inputs.get(0).getItems().length; ++i) {
-                builder.addSlot(RecipeIngredientRole.INPUT, (i * 18) + 5, 63)
+                builder.addSlot(RecipeIngredientRole.INPUT, (i * 18) + 6, 64)
                         .addItemStack(inputs.get(0).getItems()[i]);
             }
         }
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 41, 7)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 42, 8)
                 .addItemStack(recipe.getResultItem());
     }
 }

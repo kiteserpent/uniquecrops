@@ -58,11 +58,11 @@ public class UCArtisiaCategory implements IRecipeCategory<IArtisiaRecipe> {
         for (int y = 0; y < 3; ++y) {
             for (int x = 0; x < 3; ++x) {
                 int index = 1 + x + (y * 3);
-                builder.addSlot(RecipeIngredientRole.INPUT, (x * 18) + 5, (y * 18) + 5)
+                builder.addSlot(RecipeIngredientRole.INPUT, (x * 18) + 6, (y * 18) + 6)
                         .addIngredients(recipe.getIngredients().get(index - 1));
             }
         }
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 23)
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 100, 24)
                 .addItemStack(recipe.getResultItem());
     }
 }
