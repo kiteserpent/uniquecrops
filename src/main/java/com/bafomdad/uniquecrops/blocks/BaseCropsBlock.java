@@ -189,7 +189,14 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     }
 
     protected float getGrowthChance(Block blockIn, BlockGetter worldIn, BlockPos pos) {
-
+/*
+ 	This recreates vanilla's 'F' calculation, where the growth chance is
+	1 / (1 + floor(25/F)), except F is slightly lower here.
+	vanilla: own block is 4 (2 if dry), neighbors are 0.75 (0.25 if dry)
+	unique: own block is 3 (1 if dry), neighbors are 0.75 (0.25 if dry)
+	F is halved in both cases if diagonal planting exists.
+ */
+    	
         float f = 1.0F;
         BlockPos blockpos = pos.below();
 

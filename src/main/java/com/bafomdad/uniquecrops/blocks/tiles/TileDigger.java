@@ -72,13 +72,14 @@ public class TileDigger extends BaseTileUC {
         if (digWorld.isEmptyBlock(getBlockPos().above())) {
             digWorld.destroyBlock(digPos, false);
             if (!digState.getMaterial().isLiquid())
-                digWorld.setBlock(getBlockPos().above(), digState, 3);
+                digWorld.setBlock(getBlockPos().above(), digState, UPDATE_ALL);
             return true;
         }
         ItemStack digStack = digState.getBlock().getCloneItemStack(digWorld, digPos, digState);
         if (digStack.isEmpty()) return true;
 
         BlockEntity tile = digWorld.getBlockEntity(getBlockPos().above());
+        if (tile == null) return false;
         LazyOptional<IItemHandler> inventory = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN);
         if (!inventory.isPresent()) return false;
 

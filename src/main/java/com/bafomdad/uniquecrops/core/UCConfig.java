@@ -69,8 +69,8 @@ public final class UCConfig {
         public Common(ForgeConfigSpec.Builder builder) {
 
             millenniumTime = builder
-                    .comment("Time (in minutes) it takes for Millennium crop to advance a stage.")
-                    .defineInRange("millenniumTime", 10, 10, Integer.MAX_VALUE);
+                    .comment("Minimum time (in minutes) for Millennium crop to advance a stage.")
+                    .defineInRange("millenniumTime", 1, 1, Integer.MAX_VALUE);
             cubeCooldown = builder
                     .comment("Cooldown time (in ticks) for rubik's cube between successful teleports.")
                     .defineInRange("cubeCooldown", 3000, 30, Integer.MAX_VALUE);
