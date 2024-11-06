@@ -43,6 +43,7 @@ public final class UCConfig {
         public final ForgeConfigSpec.IntValue cubeCooldown;
         public final ForgeConfigSpec.IntValue energyPerTick;
         public final ForgeConfigSpec.BooleanValue convertObsidian;
+        public final ForgeConfigSpec.BooleanValue defaultRightClickHarvest;
 
         public final ForgeConfigSpec.BooleanValue moonPhase;
         public final ForgeConfigSpec.BooleanValue hasTorch;
@@ -80,6 +81,9 @@ public final class UCConfig {
             convertObsidian = builder
                     .comment("Lets the Petramia crop convert obsidian instead of bedrock. Use if there are no bedrock nearby to convert.")
                     .define("convertObsidian", false);
+            defaultRightClickHarvest = builder
+                    .comment("Enable inherent right-click harvesting for most crops.")
+                    .define("defaultRightClickHarvest", true);
 
             moonPhase = builder.define("moonPhase", true);
             hasTorch = builder.define("hasTorch", true);

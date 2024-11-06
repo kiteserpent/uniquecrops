@@ -2,6 +2,7 @@ package com.bafomdad.uniquecrops.blocks;
 
 import com.bafomdad.uniquecrops.blocks.tiles.TileSunBlock;
 import com.bafomdad.uniquecrops.init.UCBlocks;
+import com.bafomdad.uniquecrops.core.UCConfig;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -46,7 +47,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     private final Supplier<BlockItem> seedGetter;
 
     private boolean bonemealable = true;
-    private boolean clickHarvest = true;
+    private boolean clickHarvest = UCConfig.COMMON.defaultRightClickHarvest.get());
     private boolean includeSeed = true;
     private boolean ignoreGrowthRestrictions = false;
 
