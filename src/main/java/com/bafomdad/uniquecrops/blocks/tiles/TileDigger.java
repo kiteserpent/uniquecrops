@@ -3,6 +3,7 @@ package com.bafomdad.uniquecrops.blocks.tiles;
 import com.bafomdad.uniquecrops.blocks.BaseCropsBlock;
 import com.bafomdad.uniquecrops.init.UCTiles;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.item.ItemStack;
@@ -72,7 +73,7 @@ public class TileDigger extends BaseTileUC {
         if (digWorld.isEmptyBlock(getBlockPos().above())) {
             digWorld.destroyBlock(digPos, false);
             if (!digState.getMaterial().isLiquid())
-                digWorld.setBlock(getBlockPos().above(), digState, UPDATE_ALL);
+                digWorld.setBlock(getBlockPos().above(), digState, Block.UPDATE_ALL);
             return true;
         }
         ItemStack digStack = digState.getBlock().getCloneItemStack(digWorld, digPos, digState);

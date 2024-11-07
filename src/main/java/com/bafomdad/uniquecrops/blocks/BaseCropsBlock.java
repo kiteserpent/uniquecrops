@@ -47,7 +47,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     private final Supplier<BlockItem> seedGetter;
 
     private boolean bonemealable = true;
-    private boolean clickHarvest = UCConfig.COMMON.defaultRightClickHarvest.get());
+    private boolean clickHarvest = true;
     private boolean includeSeed = true;
     private boolean ignoreGrowthRestrictions = false;
 
@@ -255,7 +255,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
 
     public boolean isClickHarvest() {
 
-        return this.clickHarvest;
+        return UCConfig.COMMON.defaultRightClickHarvest.get() && this.clickHarvest;
     }
 
     public boolean isIgnoreGrowthRestrictions() {
