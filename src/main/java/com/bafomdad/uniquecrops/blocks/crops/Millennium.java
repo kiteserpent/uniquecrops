@@ -34,8 +34,8 @@ public class Millennium extends BaseCropsBlock implements EntityBlock {
                 }
                 if (mill.calcTime() >= UCConfig.COMMON.millenniumTime.get()) {
                     float f = getGrowthChance(this, world, pos);
-                    if (rand.nextInt((int)(10.0F / f) + 1) == 0) {
-                        world.setBlock(pos, this.setValueAge(getAge(state) + 1), 2);
+                    if (rand.nextInt((int)(250.0F / f) + 1) == 0) {
+                        world.setBlock(pos, this.setValueAge(getAge(state) + 1), UPDATE_CLIENTS);
                         mill.setTime();
                     }
                 }

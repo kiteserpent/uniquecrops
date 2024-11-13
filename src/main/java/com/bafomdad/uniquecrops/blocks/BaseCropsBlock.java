@@ -2,10 +2,12 @@ package com.bafomdad.uniquecrops.blocks;
 
 import com.bafomdad.uniquecrops.blocks.tiles.TileSunBlock;
 import com.bafomdad.uniquecrops.init.UCBlocks;
+import com.bafomdad.uniquecrops.core.UCConfig;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.entity.player.Player;
@@ -17,7 +19,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -37,7 +38,7 @@ import net.minecraftforge.common.PlantType;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantable {
+public class BaseCropsBlock extends CropBlock {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
     public static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
@@ -72,7 +73,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 
         super.createBlockStateDefinition(builder);
-        builder.add(AGE);
+        //builder.add(AGE);
     }
 
     @Override
@@ -189,7 +190,14 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     }
 
     protected float getGrowthChance(Block blockIn, BlockGetter worldIn, BlockPos pos) {
-
+/*
+ 	This recreates vanilla's 'F' calculation, where the growth chance is
+	1 / (1 + floor(25/F)), except F is slightly lower here.
+	vanilla: own block is 4 (2 if dry), neighbors are 0.75 (0.25 if dry)
+	unique: own block is 3 (1 if dry), neighbors are 0.75 (0.25 if dry)
+	F is halved in both cases if diagonal planting exists.
+ */
+    	
         float f = 1.0F;
         BlockPos blockpos = pos.below();
 
@@ -247,7 +255,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
 
     public boolean isClickHarvest() {
 
-        return this.clickHarvest;
+        return UCConfig.COMMON.defaultRightClickHarvest.get() && this.clickHarvest;
     }
 
     public boolean isIgnoreGrowthRestrictions() {

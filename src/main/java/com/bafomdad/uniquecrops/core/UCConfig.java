@@ -43,6 +43,7 @@ public final class UCConfig {
         public final ForgeConfigSpec.IntValue cubeCooldown;
         public final ForgeConfigSpec.IntValue energyPerTick;
         public final ForgeConfigSpec.BooleanValue convertObsidian;
+        public final ForgeConfigSpec.BooleanValue defaultRightClickHarvest;
 
         public final ForgeConfigSpec.BooleanValue moonPhase;
         public final ForgeConfigSpec.BooleanValue hasTorch;
@@ -69,8 +70,8 @@ public final class UCConfig {
         public Common(ForgeConfigSpec.Builder builder) {
 
             millenniumTime = builder
-                    .comment("Time (in minutes) it takes for Millennium crop to advance a stage.")
-                    .defineInRange("millenniumTime", 10, 10, Integer.MAX_VALUE);
+                    .comment("Minimum time (in minutes) for Millennium crop to advance a stage.")
+                    .defineInRange("millenniumTime", 1, 1, Integer.MAX_VALUE);
             cubeCooldown = builder
                     .comment("Cooldown time (in ticks) for rubik's cube between successful teleports.")
                     .defineInRange("cubeCooldown", 3000, 30, Integer.MAX_VALUE);
@@ -80,6 +81,9 @@ public final class UCConfig {
             convertObsidian = builder
                     .comment("Lets the Petramia crop convert obsidian instead of bedrock. Use if there are no bedrock nearby to convert.")
                     .define("convertObsidian", false);
+            defaultRightClickHarvest = builder
+                    .comment("Enable inherent right-click harvesting for most crops.")
+                    .define("defaultRightClickHarvest", true);
 
             moonPhase = builder.define("moonPhase", true);
             hasTorch = builder.define("hasTorch", true);
