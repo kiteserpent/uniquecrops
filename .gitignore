@@ -9,3 +9,6 @@
 /gradle/
 /run/
 /.settings/
+runClient.launch
+runData.launch
+runServer.launch
