@@ -3,3 +3,7 @@
 /setx.bat
 /src/test/
 /src/main/generated/
+/build
+/gradle
+/.gradle
+/.settings
