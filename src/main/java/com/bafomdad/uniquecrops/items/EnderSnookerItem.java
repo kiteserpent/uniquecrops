@@ -41,13 +41,14 @@ public class EnderSnookerItem extends ItemBaseUC {
 
         //TODO: fix weirdness
         if (ctx.getPlayer().isCrouching()) {
-            BlockState state = ctx.getLevel().getBlockState(ctx.getClickedPos());
+        	Level lvl = ctx.getLevel();
+            BlockState state = lvl.getBlockState(ctx.getClickedPos());
             if (state.getBlock() == UCBlocks.DARK_BLOCK.get()) {
-                if (!ctx.getLevel().isClientSide) {
-                    if (ctx.getClickedPos().getY() <= 1)
-                        ctx.getLevel().setBlock(ctx.getClickedPos(), Blocks.BEDROCK.defaultBlockState(), 2);
+                if (!lvl.isClientSide) {
+                    if (ctx.getClickedPos().getY() <= lvl.getMinBuildHeight()+1)
+                    	lvl.setBlock(ctx.getClickedPos(), Blocks.BEDROCK.defaultBlockState(), 2);
                     else
-                        ctx.getLevel().removeBlock(ctx.getClickedPos(), false);
+                    	lvl.removeBlock(ctx.getClickedPos(), false);
                 }
                 ItemHandlerHelper.giveItemToPlayer(ctx.getPlayer(), new ItemStack(UCBlocks.DARK_BLOCK.get()));
                 return InteractionResult.SUCCESS;
