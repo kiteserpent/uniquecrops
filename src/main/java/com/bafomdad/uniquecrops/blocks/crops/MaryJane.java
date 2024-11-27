@@ -1,6 +1,7 @@
 package com.bafomdad.uniquecrops.blocks.crops;
 
 import com.bafomdad.uniquecrops.blocks.BaseCropsBlock;
+import com.bafomdad.uniquecrops.init.UCBlocks;
 import com.bafomdad.uniquecrops.init.UCItems;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.Random;
 
@@ -37,10 +39,12 @@ public class MaryJane extends BaseCropsBlock {
                 super.playerDestroy(world, player, pos, state, tile, stack);
                 return;
             }
-            if (!player.isCreative() && (player.isOnFire() && player.fireImmune()) || !player.isOnFire()) {
+            if (!player.isCreative() && !player.isOnFire()) {
                 world.setBlock(pos.below(), Blocks.DIRT.defaultBlockState(), 2);
                 world.setBlock(pos, Blocks.FIRE.defaultBlockState(), 2);
-            }
+            } else {
+            	ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(UCItems.CINDERLEAF.get()));
+           	}
         }
         super.playerDestroy(world, player, pos, state, tile, stack);
     }
