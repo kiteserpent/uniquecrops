@@ -2,10 +2,14 @@ package com.bafomdad.uniquecrops.blocks;
 
 import com.bafomdad.uniquecrops.blocks.tiles.TileHarvestTrap;
 import com.bafomdad.uniquecrops.core.UCUtils;
+
+import net.minecraft.core.particles.ParticleOptions;
 import com.bafomdad.uniquecrops.core.enums.EnumParticle;
 import com.bafomdad.uniquecrops.init.UCItems;
 import com.bafomdad.uniquecrops.network.PacketUCEffect;
 import com.bafomdad.uniquecrops.network.UCPacketHandler;
+//import com.mojang.logging.LogUtils;
+
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -71,14 +75,13 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileHarvestTrap) {
             TileHarvestTrap trap = (TileHarvestTrap)tile;
-            if (!trap.hasSpirit() && !trap.isCollected()) {
+            if (!trap.hasSpirit() && (trap.getBaitPower() == 0)) {
                 if (player.getItemInHand(hand).getItem() == UCItems.SPIRITBAIT.get()) {
                     trap.setBaitPower(3);
                     player.getItemInHand(hand).shrink(1);
                     return InteractionResult.SUCCESS;
                 }
-            }
-            if (trap.hasSpirit() && !trap.isCollected()) {
+            } else if (trap.hasSpirit() && !trap.isCollected()) {
                 trap.setSpiritTime(100);
                 trap.setCollected();
                 trap.setBaitPower(0);
@@ -130,19 +133,25 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
 
+        if (!world.isClientSide())
+        	return;
+
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileHarvestTrap trap && trap.hasSpirit()) {
-            for (int i = 0; i < 5; i++) {
-                double d0 = (double)pos.getX() + rand.nextFloat();
-                double d1 = (double)pos.getY() + 0.55F;
-                double d2 = (double)pos.getZ() + rand.nextFloat();
-
-                float[] color = trap.getSpiritColor();
-
-                if (world.isClientSide()) {
-                    world.addParticle(EnumParticle.SPARK.getType(), d0, d1, d2, color[0], color[1], color[2]);
-                }
-            }
+        if (tile instanceof TileHarvestTrap) {
+            TileHarvestTrap trap = (TileHarvestTrap)tile;
+        	if (trap.hasSpirit()) {
+//	        	if (world.getGameTime() % 20 == 0)
+//	                LogUtils.getLogger().info("spewing particles");
+	   			ParticleOptions sparkle = trap.isCollected() ? EnumParticle.ORANGESPARK.getType() : EnumParticle.SPARK.getType();
+	            for (int i = 0; i < 5; i++) {
+	                double d0 = (double)pos.getX() + rand.nextFloat();
+	                double d1 = (double)pos.getY() + 0.55F;
+	                double d2 = (double)pos.getZ() + rand.nextFloat();
+	
+	                world.addParticle(sparkle, d0, d1, d2, 0.0, 0.0, 0.0);
+	//                world.addParticle(EnumParticle.SPARK.getType(), d0, d1, d2, color[0], color[1], color[2]);
+	            }
+        	}
         }
     }
 }

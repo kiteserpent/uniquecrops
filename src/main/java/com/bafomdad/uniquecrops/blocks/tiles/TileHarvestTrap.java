@@ -1,5 +1,7 @@
 package com.bafomdad.uniquecrops.blocks.tiles;
 
+//import com.mojang.logging.LogUtils;
+
 import com.bafomdad.uniquecrops.init.UCTiles;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -12,7 +14,6 @@ import java.util.Iterator;
 
 public class TileHarvestTrap extends BaseTileUC {
 
-    boolean hasSpirit;
     boolean collectedSpirit;
     int spiritTime = 0;
     int baitPower = 0;
@@ -26,19 +27,28 @@ public class TileHarvestTrap extends BaseTileUC {
 
     public void tickServer() {
 
-        if (spiritTime <= 0) return;
+        if (!this.hasSpirit())
+        	return;
 
-        if (collectedSpirit && level.getGameTime() % 20 == 0) {
+        if (!this.isCollected()) {
+            spiritTime--;
+            if (spiritTime <=0) {
+                //LogUtils.getLogger().info("UNcollected spirit ran out");
+                this.markBlockForUpdate();
+            }
+            return;
+        }
+
+        if (level.getGameTime() % 20 == 0) {
             tickCropGrowth();
             spiritTime--;
             if (spiritTime <= 0) {
+                //LogUtils.getLogger().info("collected spirit ran out");
                 this.collectedSpirit = false;
                 this.markBlockForUpdate();
-                return;
             }
-        } else if (!collectedSpirit) {
-            spiritTime--;
         }
+
     }
 
     public void tickCropGrowth() {
@@ -60,7 +70,6 @@ public class TileHarvestTrap extends BaseTileUC {
     @Override
     public void writeCustomNBT(CompoundTag tag) {
 
-        tag.putBoolean("UC:hasSpirit", this.hasSpirit);
         tag.putBoolean("UC:collectedSpirit", this.collectedSpirit);
         tag.putInt("UC:spiritTime", this.spiritTime);
     }
@@ -68,7 +77,6 @@ public class TileHarvestTrap extends BaseTileUC {
     @Override
     public void readCustomNBT(CompoundTag tag) {
 
-        this.hasSpirit = tag.getBoolean("UC:hasSpirit");
         this.collectedSpirit = tag.getBoolean("UC:collectedSpirit");
         this.spiritTime = tag.getInt("UC:spiritTime");
     }
@@ -82,10 +90,12 @@ public class TileHarvestTrap extends BaseTileUC {
     public void setCollected() {
 
         this.collectedSpirit = true;
+        this.markBlockForUpdate();
     }
 
     public boolean hasSpirit() {
 
+        //LogUtils.getLogger().info("spirit is " + String.valueOf(this.spiritTime));
         return this.spiritTime > 0;
     }
 
@@ -102,6 +112,7 @@ public class TileHarvestTrap extends BaseTileUC {
     public void setBaitPower(int power) {
 
         this.baitPower = power;
+        this.markBlockForUpdate();
     }
 
     public float[] getSpiritColor() {

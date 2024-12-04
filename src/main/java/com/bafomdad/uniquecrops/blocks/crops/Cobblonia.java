@@ -25,14 +25,19 @@ public class Cobblonia extends BaseCropsBlock {
     }
 
     @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
-        super.randomTick(state, world, pos, rand);
         if (!this.isMaxAge(state)) {
             return;
         }
         boolean flag = this.canIgnoreGrowthRestrictions(world, pos);
         cobbleGen(world, pos, flag);
+        super.randomTick(state, world, pos, rand);
     }
 
     private void cobbleGen(ServerLevel world, BlockPos pos, boolean boost) {

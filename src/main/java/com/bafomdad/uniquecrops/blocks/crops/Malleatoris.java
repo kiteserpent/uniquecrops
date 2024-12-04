@@ -74,7 +74,7 @@ public class Malleatoris extends BaseCropsBlock {
             int newDamage = (int)damage + stack.getItem().getDamageValue();
             if (newDamage < stack.getItem().getMaxDamage()) {
                 stack.getItem().setDamageValue(stack.getItem().getDamageValue() + (int)damage);
-                UCPacketHandler.sendToNearbyPlayers(stack.level, stack.blockPosition(), new PacketUCEffect(EnumParticle.CLOUD, stack.getX(), stack.getY(), stack.getZ(), 6));
+                UCPacketHandler.sendToNearbyPlayers(stack.level, stack.blockPosition(), new PacketUCEffect(EnumParticle.CLOUD, stack.getX()-1.0, stack.getY()+1.0, stack.getZ()-1.0, 6));
                 return true;
             }
         }

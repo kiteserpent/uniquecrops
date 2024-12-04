@@ -12,4 +12,5 @@ public class UCParticles {
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, UniqueCrops.MOD_ID);
 
     public static final RegistryObject<SimpleParticleType> SPARK = PARTICLE_TYPES.register("spark", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> ORANGESPARK = PARTICLE_TYPES.register("orangespark", () -> new SimpleParticleType(false));
 }

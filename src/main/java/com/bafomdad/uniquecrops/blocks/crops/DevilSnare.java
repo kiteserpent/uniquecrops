@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.Random;
+//import com.mojang.logging.LogUtils;
 
 public class DevilSnare extends BaseCropsBlock {
 
@@ -32,7 +33,7 @@ public class DevilSnare extends BaseCropsBlock {
     @Override
     public boolean isValidGround(BlockState state, BlockGetter reader, BlockPos pos) {
 
-        return state.is(Blocks.FARMLAND) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT);
+    return state.is(Blocks.FARMLAND) || state.is(Blocks.DIRT) || state.is(Blocks.COARSE_DIRT);
     }
 
     @Override
@@ -45,11 +46,18 @@ public class DevilSnare extends BaseCropsBlock {
     }
 
     @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
         if (world.getBrightness(LightLayer.SKY, pos) > 7) {
-            if (isMaxAge(state))
-                world.setBlock(pos, this.setValueAge(0), 2);
+        	int thisAge = state.getValue(this.getAgeProperty());
+            if (thisAge > 0) {
+                world.setBlock(pos, this.setValueAge(thisAge - 1), UPDATE_CLIENTS);
+            }
             return;
         }
         if (isMaxAge(state))
