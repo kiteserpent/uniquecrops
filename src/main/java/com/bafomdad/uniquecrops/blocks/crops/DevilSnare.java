@@ -54,9 +54,8 @@ public class DevilSnare extends BaseCropsBlock {
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
         if (world.getBrightness(LightLayer.SKY, pos) > 7) {
-        	int thisAge = state.getValue(this.getAgeProperty());
-            if (thisAge > 0) {
-                world.setBlock(pos, this.setValueAge(thisAge - 1), UPDATE_CLIENTS);
+            if (state.getValue(this.getAgeProperty()) > 0) {
+                world.setBlock(pos, this.setValueAge(0), UPDATE_CLIENTS);
             }
             return;
         }
