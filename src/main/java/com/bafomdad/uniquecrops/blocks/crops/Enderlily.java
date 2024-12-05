@@ -72,6 +72,7 @@ public class Enderlily extends BaseCropsBlock {
 
     private void enderlilyTele(ServerLevel world, BlockPos pos, BlockState state) {
 
+        if (world.isClientSide) return;
         if (isMaxAge(state)) return;
 
         List<BlockPos> targetList = new ArrayList<>();
@@ -84,9 +85,14 @@ public class Enderlily extends BaseCropsBlock {
         targetList = UCUtils.makeCollection(targetList, true);
         for (BlockPos loopPos : targetList) {
             if (world.random.nextInt(7) == 0) {
-                BlockState saveState = world.getBlockState(loopPos);
-                world.setBlock(loopPos, this.setValueAge(getAge(state) + 1), 2);
-                world.setBlockAndUpdate(pos, saveState);
+            	if (world.isEmptyBlock(loopPos)) {
+	                world.setBlock(loopPos, this.setValueAge(getAge(state) + 1), UPDATE_ALL);
+	                world.removeBlock(pos, false);
+            	} else {
+	                BlockState saveState = world.getBlockState(loopPos);
+	                world.setBlock(loopPos, this.setValueAge(getAge(state) + 1), UPDATE_ALL);
+	                world.setBlockAndUpdate(pos, saveState);
+            	}
                 UCPacketHandler.sendToNearbyPlayers(world, loopPos, new PacketUCEffect(EnumParticle.PORTAL, loopPos.getX(), loopPos.getY(), loopPos.getZ(), 6));
                 UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.PORTAL, pos.getX(), pos.getY(), pos.getZ(), 6));
                 return;
