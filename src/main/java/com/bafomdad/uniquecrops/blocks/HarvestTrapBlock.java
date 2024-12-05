@@ -99,7 +99,7 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileHarvestTrap) {
             if (UCUtils.getClosestTile(TileHarvestTrap.class, world, pos, 10.0D) != null) {
-                UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.BARRIER, pos.getX(), pos.getY() + 0.75, pos.getZ(), 0));
+                UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.ANGRY, pos.getX(), pos.getY() + 1.0, pos.getZ(), 0));
                 return;
             }
             TileHarvestTrap trap = (TileHarvestTrap)tile;
@@ -140,15 +140,13 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
         if (tile instanceof TileHarvestTrap) {
             TileHarvestTrap trap = (TileHarvestTrap)tile;
         	if (trap.hasSpirit()) {
-//	        	if (world.getGameTime() % 20 == 0)
-//	                LogUtils.getLogger().info("spewing particles");
-	   			ParticleOptions sparkle = trap.isCollected() ? EnumParticle.ORANGESPARK.getType() : EnumParticle.SPARK.getType();
-	            for (int i = 0; i < 5; i++) {
+	   			ParticleOptions sparkle = trap.isCollected() ? EnumParticle.GREEN_SPARK.getType() : EnumParticle.ORANGE_SPARK.getType();
+	            for (int i = 0; i < 4; i++) {
 	                double d0 = (double)pos.getX() + rand.nextFloat();
-	                double d1 = (double)pos.getY() + 0.55F;
+	                double d1 = (double)pos.getY() + 0.85F;
 	                double d2 = (double)pos.getZ() + rand.nextFloat();
 	
-	                world.addParticle(sparkle, d0, d1, d2, 0.0, 0.0, 0.0);
+	                world.addParticle(sparkle, d0, d1, d2, 0.0, 0.33, 0.0);
 	//                world.addParticle(EnumParticle.SPARK.getType(), d0, d1, d2, color[0], color[1], color[2]);
 	            }
         	}

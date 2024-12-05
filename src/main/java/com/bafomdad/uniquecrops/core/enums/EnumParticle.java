@@ -20,7 +20,9 @@ public enum EnumParticle {
     BARRIER(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.BARRIER))),
     SPARK(UCParticles.SPARK.get()),
     WHITE_ASH(ParticleTypes.WHITE_ASH),
-    ORANGESPARK(UCParticles.ORANGESPARK.get());
+    GREEN_SPARK(ParticleTypes.SCRAPE),
+    ORANGE_SPARK(ParticleTypes.WAX_ON),
+    ANGRY(ParticleTypes.ANGRY_VILLAGER);
 
     final ParticleOptions type;
 

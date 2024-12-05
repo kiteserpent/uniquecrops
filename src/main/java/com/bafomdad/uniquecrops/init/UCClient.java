@@ -159,6 +159,5 @@ public class UCClient {
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
 
         Minecraft.getInstance().particleEngine.register(UCParticles.SPARK.get(), SparkFX.Factory::new);
-        Minecraft.getInstance().particleEngine.register(UCParticles.ORANGESPARK.get(), SparkFX.Factory::new);
     }
 }
