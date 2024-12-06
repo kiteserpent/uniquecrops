@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
@@ -41,7 +42,10 @@ public class MaryJane extends BaseCropsBlock {
                 world.setBlock(pos.below(), Blocks.DIRT.defaultBlockState(), 2);
                 world.setBlock(pos, Blocks.FIRE.defaultBlockState(), 2);
             } else {
-            	ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(UCItems.CINDERLEAF.get()));
+                Containers.dropItemStack(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, new ItemStack(UCItems.CINDERLEAF.get()));
+                for (int i=0; i<2; ++i)
+                	if (world.random.nextFloat()<0.5)
+                        Containers.dropItemStack(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, new ItemStack(UCItems.MARYJANE_SEED.get()));
            	}
         }
         super.playerDestroy(world, player, pos, state, tile, stack);
