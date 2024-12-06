@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "uniquecrops:record_taxi",
+    "uniquecrops:record_simply",
+    "uniquecrops:record_neonsigns",
+    "uniquecrops:record_faraway"
+  ]
+}

@@ -5,8 +5,16 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:music_disc_stal"
+		  "weight": 49,
+		  "type": "minecraft:tag",
+          "name": "c:disc_drops",
+		  "expand": true
+        },
+        {
+		  "weight": 1,
+		  "type": "minecraft:tag",
+          "name": "c:rare_disc_drops",
+		  "expand": true
         }
       ],
       "conditions": [

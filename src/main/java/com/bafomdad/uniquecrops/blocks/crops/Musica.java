@@ -38,7 +38,8 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
             Items.MUSIC_DISC_STAL,
             Items.MUSIC_DISC_STRAD,
             Items.MUSIC_DISC_WAIT,
-            Items.MUSIC_DISC_WARD
+            Items.MUSIC_DISC_WARD,
+            Items.MUSIC_DISC_OTHERSIDE
     };
     static final int RANGE = 10;
 
@@ -47,6 +48,7 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
         super(UCItems.RECORD_FARAWAY, UCItems.MUSICA_SEED);
         setBonemealable(false);
         setIgnoreGrowthRestrictions(true);
+        setIncludeSeed(false);
         MinecraftForge.EVENT_BUS.addListener(this::notePlayEvent);
     }
 
@@ -63,12 +65,13 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
                         TileMusica.Beat beat = plant.getBeats().get(i);
                         if (beat.beatMatches(new TileMusica.Beat(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime()))) {
                             plant.setNewBeatTime(i, ((ServerLevel)event.getWorld()).getGameTime());
-                            return;
+                            //return;
+                            break;
                         }
                     }
                 }
                 if (plant.canAddNote())
-                    plant.setNote(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime());
+                    plant.addNote(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime());
             }
         }
     }
