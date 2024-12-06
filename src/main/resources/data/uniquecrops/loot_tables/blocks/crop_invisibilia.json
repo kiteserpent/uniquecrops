@@ -3,6 +3,7 @@
   "pools": [
     {
       "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -18,11 +19,11 @@
                   }
                 }
               ],
-              "name": "uniquecrops:seedinvisibilia"
+              "name": "uniquecrops:invisitwine"
             },
             {
               "type": "minecraft:item",
-              "name": "uniquecrops:invisitwine"
+              "name": "uniquecrops:seedinvisibilia"
             }
           ]
         }
@@ -30,6 +31,7 @@
     },
     {
       "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -39,12 +41,12 @@
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
               "parameters": {
-                "extra": 1,
+                "extra": 2,
                 "probability": 0.5714286
               }
             }
           ],
-          "name": "uniquecrops:invisitwine"
+          "name": "uniquecrops:seedinvisibilia"
         }
       ],
       "conditions": [
@@ -54,15 +56,13 @@
           "properties": {
             "age": "7"
           }
-        },
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "uniquecrops:crop_invisibilia",
-          "properties": {
-            "age": "7"
-          }
         }
       ]
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
     }
   ]
 }
