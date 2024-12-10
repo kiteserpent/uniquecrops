@@ -33,8 +33,8 @@ public class ItemSeedsUC extends ItemNameBlockItem {
 
         if (flag) {
             list.add(new TextComponent("Bonemealable: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isBonemealable())));
-            list.add(new TextComponent("Click Harvest: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isClickHarvest())));
-            list.add(new TextComponent("Ignores Growth Restrictions: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isIgnoreGrowthRestrictions())));
+            list.add(new TextComponent("Rightclick Harvest: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isClickHarvest())));
+            list.add(new TextComponent("Growth Restrictions Ignorable: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isIgnoreGrowthRestrictions())));
         } else
             list.add(new TextComponent("<Press Shift>").withStyle(ChatFormatting.GRAY));
     }
