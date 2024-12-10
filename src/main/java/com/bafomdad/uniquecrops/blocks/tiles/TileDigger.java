@@ -1,6 +1,7 @@
 package com.bafomdad.uniquecrops.blocks.tiles;
 
 import com.bafomdad.uniquecrops.blocks.BaseCropsBlock;
+import com.bafomdad.uniquecrops.core.UCUtils;
 import com.bafomdad.uniquecrops.init.UCTiles;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Block;
@@ -8,11 +9,15 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -22,6 +27,7 @@ public class TileDigger extends BaseTileUC {
 
     BlockPos digPos = BlockPos.ZERO;
     boolean jobDone = false;
+    private static TagKey<Block> farmlandTagKey = BlockTags.create(new ResourceLocation("forge", "farmland"));
 
     public TileDigger(BlockPos pos, BlockState state) {
 
@@ -56,7 +62,11 @@ public class TileDigger extends BaseTileUC {
 
         if (digPos == BlockPos.ZERO) return false;
         BlockState digState = digWorld.getBlockState(digPos);
-        if (digState.getDestroySpeed(digWorld, digPos) < 0 || digState.getBlock() instanceof FarmBlock || digState.getBlock() instanceof CropBlock || digState.getBlock() instanceof BaseCropsBlock) {
+        if (digState.getDestroySpeed(digWorld, digPos) < 0 ||
+        		digState.getBlock() instanceof FarmBlock ||
+        		digState.getBlock() instanceof CropBlock ||
+        		digState.getBlock() instanceof BaseCropsBlock ||
+        		UCUtils.hasTag(farmlandTagKey, digState.getBlock())) {
             advance(digWorld);
             return false;
         }
