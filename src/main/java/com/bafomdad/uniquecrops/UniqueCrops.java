@@ -79,6 +79,7 @@ public class UniqueCrops {
             UCFeatures.registerOre();
             UCRecipes.registerBrews();
             UCPacketHandler.init();
+            UCItems.registerCompostables();
         });
     }
 
