@@ -32,6 +32,11 @@ public class Petramia extends BaseCropsBlock {
     }
 
     @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
         if (this.canIgnoreGrowthRestrictions(world, pos)) {
