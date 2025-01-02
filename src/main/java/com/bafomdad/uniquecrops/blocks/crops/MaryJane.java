@@ -28,6 +28,7 @@ public class MaryJane extends BaseCropsBlock {
 
         super(UCItems.CINDERLEAF, UCItems.MARYJANE_SEED);
         setClickHarvest(false);
+        setBonemealable(false);
     }
 
     @Override
@@ -59,17 +60,20 @@ public class MaryJane extends BaseCropsBlock {
         if (player.getItemInHand(hand).getItem() == Items.BLAZE_POWDER) {
             if (!world.isClientSide) {
                 this.performBonemeal((ServerLevel)world, world.random, pos, state);
+                player.getItemInHand(hand).shrink(1);
             }
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }
 
+    /*
     @Override
     public boolean isBonemealSuccess(Level world, Random random, BlockPos blockPos, BlockState blockState) {
 
         return world.dimensionType().ultraWarm();
     }
+    */
 
     @Override
     @OnlyIn(Dist.CLIENT)
