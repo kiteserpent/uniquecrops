@@ -9,7 +9,7 @@ Fixes
 * Standardized drops for mature vs. immature crops, and made extra seeds consistent between right- and left-clicking.
 * Harvest Trap particle appearance and duration fixed (crudely). Also can't waste bait on it.
 * Collecting a Dark Block leaves Bedrock behind based on the dimension's lower build limit instead of a fixed height (needed for taller Overworld — Petramia planting rules already did this).
-* Mary Jane correctly only drops Cinderleaf if you're on fire. Removed a secret extra harvest restriction. ONLY bonemealable with Blaze Powder now, and the powder gets consumed.
+* Mary Jane correctly only plants in the Nether and only drops Cinderleaf if you're on fire. Removed a secret extra harvest restriction. ONLY bonemealable with Blaze Powder now, and the powder gets consumed.
 * Knowledge crops only read one book per growth tick instead of using up all of them.
 
 Personal Tweaks
