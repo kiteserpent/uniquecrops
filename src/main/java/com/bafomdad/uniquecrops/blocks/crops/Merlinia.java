@@ -19,6 +19,7 @@ public class Merlinia extends BaseCropsBlock {
     public Merlinia() {
 
         super(UCItems.TIMEDUST, UCItems.MERLINIA_SEED);
+        setClickHarvest(false);
     }
 
     @Override

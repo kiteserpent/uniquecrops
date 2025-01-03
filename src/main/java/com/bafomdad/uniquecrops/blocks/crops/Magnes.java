@@ -31,6 +31,7 @@ public class Magnes extends BaseCropsBlock {
     public Magnes() {
 
         super(UCItems.FERROMAGNETICIRON, UCItems.MAGNES_SEED);
+        setClickHarvest(false);
         registerDefaultState(defaultBlockState().setValue(AGE, 0).setValue(POLARITY, false));
     }
 

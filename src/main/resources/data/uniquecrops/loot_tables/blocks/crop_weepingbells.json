@@ -5,17 +5,26 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "uniquecrops:weepingtear"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "uniquecrops:crop_weepingbells",
-          "properties": {
-            "age": "7"
-          }
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "uniquecrops:weepingtear",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "uniquecrops:crop_weepingbells",
+                  "properties": {
+                    "age": "7"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "uniquecrops:seedweepingbells"
+            }
+          ]
         }
       ]
     },
@@ -24,14 +33,34 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "uniquecrops:seedweepingbells"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
+          "name": "uniquecrops:seedweepingbells",
+          "functions": [
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "parameters": {
+                "extra": 2,
+                "probability": 0.5714286
+              }
+            }
+          ],
+		  "conditions": [
+			{
+			  "condition": "minecraft:block_state_property",
+			  "block": "uniquecrops:crop_weepingbells",
+			  "properties": {
+				"age": "7"
+			  }
+			}
+		  ]
         }
       ]
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:explosion_decay"
     }
   ]
 }

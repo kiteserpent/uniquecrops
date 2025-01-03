@@ -19,6 +19,7 @@ public class Dirigible extends BaseCropsBlock {
 
         super(UCItems.DIRIGIBLEPLUM, UCItems.DIRIGIBLE_SEED);
         setBonemealable(false);
+        setIncludeSeed(false);
     }
 
     @Override

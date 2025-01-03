@@ -18,7 +18,6 @@ public class Collis extends BaseCropsBlock {
 
         super(UCItems.GOLDENRODS, UCItems.COLLIS_SEED);
         setIgnoreGrowthRestrictions(true);
-        setIncludeSeed(false);
     }
 
     @Override
