@@ -15,6 +15,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -29,6 +30,13 @@ public class MaryJane extends BaseCropsBlock {
         super(UCItems.CINDERLEAF, UCItems.MARYJANE_SEED);
         setClickHarvest(false);
         setBonemealable(false);
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+
+    	return world.dimensionType().ultraWarm() &&
+    			super.canSurvive(state,  world,  pos);
     }
 
     @Override
