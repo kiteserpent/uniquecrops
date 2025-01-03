@@ -24,7 +24,7 @@ public class Fossura extends BaseCropsBlock implements EntityBlock {
 
     public Fossura() {
 
-        super(() -> Items.AIR, UCItems.QUARRY_SEED, Properties.copy(Blocks.WHEAT).strength(8.0F, 0.0F));
+        super(() -> Items.AIR, UCItems.QUARRY_SEED, Properties.copy(Blocks.WHEAT).strength(5.0F, 0.0F));
         setClickHarvest(false);
         setBonemealable(false);
     }
