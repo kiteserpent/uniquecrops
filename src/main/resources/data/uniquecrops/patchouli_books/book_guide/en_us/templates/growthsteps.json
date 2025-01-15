@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "type": "custom",
+      "type": "patchouli:custom",
       "class": "com.bafomdad.uniquecrops.integration.patchouli.component.GrowthComponent",
       "x": 0,
       "y": 0

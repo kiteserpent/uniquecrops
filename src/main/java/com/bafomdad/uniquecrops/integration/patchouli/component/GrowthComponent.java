@@ -1,5 +1,6 @@
 package com.bafomdad.uniquecrops.integration.patchouli.component;
 
+import com.bafomdad.uniquecrops.UniqueCrops;
 import com.bafomdad.uniquecrops.core.UCStrings;
 import com.bafomdad.uniquecrops.core.enums.EnumGrowthSteps;
 import com.bafomdad.uniquecrops.init.UCItems;
@@ -16,6 +17,7 @@ import vazkii.patchouli.api.ICustomComponent;
 import vazkii.patchouli.api.IVariable;
 
 import java.util.function.UnaryOperator;
+//import com.mojang.logging.LogUtils;
 
 public class GrowthComponent implements ICustomComponent {
 
@@ -31,7 +33,8 @@ public class GrowthComponent implements ICustomComponent {
     @Override
     public void render(PoseStack ms, IComponentRenderContext ctx, float pticks, int mouseX, int mouseY) {
 
-        Minecraft mc = ctx.getGui().getMinecraft();
+    	//LogUtils.getLogger().info("Unique Crops: rendering Growth Component");
+    	Minecraft mc = ctx.getGui().getMinecraft();
         ItemStack book = mc.player.getMainHandItem();
         if (book.getItem() == UCItems.BOOK_GUIDE.get()) {
             if (!book.hasTag()) {
@@ -64,6 +67,6 @@ public class GrowthComponent implements ICustomComponent {
     private void renderBlank(PoseStack ms, Font font) {
 
         font.draw(ms, new TextComponent("Feroxia Growth Steps"), x, y, 0);
-        font.draw(ms, new TextComponent("Here be crops!"), x, y + 20, 0);
+        font.draw(ms, new TranslatableComponent(UniqueCrops.MOD_ID + ".blank_feroxia_steps"), x, y + 20, 0);
     }
 }

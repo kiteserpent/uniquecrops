@@ -310,6 +310,7 @@
     "uniquecrops.book.pageinstabilis": "The metastable crops exist in a state where delicate harvesting is needed to handle them. Bring shears, lest you yield nothing when the whole crops break. They need to be surrounded by each other in order to grow.",
     "uniquecrops.book.pagesucco": "These vampiric crops suck, but that doesn't mean they are useless. Once planted, they will only grow during the full moon, where their incorporeal form turns corporeal during this time. They turn ghostly at other times of the moon phases and invisible during the new moon.",
     "uniquecrops.book.pagemagnes": "They are crops with a magnetic personality. In fact, they are so magnetic, they can be attracted to one another. Growing two crops of opposing polarities at a distance more than one block apart will make them move towards each other. The farther apart they are, the more likely they will drop their item. One can use a blue or red dye to change their respective polarity.",
+	"uniquecrops.blank_feroxia_steps": "Plant your first Feroxia Seed to set these.",
 
     "_comment7": "TOOLTIPS",
     "uniquecrops.tooltip.guidebook": "The Guide",
