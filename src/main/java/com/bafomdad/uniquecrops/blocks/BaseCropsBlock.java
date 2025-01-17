@@ -6,8 +6,8 @@ import com.bafomdad.uniquecrops.core.UCConfig;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.entity.player.Player;
@@ -32,7 +32,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
 import java.util.Random;
@@ -269,8 +268,11 @@ public class BaseCropsBlock extends CropBlock {
 
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             BlockPos loopPos = pos.relative(dir);
-            if (world.getBlockEntity(pos) instanceof TileSunBlock tile)
-                return tile.powered;
+            BlockEntity tile = world.getBlockEntity(loopPos);
+            if (tile instanceof TileSunBlock && ((TileSunBlock)tile).powered) {
+                //LogUtils.getLogger().info("Unique Crops: found a sun block tile");
+            	return true;
+            }
         }
         return false;
     }
