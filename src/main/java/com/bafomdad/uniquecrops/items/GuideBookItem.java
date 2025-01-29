@@ -7,7 +7,6 @@ import com.bafomdad.uniquecrops.items.base.ItemBaseUC;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
@@ -54,6 +53,14 @@ public class GuideBookItem extends ItemBaseUC {
 
         ItemStack stack = player.getMainHandItem();
 
+        if (!world.isClientSide && stack.getItem() == this) {
+            ListTag playerTagList = UCUtils.getServerTaglist(player.getUUID());
+            if (playerTagList != null) {
+            	if (stack.hasTag() && stack.getTag().contains(UCStrings.TAG_GROWTHSTAGES))
+            		stack.getTag().remove(UCStrings.TAG_GROWTHSTAGES);
+                stack.addTagElement(UCStrings.TAG_GROWTHSTAGES, playerTagList);
+            }
+        }
         if (player instanceof ServerPlayer) {
             ServerPlayer sPlayer = (ServerPlayer)player;
             PatchouliAPI.get().openBookGUI(sPlayer, UCItems.BOOK_GUIDE.getId());
@@ -61,20 +68,23 @@ public class GuideBookItem extends ItemBaseUC {
         return InteractionResultHolder.success(stack);
     }
 
-    @Override
+/*
+       @Override
+ 
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean isSelected) {
 
+    	if (world.isClientSide) return;
         if (!(entity instanceof Player)) return;
 
         if (stack.getItem() == this && isSelected) {
             if (stack.hasTag() && stack.getTag().contains(UCStrings.TAG_GROWTHSTAGES)) return;
-            if (world.isClientSide) return;
             ListTag tagList = UCUtils.getServerTaglist(entity.getUUID());
             if (tagList != null)
                 stack.addTagElement(UCStrings.TAG_GROWTHSTAGES, tagList);
         }
     }
-
+*/
+    
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 

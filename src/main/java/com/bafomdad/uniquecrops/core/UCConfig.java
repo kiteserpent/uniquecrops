@@ -102,7 +102,7 @@ public final class UCConfig {
             fullBrightness = builder.define("fullBrightness", true);
             likesWarts = builder.define("likesWarts", true);
             likesCooking = builder.define("likesCooking", true);
-            likesBrewing = builder.define("likesBrewing", true);
+            likesBrewing = builder.define("likesBrewing", false);
             likesCheckers = builder.define("likesCheckers", true);
             dontBonemeal = builder.define("dontBonemeal", true);
             selfSacrifice = builder.define("selfSacrifice", true);
