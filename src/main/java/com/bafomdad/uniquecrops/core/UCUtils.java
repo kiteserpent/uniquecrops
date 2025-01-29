@@ -183,10 +183,10 @@ public class UCUtils {
     public static void generateSteps(Player player) {
 
         CompoundTag tag = player.getPersistentData();
-        if (UCConfig.COMMON.selfSacrifice.get() && player.getCommandSenderWorld().random.nextInt(200) == 0) {
-            if (tag.contains(UCStrings.TAG_GROWTHSTAGES))
-                tag.remove(UCStrings.TAG_GROWTHSTAGES);
+        if (tag.contains(UCStrings.TAG_GROWTHSTAGES))
+            tag.remove(UCStrings.TAG_GROWTHSTAGES);
 
+        if (UCConfig.COMMON.selfSacrifice.get() && player.getCommandSenderWorld().random.nextInt(200) == 0) {
             ListTag taglist = new ListTag();
             CompoundTag tag2 = new CompoundTag();
             tag2.putInt("stage0", 20);
@@ -194,9 +194,9 @@ public class UCUtils {
             tag.put(UCStrings.TAG_GROWTHSTAGES, taglist);
             return;
         }
+
         List<EnumGrowthSteps> copysteps = Arrays.stream(EnumGrowthSteps.values())
                 .filter(g -> g.isEnabled() && g != EnumGrowthSteps.SELFSACRIFICE).collect(Collectors.toList());
-
         Collections.shuffle(copysteps);
         ListTag taglist = new ListTag();
         for (int i = 0; i < 7; ++i) {

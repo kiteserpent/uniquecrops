@@ -6,6 +6,8 @@ import com.bafomdad.uniquecrops.core.UCStrings;
 import com.bafomdad.uniquecrops.core.UCUtils;
 import com.bafomdad.uniquecrops.core.enums.EnumGrowthSteps;
 import com.bafomdad.uniquecrops.init.UCItems;
+import com.mojang.logging.LogUtils;
+
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,6 +44,7 @@ public class Feroxia extends BaseCropsBlock implements EntityBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
+    	if (world.isClientSide) return;
         if (isMaxAge(state)) return;
         if (this.canIgnoreGrowthRestrictions(world, pos)) {
             super.randomTick(state, world, pos, rand);
@@ -49,11 +52,10 @@ public class Feroxia extends BaseCropsBlock implements EntityBlock {
         }
         int stage = getStage(world, pos, state);
         if (stage == -1) return;
-
         if (!EnumGrowthSteps.values()[stage].canAdvance(world, pos, state)) return;
 
         if (rand.nextInt(3) == 0)
-            world.setBlock(pos, this.setValueAge(getAge(state) + 1), 0);
+            world.setBlock(pos, this.setValueAge(getAge(state) + 1), 3);
     }
 
     @Override
@@ -61,8 +63,10 @@ public class Feroxia extends BaseCropsBlock implements EntityBlock {
 
         int stage = getStage(world, pos, state);
 
-        if (stage != -1 && EnumGrowthSteps.values()[stage].canAdvance(world, pos, state))
+        if ((stage != -1) && (stage != EnumGrowthSteps.NOBONEMEAL.ordinal()) &&
+        	EnumGrowthSteps.values()[stage].canAdvance(world, pos, state)) {
             world.setBlock(pos, this.setValueAge(getAge(state) + 1), 3);
+        }
     }
 
     private int getStage(Level world, BlockPos pos, BlockState state) {
