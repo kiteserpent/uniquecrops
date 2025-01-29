@@ -4,10 +4,10 @@ BlueNeenja/bafomdad wrote Unique Crops (https://github.com/bafomdad/uniquecrops)
 
 Fixes
 
-** Fixed crash when Collis seeds grow at y256+.
-** Fixed crash when Fossura operates without a chest above it.
-** Fixed broken Feroxia growth steps, except brewing stand one, which is now internally disabled.
-** Guidebook shows Feroxia growth steps, and updates if they change.
+* Fixed crash when Collis seeds grow at y256+.
+* Fixed crash when Fossura operates without a chest above it.
+* Fixed broken Feroxia growth steps, except brewing stand one, which is now internally disabled.
+* Guidebook shows Feroxia growth steps, and updates if they change.
 * Standardized drops for mature vs. immature crops, and made extra seeds consistent between right- and left-clicking.
 * Harvest Trap particle appearance and duration fixed (crudely). Also can't waste bait on it.
 * Collecting a Dark Block leaves Bedrock behind based on the dimension's lower build limit instead of a fixed height (needed for taller Overworld — Petramia planting rules already did this).
