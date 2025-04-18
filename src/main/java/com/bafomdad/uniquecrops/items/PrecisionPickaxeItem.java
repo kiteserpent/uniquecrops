@@ -82,8 +82,10 @@ public class PrecisionPickaxeItem extends PickaxeItem implements IBookUpgradeabl
 
         ItemStack stack = ((Player)event.getEntity()).getItemInHand(event.getHand());
         if (stack.getItem() == Blocks.SPAWNER.asItem() && stack.hasTag() && stack.getTag().contains("Spawner")) {
-            BlockState spawner = Blocks.SPAWNER.defaultBlockState();
             BlockPos pos = event.getPos().relative(event.getFace());
+            if (!event.getWorld().isEmptyBlock(pos))
+            	return;
+            BlockState spawner = Blocks.SPAWNER.defaultBlockState();
             event.getWorld().setBlockAndUpdate(pos, spawner);
             BlockEntity tile = event.getWorld().getBlockEntity(pos);
             CompoundTag tag = stack.getTag().getCompound("Spawner");
@@ -92,6 +94,8 @@ public class PrecisionPickaxeItem extends PickaxeItem implements IBookUpgradeabl
             tag.putInt("z", pos.getZ());
             tile.load(tag);
             event.getPlayer().swing(event.getHand());
+            if (!event.getPlayer().isCreative())
+            	event.getItemStack().setCount(event.getItemStack().getCount() - 1);
             event.setCanceled(true);
         }
     }
