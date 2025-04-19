@@ -41,7 +41,7 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
             Items.MUSIC_DISC_WARD,
             Items.MUSIC_DISC_OTHERSIDE
     };
-    static final int RANGE = 10;
+    static final int RANGE = 6;
 
     public Musica() {
 
@@ -56,14 +56,15 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
 
         if (event.getWorld().isClientSide()) return;
 
-        BlockPos ePos = event.getPos();
-        for (BlockPos pos : BlockPos.betweenClosed(ePos.offset(-RANGE, -2, -RANGE), ePos.offset(RANGE, 2, RANGE))) {
+        BlockPos eventPos = event.getPos();
+        TileMusica.Beat eventBeat = new TileMusica.Beat(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime());
+        for (BlockPos pos : BlockPos.betweenClosed(eventPos.offset(-RANGE, -2, -RANGE), eventPos.offset(RANGE, 2, RANGE))) {
             BlockEntity te = event.getWorld().getBlockEntity(pos);
             if (te instanceof TileMusica plant) {
                 if (plant.getBeats().size() > 0) {
                     for (int i = 0; i < plant.getBeats().size(); i++) {
                         TileMusica.Beat beat = plant.getBeats().get(i);
-                        if (beat.beatMatches(new TileMusica.Beat(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime()))) {
+                        if (beat.beatMatches(eventBeat)) {
                             plant.setNewBeatTime(i, ((ServerLevel)event.getWorld()).getGameTime());
                             //return;
                             break;
@@ -71,7 +72,7 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
                     }
                 }
                 if (plant.canAddNote())
-                    plant.addNote(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime());
+                    plant.addNote(eventBeat);
             }
         }
     }
