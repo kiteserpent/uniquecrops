@@ -58,20 +58,24 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
             TileWeatherflesia weather = (TileWeatherflesia)tile;
             ItemStack stack = player.getItemInHand(hand);
             if (stack.getItem() == UCItems.PIXEL_BRUSH.get() && !player.isCrouching()) {
-                Biome biome = world.getBiome(pos).value();
-                String biomeId = biome.getRegistryName().toString();
-                NBTUtils.setString(stack, UCStrings.TAG_BIOME, biomeId);
-                weather.setBrush(stack);
-                player.setItemInHand(hand, ItemStack.EMPTY);
-                weather.markBlockForUpdate();
+                if (!world.isClientSide()) {
+	                Biome biome = world.getBiome(pos).value();
+	                String biomeId = biome.getRegistryName().toString();
+	                NBTUtils.setString(stack, UCStrings.TAG_BIOME, biomeId);
+	                weather.setBrush(stack);
+	                player.setItemInHand(hand, ItemStack.EMPTY);
+	                weather.markBlockForUpdate();
+                }
                 return InteractionResult.SUCCESS;
             }
             if (stack.isEmpty() && player.isCrouching()) {
-                ItemStack tileItem = weather.getBrush();
-                if (!tileItem.isEmpty()) {
-                    weather.setBrush(ItemStack.EMPTY);
-                    player.setItemInHand(hand, tileItem);
-                    weather.markBlockForUpdate();
+                if (!world.isClientSide()) {
+	                ItemStack tileItem = weather.getBrush();
+	                if (!tileItem.isEmpty()) {
+	                    weather.setBrush(ItemStack.EMPTY);
+	                    player.setItemInHand(hand, tileItem);
+	                    weather.markBlockForUpdate();
+	                }
                 }
                 return InteractionResult.SUCCESS;
             }
