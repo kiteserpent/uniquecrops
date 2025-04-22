@@ -50,7 +50,7 @@ public class Enderlily extends BaseCropsBlock {
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
         this.enderlilyTele(world, pos, state);
-        super.randomTick(state, world, pos, rand);
+        // super.randomTick(state, world, pos, rand);
     }
 
     @Override
