@@ -8,6 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
 import java.util.HashMap;
@@ -39,6 +40,15 @@ public class EmblemIronStomach extends ItemCurioUC {
     }
 
     public static FoodProperties getFood(Item item) {
+
+    	// This is a kludge to get around the fact that key/value mappings can't be trusted
+    	// to match in the order they were added.
+    	if (item == Items.GOLD_INGOT)
+    		return UCFoods.EDIBLE_GOLD;
+    	if (item == Items.DIAMOND)
+    		return UCFoods.EDIBLE_DIAMOND;
+    	if (item == Items.EMERALD)
+    		return UCFoods.EDIBLE_EMERALD;
 
         if (STRANGE_FOODS.isEmpty()) return null;
         for (Map.Entry<TagKey<Item>, FoodProperties> tag : STRANGE_FOODS.entrySet()) {
