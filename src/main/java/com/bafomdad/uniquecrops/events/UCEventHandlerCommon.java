@@ -74,7 +74,8 @@ public class UCEventHandlerCommon {
 
         if (!(event.getBlock().getBlock() instanceof GrassBlock) || event.getWorld().isClientSide()) return;
         ItemStack stack = event.getStack();
-        if (stack.getItem() instanceof DyedBonemealItem) {
+        if ((stack.getItem() instanceof DyedBonemealItem) &&
+    		event.getWorld().isEmptyBlock(event.getPos().above())) {
             DyeUtils.BONEMEAL_DYE.forEach((key, value) -> {
                 if (value.asItem() == stack.getItem()) {
                     event.setResult(EnumBonemealDye.values()[key.ordinal()].grow(event.getWorld(), event.getPos()));
