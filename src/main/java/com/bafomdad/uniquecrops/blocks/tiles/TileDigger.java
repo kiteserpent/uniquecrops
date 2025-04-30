@@ -2,6 +2,7 @@ package com.bafomdad.uniquecrops.blocks.tiles;
 
 import com.bafomdad.uniquecrops.blocks.BaseCropsBlock;
 import com.bafomdad.uniquecrops.core.UCUtils;
+import com.bafomdad.uniquecrops.init.UCBlocks;
 import com.bafomdad.uniquecrops.init.UCTiles;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Block;
@@ -63,6 +64,7 @@ public class TileDigger extends BaseTileUC {
         if (digPos == BlockPos.ZERO) return false;
         BlockState digState = digWorld.getBlockState(digPos);
         if (digState.getDestroySpeed(digWorld, digPos) < 0 ||
+        		digState.getBlock() == UCBlocks.DARK_BLOCK.get() ||
         		digState.getBlock() instanceof FarmBlock ||
         		digState.getBlock() instanceof CropBlock ||
         		digState.getBlock() instanceof BaseCropsBlock ||
