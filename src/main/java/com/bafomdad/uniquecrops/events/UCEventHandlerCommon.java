@@ -78,6 +78,11 @@ public class UCEventHandlerCommon {
     		event.getWorld().isEmptyBlock(event.getPos().above())) {
             DyeUtils.BONEMEAL_DYE.forEach((key, value) -> {
                 if (value.asItem() == stack.getItem()) {
+                	/*
+                	 * "fix" to always spread regular grass, which turned out to be a bug so I removed it
+                	GrassBlock grassBlock = (GrassBlock) event.getBlock().getBlock();
+                	grassBlock.performBonemeal((ServerLevel)event.getWorld(), event.getWorld().getRandom(), event.getPos(), event.getBlock());
+                	*/
                     event.setResult(EnumBonemealDye.values()[key.ordinal()].grow(event.getWorld(), event.getPos()));
                 }
             });

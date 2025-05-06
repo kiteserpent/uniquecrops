@@ -1,5 +1,6 @@
 package com.bafomdad.uniquecrops;
 
+import com.bafomdad.uniquecrops.core.DyeUtils;
 import com.bafomdad.uniquecrops.core.UCConfig;
 import com.bafomdad.uniquecrops.core.UCStrings;
 import com.bafomdad.uniquecrops.core.UCTab;
@@ -8,13 +9,20 @@ import com.bafomdad.uniquecrops.data.DataGenerators;
 import com.bafomdad.uniquecrops.events.UCEventHandlerCommon;
 import com.bafomdad.uniquecrops.init.*;
 import com.bafomdad.uniquecrops.integration.CuriosIntegration;
+import com.bafomdad.uniquecrops.items.DyedBonemealItem;
 import com.bafomdad.uniquecrops.items.curios.EmblemIronStomach;
 import com.bafomdad.uniquecrops.items.curios.EmblemScarab;
 import com.bafomdad.uniquecrops.network.UCPacketHandler;
 import com.bafomdad.uniquecrops.proxies.ClientProxy;
 import com.bafomdad.uniquecrops.proxies.CommonProxy;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -81,6 +89,21 @@ public class UniqueCrops {
             UCPacketHandler.init();
             UCItems.registerCompostables();
         });
+
+        DyeUtils.BONEMEAL_DYE.forEach((color, dbItem) -> {
+	        DispenserBlock.registerBehavior(dbItem, new OptionalDispenseItemBehavior() {
+	            protected ItemStack execute(BlockSource pBlockSource, ItemStack pItemStack) {
+	               this.setSuccess(true);
+	               Level level = pBlockSource.getLevel();
+	               BlockPos blockpos = pBlockSource.getPos().relative(pBlockSource.getBlockState().getValue(DispenserBlock.FACING));
+	               if (!DyedBonemealItem.dispenseOn(pItemStack, level, blockpos)) {
+	                  this.setSuccess(false);
+	               }
+	               return pItemStack;
+	            }
+	        });
+        });
+    
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
