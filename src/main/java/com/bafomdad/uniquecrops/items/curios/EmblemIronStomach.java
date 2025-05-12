@@ -11,28 +11,29 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class EmblemIronStomach extends ItemCurioUC {
 
-    private static final Map<TagKey<Item>, FoodProperties> STRANGE_FOODS = new HashMap<>();
+    private static final Map<TagKey<Item>, FoodProperties> STRANGE_FOODS = new LinkedHashMap<>();
 
     public static void init() {
 
         if (!STRANGE_FOODS.isEmpty()) return;
 
-        STRANGE_FOODS.put(Tags.Items.NUGGETS, UCFoods.EDIBLE_NUGGET);
-        STRANGE_FOODS.put(Tags.Items.INGOTS, UCFoods.EDIBLE_INGOT);
-        STRANGE_FOODS.put(Tags.Items.GEMS, UCFoods.EDIBLE_GEM);
         STRANGE_FOODS.put(Tags.Items.INGOTS_GOLD, UCFoods.EDIBLE_GOLD);
         STRANGE_FOODS.put(Tags.Items.GEMS_DIAMOND, UCFoods.EDIBLE_DIAMOND);
         STRANGE_FOODS.put(Tags.Items.GEMS_EMERALD, UCFoods.EDIBLE_EMERALD);
+        STRANGE_FOODS.put(Tags.Items.NUGGETS, UCFoods.EDIBLE_NUGGET);
+        STRANGE_FOODS.put(Tags.Items.INGOTS, UCFoods.EDIBLE_INGOT);
+        STRANGE_FOODS.put(Tags.Items.GEMS, UCFoods.EDIBLE_GEM);
     }
 
     public static boolean containsTag(Item item) {
 
-        if (STRANGE_FOODS.isEmpty()) return false;
+    	if (item == UCItems.PREGEM.get()) return true;
+   		if (STRANGE_FOODS.isEmpty()) return false;
         for (Map.Entry<TagKey<Item>, FoodProperties> tag : STRANGE_FOODS.entrySet()) {
             if (UCUtils.hasTag(tag.getKey(), item)) return true;
         }
@@ -41,14 +42,8 @@ public class EmblemIronStomach extends ItemCurioUC {
 
     public static FoodProperties getFood(Item item) {
 
-    	// This is a kludge to get around the fact that key/value mappings can't be trusted
-    	// to match in the order they were added.
-    	if (item == Items.GOLD_INGOT)
-    		return UCFoods.EDIBLE_GOLD;
-    	if (item == Items.DIAMOND)
+    	if (item == UCItems.PREGEM.get())
     		return UCFoods.EDIBLE_DIAMOND;
-    	if (item == Items.EMERALD)
-    		return UCFoods.EDIBLE_EMERALD;
 
         if (STRANGE_FOODS.isEmpty()) return null;
         for (Map.Entry<TagKey<Item>, FoodProperties> tag : STRANGE_FOODS.entrySet()) {
