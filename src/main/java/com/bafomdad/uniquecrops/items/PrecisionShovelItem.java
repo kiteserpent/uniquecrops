@@ -13,6 +13,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ConcretePowderBlock;
+import net.minecraft.world.level.block.GravelBlock;
+import net.minecraft.world.level.block.SandBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
@@ -43,10 +47,20 @@ public class PrecisionShovelItem extends ShovelItem implements IBookUpgradeable 
     public void onBlockFall(EntityJoinWorldEvent event) {
 
         if (event.getEntity() instanceof FallingBlockEntity) {
-            Player player = event.getEntity().level.getNearestPlayer(event.getEntity(), RANGE);
+        	FallingBlockEntity fbEntity = (FallingBlockEntity) event.getEntity();
+            Player player = fbEntity.level.getNearestPlayer(fbEntity, RANGE);
             if (player != null && player.getMainHandItem().getItem() == this) {
-                if (isMaxLevel(player.getMainHandItem()))
-                    event.setCanceled(true);
+                if (isMaxLevel(player.getMainHandItem())) {
+                	Block fallingBlock = fbEntity.getBlockState().getBlock();
+                	if (fallingBlock instanceof ConcretePowderBlock ||
+            			fallingBlock instanceof SandBlock ||
+            			fallingBlock instanceof GravelBlock) {
+                		event.setCanceled(true);
+	                    fbEntity.level.setBlock(fbEntity.getStartPos(), fbEntity.getBlockState(), Block.UPDATE_NONE);
+	                    // This new block will immediately try to fall again. Need to find a setBlock() that
+	                    // doesn't call the block's onPlace() method.
+                	}
+                }
             }
         }
     }
