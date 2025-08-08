@@ -5,8 +5,6 @@ import com.remag.ucse.blocks.tiles.TileBarrel;
 import com.remag.ucse.blocks.tiles.TileCraftyPlant;
 import com.remag.ucse.gui.ContainerBarrel;
 import com.remag.ucse.gui.ContainerCraftyPlant;
-import net.minecraft.world.flag.FeatureFlag;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;

@@ -1,10 +1,7 @@
 package com.remag.ucse.integration.patchouli;
 
-import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.core.UCUtils;
-import com.remag.ucse.crafting.RecipeMultiblock;
 import com.remag.ucse.init.UCItems;
-import com.remag.ucse.init.UCRecipes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -16,9 +13,7 @@ import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 

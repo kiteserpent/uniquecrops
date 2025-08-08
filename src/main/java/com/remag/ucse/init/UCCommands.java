@@ -28,8 +28,7 @@ public class UCCommands {
         ServerPlayer player = ctx.getSource().getPlayerOrException();
         ItemStack heldItem = player.getMainHandItem();
 
-        if (heldItem.getItem() instanceof IBookUpgradeable) {
-            IBookUpgradeable upgradeable = (IBookUpgradeable)heldItem.getItem();
+        if (heldItem.getItem() instanceof IBookUpgradeable upgradeable) {
             level = Math.min(level, 10);
             upgradeable.setLevel(heldItem, level);
         }

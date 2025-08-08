@@ -21,7 +21,7 @@ import java.util.stream.IntStream;
 public class RenderSucco implements BlockEntityRenderer<TileSucco> {
 
     private final BlockRenderDispatcher renderDispatcher;
-    private int[] textureSkipper = IntStream.of(1, 2, 2, 3, 3, 4, 4, 5).toArray();
+    private final int[] textureSkipper = IntStream.of(1, 2, 2, 3, 3, 4, 4, 5).toArray();
 
     public RenderSucco(BlockEntityRendererProvider.Context ctx) {
 

@@ -33,8 +33,7 @@ public class Fascino extends BaseSuperCropsBlock implements EntityBlock {
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileFascino) {
-            TileFascino fe = (TileFascino)tile;
+        if (tile instanceof TileFascino fe) {
             if (fe.getStage() != TileFascino.Stage.IDLE) return InteractionResult.SUCCESS;
 
             ItemStack stack = player.getItemInHand(hand);

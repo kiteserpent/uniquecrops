@@ -29,11 +29,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Random;
-
 public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
 
-    public static final EnumProperty RAFFLESIA = EnumProperty.<EnumDirectional>create("rafflesia", EnumDirectional.class);
+    public static final EnumProperty RAFFLESIA = EnumProperty.create("rafflesia", EnumDirectional.class);
 
     public Weatherflesia() {
 
@@ -55,8 +53,7 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
             offset = offsetDirectional(state, pos);
         }
         BlockEntity tile = world.getBlockEntity(offset);
-        if (tile instanceof TileWeatherflesia) {
-            TileWeatherflesia weather = (TileWeatherflesia)tile;
+        if (tile instanceof TileWeatherflesia weather) {
             ItemStack stack = player.getItemInHand(hand);
             if (stack.getItem() == UCItems.PIXEL_BRUSH.get() && !player.isCrouching()) {
                 Biome biome = world.getBiome(pos).value();
@@ -102,8 +99,7 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileWeatherflesia) {
-            TileWeatherflesia weather = (TileWeatherflesia)tile;
+        if (tile instanceof TileWeatherflesia weather) {
             weather.tickBiomeStrength();
             ItemStack stack = weather.getBrush();
             if (!stack.isEmpty() && stack.isDamaged()) {
@@ -126,7 +122,7 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
                 }
             }
         }
-        if (isNeighborMissing((Level)world, pos, state))
+        if (isNeighborMissing(world, pos, state))
             world.destroyBlock(pos, false);
 
         super.neighborChanged(state, world, pos, block, fromPos, isMoving);
@@ -136,8 +132,7 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileWeatherflesia) {
-            TileWeatherflesia weather = (TileWeatherflesia)tile;
+        if (tile instanceof TileWeatherflesia weather) {
             ItemStack stack = weather.getBrush();
             if (!stack.isEmpty())
                 Containers.dropItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);

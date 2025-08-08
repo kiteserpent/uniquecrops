@@ -5,11 +5,8 @@ import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCItems;
-import net.minecraft.server.level.ChunkHolder;
-import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -41,8 +38,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
-import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 public class GobletBlock extends Block implements EntityBlock {

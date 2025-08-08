@@ -19,8 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 public class CropPortalBlock extends Block {
 
     public static final VoxelShape PORTAL_AABB = Shapes.box(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);

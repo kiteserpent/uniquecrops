@@ -33,8 +33,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.level.BlockEvent;
 
-import java.util.Random;
-
 public class Itero extends BaseSuperCropsBlock implements EntityBlock {
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
@@ -90,8 +88,7 @@ public class Itero extends BaseSuperCropsBlock implements EntityBlock {
             return InteractionResult.SUCCESS;
         }
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileItero && !world.isClientSide) {
-            TileItero itero = (TileItero)tile;
+        if (tile instanceof TileItero itero && !world.isClientSide) {
             itero.tryShowDemo();
             itero.createCombos(state.getValue(AGE));
         }

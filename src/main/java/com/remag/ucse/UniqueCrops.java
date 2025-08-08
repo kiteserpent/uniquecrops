@@ -7,7 +7,6 @@ import com.remag.ucse.core.UCWorldData;
 import com.remag.ucse.data.DataGenerators;
 import com.remag.ucse.events.UCEventHandlerCommon;
 import com.remag.ucse.init.*;
-import com.remag.ucse.integration.patchouli.PatchouliUtils;
 import com.remag.ucse.items.curios.EmblemIronStomach;
 import com.remag.ucse.items.curios.EmblemScarab;
 import com.remag.ucse.network.UCPacketHandler;

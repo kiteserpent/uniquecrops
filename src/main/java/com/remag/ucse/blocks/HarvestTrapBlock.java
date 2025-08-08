@@ -29,8 +29,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -70,8 +68,7 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileHarvestTrap) {
-            TileHarvestTrap trap = (TileHarvestTrap)tile;
+        if (tile instanceof TileHarvestTrap trap) {
             if (!trap.hasSpirit() && !trap.isCollected()) {
                 if (player.getItemInHand(hand).getItem() == UCItems.SPIRITBAIT.get()) {
                     trap.setBaitPower(3);
@@ -95,12 +92,11 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
         if (world.isClientSide) return;
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileHarvestTrap) {
+        if (tile instanceof TileHarvestTrap trap) {
             if (UCUtils.getClosest(pos, 10.0D, TileHarvestTrap.class) != null) {
                 UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.BARRIER, pos.getX(), pos.getY() + 0.75, pos.getZ(), 0));
                 return;
             }
-            TileHarvestTrap trap = (TileHarvestTrap)tile;
             if (trap.hasSpirit()) return;
 
             if (rand.nextInt(5 - trap.getBaitPower()) == 0)

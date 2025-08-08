@@ -14,8 +14,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 public class Cinderbella extends BaseCropsBlock {
 
     public Cinderbella() {

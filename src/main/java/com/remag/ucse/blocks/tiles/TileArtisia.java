@@ -25,7 +25,7 @@ import java.util.Optional;
 public class TileArtisia extends BaseTileUC {
 
     public BlockPos core = BlockPos.ZERO;
-    private ItemStackHandler inv = new ItemStackHandler(1) {
+    private final ItemStackHandler inv = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
 
@@ -60,8 +60,7 @@ public class TileArtisia extends BaseTileUC {
             for (int i = 0; i < GRIDPOS.length; i++) {
                 BlockPos looppos = getBlockPos().offset(GRIDPOS[i]);
                 BlockEntity te = getLevel().getBlockEntity(looppos);
-                if (te instanceof TileArtisia) {
-                    TileArtisia tile = (TileArtisia)te;
+                if (te instanceof TileArtisia tile) {
                     tile.setCore(this.getBlockPos());
                 }
             }

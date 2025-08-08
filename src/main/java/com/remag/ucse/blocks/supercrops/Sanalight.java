@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
-import java.util.Random;
-
 public class Sanalight extends BaseSuperCropsBlock {
 
     public Sanalight() {

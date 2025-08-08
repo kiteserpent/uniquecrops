@@ -23,8 +23,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import java.util.Random;
-
 public class Artisia extends BaseCropsBlock implements EntityBlock {
 
     public Artisia() {

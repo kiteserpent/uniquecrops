@@ -78,7 +78,7 @@ public class CropGenerator {
 
     public static class SerializerBlockState implements JsonSerializer<CropGenerator> {
 
-        private int[] textureSkipper = IntStream.of(1, 2, 2, 3, 3, 4, 4, 5).toArray();
+        private final int[] textureSkipper = IntStream.of(1, 2, 2, 3, 3, 4, 4, 5).toArray();
 
         @Override
         public JsonElement serialize(CropGenerator src, Type type, JsonSerializationContext ctx) {
@@ -105,8 +105,8 @@ public class CropGenerator {
 
     public static class SerializerModel {
 
-        private String parent;
-        private JsonObject textures = new JsonObject();
+        private final String parent;
+        private final JsonObject textures = new JsonObject();
 
         public SerializerModel(String textureName) {
 

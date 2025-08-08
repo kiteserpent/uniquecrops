@@ -24,7 +24,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
@@ -69,7 +68,7 @@ public class Knowledge extends BaseCropsBlock {
                             ItemStack book = cap.getStackInSlot(i);
                             if (!book.isEmpty() && book.getItem() == Items.WRITTEN_BOOK) {
                                 CompoundTag tag = book.getTag();
-                                if (tag != null && WrittenBookItem.makeSureTagIsValid(tag)
+                                if (WrittenBookItem.makeSureTagIsValid(tag)
                                         && !NBTUtils.getBoolean(book, BOOKMARK, false)
                                         && WrittenBookItem.getGeneration(book) == 0) {
 

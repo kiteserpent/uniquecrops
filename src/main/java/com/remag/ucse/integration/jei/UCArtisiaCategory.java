@@ -2,7 +2,6 @@ package com.remag.ucse.integration.jei;
 
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.crafting.RecipeArtisia;
-import com.remag.ucse.crafting.RecipeHeater;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;

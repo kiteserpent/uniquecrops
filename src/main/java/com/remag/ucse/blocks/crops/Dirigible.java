@@ -12,8 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class Dirigible extends BaseCropsBlock {
 
     public Dirigible() {

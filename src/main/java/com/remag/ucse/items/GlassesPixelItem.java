@@ -6,7 +6,6 @@ import com.remag.ucse.core.enums.EnumArmorMaterial;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemArmorUC;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.tags.BlockTags;

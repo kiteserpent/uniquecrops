@@ -10,7 +10,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 
 public class Eula extends BaseCropsBlock {
 
-    private boolean clickHarvest = true;
+    private final boolean clickHarvest = true;
 
     public Eula() {
 

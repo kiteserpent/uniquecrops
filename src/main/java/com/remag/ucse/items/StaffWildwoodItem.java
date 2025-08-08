@@ -15,12 +15,10 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.core.NonNullList;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -67,7 +65,6 @@ public class StaffWildwoodItem extends ItemBaseUC {
                         if (player instanceof ServerPlayer)
                             UCPacketHandler.sendTo((ServerPlayer)player, new PacketSyncCap(crop.serializeNBT()));
                         event.setResult(Event.Result.DENY);
-                        return;
                     }
                 });
             }

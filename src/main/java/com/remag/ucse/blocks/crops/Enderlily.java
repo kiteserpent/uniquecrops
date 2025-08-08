@@ -23,7 +23,6 @@ import net.minecraftforge.event.entity.EntityTeleportEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Enderlily extends BaseCropsBlock {
 
@@ -41,8 +40,8 @@ public class Enderlily extends BaseCropsBlock {
                     .forEach(loopPos -> {
                         BlockState loopState = event.getPlayer().level().getBlockState(loopPos);
                         if (loopState.getBlock() == this) {
-                            if (this.isEnderlilyGrown(event.getPlayer().level(), loopPos, loopState))
-                                return;
+                            if (this.isEnderlilyGrown(event.getPlayer().level(), loopPos, loopState)) {
+                            }
                         }
                     });
         }

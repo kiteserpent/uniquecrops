@@ -11,8 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -62,8 +60,7 @@ public class LeagueBootsItem extends ItemArmorUC implements IBookUpgradeable {
 
     private void playerTick(LivingEvent.LivingTickEvent event) {
 
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player)event.getEntity();
+        if (event.getEntity() instanceof Player player) {
             String name = getPlayerStr(player);
             if (CMONSTEPITUP.contains(name)) {
                 ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);

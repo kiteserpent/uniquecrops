@@ -20,7 +20,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.List;
-import java.util.Random;
 
 public class Malleatoris extends BaseCropsBlock {
 

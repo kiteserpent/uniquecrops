@@ -1,55 +1,5 @@
 package com.remag.ucse.data;
 
-import com.remag.ucse.UniqueCrops;
-import com.remag.ucse.blocks.BaseCropsBlock;
-import com.remag.ucse.blocks.StalkBlock;
-import com.remag.ucse.init.UCBlocks;
-import com.remag.ucse.init.UCItems;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import net.minecraft.advancements.critereon.EnchantmentPredicate;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.HashCache;
-import net.minecraft.data.DataProvider;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
-import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
-import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.block.state.properties.SlabType;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
-
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.entries.TagEntry;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.predicates.TimeCheck;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.ForgeRegistries;
-
 /* public class UCLootProvider {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

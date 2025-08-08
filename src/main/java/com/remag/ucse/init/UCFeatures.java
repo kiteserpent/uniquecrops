@@ -20,7 +20,6 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -90,12 +89,12 @@ public class UCFeatures {
 
             for(int k = 0; k < j; ++k) {
                 float f = (float)k / (float)j;
-                double d0 = Mth.lerp((double)f, p_66536_, p_66537_);
-                double d1 = Mth.lerp((double)f, p_66540_, p_66541_);
-                double d2 = Mth.lerp((double)f, p_66538_, p_66539_);
+                double d0 = Mth.lerp(f, p_66536_, p_66537_);
+                double d1 = Mth.lerp(f, p_66540_, p_66541_);
+                double d2 = Mth.lerp(f, p_66538_, p_66539_);
                 double d3 = p_66534_.nextDouble() * (double)j / 16.0D;
                 double d4 = ((double)(Mth.sin((float)Math.PI * f) + 1.0F) * d3 + 1.0D) / 2.0D;
-                adouble[k * 4 + 0] = d0;
+                adouble[k * 4] = d0;
                 adouble[k * 4 + 1] = d1;
                 adouble[k * 4 + 2] = d2;
                 adouble[k * 4 + 3] = d4;
@@ -105,7 +104,7 @@ public class UCFeatures {
                 if (!(adouble[l3 * 4 + 3] <= 0.0D)) {
                     for(int i4 = l3 + 1; i4 < j; ++i4) {
                         if (!(adouble[i4 * 4 + 3] <= 0.0D)) {
-                            double d8 = adouble[l3 * 4 + 0] - adouble[i4 * 4 + 0];
+                            double d8 = adouble[l3 * 4] - adouble[i4 * 4];
                             double d10 = adouble[l3 * 4 + 1] - adouble[i4 * 4 + 1];
                             double d12 = adouble[l3 * 4 + 2] - adouble[i4 * 4 + 2];
                             double d14 = adouble[l3 * 4 + 3] - adouble[i4 * 4 + 3];
@@ -127,7 +126,7 @@ public class UCFeatures {
                 for(int j4 = 0; j4 < j; ++j4) {
                     double d9 = adouble[j4 * 4 + 3];
                     if (!(d9 < 0.0D)) {
-                        double d11 = adouble[j4 * 4 + 0];
+                        double d11 = adouble[j4 * 4];
                         double d13 = adouble[j4 * 4 + 1];
                         double d15 = adouble[j4 * 4 + 2];
                         int k4 = Math.max(Mth.floor(d11 - d9), p_66542_);

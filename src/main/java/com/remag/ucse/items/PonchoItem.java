@@ -8,9 +8,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Guardian;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
@@ -26,11 +23,9 @@ public class PonchoItem extends ItemArmorUC implements IBookUpgradeable {
     private void checkSetTarget(LivingChangeTargetEvent event) {
 
         if (event.getNewTarget() == null) return;
-        if (!(event.getNewTarget() instanceof Player) || event.getNewTarget() instanceof FakePlayer) return;
-        if (!(event.getEntity() instanceof Mob)) return;
+        if (!(event.getNewTarget() instanceof Player player) || event.getNewTarget() instanceof FakePlayer) return;
+        if (!(event.getEntity() instanceof Mob ent)) return;
 
-        Player player = (Player)event.getNewTarget();
-        Mob ent = (Mob)event.getEntity();
         if (player.getEffect(UCPotions.IGNORANCE.get()) != null) {
             ent.setTarget(null);
             ent.setLastHurtByMob(null);

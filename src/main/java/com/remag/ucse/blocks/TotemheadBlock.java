@@ -23,7 +23,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.List;
-import java.util.Random;
 
 public class TotemheadBlock extends Block {
 

@@ -3,7 +3,6 @@ package com.remag.ucse.integration.patchouli.component;
 import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.enums.EnumGrowthSteps;
 import com.remag.ucse.init.UCItems;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

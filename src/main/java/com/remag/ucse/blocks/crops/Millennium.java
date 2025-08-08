@@ -11,8 +11,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class Millennium extends BaseCropsBlock implements EntityBlock {
 
     public Millennium() {
@@ -25,9 +23,8 @@ public class Millennium extends BaseCropsBlock implements EntityBlock {
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileMillennium) {
+        if (tile instanceof TileMillennium mill) {
             if (!world.isClientSide && !isMaxAge(state)) {
-                TileMillennium mill = (TileMillennium)tile;
                 if (mill.isTimeEmpty()) {
                     mill.setTime();
                     return;

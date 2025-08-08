@@ -11,8 +11,6 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class Collis extends BaseCropsBlock {
 
     public Collis() {

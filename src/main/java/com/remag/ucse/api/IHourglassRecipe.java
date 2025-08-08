@@ -4,16 +4,11 @@ import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.init.UCRecipes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.Container;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public interface IHourglassRecipe extends Recipe<Container> {
 

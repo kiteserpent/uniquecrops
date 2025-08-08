@@ -15,7 +15,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -23,8 +22,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-
-import java.util.Random;
 
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -109,7 +106,6 @@ public class Lignator extends Block {
         else if (!grow) {
             int i;
             for (i = 1; world.getBlockState(pos.below(i)).getBlock() == this; ++i) {
-                ;
             }
             world.destroyBlock(pos.below(i - 2), false);
             world.scheduleTick(pos.below(i - 1), this, 200);

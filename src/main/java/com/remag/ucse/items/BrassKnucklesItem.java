@@ -41,8 +41,7 @@ public class BrassKnucklesItem extends SwordItem {
     private void knuckleDuster(LivingAttackEvent event) {
 
         if (event.getEntity().level().isClientSide) return;
-        if (event.getEntity() != null && event.getSource().getDirectEntity() instanceof Player) {
-            Player player = (Player)event.getSource().getDirectEntity();
+        if (event.getEntity() != null && event.getSource().getDirectEntity() instanceof Player player) {
             ItemStack brassKnuckles = player.getMainHandItem();
             if (brassKnuckles.getItem() == this) {
                 boolean flag = event.getSource().getDirectEntity() != event.getSource().getEntity();
@@ -54,7 +53,6 @@ public class BrassKnucklesItem extends SwordItem {
                 event.setCanceled(true);
                 BlockPos pos = event.getEntity().blockPosition();
                 UCPacketHandler.sendToNearbyPlayers(player.level(), player.blockPosition(), new PacketUCEffect(EnumParticle.CRIT, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, 6));
-                return;
             }
         }
     }
@@ -116,7 +114,7 @@ public class BrassKnucklesItem extends SwordItem {
 
                     DamageSource source = new DamageSource(playerDamage);
                     elb.hurt(source, damage);
-                    elb.knockback(damage * 0.131F, (double) Mth.sin(player.yRotO * ((float)Math.PI / 180F)), (double)(-Mth.cos(player.yRotO * ((float)Math.PI / 180F))));
+                    elb.knockback(damage * 0.131F, Mth.sin(player.yRotO * ((float)Math.PI / 180F)), -Mth.cos(player.yRotO * ((float)Math.PI / 180F)));
                     elb.invulnerableTime = 0;
                 }
                 tagList.remove(i);

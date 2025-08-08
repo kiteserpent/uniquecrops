@@ -30,8 +30,7 @@ public final class UCPacketHandler {
 
     public static void sendToNearbyPlayers(Level world, BlockPos pos, Object toSend) {
 
-        if (world instanceof ServerLevel) {
-            ServerLevel ws = ((ServerLevel)world);
+        if (world instanceof ServerLevel ws) {
 
             ws.getChunkSource().chunkMap.getPlayers(new ChunkPos(pos), false)
                     .stream()

@@ -78,7 +78,7 @@ public enum EnumBonemealDye {
 
         BlockState randomState = UCUtils.selectRandom(world.random, this.states);
         if (randomState.getBlock() instanceof DoublePlantBlock doubleplant)
-            doubleplant.placeAt(world, randomState, pos, 2);
+            DoublePlantBlock.placeAt(world, randomState, pos, 2);
         else
             world.setBlock(pos, randomState, 2);
     }

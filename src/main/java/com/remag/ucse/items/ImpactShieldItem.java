@@ -15,7 +15,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -32,9 +31,8 @@ public class ImpactShieldItem extends ItemBaseUC {
 
     private void onShieldBlock(LivingAttackEvent event) {
 
-        if (event.getEntity().level().isClientSide || !(event.getEntity() instanceof Player)) return;
+        if (event.getEntity().level().isClientSide || !(event.getEntity() instanceof Player player)) return;
 
-        Player player = (Player)event.getEntity();
         Holder<DamageType> magicDamage = player.level().registryAccess()
                 .registryOrThrow(Registries.DAMAGE_TYPE)
                 .getHolderOrThrow(DamageTypes.MAGIC);

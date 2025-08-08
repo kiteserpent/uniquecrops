@@ -115,7 +115,6 @@ public class TileDigger extends BaseTileUC {
                 digPos = digPos.offset(-15, 0, 1).atY(getBlockPos().getY());
                 if (digWorld.isEmptyBlock(digPos))
                     advance(digWorld);
-                return;
             }
         }
     }

@@ -22,7 +22,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.util.FakePlayer;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class Feroxia extends BaseCropsBlock implements EntityBlock {
 
@@ -69,9 +68,8 @@ public class Feroxia extends BaseCropsBlock implements EntityBlock {
     private int getStage(Level world, BlockPos pos, BlockState state) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (!(tile instanceof TileFeroxia)) return -1;
+        if (!(tile instanceof TileFeroxia te)) return -1;
 
-        TileFeroxia te = (TileFeroxia)tile;
         if (te.getOwner() == null || (te.getOwner() != null && UCUtils.getPlayerFromUUID(te.getOwner().toString()) == null)) return -1;
 
         ListTag taglist = UCUtils.getServerTaglist(te.getOwner());

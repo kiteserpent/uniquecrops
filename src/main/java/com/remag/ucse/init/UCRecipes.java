@@ -1,7 +1,6 @@
 package com.remag.ucse.init;
 
 import com.remag.ucse.UniqueCrops;
-import com.remag.ucse.api.IArtisiaRecipe;
 import com.remag.ucse.crafting.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

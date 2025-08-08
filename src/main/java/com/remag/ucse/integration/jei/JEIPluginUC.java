@@ -1,7 +1,6 @@
 package com.remag.ucse.integration.jei;
 
 import com.remag.ucse.UniqueCrops;
-import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.crafting.RecipeArtisia;
 import com.remag.ucse.crafting.RecipeEnchanter;
 import com.remag.ucse.crafting.RecipeHeater;

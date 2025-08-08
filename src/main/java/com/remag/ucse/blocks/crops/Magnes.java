@@ -22,8 +22,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.Tags;
 
-import java.util.Random;
-
 public class Magnes extends BaseCropsBlock {
 
     public static BooleanProperty POLARITY = BooleanProperty.create("polarity");

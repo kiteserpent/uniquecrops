@@ -2,7 +2,6 @@ package com.remag.ucse.items;
 
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
-import net.minecraft.core.Registry;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,8 +49,7 @@ public class MultiblockBookItem extends ItemBaseUC {
 
         ItemStack stack = player.getMainHandItem();
 
-        if (player instanceof ServerPlayer) {
-            ServerPlayer sPlayer = (ServerPlayer)player;
+        if (player instanceof ServerPlayer sPlayer) {
             PatchouliAPI.get().openBookGUI(sPlayer, UCItems.BOOK_MULTIBLOCK.getId());
         }
         return InteractionResultHolder.success(stack);

@@ -5,7 +5,6 @@ import com.remag.ucse.core.enums.TierItem;
 import com.remag.ucse.init.UCItems;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

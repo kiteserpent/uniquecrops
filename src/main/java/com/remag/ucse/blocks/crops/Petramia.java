@@ -19,7 +19,6 @@ import net.minecraft.server.level.ServerLevel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Petramia extends BaseCropsBlock {
 

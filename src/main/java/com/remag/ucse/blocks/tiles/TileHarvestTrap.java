@@ -34,7 +34,6 @@ public class TileHarvestTrap extends BaseTileUC {
             if (spiritTime <= 0) {
                 this.collectedSpirit = false;
                 this.markBlockForUpdate();
-                return;
             }
         } else if (!collectedSpirit) {
             spiritTime--;

@@ -2,7 +2,6 @@ package com.remag.ucse.gui;
 
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.core.UCUtils;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Renderable;
@@ -11,7 +10,6 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import org.jline.reader.Widget;
 
 public class GuiEulaBook extends Screen {
 

@@ -87,7 +87,6 @@ public class TileItero extends BaseTileUC {
                 return;
             }
             UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.HEART, this.worldPosition.getX(), this.worldPosition.getY() + 0.3, this.worldPosition.getZ(), 0));
-            return;
         } else {
             UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.EXPLOSION, this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.3, this.worldPosition.getZ() + 0.5, 0));
             regressStage();

@@ -34,7 +34,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantable {

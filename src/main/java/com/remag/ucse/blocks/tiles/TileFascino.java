@@ -124,7 +124,6 @@ public class TileFascino extends BaseTileUC {
                     }
                     prepareEnchanting(player, heldItem.getEnchantmentTags().size() + 1, staff, recipe.getCost());
                     enchantItem = heldItem;
-                    return;
             });
     }
 

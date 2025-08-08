@@ -35,8 +35,7 @@ public class AnkhItem extends ItemBaseUC {
 
     private void checkPlayerDeath(LivingDeathEvent event) {
 
-        if (event.getEntity() instanceof Player) {
-            Player player = (Player)event.getEntity();
+        if (event.getEntity() instanceof Player player) {
             this.saveAnkhItems(player);
 
             CompoundTag tag = player.getPersistentData();

@@ -5,7 +5,6 @@ import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;

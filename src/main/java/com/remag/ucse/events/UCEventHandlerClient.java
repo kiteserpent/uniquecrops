@@ -5,7 +5,6 @@ import com.remag.ucse.api.IBookUpgradeable;
 import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.gui.GuiStaffOverlay;
 import com.remag.ucse.init.*;
-import com.remag.ucse.items.PonchoItem;
 import com.remag.ucse.network.PacketSendKey;
 import com.remag.ucse.network.UCPacketHandler;
 import com.remag.ucse.render.CustomBufferSource;

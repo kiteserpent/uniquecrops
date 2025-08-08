@@ -8,7 +8,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Wafflonia extends BaseCropsBlock {

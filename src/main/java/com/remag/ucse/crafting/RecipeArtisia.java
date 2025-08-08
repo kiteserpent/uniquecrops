@@ -7,7 +7,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;

@@ -166,6 +166,6 @@ public class RenderItemTile {
     }
 
     private static void func_229063_c_(VertexConsumer p_229063_0_, Matrix4f p_229063_1_, float p_229063_2_, float p_229063_3_) {
-        p_229063_0_.vertex(p_229063_1_, 0.0F, p_229063_2_, 1.0F * p_229063_3_).color(255, 0, 255, 0).endVertex();
+        p_229063_0_.vertex(p_229063_1_, 0.0F, p_229063_2_, p_229063_3_).color(255, 0, 255, 0).endVertex();
     }
 }

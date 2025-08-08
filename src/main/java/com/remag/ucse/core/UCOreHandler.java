@@ -13,7 +13,7 @@ public class UCOreHandler {
 
     private static UCOreHandler INSTANCE;
 
-    private ConcurrentHashMap<ChunkPos, BlockPos> saveInfo = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<ChunkPos, BlockPos> saveInfo = new ConcurrentHashMap<>();
 
     private UCOreHandler() {}
 

@@ -48,9 +48,8 @@ public class PrecisionAxeItem extends AxeItem implements IBookUpgradeable {
 
     private void checkDrops(LivingDropsEvent event) {
 
-        if (!(event.getEntity() instanceof Player) && event.getSource().getEntity() instanceof Player) {
+        if (!(event.getEntity() instanceof Player) && event.getSource().getEntity() instanceof Player player) {
             LivingEntity el = event.getEntity();
-            Player player = (Player)event.getSource().getEntity();
             ItemStack boots = el.getItemBySlot(EquipmentSlot.FEET);
             if (!boots.isEmpty() && player.getInventory().contains(new ItemStack(UCItems.SLIPPERGLASS.get()))) {
                 if (player.level().random.nextInt(5) == 0) {

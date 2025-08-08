@@ -4,7 +4,6 @@ import com.remag.ucse.api.IBookUpgradeable;
 import com.remag.ucse.core.enums.EnumArmorMaterial;
 import com.remag.ucse.items.base.ItemArmorUC;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

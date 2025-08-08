@@ -15,8 +15,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class Lacusia extends BaseCropsBlock implements EntityBlock {
 
     public Lacusia() {
@@ -53,7 +51,7 @@ public class Lacusia extends BaseCropsBlock implements EntityBlock {
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos pos, BlockPos facingPos) {
 
-        if (world instanceof Level && ((Level)world).hasNeighborSignal(pos))
+        if (world instanceof Level && world.hasNeighborSignal(pos))
             world.scheduleTick(pos, this, 20);
 
         return super.updateShape(state, facing, facingState, world, pos, facingPos);

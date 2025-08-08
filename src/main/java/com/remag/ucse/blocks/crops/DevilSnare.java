@@ -17,8 +17,6 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class DevilSnare extends BaseCropsBlock {
 
     private static final double SNARE_SPEED = 0.25F;

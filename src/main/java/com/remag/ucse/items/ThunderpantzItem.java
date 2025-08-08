@@ -36,11 +36,9 @@ public class ThunderpantzItem extends ItemArmorUC implements IBookUpgradeable {
 
     private void onLivingAttack(LivingAttackEvent event) {
 
-        if (!(event.getEntity() instanceof Player)) return;
+        if (!(event.getEntity() instanceof Player player)) return;
 
-        Player player = (Player)event.getEntity();
-        if (event.getSource().getDirectEntity() instanceof LivingEntity) {
-            LivingEntity el = (LivingEntity)event.getSource().getDirectEntity();
+        if (event.getSource().getDirectEntity() instanceof LivingEntity el) {
             ItemStack pants = player.getItemBySlot(EquipmentSlot.LEGS);
             if (pants.getItem() == this) {
                 if (getCharge(pants) < 1F) return;
@@ -58,7 +56,6 @@ public class ThunderpantzItem extends ItemArmorUC implements IBookUpgradeable {
                 DamageSource source = new DamageSource(lightningDamage);
                 el.hurt(source, toDamage);
                 setCharge(pants, 0F);
-                return;
             }
         }
     }

@@ -7,11 +7,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-import java.util.Random;
-
 public class Normal extends BaseCropsBlock {
 
-    private boolean clickHarvest = true;
+    private final boolean clickHarvest = true;
 
     static final Item[] DROPS = new Item[] { Items.WHEAT, Items.BEETROOT, Items.CARROT, Items.POTATO };
 

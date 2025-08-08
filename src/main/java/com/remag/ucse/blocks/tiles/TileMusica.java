@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TileMusica extends BaseTileUC{
 
-    private List<Beat> beats = new ArrayList<>();
+    private final List<Beat> beats = new ArrayList<>();
     private long lastBeat = 0L;
     private int musicStrength;
 
@@ -195,7 +195,7 @@ public class TileMusica extends BaseTileUC{
         }
     }
 
-    public static enum BPM {
+    public enum BPM {
 
         EMPTY(0, 0),
         LARGO(40, 60),
@@ -206,7 +206,7 @@ public class TileMusica extends BaseTileUC{
         int minRange;
         int maxRange;
 
-        private BPM(int min, int max) {
+        BPM(int min, int max) {
 
             this.minRange = min;
             this.maxRange = max;

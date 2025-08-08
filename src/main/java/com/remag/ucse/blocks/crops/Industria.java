@@ -21,8 +21,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
-import java.util.Random;
-
 public class Industria extends BaseCropsBlock implements EntityBlock {
 
     public Industria() {

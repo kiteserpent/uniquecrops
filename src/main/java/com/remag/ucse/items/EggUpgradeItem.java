@@ -26,8 +26,7 @@ public class EggUpgradeItem extends ItemBaseUC {
 
     private void maximumOvercluck(LivingEvent.LivingTickEvent event) {
 
-        if (!event.getEntity().level().isClientSide && event.getEntity() instanceof Chicken) {
-            Chicken chicken = (Chicken)event.getEntity();
+        if (!event.getEntity().level().isClientSide && event.getEntity() instanceof Chicken chicken) {
             if (chicken.isBaby()) return;
             CompoundTag tag = chicken.getPersistentData();
             if (tag.contains(TAG_OVERCLUCK)) {
@@ -45,9 +44,8 @@ public class EggUpgradeItem extends ItemBaseUC {
 
     private void checkEggUpgrade(LivingDropsEvent event) {
 
-        if (event.getEntity() instanceof Chicken) {
+        if (event.getEntity() instanceof Chicken chicken) {
             if (!event.getEntity().level().isClientSide && !event.getEntity().isBaby()) {
-                Chicken chicken = (Chicken)event.getEntity();
                 CompoundTag tag = chicken.getPersistentData();
                 if (tag.contains(TAG_OVERCLUCK)) {
                     Containers.dropItemStack(chicken.level(), chicken.getX(), chicken.getY(), chicken.getZ(), new ItemStack(UCItems.EGGUPGRADE.get()));

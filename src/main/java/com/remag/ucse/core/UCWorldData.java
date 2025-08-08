@@ -7,12 +7,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 

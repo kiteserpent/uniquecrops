@@ -1,7 +1,6 @@
 package com.remag.ucse.gui;
 
 import com.remag.ucse.UniqueCrops;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

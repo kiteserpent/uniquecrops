@@ -27,8 +27,7 @@ public class MagnetItem extends ItemBaseUC implements IBookUpgradeable {
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean isSelected) {
 
-        if (entity instanceof Player && !world.isClientSide && NBTUtils.getBoolean(stack, UCStrings.ITEM_ACTIVATED, false)) {
-            Player player = (Player)entity;
+        if (entity instanceof Player player && !world.isClientSide && NBTUtils.getBoolean(stack, UCStrings.ITEM_ACTIVATED, false)) {
             if (player.isCreative() || player.isSpectator()) return;
 
             if (!player.isCrouching()) {

@@ -17,8 +17,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import java.util.Random;
-
 public class Hexis extends BaseCropsBlock {
 
     public Hexis() {
@@ -32,8 +30,7 @@ public class Hexis extends BaseCropsBlock {
 
         if (world.isClientSide || isMaxAge(state)) return;
 
-        if (entity instanceof ExperienceOrb) {
-            ExperienceOrb orb = (ExperienceOrb)entity;
+        if (entity instanceof ExperienceOrb orb) {
             if (orb.isAlive() && orb.getValue() > 1) {
                 int age = Math.min(getAge(state) + orb.getValue(), getMaxAge());
                 orb.discard();

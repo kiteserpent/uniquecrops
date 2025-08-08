@@ -35,8 +35,7 @@ public enum EnumLily {
         @Override
         public void collide(BlockState state, Level world, BlockPos pos, Entity entity) {
 
-            if (entity instanceof ItemEntity) {
-                ItemEntity ei = (ItemEntity)entity;
+            if (entity instanceof ItemEntity ei) {
                 if (ei.isAlive() && ei.getItem().getEntityLifespan(world) > -6000)
                     ei.setExtendedLifetime();
             }
@@ -61,8 +60,7 @@ public enum EnumLily {
         @Override
         public void collide(BlockState state, Level world, BlockPos pos, Entity entity) {
 
-            if (entity instanceof Player) {
-                Player player = (Player)entity;
+            if (entity instanceof Player player) {
                 if (!player.isCreative()) {
                     ItemStack boots = player.getInventory().armor.get(0);
                     if (boots.isEmpty())

@@ -13,8 +13,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class WeepingBells extends BaseCropsBlock implements EntityBlock {
 
     public WeepingBells() {
@@ -27,8 +25,7 @@ public class WeepingBells extends BaseCropsBlock implements EntityBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
-        boolean flag = false;
-        if (this.canIgnoreGrowthRestrictions(world, pos)) flag = true;
+        boolean flag = this.canIgnoreGrowthRestrictions(world, pos);
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileWeepingBells && ((TileWeepingBells)tile).isLooking()) flag = true;

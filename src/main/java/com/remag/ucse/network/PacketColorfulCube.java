@@ -10,8 +10,8 @@ import java.util.function.Supplier;
 
 public class PacketColorfulCube {
 
-    private int rotation;
-    private boolean teleport;
+    private final int rotation;
+    private final boolean teleport;
 
     public PacketColorfulCube(int rotation, boolean teleport) {
 

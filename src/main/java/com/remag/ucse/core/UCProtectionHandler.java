@@ -11,7 +11,7 @@ public class UCProtectionHandler {
 
     private static UCProtectionHandler INSTANCE;
 
-    private ConcurrentHashMap<String, Set<ChunkPos>> saveInfo = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Set<ChunkPos>> saveInfo = new ConcurrentHashMap<>();
 
     private UCProtectionHandler() {}
 
@@ -36,8 +36,7 @@ public class UCProtectionHandler {
 
     public void addChunk(Level world, ChunkPos pos, boolean dirty) {
 
-        if (!getChunkInfo(world).contains(pos))
-            getChunkInfo(world).add(pos);
+        getChunkInfo(world).add(pos);
         if (dirty)
             UCWorldData.getInstance(world).setDirty(true);
     }

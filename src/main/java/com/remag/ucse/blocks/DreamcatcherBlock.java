@@ -22,8 +22,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
 public class DreamcatcherBlock extends Block {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

@@ -15,8 +15,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class Cobblonia extends BaseCropsBlock {
 
     public Cobblonia() {

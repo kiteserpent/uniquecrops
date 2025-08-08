@@ -16,8 +16,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 public class Succo extends BaseCropsBlock implements EntityBlock {
 
     public Succo() {

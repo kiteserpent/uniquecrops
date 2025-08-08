@@ -20,7 +20,7 @@ public enum EnumDirectional implements StringRepresentable {
     private final int index;
     private final int opposite;
 
-    private EnumDirectional(int index, int opposite, String name) {
+    EnumDirectional(int index, int opposite, String name) {
 
         this.name = name;
         this.index = index;

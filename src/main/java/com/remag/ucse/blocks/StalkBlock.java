@@ -29,14 +29,12 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class StalkBlock extends BaseStalkBlock implements EntityBlock {
 
-    public static final EnumProperty STALKS = EnumProperty.<EnumDirectional>create("stalk", EnumDirectional.class);
+    public static final EnumProperty STALKS = EnumProperty.create("stalk", EnumDirectional.class);
 
     public StalkBlock() {
 
@@ -92,8 +90,7 @@ public class StalkBlock extends BaseStalkBlock implements EntityBlock {
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
 
         BlockEntity tile = world.getBlockEntity(pos);
-        if (tile instanceof TileCraftyPlant) {
-            TileCraftyPlant craft = (TileCraftyPlant)tile;
+        if (tile instanceof TileCraftyPlant craft) {
             for (int i = 0; i < craft.getCraftingInventory().getSlots(); i++) {
                 ItemStack stack  = craft.getCraftingInventory().getStackInSlot(i);
                 if (!stack.isEmpty() && !world.isClientSide)

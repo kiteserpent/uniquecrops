@@ -49,7 +49,7 @@ public class ContainerCraftyPlant extends AbstractContainerMenu {
     public ItemStack quickMoveStack(Player player, int i) {
 
         ItemStack stack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(i);
+        Slot slot = this.slots.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack stack1 = slot.getItem();

@@ -2,7 +2,6 @@ package com.remag.ucse.items.curios;
 
 import com.remag.ucse.entities.DonkItemEntity;
 import com.remag.ucse.items.base.ItemCurioUC;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Mth;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,9 +33,9 @@ public class EmblemWeight extends ItemCurioUC {
             double motionZ  = Mth.cos(player.yRotO * 0.017453292F) * Mth.cos(player.xRotO * 0.017453292F) * f2;
             float f3 = rand.nextFloat() * ((float)Math.PI * 2F);
             f2 = 0.02F * rand.nextFloat();
-            motionX += Math.cos((double)f3) * (double)f2;
-            motionY += (double)((rand.nextFloat() - rand.nextFloat()) * 0.1F);
-            motionZ += Math.sin((double)f3) * (double)f2;
+            motionX += Math.cos(f3) * (double)f2;
+            motionY += (rand.nextFloat() - rand.nextFloat()) * 0.1F;
+            motionZ += Math.sin(f3) * (double)f2;
             ei.setDeltaMovement(motionX, motionY, motionZ);
 
             if (!player.level().isClientSide)

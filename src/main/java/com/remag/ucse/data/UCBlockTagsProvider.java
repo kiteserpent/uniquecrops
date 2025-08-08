@@ -3,8 +3,6 @@ package com.remag.ucse.data;
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.init.UCBlocks;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Registry;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;

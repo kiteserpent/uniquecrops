@@ -11,7 +11,6 @@ import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.enums.EnumBonemealDye;
 import com.remag.ucse.core.enums.EnumLily;
 import com.remag.ucse.init.UCBlocks;
-import com.remag.ucse.init.UCFeatures;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.integration.patchouli.PatchouliUtils;
 import com.remag.ucse.items.DyedBonemealItem;
@@ -21,7 +20,6 @@ import com.remag.ucse.network.PacketSyncCap;
 import com.remag.ucse.network.UCPacketHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,7 +33,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AnvilUpdateEvent;
@@ -166,7 +163,6 @@ public class UCEventHandlerCommon {
                 if (crop.getPower() < cropPower) {
                     player.displayClientMessage(Component.literal("Insufficient crop power. Needed: " + cropPower), true);
                     event.setCanceled(true);
-                    return;
                 }
                 else if (!player.isCreative()) {
                     crop.remove(cropPower);
