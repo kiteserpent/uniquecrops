@@ -2,6 +2,7 @@ package com.remag.ucse.integration.patchouli;
 
 import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCItems;
+import com.remag.ucse.init.UCRecipes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -75,7 +76,7 @@ public final class PatchouliUtils {
 
     public static void registerMultiblocks() {
 
-        UCUtils.loadType(UCItems.MULTIBLOCK_TYPE).forEach(recipe -> {
+        UCUtils.loadType(UCRecipes.MULTIBLOCK_TYPE.get()).forEach(recipe -> {
             ResourceLocation id = recipe.getId();
             if (PatchouliAPI.get().getMultiblock(id) == null) {
                 String[][] shape = new String[1][];
