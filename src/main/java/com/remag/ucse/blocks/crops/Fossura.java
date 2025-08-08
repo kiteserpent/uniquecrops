@@ -34,7 +34,7 @@ public class Fossura extends BaseCropsBlock implements EntityBlock {
         if (!this.isMaxAge(state) && !world.isClientSide) {
             ItemStack heldItem = player.getMainHandItem();
             if (heldItem.getItem() instanceof PickaxeItem) {
-                player.level.levelEvent(2001, pos, Block.getId(state));
+                player.level().levelEvent(2001, pos, Block.getId(state));
                 world.setBlock(pos, this.setValueAge(this.getAge(state) + 1), 3);
                 return false;
             }

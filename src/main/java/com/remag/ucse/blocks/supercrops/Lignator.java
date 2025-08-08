@@ -1,15 +1,21 @@
 package com.remag.ucse.blocks.supercrops;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -39,9 +45,16 @@ public class Lignator extends Block {
 
     @Override
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-
+        DamageSource cactusDamage = createDamageSource(world, DamageTypes.CACTUS);
         if (!(entity instanceof ItemEntity))
-            entity.hurt(DamageSource.CACTUS, 2.0F);
+            entity.hurt(cactusDamage, 2.0F);
+    }
+
+    private DamageSource createDamageSource(Level serverLevel, ResourceKey<DamageType> damageTypeKey) {
+        Holder<DamageType> damageTypeHolder = serverLevel.registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(damageTypeKey);
+        return new DamageSource(damageTypeHolder);
     }
 
     @Override
@@ -61,7 +74,7 @@ public class Lignator extends Block {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (world.getBlockState(pos.below()).getBlock() != this) {
             for (BlockPos loopPos : BlockPos.betweenClosed(pos.offset(-5, 0, -5), pos.offset(5, 0, 5))) {
@@ -72,7 +85,7 @@ public class Lignator extends Block {
                     world.destroyBlock(loopPos.immutable(), false);
             }
         }
-        if (world.getBlockState(pos.above()).getBlock() != this && (world.isEmptyBlock(pos.above()) || world.getBlockState(pos.above()).getMaterial() == Material.LEAVES)) {
+        if (world.getBlockState(pos.above()).getBlock() != this && (world.isEmptyBlock(pos.above()))) {
             growAndHarvest(world, pos.above());
             world.scheduleTick(pos.above(), this, 200);
         }

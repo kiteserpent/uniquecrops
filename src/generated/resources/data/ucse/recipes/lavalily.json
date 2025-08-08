@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "ucse:cinderleaf"
+    },
+    "L": {
+      "item": "minecraft:lily_pad"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CLC",
+    " C "
+  ],
+  "result": {
+    "item": "ucse:lavalily"
+  },
+  "show_notification": true
+}

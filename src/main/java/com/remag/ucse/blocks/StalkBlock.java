@@ -3,10 +3,10 @@ package com.remag.ucse.blocks;
 import com.remag.ucse.blocks.tiles.TileCraftyPlant;
 import com.remag.ucse.core.enums.EnumDirectional;
 import com.remag.ucse.init.UCBlocks;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
@@ -19,6 +19,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -39,7 +40,7 @@ public class StalkBlock extends BaseStalkBlock implements EntityBlock {
 
     public StalkBlock() {
 
-        super(Properties.of(Material.PLANT).strength(0.1F, 1.0F).noCollission().randomTicks().isSuffocating(StalkBlock::isntSolid));
+        super(Properties.of().strength(0.1F, 1.0F).noCollission().randomTicks().isSuffocating(StalkBlock::isntSolid).mapColor(MapColor.GRASS));
         registerDefaultState(defaultBlockState().setValue(STALKS, EnumDirectional.NORTH));
     }
 
@@ -61,14 +62,14 @@ public class StalkBlock extends BaseStalkBlock implements EntityBlock {
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileCraftyPlant) {
             if (!world.isClientSide)
-                NetworkHooks.openGui((ServerPlayer)player, (MenuProvider)tile, pos);
+                NetworkHooks.openScreen((ServerPlayer)player, (MenuProvider)tile, pos);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (state.getValue(STALKS) == EnumDirectional.DOWN && world.isEmptyBlock(pos.above())) {
             if (rand.nextInt(5) == 0) {

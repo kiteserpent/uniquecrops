@@ -19,6 +19,6 @@ public class UCSounds {
 
     private static RegistryObject<SoundEvent> createSound(String name) {
 
-        return SOUNDS.register(name, () -> new SoundEvent(new ResourceLocation(UniqueCrops.MOD_ID, name)));
+        return SOUNDS.register(name, () -> SoundEvent.createFixedRangeEvent(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, name), 1.0F));
     }
 }

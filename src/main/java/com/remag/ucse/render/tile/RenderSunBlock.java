@@ -1,5 +1,6 @@
 package com.remag.ucse.render.tile;
 
+import com.mojang.math.Axis;
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.blocks.tiles.TileSunBlock;
 import com.remag.ucse.render.CustomRenderType;
@@ -13,14 +14,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 
 public class RenderSunBlock implements BlockEntityRenderer<TileSunBlock> {
 
-    public static final ResourceLocation RES = new ResourceLocation(UniqueCrops.MOD_ID, "textures/models/sunglow.png");
+    public static final ResourceLocation RES = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/models/sunglow.png");
     private final BlockRenderDispatcher renderDispatcher;
 
     public RenderSunBlock(BlockEntityRendererProvider.Context ctx) {
@@ -45,7 +45,7 @@ public class RenderSunBlock implements BlockEntityRenderer<TileSunBlock> {
                 ms.pushPose();
                 ms.translate((float)Math.cos(2.356194490192345D * i) * 0.5F * power, 0.0F, (float)Math.sin(2.356194490192345D * i) * 0.5F * power);
                 float playerView = Minecraft.getInstance().gameRenderer.getMainCamera().getYRot();
-                ms.mulPose(Vector3f.YP.rotationDegrees(180.0F - playerView));
+                ms.mulPose(Axis.YP.rotationDegrees(180.0F - playerView));
                 RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
                 float r = Math.max(phase, 1.0F);

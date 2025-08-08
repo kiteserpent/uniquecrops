@@ -1,0 +1,38 @@
+{
+  "parent": "ucse:main/artisia_craft",
+  "criteria": {
+    "seed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:seedcobblonia"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.ucse:craftingCobblonia.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "ucse:seedcobblonia"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.ucse:craftingCobblonia"
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "b": {
+      "item": "minecraft:blaze_powder"
+    },
+    "p": {
+      "item": "minecraft:diamond_pickaxe"
+    }
+  },
+  "pattern": [
+    " p ",
+    "BDB",
+    " b "
+  ],
+  "result": {
+    "item": "ucse:emblem_powerfist"
+  },
+  "show_notification": true
+}

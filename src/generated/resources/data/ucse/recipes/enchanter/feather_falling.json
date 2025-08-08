@@ -1,0 +1,18 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 40,
+  "enchantment": "feather_falling",
+  "ingredients": [
+    [
+      {
+        "item": "ucse:invisifeather"
+      },
+      {
+        "item": "minecraft:feather"
+      },
+      {
+        "item": "ucse:cactus_boots"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:leather_boots"
+    },
+    "E": {
+      "item": "ucse:emeradic_diamond"
+    },
+    "L": {
+      "item": "ucse:enchanted_leather"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "SES",
+    "LBL",
+    "SLS"
+  ],
+  "result": {
+    "item": "ucse:seven_league_boots"
+  },
+  "show_notification": true
+}

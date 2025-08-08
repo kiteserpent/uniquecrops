@@ -9,21 +9,25 @@ import com.remag.ucse.items.base.*;
 import com.remag.ucse.items.curios.*;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+
+import static com.remag.ucse.core.UCTab.addToTab;
 
 public class UCItems {
 
@@ -32,56 +36,56 @@ public class UCItems {
     /**
      * GENERAL
      */
-    public static final RegistryObject<Item> BOOK_GUIDE = register("book_guide", GuideBookItem::new);
-    public static final RegistryObject<Item> BOOK_MULTIBLOCK = register("book_multiblock", MultiblockBookItem::new);
-    public static final RegistryObject<Item> BOOK_DISCOUNT = register("book_discount", () -> new ItemBaseUC(unstackable()));
-    public static final RegistryObject<Item> BOOK_UPGRADE = register("book_upgrade", () -> new ItemBaseUC(unstackable()));
-    public static final RegistryObject<Item> BOOK_EULA = register("book_eula", EulaBookItem::new);
-    public static final RegistryObject<Item> DIRIGIBLEPLUM = register("dirigibleplum", DirigiblePlumItem::new);
-    public static final RegistryObject<Item> CINDERLEAF = register("cinderleaf", CinderleafItem::new);
-    public static final RegistryObject<Item> TIMEDUST = register("timedust", ItemBaseUC::new);
-    public static final RegistryObject<Item> LILYTWINE = register("lilytwine", ItemBaseUC::new);
-    public static final RegistryObject<Item> GOLDENRODS = register("goldenrods", ItemBaseUC::new);
-    public static final RegistryObject<Item> PRENUGGET = register("prenugget", ItemBaseUC::new);
-    public static final RegistryObject<Item> PREGEM = register("pregem", ItemBaseUC::new);
-    public static final RegistryObject<Item> SAVAGEESSENCE = register("savageessence", ItemBaseUC::new);
-    public static final RegistryObject<Item> TIMEMEAL = register("timemeal", ItemBaseUC::new);
-    public static final RegistryObject<Item> INVISITWINE = register("invisitwine", ItemBaseUC::new);
-    public static final RegistryObject<Item> INVISIFEATHER = register("invisifeather", ItemBaseUC::new);
-    public static final RegistryObject<Item> SLIPPERGLASS = register("slipperglass", ItemBaseUC::new);
-    public static final RegistryObject<Item> WEEPINGTEAR = register("weepingtear", ItemBaseUC::new);
-    public static final RegistryObject<Item> WEEPINGEYE = register("weepingeye", WeepingEyeItem::new);
-    public static final RegistryObject<Item> MILLENNIUMEYE = register("millenniumeye", ItemBaseUC::new);
-    public static final RegistryObject<Item> EGGUPGRADE = register("eggupgrade", EggUpgradeItem::new);
-    public static final RegistryObject<Item> EASYBADGE = register("easybadge", EasyBadgeItem::new);
-    public static final RegistryObject<Item> DOGRESIDUE = register("dogresidue", DogResidueItem::new);
-    public static final RegistryObject<Item> ABSTRACT = register("abstract", ItemBaseUC::new);
-    public static final RegistryObject<Item> LEGALSTUFF = register("legalstuff", ItemBaseUC::new);
-    public static final RegistryObject<Item> PIXELS = register("pixels", ItemBaseUC::new);
-    public static final RegistryObject<Item> ESCAPEROPE = register("escaperope", EscapeRopeItem::new);
-    public static final RegistryObject<Item> CUBEYTHINGY = register("cubeythingy", ItemBaseUC::new);
-    public static final RegistryObject<Item> FERROMAGNETICIRON = register("ferromagnetic_iron", ItemBaseUC::new);
-    public static final RegistryObject<Item> SPIRITBAIT = register("spirit_bait", ItemBaseUC::new);
-    public static final RegistryObject<Item> ENDERSNOOKER = register("endersnooker", EnderSnookerItem::new);
-    public static final RegistryObject<Item> HANDMIRROR = register("handmirror", HandMirrorItem::new);
-    public static final RegistryObject<Item> BATSTAFF = register("batstaff", StaffBatItem::new);
-    public static final RegistryObject<Item> PHANTOMSTAFF = register("phantomstaff", StaffPhantomItem::new);
-    public static final RegistryObject<Item> BEAN_BATTERY = register("bean_battery", BeanBatteryItem::new);
-    public static final RegistryObject<Item> WILDWOOD_STAFF = register("wildwood_staff", StaffWildwoodItem::new);
-    public static final RegistryObject<Item> VAMPIRIC_OINTMENT = register("vampiric_ointment", VampiricOintmentItem::new);
-    public static final RegistryObject<Item> STEEL_DONUT = register("steel_donut", ItemBaseUC::new);
-    public static final RegistryObject<Item> ANKH = register("ankh", AnkhItem::new);
-    public static final RegistryObject<Item> GOODIE_BAG = register("goodie_bag", GoodieBagItem::new);
-    public static final RegistryObject<Item> EMERADIC_DIAMOND = register("emeradic_diamond", EmeradicDiamondItem::new);
-    public static final RegistryObject<Item> USELESS_LUMP = register("useless_lump", ItemBaseUC::new);
-    public static final RegistryObject<Item> DIAMONDS = register("diamonds", DiamondBunchItem::new);
-    public static final RegistryObject<Item> PIXEL_BRUSH = register("pixel_brush", PixelBrushItem::new);
-    public static final RegistryObject<Item> RUBIKS_CUBE = register("rubiks_cube", RubiksCubeItem::new);
-    public static final RegistryObject<Item> BOILED_MILK = register("boiled_milk", ItemBaseUC::new);
-    public static final RegistryObject<Item> ITEM_MAGNET = register("item_magnet", MagnetItem::new);
-    public static final RegistryObject<Item> IMPREGNATED_LEATHER = register("impregnated_leather", ImpregnatedLeatherItem::new);
-    public static final RegistryObject<Item> ENCHANTED_LEATHER = register("enchanted_leather", EnchantedLeatherItem::new);
-    public static final RegistryObject<Item> ZOMBIE_SLURRY = register("zombie_slurry", ItemBaseUC::new);
+    public static final RegistryObject<Item> BOOK_GUIDE = addToTab(ITEMS.register("book_guide", GuideBookItem::new));
+    public static final RegistryObject<Item> BOOK_MULTIBLOCK = addToTab(ITEMS.register("book_multiblock", MultiblockBookItem::new));
+    public static final RegistryObject<Item> BOOK_DISCOUNT = addToTab(ITEMS.register("book_discount", () -> new ItemBaseUC(unstackable())));
+    public static final RegistryObject<Item> BOOK_UPGRADE = addToTab(ITEMS.register("book_upgrade", () -> new ItemBaseUC(unstackable())));
+    public static final RegistryObject<Item> BOOK_EULA = addToTab(ITEMS.register("book_eula", EulaBookItem::new));
+    public static final RegistryObject<Item> DIRIGIBLEPLUM = addToTab(ITEMS.register("dirigibleplum", DirigiblePlumItem::new));
+    public static final RegistryObject<Item> CINDERLEAF = addToTab(ITEMS.register("cinderleaf", CinderleafItem::new));
+    public static final RegistryObject<Item> TIMEDUST = addToTab(ITEMS.register("timedust", ItemBaseUC::new));
+    public static final RegistryObject<Item> LILYTWINE = addToTab(ITEMS.register("lilytwine", ItemBaseUC::new));
+    public static final RegistryObject<Item> GOLDENRODS = addToTab(ITEMS.register("goldenrods", ItemBaseUC::new));
+    public static final RegistryObject<Item> PRENUGGET = addToTab(ITEMS.register("prenugget", ItemBaseUC::new));
+    public static final RegistryObject<Item> PREGEM = addToTab(ITEMS.register("pregem", ItemBaseUC::new));
+    public static final RegistryObject<Item> SAVAGEESSENCE = addToTab(ITEMS.register("savageessence", ItemBaseUC::new));
+    public static final RegistryObject<Item> TIMEMEAL = addToTab(ITEMS.register("timemeal", ItemBaseUC::new));
+    public static final RegistryObject<Item> INVISITWINE = addToTab(ITEMS.register("invisitwine", ItemBaseUC::new));
+    public static final RegistryObject<Item> INVISIFEATHER = addToTab(ITEMS.register("invisifeather", ItemBaseUC::new));
+    public static final RegistryObject<Item> SLIPPERGLASS = addToTab(ITEMS.register("slipperglass", ItemBaseUC::new));
+    public static final RegistryObject<Item> WEEPINGTEAR = addToTab(ITEMS.register("weepingtear", ItemBaseUC::new));
+    public static final RegistryObject<Item> WEEPINGEYE = addToTab(ITEMS.register("weepingeye", WeepingEyeItem::new));
+    public static final RegistryObject<Item> MILLENNIUMEYE = addToTab(ITEMS.register("millenniumeye", ItemBaseUC::new));
+    public static final RegistryObject<Item> EGGUPGRADE = addToTab(ITEMS.register("eggupgrade", EggUpgradeItem::new));
+    public static final RegistryObject<Item> EASYBADGE = addToTab(ITEMS.register("easybadge", EasyBadgeItem::new));
+    public static final RegistryObject<Item> DOGRESIDUE = addToTab(ITEMS.register("dogresidue", DogResidueItem::new));
+    public static final RegistryObject<Item> ABSTRACT = addToTab(ITEMS.register("abstract", ItemBaseUC::new));
+    public static final RegistryObject<Item> LEGALSTUFF = addToTab(ITEMS.register("legalstuff", ItemBaseUC::new));
+    public static final RegistryObject<Item> PIXELS = addToTab(ITEMS.register("pixels", ItemBaseUC::new));
+    public static final RegistryObject<Item> ESCAPEROPE = addToTab(ITEMS.register("escaperope", EscapeRopeItem::new));
+    public static final RegistryObject<Item> CUBEYTHINGY = addToTab(ITEMS.register("cubeythingy", ItemBaseUC::new));
+    public static final RegistryObject<Item> FERROMAGNETICIRON = addToTab(ITEMS.register("ferromagnetic_iron", ItemBaseUC::new));
+    public static final RegistryObject<Item> SPIRITBAIT = addToTab(ITEMS.register("spirit_bait", ItemBaseUC::new));
+    public static final RegistryObject<Item> ENDERSNOOKER = addToTab(ITEMS.register("endersnooker", EnderSnookerItem::new));
+    public static final RegistryObject<Item> HANDMIRROR = addToTab(ITEMS.register("handmirror", HandMirrorItem::new));
+    public static final RegistryObject<Item> BATSTAFF = addToTab(ITEMS.register("batstaff", StaffBatItem::new));
+    public static final RegistryObject<Item> PHANTOMSTAFF = addToTab(ITEMS.register("phantomstaff", StaffPhantomItem::new));
+    public static final RegistryObject<Item> BEAN_BATTERY = addToTab(ITEMS.register("bean_battery", BeanBatteryItem::new));
+    public static final RegistryObject<Item> WILDWOOD_STAFF = addToTab(ITEMS.register("wildwood_staff", StaffWildwoodItem::new));
+    public static final RegistryObject<Item> VAMPIRIC_OINTMENT = addToTab(ITEMS.register("vampiric_ointment", VampiricOintmentItem::new));
+    public static final RegistryObject<Item> STEEL_DONUT = addToTab(ITEMS.register("steel_donut", ItemBaseUC::new));
+    public static final RegistryObject<Item> ANKH = addToTab(ITEMS.register("ankh", AnkhItem::new));
+    public static final RegistryObject<Item> GOODIE_BAG = addToTab(ITEMS.register("goodie_bag", GoodieBagItem::new));
+    public static final RegistryObject<Item> EMERADIC_DIAMOND = addToTab(ITEMS.register("emeradic_diamond", EmeradicDiamondItem::new));
+    public static final RegistryObject<Item> USELESS_LUMP = addToTab(ITEMS.register("useless_lump", ItemBaseUC::new));
+    public static final RegistryObject<Item> DIAMONDS = addToTab(ITEMS.register("diamonds", DiamondBunchItem::new));
+    public static final RegistryObject<Item> PIXEL_BRUSH = addToTab(ITEMS.register("pixel_brush", PixelBrushItem::new));
+    public static final RegistryObject<Item> RUBIKS_CUBE = addToTab(ITEMS.register("rubiks_cube", RubiksCubeItem::new));
+    public static final RegistryObject<Item> BOILED_MILK = addToTab(ITEMS.register("boiled_milk", ItemBaseUC::new));
+    public static final RegistryObject<Item> ITEM_MAGNET = addToTab(ITEMS.register("item_magnet", MagnetItem::new));
+    public static final RegistryObject<Item> IMPREGNATED_LEATHER = addToTab(ITEMS.register("impregnated_leather", ImpregnatedLeatherItem::new));
+    public static final RegistryObject<Item> ENCHANTED_LEATHER = addToTab(ITEMS.register("enchanted_leather", EnchantedLeatherItem::new));
+    public static final RegistryObject<Item> ZOMBIE_SLURRY = addToTab(ITEMS.register("zombie_slurry", ItemBaseUC::new));
 
     /**
      * FOOD & POTIONS
@@ -95,57 +99,57 @@ public class UCItems {
     public static final RegistryObject<Item> WAFFLE = registerFood("waffle", UCFoods.WAFFLE);
     public static final RegistryObject<Item> YOGURT = registerFood("yogurt", UCFoods.YOGURT);
     public static final RegistryObject<Item> EGGNOG = registerFood("eggnog", UCFoods.EGGNOG);
-    public static final RegistryObject<Item> POTION_REVERSE = register("potionreverse", () -> new ItemBaseUC(unstackable().food(UCFoods.REVERSE_POTION).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> POTION_ENNUI = register("potionennui", () -> new ItemBaseUC(unstackable().food(UCFoods.ENNUI_POTION).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> POTION_IGNORANCE = register("potionignorance", () -> new ItemBaseUC(unstackable().food(UCFoods.IGNORANCE_POTION).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> POTION_ZOMBIFICATION = register("potionzombification", () -> new ItemBaseUC(unstackable().food(UCFoods.ZOMBIFICATION_POTION).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> POTION_REVERSE = addToTab(ITEMS.register("potionreverse", () -> new ItemBaseUC(unstackable().food(UCFoods.REVERSE_POTION).craftRemainder(Items.GLASS_BOTTLE))));
+    public static final RegistryObject<Item> POTION_ENNUI = addToTab(ITEMS.register("potionennui", () -> new ItemBaseUC(unstackable().food(UCFoods.ENNUI_POTION).craftRemainder(Items.GLASS_BOTTLE))));
+    public static final RegistryObject<Item> POTION_IGNORANCE = addToTab(ITEMS.register("potionignorance", () -> new ItemBaseUC(unstackable().food(UCFoods.IGNORANCE_POTION).craftRemainder(Items.GLASS_BOTTLE))));
+    public static final RegistryObject<Item> POTION_ZOMBIFICATION = addToTab(ITEMS.register("potionzombification", () -> new ItemBaseUC(unstackable().food(UCFoods.ZOMBIFICATION_POTION).craftRemainder(Items.GLASS_BOTTLE))));
 
     /**
      * GEAR
      */
-    public static final RegistryObject<Item> GLASSES_3D = register("glasses_3d",  Glasses3DItem::new);
-    public static final RegistryObject<Item> GLASSES_PIXELS = register("glasses_pixels", GlassesPixelItem::new);
-    public static final RegistryObject<Item> PONCHO = register("poncho", PonchoItem::new);
-    public static final RegistryObject<Item> GLASS_SLIPPERS = register("slippers", () -> new ItemArmorUC(EnumArmorMaterial.SLIPPERS, EquipmentSlot.FEET));
-    public static final RegistryObject<Item> THUNDERPANTZ = register("thunderpantz", ThunderpantzItem::new);
-    public static final RegistryObject<Item> CACTUS_HELM = register("cactus_helm", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, EquipmentSlot.HEAD));
-    public static final RegistryObject<Item> CACTUS_CHESTPLATE = register("cactus_plate", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, EquipmentSlot.CHEST));
-    public static final RegistryObject<Item> CACTUS_LEGGINGS = register("cactus_leggings", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, EquipmentSlot.LEGS));
-    public static final RegistryObject<Item> CACTUS_BOOTS = register("cactus_boots", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, EquipmentSlot.FEET));
-    public static final RegistryObject<Item> SEVEN_LEAGUE_BOOTS = register("seven_league_boots", LeagueBootsItem::new);
-    public static final RegistryObject<Item> PRECISION_PICK = register("precision_pick", PrecisionPickaxeItem::new);
-    public static final RegistryObject<Item> PRECISION_AXE = register("precision_axe", PrecisionAxeItem::new);
-    public static final RegistryObject<Item> PRECISION_SHOVEL = register("precision_shovel", PrecisionShovelItem::new);
-    public static final RegistryObject<Item> PRECISION_SWORD = register("precision_sword", PrecisionSwordItem::new);
-    public static final RegistryObject<Item> PRECISION_HAMMER = register("precision_hammer", PrecisionHammerItem::new);
-    public static final RegistryObject<Item> IMPACT_SHIELD = register("impact_shield", ImpactShieldItem::new);
-    public static final RegistryObject<Item> BRASS_KNUCKLES = register("brass_knuckles", BrassKnucklesItem::new);
-    public static final RegistryObject<Item> ANCIENT_BOW = register("oldbow", OldBow::new);
+    public static final RegistryObject<Item> GLASSES_3D = addToTab(ITEMS.register("glasses_3d",  Glasses3DItem::new));
+    public static final RegistryObject<Item> GLASSES_PIXELS = addToTab(ITEMS.register("glasses_pixels", GlassesPixelItem::new));
+    public static final RegistryObject<Item> PONCHO = addToTab(ITEMS.register("poncho", PonchoItem::new));
+    public static final RegistryObject<Item> GLASS_SLIPPERS = addToTab(ITEMS.register("slippers", () -> new ItemArmorUC(EnumArmorMaterial.SLIPPERS, ArmorItem.Type.BOOTS)));
+    public static final RegistryObject<Item> THUNDERPANTZ = addToTab(ITEMS.register("thunderpantz", ThunderpantzItem::new));
+    public static final RegistryObject<Item> CACTUS_HELM = addToTab(ITEMS.register("cactus_helm", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, ArmorItem.Type.HELMET)));
+    public static final RegistryObject<Item> CACTUS_CHESTPLATE = addToTab(ITEMS.register("cactus_plate", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, ArmorItem.Type.CHESTPLATE)));
+    public static final RegistryObject<Item> CACTUS_LEGGINGS = addToTab(ITEMS.register("cactus_leggings", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, ArmorItem.Type.LEGGINGS)));
+    public static final RegistryObject<Item> CACTUS_BOOTS = addToTab(ITEMS.register("cactus_boots", () -> new ItemArmorUC(EnumArmorMaterial.CACTUS, ArmorItem.Type.BOOTS)));
+    public static final RegistryObject<Item> SEVEN_LEAGUE_BOOTS = addToTab(ITEMS.register("seven_league_boots", LeagueBootsItem::new));
+    public static final RegistryObject<Item> PRECISION_PICK = addToTab(ITEMS.register("precision_pick", PrecisionPickaxeItem::new));
+    public static final RegistryObject<Item> PRECISION_AXE = addToTab(ITEMS.register("precision_axe", PrecisionAxeItem::new));
+    public static final RegistryObject<Item> PRECISION_SHOVEL = addToTab(ITEMS.register("precision_shovel", PrecisionShovelItem::new));
+    public static final RegistryObject<Item> PRECISION_SWORD = addToTab(ITEMS.register("precision_sword", PrecisionSwordItem::new));
+    public static final RegistryObject<Item> PRECISION_HAMMER = addToTab(ITEMS.register("precision_hammer", PrecisionHammerItem::new));
+    public static final RegistryObject<Item> IMPACT_SHIELD = addToTab(ITEMS.register("impact_shield", ImpactShieldItem::new));
+    public static final RegistryObject<Item> BRASS_KNUCKLES = addToTab(ITEMS.register("brass_knuckles", BrassKnucklesItem::new));
+    public static final RegistryObject<Item> ANCIENT_BOW = addToTab(ITEMS.register("oldbow", OldBow::new));
 
     /**
      * EMBLEMS
      */
-    public static final RegistryObject<Item> EMBLEM_BLACKSMITH = register("emblem_blacksmith", EmblemBlacksmith::new);
-    public static final RegistryObject<Item> EMBLEM_BOOKWORM = register("emblem_bookworm", EmblemBookworm::new);
-    public static final RegistryObject<Item> EMBLEM_DEFENSE = register("emblem_defense", EmblemDefense::new);
-    public static final RegistryObject<Item> EMBLEM_FOOD = register("emblem_food", EmblemFood::new);
-    public static final RegistryObject<Item> EMBLEM_IRONSTOMACH = register("emblem_ironstomach", EmblemIronStomach::new);
-    public static final RegistryObject<Item> EMBLEM_LEAF = register("emblem_leaf", EmblemLeaf::new);
-    public static final RegistryObject<Item> EMBLEM_MELEE = register("emblem_melee", EmblemMelee::new);
-    public static final RegistryObject<Item> EMBLEM_PACIFISM = register("emblem_pacifism", EmblemPacifism::new);
-    public static final RegistryObject<Item> EMBLEM_POWERFIST = register("emblem_powerfist", EmblemPowerfist::new);
-    public static final RegistryObject<Item> EMBLEM_RAINBOW = register("emblem_rainbow", EmblemRainbow::new);
-    public static final RegistryObject<Item> EMBLEM_SCARAB = register("emblem_scarab", EmblemScarab::new);
-    public static final RegistryObject<Item> EMBLEM_TRANSFORMATION = register("emblem_transformation", EmblemTransformation::new);
-    public static final RegistryObject<Item> EMBLEM_WEIGHT = register("emblem_weight", EmblemWeight::new);
+    public static final RegistryObject<Item> EMBLEM_BLACKSMITH = addToTab(ITEMS.register("emblem_blacksmith", EmblemBlacksmith::new));
+    public static final RegistryObject<Item> EMBLEM_BOOKWORM = addToTab(ITEMS.register("emblem_bookworm", EmblemBookworm::new));
+    public static final RegistryObject<Item> EMBLEM_DEFENSE = addToTab(ITEMS.register("emblem_defense", EmblemDefense::new));
+    public static final RegistryObject<Item> EMBLEM_FOOD = addToTab(ITEMS.register("emblem_food", EmblemFood::new));
+    public static final RegistryObject<Item> EMBLEM_IRONSTOMACH = addToTab(ITEMS.register("emblem_ironstomach", EmblemIronStomach::new));
+    public static final RegistryObject<Item> EMBLEM_LEAF = addToTab(ITEMS.register("emblem_leaf", EmblemLeaf::new));
+    public static final RegistryObject<Item> EMBLEM_MELEE = addToTab(ITEMS.register("emblem_melee", EmblemMelee::new));
+    public static final RegistryObject<Item> EMBLEM_PACIFISM = addToTab(ITEMS.register("emblem_pacifism", EmblemPacifism::new));
+    public static final RegistryObject<Item> EMBLEM_POWERFIST = addToTab(ITEMS.register("emblem_powerfist", EmblemPowerfist::new));
+    public static final RegistryObject<Item> EMBLEM_RAINBOW = addToTab(ITEMS.register("emblem_rainbow", EmblemRainbow::new));
+    public static final RegistryObject<Item> EMBLEM_SCARAB = addToTab(ITEMS.register("emblem_scarab", EmblemScarab::new));
+    public static final RegistryObject<Item> EMBLEM_TRANSFORMATION = addToTab(ITEMS.register("emblem_transformation", EmblemTransformation::new));
+    public static final RegistryObject<Item> EMBLEM_WEIGHT = addToTab(ITEMS.register("emblem_weight", EmblemWeight::new));
 
     /**
      * MUSIC DISCS
      */
-    public static final RegistryObject<Item> RECORD_FARAWAY = register("record_faraway", () -> new ItemRecordUC(UCSounds.FAR_AWAY));
-    public static final RegistryObject<Item> RECORD_NEONSIGNS = register("record_neonsigns", () -> new ItemRecordUC(UCSounds.NEON_SIGNS));
-    public static final RegistryObject<Item> RECORD_SIMPLY = register("record_simply", () -> new ItemRecordUC(UCSounds.SIMPLY));
-    public static final RegistryObject<Item> RECORD_TAXI = register("record_taxi", () -> new ItemRecordUC(UCSounds.TAXI));
+    public static final RegistryObject<Item> RECORD_FARAWAY = addToTab(ITEMS.register("record_faraway", () -> new ItemRecordUC(UCSounds.FAR_AWAY)));
+    public static final RegistryObject<Item> RECORD_NEONSIGNS = addToTab(ITEMS.register("record_neonsigns", () -> new ItemRecordUC(UCSounds.NEON_SIGNS)));
+    public static final RegistryObject<Item> RECORD_SIMPLY = addToTab(ITEMS.register("record_simply", () -> new ItemRecordUC(UCSounds.SIMPLY)));
+    public static final RegistryObject<Item> RECORD_TAXI = addToTab(ITEMS.register("record_taxi", () -> new ItemRecordUC(UCSounds.TAXI)));
 
     /**
      * SEEDS
@@ -189,48 +193,48 @@ public class UCItems {
     /**
      * DYED BONEMEALS
      */
-    public static final RegistryObject<Item> WHITE_BONEMEAL = register("dyedbonemeal.white", DyedBonemealItem::new);
-    public static final RegistryObject<Item> ORANGE_BONEMEAL = register("dyedbonemeal.orange", DyedBonemealItem::new);
-    public static final RegistryObject<Item> MAGENTA_BONEMEAL = register("dyedbonemeal.magenta", DyedBonemealItem::new);
-    public static final RegistryObject<Item> LIGHTBLUE_BONEMEAL = register("dyedbonemeal.light_blue", DyedBonemealItem::new);
-    public static final RegistryObject<Item> YELLOW_BONEMEAL = register("dyedbonemeal.yellow", DyedBonemealItem::new);
-    public static final RegistryObject<Item> LIME_BONEMEAL = register("dyedbonemeal.lime", DyedBonemealItem::new);
-    public static final RegistryObject<Item> PINK_BONEMEAL = register("dyedbonemeal.pink", DyedBonemealItem::new);
-    public static final RegistryObject<Item> GRAY_BONEMEAL = register("dyedbonemeal.gray", DyedBonemealItem::new);
-    public static final RegistryObject<Item> SILVER_BONEMEAL = register("dyedbonemeal.silver", DyedBonemealItem::new);
-    public static final RegistryObject<Item> CYAN_BONEMEAL = register("dyedbonemeal.cyan", DyedBonemealItem::new);
-    public static final RegistryObject<Item> PURPLE_BONEMEAL = register("dyedbonemeal.purple", DyedBonemealItem::new);
-    public static final RegistryObject<Item> BLUE_BONEMEAL = register("dyedbonemeal.blue", DyedBonemealItem::new);
-    public static final RegistryObject<Item> BROWN_BONEMEAL = register("dyedbonemeal.brown", DyedBonemealItem::new);
-    public static final RegistryObject<Item> GREEN_BONEMEAL = register("dyedbonemeal.green", DyedBonemealItem::new);
-    public static final RegistryObject<Item> RED_BONEMEAL = register("dyedbonemeal.red", DyedBonemealItem::new);
-    public static final RegistryObject<Item> BLACK_BONEMEAL = register("dyedbonemeal.black", DyedBonemealItem::new);
+    public static final RegistryObject<Item> WHITE_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.white", DyedBonemealItem::new));
+    public static final RegistryObject<Item> ORANGE_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.orange", DyedBonemealItem::new));
+    public static final RegistryObject<Item> MAGENTA_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.magenta", DyedBonemealItem::new));
+    public static final RegistryObject<Item> LIGHTBLUE_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.light_blue", DyedBonemealItem::new));
+    public static final RegistryObject<Item> YELLOW_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.yellow", DyedBonemealItem::new));
+    public static final RegistryObject<Item> LIME_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.lime", DyedBonemealItem::new));
+    public static final RegistryObject<Item> PINK_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.pink", DyedBonemealItem::new));
+    public static final RegistryObject<Item> GRAY_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.gray", DyedBonemealItem::new));
+    public static final RegistryObject<Item> SILVER_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.silver", DyedBonemealItem::new));
+    public static final RegistryObject<Item> CYAN_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.cyan", DyedBonemealItem::new));
+    public static final RegistryObject<Item> PURPLE_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.purple", DyedBonemealItem::new));
+    public static final RegistryObject<Item> BLUE_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.blue", DyedBonemealItem::new));
+    public static final RegistryObject<Item> BROWN_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.brown", DyedBonemealItem::new));
+    public static final RegistryObject<Item> GREEN_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.green", DyedBonemealItem::new));
+    public static final RegistryObject<Item> RED_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.red", DyedBonemealItem::new));
+    public static final RegistryObject<Item> BLACK_BONEMEAL = addToTab(ITEMS.register("dyedbonemeal.black", DyedBonemealItem::new));
 
     /**
      * DUMMIES
      */
-    public static final RegistryObject<Item> DUMMY_ARTISIA = register("dummy_artisia", ItemDummyUC::new);
-    public static final RegistryObject<Item> DUMMY_HEATER = register("dummy_heater", ItemDummyUC::new);
-    public static final RegistryObject<Item> DUMMY_FASCINO = register("dummy_fascino", ItemRenderUC::new);
+    public static final RegistryObject<Item> DUMMY_ARTISIA = addToTab(ITEMS.register("dummy_artisia", ItemDummyUC::new));
+    public static final RegistryObject<Item> DUMMY_HEATER = addToTab(ITEMS.register("dummy_heater", ItemDummyUC::new));
+    public static final RegistryObject<Item> DUMMY_FASCINO = addToTab(ITEMS.register("dummy_fascino", ItemRenderUC::new));
 
     public static <I extends Item> RegistryObject<I> register(String name, Supplier<I> supplier) {
 
-        return ITEMS.register(name, supplier);
+        return addToTab(ITEMS.register(name, supplier));
     }
 
     public static RegistryObject<BlockItem> register(String name, RegistryObject<Block> block) {
 
-        return ITEMS.register(name, () -> new BlockItem(block.get(), defaultBuilder()));
+        return addToTab(ITEMS.register(name, () -> new BlockItem(block.get(), defaultBuilder())));
     }
 
     public static RegistryObject<Item> registerFood(String name, FoodProperties food) {
 
-        return ITEMS.register(name, () -> new Item(new Item.Properties().food(food).tab(UniqueCrops.TAB)));
+        return addToTab(ITEMS.register(name, () -> new Item(new Item.Properties().food(food))));
     }
 
     public static RegistryObject<BlockItem> registerSeed(String name, RegistryObject<BaseCropsBlock> crop) {
 
-        return ITEMS.register("seed" + name, () -> new ItemSeedsUC(crop.get()));
+        return addToTab(ITEMS.register("seed" + name, () -> new ItemSeedsUC(crop.get())));
     }
 
     public static Item.Properties noTab() {
@@ -240,7 +244,7 @@ public class UCItems {
 
     public static Item.Properties defaultBuilder() {
 
-        return new Item.Properties().tab(UniqueCrops.TAB);
+        return new Item.Properties();
     }
 
     public static Item.Properties unstackable() {
@@ -255,24 +259,24 @@ public class UCItems {
     public static final RecipeType<IHeaterRecipe> HEATER_TYPE = new ModRecipeType<>();
     public static final RecipeType<IMultiblockRecipe> MULTIBLOCK_TYPE = new ModRecipeType<>();
 
-    public static void registerItemsButNotReally(RegistryEvent.Register<Item> event) {
+    public static void registerItemsButNotReally(RegisterEvent event) {
 
         ResourceLocation id;
 
-        id = new ResourceLocation(UniqueCrops.MOD_ID, "artisia");
-        Registry.register(Registry.RECIPE_TYPE, id, ARTISIA_TYPE);
+        id = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "artisia");
+        ForgeRegistries.RECIPE_TYPES.register(id, ARTISIA_TYPE);
 
-        id = new ResourceLocation(UniqueCrops.MOD_ID, "hourglass");
-        Registry.register(Registry.RECIPE_TYPE, id, HOURGLASS_TYPE);
+        id = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "hourglass");
+        ForgeRegistries.RECIPE_TYPES.register(id, HOURGLASS_TYPE);
 
-        id = new ResourceLocation(UniqueCrops.MOD_ID, "enchanter");
-        Registry.register(Registry.RECIPE_TYPE, id, ENCHANTER_TYPE);
+        id = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "enchanter");
+        ForgeRegistries.RECIPE_TYPES.register(id, ENCHANTER_TYPE);
 
-        id = new ResourceLocation(UniqueCrops.MOD_ID, "heater");
-        Registry.register(Registry.RECIPE_TYPE, id, HEATER_TYPE);
+        id = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "heater");
+        ForgeRegistries.RECIPE_TYPES.register(id, HEATER_TYPE);
 
-        id = new ResourceLocation(UniqueCrops.MOD_ID, "multiblock");
-        Registry.register(Registry.RECIPE_TYPE, id, MULTIBLOCK_TYPE);
+        id = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "multiblock");
+        ForgeRegistries.RECIPE_TYPES.register(id, MULTIBLOCK_TYPE);
     }
 
     private static class ModRecipeType<T extends Recipe<?>> implements RecipeType<T> {
@@ -280,7 +284,7 @@ public class UCItems {
         @Override
         public String toString() {
 
-            return Registry.RECIPE_TYPE.getKey(this).toString();
+            return Objects.requireNonNull(ForgeRegistries.RECIPE_TYPES.getKey(this)).toString();
         }
     }
 }

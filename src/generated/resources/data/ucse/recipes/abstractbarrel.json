@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "ucse:abstract"
+    },
+    "C": {
+      "tag": "forge:chests"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "ACA",
+    "AAA"
+  ],
+  "result": {
+    "item": "ucse:abstractbarrel"
+  },
+  "show_notification": true
+}

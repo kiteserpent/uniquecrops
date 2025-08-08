@@ -3,8 +3,8 @@ package com.remag.ucse.blocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -16,7 +16,7 @@ public class EggBasketBlock extends Block {
 
     public EggBasketBlock() {
 
-        super(Properties.of(Material.SPONGE).sound(SoundType.WOOD).strength(0.09F, 3.0F));
+        super(Properties.of().sound(SoundType.WOOD).strength(0.09F, 3.0F).mapColor(MapColor.COLOR_YELLOW));
     }
 
     @Override

@@ -8,8 +8,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.EnergyStorage;
 
 import javax.annotation.Nonnull;
@@ -54,7 +54,7 @@ public class TileIndustria extends BaseTileUC {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 
-        return cap == CapabilityEnergy.ENERGY ? LazyOptional.of(() -> energy).cast() : LazyOptional.empty();
+        return cap == ForgeCapabilities.ENERGY ? LazyOptional.of(() -> energy).cast() : LazyOptional.empty();
     }
 
     public static class UCEnergyStorage extends EnergyStorage {

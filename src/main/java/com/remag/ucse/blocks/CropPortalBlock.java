@@ -1,5 +1,6 @@
 package com.remag.ucse.blocks;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -55,7 +56,7 @@ public class CropPortalBlock extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         for (int i = 0; i < 2; ++i) {
             double d0 = (float)pos.getX() + rand.nextFloat();

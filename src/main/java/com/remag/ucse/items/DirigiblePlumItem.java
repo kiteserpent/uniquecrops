@@ -23,7 +23,7 @@ public class DirigiblePlumItem extends ItemBaseUC {
                     entity.discard();
             }
             entity.push(0, velY, 0);
-            if (entity.tickCount % 10 == 0 && (!entity.isOnGround() && entity.verticalCollision))
+            if (entity.tickCount % 10 == 0 && (!entity.onGround() && entity.verticalCollision))
                 entity.discard();
         }
         return false;

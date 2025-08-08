@@ -2,6 +2,7 @@ package com.remag.ucse.blocks.crops;
 
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.particles.ParticleTypes;
@@ -32,7 +33,7 @@ public class Cinderbella extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (this.canIgnoreGrowthRestrictions(world, pos) || this.canPlantOrGrow(world, pos)) {
             super.randomTick(state, world, pos, rand);
@@ -42,7 +43,7 @@ public class Cinderbella extends BaseCropsBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         if (this.canIgnoreGrowthRestrictions(world, pos)) {
             super.performBonemeal(world, rand, pos, state);
@@ -74,7 +75,7 @@ public class Cinderbella extends BaseCropsBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         if (isMaxAge(state))
             world.addParticle(ParticleTypes.CRIT, pos.getX() + 0.5, pos.getY() + 0.85, pos.getZ() + 0.5, 0.0D, 0.0D, 0.0D);

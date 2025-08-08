@@ -5,10 +5,13 @@ import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemCurioUC;
 import com.google.common.collect.Lists;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.InterModComms;
 
@@ -25,18 +28,26 @@ public class EmblemScarab extends ItemCurioUC {
         MinecraftForge.EVENT_BUS.addListener(this::onApplyPotion);
     }
 
-    private void onApplyPotion(PotionEvent.PotionApplicableEvent event) {
+    private void onApplyPotion(MobEffectEvent.Applicable event) {
+        LivingEntity entity = event.getEntity();
 
-        if (event.getEntityLiving() instanceof Player player) {
+        if (entity instanceof Player player) {
+            MobEffectInstance effectInstance = event.getEffectInstance();
+            MobEffect effect = effectInstance.getEffect();
+
+            // Block all effects if Curio is equipped and not in blacklist
             if (hasCurio(player)) {
-                if (!BLACKLIST.contains(event.getPotionEffect().getDescriptionId())) {
+                if (!BLACKLIST.contains(effect.getDescriptionId())) {
                     event.setResult(Event.Result.DENY);
                     return;
                 }
             }
-            if (event.getPotionEffect().getEffect() == MobEffects.HUNGER) {
-                if (hasCurio(player, UCItems.EMBLEM_IRONSTOMACH.get()))
+
+            // Special case for Hunger
+            if (effect == MobEffects.HUNGER) {
+                if (hasCurio(player, UCItems.EMBLEM_IRONSTOMACH.get())) {
                     event.setResult(Event.Result.DENY);
+                }
             }
         }
     }

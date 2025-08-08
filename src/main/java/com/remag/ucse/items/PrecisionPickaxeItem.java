@@ -18,12 +18,11 @@ import net.minecraft.world.level.block.entity.SpawnerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -42,9 +41,9 @@ public class PrecisionPickaxeItem extends PickaxeItem implements IBookUpgradeabl
 
         if (stack.getItem() instanceof IBookUpgradeable) {
             if (((IBookUpgradeable)stack.getItem()).getLevel(stack) > -1)
-                list.add(new TextComponent(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
+                list.add(Component.literal(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
             else
-                list.add(new TextComponent(ChatFormatting.GOLD + "Upgradeable"));
+                list.add(Component.literal(ChatFormatting.GOLD + "Upgradeable"));
         }
     }
 
@@ -59,38 +58,38 @@ public class PrecisionPickaxeItem extends PickaxeItem implements IBookUpgradeabl
 
         if (event.getState().getBlock() == Blocks.SPAWNER) {
             event.setCanceled(true);
-            BlockEntity tile = event.getWorld().getBlockEntity(event.getPos());
+            BlockEntity tile = event.getLevel().getBlockEntity(event.getPos());
             if (tile instanceof SpawnerBlockEntity) {
                 ItemStack stack = new ItemStack(event.getState().getBlock());
-                if (!event.getWorld().isClientSide() && event.getWorld() instanceof Level) {
+                if (!event.getLevel().isClientSide() && event.getLevel() instanceof Level) {
                     NBTUtils.setCompound(stack, "Spawner", tile.serializeNBT());
-                    Containers.dropItemStack((Level)event.getWorld(), event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5, stack);
+                    Containers.dropItemStack((Level)event.getLevel(), event.getPos().getX() + 0.5, event.getPos().getY() + 0.5, event.getPos().getZ() + 0.5, stack);
                 }
             }
-            event.getWorld().removeBlock(event.getPos(), false);
+            event.getLevel().removeBlock(event.getPos(), false);
             if (event.getPlayer() instanceof ServerPlayer)
-                event.getPlayer().getMainHandItem().hurt(1, event.getWorld().getRandom(), (ServerPlayer)event.getPlayer());
+                event.getPlayer().getMainHandItem().hurt(1, event.getLevel().getRandom(), (ServerPlayer)event.getPlayer());
         }
     }
 
     private void placeSpawner(PlayerInteractEvent.RightClickBlock event) {
 
         if (event.getItemStack().getItem()!= Blocks.SPAWNER.asItem()) return;
-        if (!(event.getEntity() instanceof Player)) return;
-        if (!(event.getWorld() instanceof Level)) return;
+        if (event.getEntity() == null) return;
+        if (event.getLevel() == null) return;
 
-        ItemStack stack = ((Player)event.getEntity()).getItemInHand(event.getHand());
+        ItemStack stack = event.getEntity().getItemInHand(event.getHand());
         if (stack.getItem() == Blocks.SPAWNER.asItem() && stack.hasTag() && stack.getTag().contains("Spawner")) {
             BlockState spawner = Blocks.SPAWNER.defaultBlockState();
             BlockPos pos = event.getPos().relative(event.getFace());
-            event.getWorld().setBlockAndUpdate(pos, spawner);
-            BlockEntity tile = event.getWorld().getBlockEntity(pos);
+            event.getLevel().setBlockAndUpdate(pos, spawner);
+            BlockEntity tile = event.getLevel().getBlockEntity(pos);
             CompoundTag tag = stack.getTag().getCompound("Spawner");
             tag.putInt("x", pos.getX());
             tag.putInt("y", pos.getY());
             tag.putInt("z", pos.getZ());
             tile.load(tag);
-            event.getPlayer().swing(event.getHand());
+            event.getEntity().swing(event.getHand());
             event.setCanceled(true);
         }
     }

@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 
@@ -29,16 +28,16 @@ public class PrecisionSwordItem extends SwordItem implements IBookUpgradeable {
 
         if (stack.getItem() instanceof IBookUpgradeable) {
             if (((IBookUpgradeable)stack.getItem()).getLevel(stack) > -1)
-                list.add(new TextComponent(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
+                list.add(Component.literal(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
             else
-                list.add(new TextComponent(ChatFormatting.GOLD + "Upgradeable"));
+                list.add(Component.literal(ChatFormatting.GOLD + "Upgradeable"));
         }
     }
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
-        if (!target.level.isClientSide && target.invulnerableTime > 0) {
+        if (!target.level().isClientSide && target.invulnerableTime > 0) {
             if (isMaxLevel(stack))
                 target.invulnerableTime = 0;
         }

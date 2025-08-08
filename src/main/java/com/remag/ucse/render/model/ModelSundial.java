@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ModelSundial extends Model {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(UniqueCrops.MOD_ID, "modelsundial"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "modelsundial"), "main");
     public final ModelPart Dial;
     public final ModelPart DialRedstone;
 

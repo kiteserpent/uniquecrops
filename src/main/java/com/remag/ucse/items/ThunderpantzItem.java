@@ -4,6 +4,10 @@ import com.remag.ucse.api.IBookUpgradeable;
 import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.core.enums.EnumArmorMaterial;
 import com.remag.ucse.items.base.ItemArmorUC;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.WoolCarpetBlock;
 import net.minecraft.world.entity.EntityType;
@@ -26,15 +30,15 @@ public class ThunderpantzItem extends ItemArmorUC implements IBookUpgradeable {
 
     public ThunderpantzItem() {
 
-        super(EnumArmorMaterial.THUNDERPANTZ, EquipmentSlot.LEGS);
+        super(EnumArmorMaterial.THUNDERPANTZ, Type.LEGGINGS);
         MinecraftForge.EVENT_BUS.addListener(this::onLivingAttack);
     }
 
     private void onLivingAttack(LivingAttackEvent event) {
 
-        if (!(event.getEntityLiving() instanceof Player)) return;
+        if (!(event.getEntity() instanceof Player)) return;
 
-        Player player = (Player)event.getEntityLiving();
+        Player player = (Player)event.getEntity();
         if (event.getSource().getDirectEntity() instanceof LivingEntity) {
             LivingEntity el = (LivingEntity)event.getSource().getDirectEntity();
             ItemStack pants = player.getItemBySlot(EquipmentSlot.LEGS);
@@ -43,23 +47,30 @@ public class ThunderpantzItem extends ItemArmorUC implements IBookUpgradeable {
 
                 event.setCanceled(true);
                 float toDamage = getCharge(pants);
-                LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(el.level);
+                LightningBolt bolt = EntityType.LIGHTNING_BOLT.create(el.level());
                 bolt.setVisualOnly(true);
-                player.level.addFreshEntity(bolt);
-                el.hurt(DamageSource.LIGHTNING_BOLT, toDamage);
+                player.level().addFreshEntity(bolt);
+
+                Holder<DamageType> lightningDamage = player.level().registryAccess()
+                        .registryOrThrow(Registries.DAMAGE_TYPE)
+                        .getHolderOrThrow(DamageTypes.LIGHTNING_BOLT);
+
+                DamageSource source = new DamageSource(lightningDamage);
+                el.hurt(source, toDamage);
                 setCharge(pants, 0F);
                 return;
             }
         }
     }
 
+    @SuppressWarnings("removal")
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
 
         if (world.isClientSide) return;
         if (getCharge(stack) >= MAX_CHARGE) return;
 
-        if (player.isOnGround() && player.isCrouching()) {
+        if (player.onGround() && player.isCrouching()) {
             BlockPos pos = new BlockPos(Mth.floor(player.getX()), Mth.floor(player.getY()), Mth.floor(player.getZ()));
             BlockState state = world.getBlockState(pos);
             if (state.getBlock() instanceof WoolCarpetBlock) {

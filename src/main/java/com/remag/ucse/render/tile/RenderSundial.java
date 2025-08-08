@@ -1,5 +1,6 @@
 package com.remag.ucse.render.tile;
 
+import com.mojang.math.Axis;
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.blocks.tiles.TileSundial;
 import com.remag.ucse.render.model.ModelSundial;
@@ -11,12 +12,11 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.math.Vector3f;
 
 public class RenderSundial implements BlockEntityRenderer<TileSundial> {
 
     final ModelSundial model;
-    final ResourceLocation RES = new ResourceLocation(UniqueCrops.MOD_ID, "textures/block/sundial.png");
+    final ResourceLocation RES = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/block/sundial.png");
     private final BlockRenderDispatcher renderDispatcher;
 
     public RenderSundial(BlockEntityRendererProvider.Context ctx) {
@@ -30,7 +30,7 @@ public class RenderSundial implements BlockEntityRenderer<TileSundial> {
 
         ms.pushPose();
         ms.translate(0.5F, 0.1F, 0.5F);
-        ms.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+        ms.mulPose(Axis.XP.rotationDegrees(180.0F));
         RenderSystem.setShaderTexture(0, RES);
 
         model.DialRedstone.visible = te.savedTime > 0;

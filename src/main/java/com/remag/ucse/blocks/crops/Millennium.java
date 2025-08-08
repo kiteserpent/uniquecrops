@@ -4,6 +4,7 @@ import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.tiles.TileMillennium;
 import com.remag.ucse.core.UCConfig;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -21,7 +22,7 @@ public class Millennium extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileMillennium) {

@@ -1,0 +1,38 @@
+{
+  "parent": "ucse:main/seed_pickup",
+  "criteria": {
+    "seed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:book_guide"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.ucse:craftingGuideBook.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "ucse:book_guide"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.ucse:craftingGuideBook"
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

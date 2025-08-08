@@ -16,7 +16,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -39,7 +38,7 @@ public class EasyBadgeItem extends ItemBaseUC {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag whatisthis) {
 
-        list.add(new TranslatableComponent(UCStrings.TOOLTIP + "easybadge").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable(UCStrings.TOOLTIP + "easybadge").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

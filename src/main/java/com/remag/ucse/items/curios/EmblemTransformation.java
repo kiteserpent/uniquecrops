@@ -7,10 +7,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.core.Registry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.Random;
 
 public class EmblemTransformation extends ItemCurioUC {
@@ -20,23 +21,31 @@ public class EmblemTransformation extends ItemCurioUC {
         MinecraftForge.EVENT_BUS.addListener(this::onHitEntity);
     }
 
-    @SuppressWarnings("deprecation")
     private void onHitEntity(LivingHurtEvent event) {
-
-        if (event.getAmount() <= 0 || event.getEntityLiving() instanceof Player) return;
+        if (event.getAmount() <= 0 || event.getEntity() instanceof Player) return;
         if (!(event.getSource().getDirectEntity() instanceof Player)) return;
-        if (!hasCurio((LivingEntity)event.getSource().getDirectEntity())) return;
+        if (!hasCurio((LivingEntity) event.getSource().getDirectEntity())) return;
 
         Random rand = new Random();
         if (rand.nextInt(100) == 0) {
-            LivingEntity elb = event.getEntityLiving();
-            EntityType<?> type = Registry.ENTITY_TYPE.byId(rand.nextInt(Registry.ENTITY_TYPE.entrySet().size()));
-            Entity entity = type.create(elb.getCommandSenderWorld());
-            if (!(entity instanceof LivingEntity)) return;
-            if (entity instanceof WitherBoss || entity instanceof EnderDragon) return;
+            LivingEntity elb = event.getEntity();
 
-            entity.absMoveTo(elb.getX(), elb.getY(), elb.getZ(), elb.yRotO, elb.xRotO);
-            elb.getCommandSenderWorld().addFreshEntity(entity);
+            // Get all EntityTypes from the registry
+            List<EntityType<?>> entityTypes = ForgeRegistries.ENTITY_TYPES.getValues().stream()
+                    .filter(type -> type.create(elb.level()) instanceof LivingEntity) // only spawn living entities
+                    .filter(type -> !(type.create(elb.level()) instanceof WitherBoss)) // exclude Wither
+                    .filter(type -> !(type.create(elb.level()) instanceof EnderDragon)) // exclude Dragon
+                    .toList();
+
+            if (entityTypes.isEmpty()) return;
+
+            EntityType<?> type = entityTypes.get(rand.nextInt(entityTypes.size()));
+            Entity entity = type.create(elb.level());
+
+            if (entity == null) return;
+
+            entity.moveTo(elb.getX(), elb.getY(), elb.getZ(), elb.getYRot(), elb.getXRot());
+            elb.level().addFreshEntity(entity);
             elb.discard();
         }
     }

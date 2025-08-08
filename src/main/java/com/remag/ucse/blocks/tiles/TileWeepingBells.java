@@ -3,6 +3,10 @@ package com.remag.ucse.blocks.tiles;
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCTiles;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -31,6 +35,11 @@ public class TileWeepingBells extends BaseTileUC {
 
         boolean wasLooking = this.isLooking();
         boolean looker = false;
+        Holder<DamageType> voidDamage = level.registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(DamageTypes.FELL_OUT_OF_WORLD);
+
+        DamageSource source = new DamageSource(voidDamage);
 
         List<Player> players = level.getEntitiesOfClass(Player.class, new AABB(worldPosition.offset(-RANGE, -RANGE, -RANGE), worldPosition.offset(RANGE, RANGE, RANGE)));
         for (Player player : players) {
@@ -43,7 +52,7 @@ public class TileWeepingBells extends BaseTileUC {
                 break;
             }
             if (!wasLooking && !player.isCreative() && getBlockState().getValue(BaseCropsBlock.AGE) >= 7)
-                player.hurt(DamageSource.OUT_OF_WORLD, 1.0F);
+                player.hurt(source, 1.0F);
         }
         if (looker != wasLooking)
             setLooking(looker);

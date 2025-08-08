@@ -1,0 +1,18 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 20,
+  "enchantment": "respiration",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:prismarine_shard"
+      },
+      {
+        "item": "minecraft:prismarine_crystals"
+      },
+      {
+        "item": "minecraft:prismarine"
+      }
+    ]
+  ]
+}

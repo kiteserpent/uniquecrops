@@ -12,8 +12,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
@@ -71,7 +72,7 @@ public class TileDigger extends BaseTileUC {
 
         if (digWorld.isEmptyBlock(getBlockPos().above())) {
             digWorld.destroyBlock(digPos, false);
-            if (!digState.getMaterial().isLiquid())
+            if (!digState.getMapColor(digWorld, digPos).equals(MapColor.WATER))
                 digWorld.setBlock(getBlockPos().above(), digState, 3);
             return true;
         }
@@ -79,7 +80,7 @@ public class TileDigger extends BaseTileUC {
         if (digStack.isEmpty()) return true;
 
         BlockEntity tile = digWorld.getBlockEntity(getBlockPos().above());
-        LazyOptional<IItemHandler> inventory = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN);
+        LazyOptional<IItemHandler> inventory = tile.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN);
         if (!inventory.isPresent()) return false;
 
         IItemHandler handler = inventory.resolve().get();

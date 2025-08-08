@@ -9,8 +9,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -35,7 +35,7 @@ public class CinderTorchBlock extends Block implements SimpleWaterloggedBlock {
 
     public CinderTorchBlock() {
 
-        super(Properties.of(Material.SAND).strength(0.01F, 0.1F).sound(SoundType.STONE).lightLevel(s -> 15));
+        super(Properties.of().strength(0.01F, 0.1F).sound(SoundType.STONE).lightLevel(s -> 15).mapColor(MapColor.SAND));
         registerDefaultState(defaultBlockState().setValue(FACING, Direction.DOWN).setValue(WATERLOGGED, false));
     }
 

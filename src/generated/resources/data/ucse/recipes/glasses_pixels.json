@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "ucse:glasses_3d"
+    },
+    "B": {
+      "item": "ucse:pixels"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BAB",
+    "BBB"
+  ],
+  "result": {
+    "item": "ucse:glasses_pixels"
+  },
+  "show_notification": true
+}

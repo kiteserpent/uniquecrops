@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    },
+    "p": {
+      "item": "ucse:invisifeather"
+    }
+  },
+  "pattern": [
+    " p ",
+    "fDf",
+    " f "
+  ],
+  "result": {
+    "item": "ucse:emblem_transformation"
+  },
+  "show_notification": true
+}

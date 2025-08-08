@@ -2,16 +2,17 @@ package com.remag.ucse.blocks;
 
 import com.remag.ucse.api.IHourglassRecipe;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -35,7 +36,7 @@ public class HourglassBlock extends Block {
 
     public HourglassBlock() {
 
-        super(Properties.of(Material.METAL).sound(SoundType.GLASS).strength(1.0F).randomTicks().isRedstoneConductor(HourglassBlock::isntSolid));
+        super(Properties.of().sound(SoundType.GLASS).strength(1.0F).randomTicks().isRedstoneConductor(HourglassBlock::isntSolid).mapColor(MapColor.METAL));
     }
 
     @Override
@@ -50,20 +51,20 @@ public class HourglassBlock extends Block {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (world.getBestNeighborSignal(pos) > 0)
             searchAroundBlocks(world, pos, rand);
     }
 
-    public static void searchAroundBlocks(Level world, BlockPos pos, Random rand) {
+    public static void searchAroundBlocks(Level world, BlockPos pos, RandomSource rand) {
 
         List<BlockPos> toConvert = new ArrayList<>();
         for (BlockPos loopPos : BlockPos.betweenClosed(pos.offset(-RANGE, -RANGE, -RANGE), pos.offset(RANGE, RANGE, RANGE))) {
             if (!world.isEmptyBlock(loopPos))
                 toConvert.add(loopPos.immutable());
         }
-        Collections.shuffle(toConvert, rand);
+        Collections.shuffle(toConvert, new Random());
         for (BlockPos loopPos : toConvert) {
             boolean flag = rand.nextInt(10) == 0;
             if (flag) {
@@ -101,7 +102,7 @@ public class HourglassBlock extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         if (rand.nextInt(2) == 0 && world.hasNeighborSignal(pos))
             world.addParticle(ParticleTypes.END_ROD, pos.getX() + rand.nextFloat(), pos.getY() + 0.5, pos.getZ() + rand.nextFloat(), 0, 0, 0);

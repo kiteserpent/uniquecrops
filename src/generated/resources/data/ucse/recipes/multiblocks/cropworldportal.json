@@ -1,0 +1,69 @@
+{
+  "type": "ucse:multiblock",
+  "catalyst": {
+    "item": "ucse:wildwood_staff",
+    "power": 50
+  },
+  "definition": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "0": {
+      "states": [
+        "minecraft:emerald_block"
+      ]
+    },
+    "C": {
+      "states": [
+        "ucse:ruinedbrickscarved"
+      ]
+    },
+    "R": {
+      "states": [
+        "ucse:ruinedbricks"
+      ]
+    }
+  },
+  "definitionresult": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "C": {
+      "states": [
+        "ucse:ruinedbrickscarved"
+      ]
+    },
+    "P": {
+      "states": [
+        "ucse:crop_portal"
+      ]
+    },
+    "R": {
+      "states": [
+        "ucse:ruinedbricks"
+      ]
+    }
+  },
+  "origin": {
+    "x": 2,
+    "y": 2
+  },
+  "shape": [
+    "CRRRC",
+    "R   R",
+    "R 0 R",
+    "R   R",
+    "CRRRC"
+  ],
+  "shaperesult": [
+    "CRRRC",
+    "RPPPR",
+    "RPPPR",
+    "RPPPR",
+    "CRRRC"
+  ]
+}

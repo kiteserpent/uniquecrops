@@ -101,7 +101,7 @@ public class EnderSnookerItem extends ItemBaseUC {
             targetZ += vec3.z;
             distanceTraveled += vec3.length();
             AABB bb = new AABB(targetX-radius, targetY-radius, targetZ-radius, targetX+radius, targetY+radius, targetZ+radius);
-            List<LivingEntity> list = seeker.level.getEntitiesOfClass(LivingEntity.class, bb);
+            List<LivingEntity> list = seeker.level().getEntitiesOfClass(LivingEntity.class, bb);
             for (LivingEntity target : list) {
                 if (target == seeker || target instanceof Player) continue;
                 if (target.isPushable() && isTargetInSight(vec3, seeker, target)) {

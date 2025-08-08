@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/ender_snooker"
+    "layer0": "ucse:item/ender_snooker"
   }
 }

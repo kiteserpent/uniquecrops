@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,7 +39,7 @@ public class SunBlock extends Block implements EntityBlock {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, BlockGetter world, List<Component> list, TooltipFlag whatisthis) {
 
-        list.add(new TranslatableComponent(UCStrings.TOOLTIP + "sunblock").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable(UCStrings.TOOLTIP + "sunblock").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

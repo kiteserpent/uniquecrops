@@ -11,11 +11,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.Level;
 
+@SuppressWarnings("ALL")
 public class Glasses3DItem extends ItemArmorUC implements IBookUpgradeable {
 
     public Glasses3DItem() {
 
-        super(EnumArmorMaterial.GLASSES_3D, EquipmentSlot.HEAD);
+        super(EnumArmorMaterial.GLASSES_3D, Type.HELMET);
     }
 
     @Override
@@ -24,7 +25,7 @@ public class Glasses3DItem extends ItemArmorUC implements IBookUpgradeable {
         if (world.isClientSide) return;
         if (!isMaxLevel(stack)) return;
 
-        int sunlight = world.getBrightness(LightLayer.SKY, player.blockPosition().offset(0, player.getEyeHeight(), 0));
+        int sunlight = world.getBrightness(LightLayer.SKY, player.blockPosition().offset(0, (int) player.getEyeHeight(), 0));
         if (sunlight <= 3)
             player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 30));
     }

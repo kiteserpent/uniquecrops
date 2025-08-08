@@ -1,0 +1,24 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 10,
+  "enchantment": "infinity",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:bow"
+      },
+      {
+        "item": "ucse:dogresidue"
+      },
+      {
+        "item": "ucse:dogresidue"
+      },
+      {
+        "item": "ucse:dogresidue"
+      },
+      {
+        "item": "ucse:dogresidue"
+      }
+    ]
+  ]
+}

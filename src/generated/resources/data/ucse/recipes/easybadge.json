@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:millenniumeye"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    },
+    "Q": {
+      "item": "minecraft:quartz_block"
+    }
+  },
+  "pattern": [
+    "GEG",
+    "EQE",
+    "GEG"
+  ],
+  "result": {
+    "item": "ucse:easybadge"
+  },
+  "show_notification": true
+}

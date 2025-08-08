@@ -6,9 +6,9 @@ import com.remag.ucse.blocks.crops.*;
 import com.remag.ucse.blocks.supercrops.*;
 import com.remag.ucse.core.enums.EnumLily;
 import com.remag.ucse.items.base.ItemBlockUC;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.WaterLilyBlockItem;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import net.minecraft.world.level.block.Block;
@@ -41,8 +42,8 @@ public class UCBlocks {
     public static final RegistryObject<Block> ABSTRACT_BARREL = register("abstractbarrel", AbstractBarrelBlock::new);
     public static final RegistryObject<Block> BUCKET_ROPE = register("bucketrope", BucketRopeBlock::new);
     public static final RegistryObject<Block> CINDER_TORCH = register("cindertorch", CinderTorchBlock::new);
-    public static final RegistryObject<Block> DARK_BLOCK = register("darkblock", () -> new Block(Properties.of(Material.STONE).sound(SoundType.STONE).strength(6000000.0F)));
-    public static final RegistryObject<Block> DRIED_THATCH = register("driedthatch", () -> new Block(Properties.of(Material.DIRT).sound(SoundType.GRASS).strength(0.1F)));
+    public static final RegistryObject<Block> DARK_BLOCK = register("darkblock", () -> new Block(Properties.of().sound(SoundType.STONE).strength(6000000.0F).mapColor(MapColor.STONE)));
+    public static final RegistryObject<Block> DRIED_THATCH = register("driedthatch", () -> new Block(Properties.of().sound(SoundType.GRASS).strength(0.1F).mapColor(MapColor.DIRT)));
     public static final RegistryObject<Block> EGG_BASKET = register("egg_basket", EggBasketBlock::new);
     public static final RegistryObject<Block> GOBLET = register("goblet", GobletBlock::new);
     public static final RegistryObject<Block> HOURGLASS = register("hourglass", HourglassBlock::new, true, true);
@@ -50,7 +51,7 @@ public class UCBlocks {
     public static final RegistryObject<Block> LILY_ICE = registerLily("icelily", () -> new BaseLilyBlock(EnumLily.ICE));
     public static final RegistryObject<Block> LILY_JUNGLE = registerLily("junglelily", () -> new BaseLilyBlock(EnumLily.JUNGLE));
     public static final RegistryObject<Block> LILY_LAVA = registerLily("lavalily", () -> new BaseLilyBlock(EnumLily.LAVA));
-    public static final RegistryObject<Block> NORMIECRATE = register("normiecrate", () -> new Block(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.25F, 5.0F)));
+    public static final RegistryObject<Block> NORMIECRATE = register("normiecrate", () -> new Block(Properties.of().sound(SoundType.WOOD).strength(0.25F, 5.0F).mapColor(MapColor.WOOD)));
     public static final RegistryObject<Block> OBTUSE_PLATFORM = register("obtuse_platform", ObtusePlatformBlock::new);
     public static final RegistryObject<Block> OLDCOBBLE = register("oldcobble", () -> new Block(Properties.copy(Blocks.COBBLESTONE)));
     public static final RegistryObject<Block> OLDBRICK = register("oldbrick", () -> new Block(Properties.copy(Blocks.STONE_BRICKS)));
@@ -84,8 +85,8 @@ public class UCBlocks {
     public static final RegistryObject<Block> ROSEWOOD_PLANKS = register("rosewood_planks", () -> new Block(Properties.copy(FLYWOOD_PLANKS.get())));
     public static final RegistryObject<Block> ROSEWOOD_STAIRS = register("rosewood_stairs", () -> new StairBlock(() -> ROSEWOOD_PLANKS.get().defaultBlockState(), Properties.copy(ROSEWOOD_PLANKS.get())));
     public static final RegistryObject<Block> ROSEWOOD_SLAB = register("rosewood_slab", () -> new SlabBlock(Properties.copy(ROSEWOOD_PLANKS.get())));
-    public static final RegistryObject<Block> FLYWOOD_TRAPDOOR = register("flywood_trapdoor", () -> new TrapDoorBlock(Properties.copy(Blocks.OAK_TRAPDOOR)));
-    public static final RegistryObject<Block> ROSEWOOD_TRAPDOOR = register("rosewood_trapdoor", () -> new TrapDoorBlock(Properties.copy(Blocks.OAK_TRAPDOOR)));
+    public static final RegistryObject<Block> FLYWOOD_TRAPDOOR = register("flywood_trapdoor", () -> new TrapDoorBlock(Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.OAK));
+    public static final RegistryObject<Block> ROSEWOOD_TRAPDOOR = register("rosewood_trapdoor", () -> new TrapDoorBlock(Properties.copy(Blocks.OAK_TRAPDOOR), BlockSetType.OAK));
 
     /**
      * CROPS
@@ -149,7 +150,7 @@ public class UCBlocks {
     public static <B extends Block> RegistryObject<B> registerLily(String name, Supplier<? extends B> supplier) {
 
         RegistryObject<B> block = BLOCKS.register(name, supplier);
-        UCItems.ITEMS.register(name, () -> new WaterLilyBlockItem(block.get(), UCItems.defaultBuilder()));
+        UCItems.ITEMS.register(name, () -> new BlockItem(block.get(), UCItems.defaultBuilder()));
 
         return block;
     }

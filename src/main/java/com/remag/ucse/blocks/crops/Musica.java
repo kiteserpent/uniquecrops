@@ -4,6 +4,7 @@ import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.tiles.TileMusica;
 import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,7 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.NoteBlockEvent;
+import net.minecraftforge.event.level.NoteBlockEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -52,23 +53,23 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
 
     private void notePlayEvent(NoteBlockEvent.Play event) {
 
-        if (event.getWorld().isClientSide()) return;
+        if (event.getLevel().isClientSide()) return;
 
         BlockPos ePos = event.getPos();
         for (BlockPos pos : BlockPos.betweenClosed(ePos.offset(-RANGE, -2, -RANGE), ePos.offset(RANGE, 2, RANGE))) {
-            BlockEntity te = event.getWorld().getBlockEntity(pos);
+            BlockEntity te = event.getLevel().getBlockEntity(pos);
             if (te instanceof TileMusica plant) {
                 if (plant.getBeats().size() > 0) {
                     for (int i = 0; i < plant.getBeats().size(); i++) {
                         TileMusica.Beat beat = plant.getBeats().get(i);
-                        if (beat.beatMatches(new TileMusica.Beat(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime()))) {
-                            plant.setNewBeatTime(i, ((ServerLevel)event.getWorld()).getGameTime());
+                        if (beat.beatMatches(new TileMusica.Beat(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getLevel()).getGameTime()))) {
+                            plant.setNewBeatTime(i, ((ServerLevel)event.getLevel()).getGameTime());
                             return;
                         }
                     }
                 }
                 if (plant.canAddNote())
-                    plant.setNote(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getWorld()).getGameTime());
+                    plant.setNote(event.getNote(), event.getInstrument(), event.getOctave(), ((ServerLevel)event.getLevel()).getGameTime());
             }
         }
     }
@@ -84,13 +85,13 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
                     UCItems.RECORD_NEONSIGNS.get(),
                     UCItems.RECORD_FARAWAY.get()
             };
-            return UCUtils.selectRandom(rand, MODDED);
+            return UCUtils.selectRandom(RandomSource.create(), MODDED);
         }
-        return UCUtils.selectRandom(rand, DROPS);
+        return UCUtils.selectRandom(RandomSource.create(), DROPS);
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (canIgnoreGrowthRestrictions(world, pos))
             super.randomTick(state, world, pos, rand);
@@ -115,7 +116,7 @@ public class Musica extends BaseCropsBlock implements EntityBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Random rand) {
+    public void animateTick(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull RandomSource rand) {
 
         if (isMaxAge(state))
             world.addParticle(ParticleTypes.NOTE, pos.getX() + rand.nextFloat(), pos.getY() + 0.3, pos.getZ() + rand.nextFloat(), 0, 0, 0);

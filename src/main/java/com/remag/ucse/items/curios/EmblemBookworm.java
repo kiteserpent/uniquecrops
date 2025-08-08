@@ -31,7 +31,7 @@ public class EmblemBookworm extends ItemCurioUC {
         if (!enchants.isEmpty()) {
             for (int i = 0; i < enchants.size(); i++) {
                 CompoundTag tag = enchants.getCompound(i);
-                Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(tag.getString("id")));
+                Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(tag.getString("id")));
                 if (ench != null) {
                     float sat =  Math.max(f * ench.getRarity().ordinal(), f);
                     if (sat > saturation)

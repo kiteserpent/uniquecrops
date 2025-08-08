@@ -1,5 +1,9 @@
 package com.remag.ucse.entities;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -46,16 +50,21 @@ public class DonkItemEntity extends ItemEntity {
 
         if (!this.getPersistentData().contains("UC:canDonk")) return;
 
-        if (this.onGround) {
+        if (this.onGround()) {
             this.getPersistentData().remove("UC:canDonk");
             return;
         }
-        List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox());
+        List<LivingEntity> list = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox());
+        Holder<DamageType> genericDamage = level().registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(DamageTypes.GENERIC);
+
+        DamageSource source = new DamageSource(genericDamage);
         for (LivingEntity ent : list) {
             if (ent.isAlive()) {
                 if (damageMap.containsKey(this.getItem().getItem())) {
                     float damage = damageMap.get(this.getItem().getItem());
-                    ent.hurt(DamageSource.GENERIC, damage);
+                    ent.hurt(source, damage);
                     ent.knockback(0.5F, Mth.sin(this.yRotO * 0.017453292F), (-Mth.cos(this.yRotO * 0.017453292F)));
                 }
                 this.getPersistentData().remove("UC:canDonk");

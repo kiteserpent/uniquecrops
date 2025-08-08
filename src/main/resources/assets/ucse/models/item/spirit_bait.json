@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/spirit_bait"
+    "layer0": "ucse:item/spirit_bait"
   }
 }

@@ -5,6 +5,7 @@ import com.remag.ucse.init.UCRecipes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.Container;
@@ -19,7 +20,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class RecipeEnchanter implements IEnchanterRecipe {
         this.inputs = NonNullList.of(Ingredient.EMPTY, inputs);
         if (ench == null)
             throw new IllegalStateException("Enchantment cannot be null");
-        if (inputs == null || inputs.length <= 0)
+        if (inputs.length == 0)
             throw new IllegalStateException("Inputs cannot be empty or null");
     }
 
@@ -62,9 +63,13 @@ public class RecipeEnchanter implements IEnchanterRecipe {
     }
 
     @Override
-    public boolean matchesEnchantment(String location) {
+    public @NotNull ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
+        return getResultItem(p_267165_).copy();
+    }
 
-        return this.ench.getRegistryName().toString().equals(location);
+    @Override
+    public boolean matchesEnchantment(String location) {
+        return ForgeRegistries.ENCHANTMENTS.getKey(this.ench).toString().equals(location);
     }
 
     @Override
@@ -86,14 +91,14 @@ public class RecipeEnchanter implements IEnchanterRecipe {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+        ItemStack enchantedBook = new ItemStack(Items.ENCHANTED_BOOK);
+        EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(this.ench, this.ench.getMaxLevel()));
 
-        return ItemStack.EMPTY;
+        return enchantedBook;
     }
 
-    @Override
     public ItemStack getResultItem() {
-
         ItemStack enchantedBook = new ItemStack(Items.ENCHANTED_BOOK);
         EnchantedBookItem.addEnchantment(enchantedBook, new EnchantmentInstance(this.ench, this.ench.getMaxLevel()));
 
@@ -101,29 +106,29 @@ public class RecipeEnchanter implements IEnchanterRecipe {
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
 
         return this.inputs;
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
 
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
 
         return UCRecipes.ENCHANTER_SERIALIZER.get();
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<IEnchanterRecipe> {
+    public static class Serializer implements RecipeSerializer<IEnchanterRecipe> {
 
         @Override
-        public IEnchanterRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull IEnchanterRecipe fromJson(ResourceLocation id, JsonObject json) {
 
-            Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(json.get("enchantment").getAsString()));
+            Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(json.get("enchantment").getAsString()));
             int cost = json.get("cost").getAsInt();
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             List<Ingredient> inputs = new ArrayList<>();
@@ -137,7 +142,7 @@ public class RecipeEnchanter implements IEnchanterRecipe {
         @Override
         public IEnchanterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
 
-            Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(buf.readUtf()));
+            Enchantment ench = ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(buf.readUtf()));
             int cost = buf.readVarInt();
             Ingredient[] inputs = new Ingredient[buf.readVarInt()];
             for (int i = 0; i < inputs.length; i++)
@@ -149,7 +154,7 @@ public class RecipeEnchanter implements IEnchanterRecipe {
         @Override
         public void toNetwork(FriendlyByteBuf buf, IEnchanterRecipe recipe) {
 
-            buf.writeUtf(recipe.getEnchantment().getRegistryName().toString());
+            buf.writeUtf(ForgeRegistries.ENCHANTMENTS.getKey(recipe.getEnchantment()).toString());
             buf.writeVarInt(recipe.getCost());
             buf.writeVarInt(recipe.getIngredients().size());
             for (Ingredient input : recipe.getIngredients())

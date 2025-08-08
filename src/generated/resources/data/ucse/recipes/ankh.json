@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:sun_block"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    " E ",
+    "OOO",
+    " O "
+  ],
+  "result": {
+    "item": "ucse:ankh"
+  },
+  "show_notification": true
+}

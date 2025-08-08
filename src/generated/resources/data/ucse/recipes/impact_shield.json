@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:ancient_debris"
+    },
+    "I": {
+      "tag": "forge:storage_blocks/iron"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "S": {
+      "item": "minecraft:shield"
+    }
+  },
+  "pattern": [
+    "DSI",
+    "SNS",
+    "ISD"
+  ],
+  "result": {
+    "item": "ucse:impact_shield"
+  },
+  "show_notification": true
+}

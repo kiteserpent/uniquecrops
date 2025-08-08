@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:savageessence"
+    },
+    "N": {
+      "item": "ucse:endersnooker"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " SE",
+    " NS",
+    "S  "
+  ],
+  "result": {
+    "item": "ucse:wildwood_staff"
+  },
+  "show_notification": true
+}

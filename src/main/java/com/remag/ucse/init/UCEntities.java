@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public class UCEntities {
 
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, UniqueCrops.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, UniqueCrops.MOD_ID);
 
     public static final RegistryObject<EntityType<CookingItemEntity>> COOKING_ITEM = register("cookingitem", () -> EntityType.Builder.<CookingItemEntity>of(CookingItemEntity::new, MobCategory.MISC)
             .sized(0.25F, 0.25F)

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/emblem_defense"
+    "layer0": "ucse:item/emblem_defense"
   }
 }

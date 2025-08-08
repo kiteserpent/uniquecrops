@@ -1,0 +1,21 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 20,
+  "enchantment": "thorns",
+  "ingredients": [
+    [
+      {
+        "item": "ucse:cactus_boots"
+      },
+      {
+        "item": "ucse:cactus_plate"
+      },
+      {
+        "item": "ucse:cactus_helm"
+      },
+      {
+        "item": "ucse:cactus_leggings"
+      }
+    ]
+  ]
+}

@@ -70,6 +70,6 @@ public class DemoCordBlock extends Block {
     private void detonate(Level world, BlockPos pos) {
 
         world.setBlock(pos, Blocks.AIR.defaultBlockState(), 2);
-        world.explode(null, pos.getX(), pos.getY(), pos.getZ(), 1, Explosion.BlockInteraction.BREAK);
+        world.explode(null, pos.getX(), pos.getY(), pos.getZ(), 1, Level.ExplosionInteraction.TNT);
     }
 }

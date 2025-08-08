@@ -8,6 +8,7 @@ import com.remag.ucse.init.UCBlocks;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -32,7 +33,7 @@ public class Petramia extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (this.canIgnoreGrowthRestrictions(world, pos)) {
             super.randomTick(state, world, pos, rand);

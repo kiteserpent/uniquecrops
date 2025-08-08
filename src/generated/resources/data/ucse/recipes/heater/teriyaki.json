@@ -1,0 +1,9 @@
+{
+  "type": "ucse:heater",
+  "input": {
+    "item": "minecraft:cooked_chicken"
+  },
+  "output": {
+    "item": "ucse:teriyaki"
+  }
+}

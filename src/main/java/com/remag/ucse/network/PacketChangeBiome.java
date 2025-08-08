@@ -12,6 +12,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -41,14 +42,14 @@ public class PacketChangeBiome {
         return new PacketChangeBiome(pos, biomeId);
     }
 
-    public static void handle(PacketChangeBiome msg, Supplier<NetworkEvent.Context> ctx) {
+    /* public static void handle(PacketChangeBiome msg, Supplier<NetworkEvent.Context> ctx) {
 
         ctx.get().enqueueWork(() -> {
             ClientLevel world = Minecraft.getInstance().level;
             LevelChunk chunkAt = (LevelChunk)world.getChunk(msg.pos);
 
-            ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, msg.biomeId);
-            Holder<Biome> biome = world.registryAccess().ownedRegistryOrThrow(Registry.BIOME_REGISTRY).getHolderOrThrow(key);
+            ResourceKey<Biome> key = ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), msg.biomeId);
+            Holder<Biome> biome = world.registryAccess().registryOrThrow(ForgeRegistries.BIOMES.getRegistryKey()).getHolderOrThrow(key);
 
             int minY = QuartPos.fromBlock(world.getMinBuildHeight());
             int maxY = minY + QuartPos.fromBlock(world.getHeight()) - 1;
@@ -58,7 +59,7 @@ public class PacketChangeBiome {
 
             for (LevelChunkSection section : chunkAt.getSections()) {
                 for (int dy = 0; dy < 16; dy += 4) {
-                    int y = Mth.clamp(QuartPos.fromBlock(section.bottomBlockY() + dy), minY, maxY);
+                    int y = Mth.clamp(QuartPos.fromBlock( + dy), minY, maxY);
                     section.getBiomes().set(x & 3, y & 3, z & 3, biome);
                     SectionPos pos = SectionPos.of(msg.pos.getX() >> 4, (section.bottomBlockY() >> 4) + dy, msg.pos.getZ() >> 4);
                     world.setSectionDirtyWithNeighbors(pos.x(), pos.y(), pos.z());
@@ -67,5 +68,5 @@ public class PacketChangeBiome {
             world.onChunkLoaded(new ChunkPos(msg.pos));
         });
         ctx.get().setPacketHandled(true);
-    }
+    } */
 }

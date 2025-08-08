@@ -9,6 +9,8 @@ import javax.annotation.Nonnull;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.JsonOps;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -145,17 +147,25 @@ public class JsonUtils {
         }
     }
 
-    public static BlockState readBlockState(JsonObject obj) {
+    public static BlockState readBlockState(JsonObject obj, HolderGetter<Block> blockGetter) {
+        // Convert JSON to NBT
+        CompoundTag nbt = (CompoundTag) new Dynamic<>(JsonOps.INSTANCE, obj)
+                .convert(NbtOps.INSTANCE)
+                .getValue();
 
-        CompoundTag nbt = (CompoundTag)new Dynamic<>(JsonOps.INSTANCE, obj).convert(NbtOps.INSTANCE).getValue();
+        // Normalize tag field names
         JsonUtils.renameTag(nbt, "name", "Name");
         JsonUtils.renameTag(nbt, "properties", "Properties");
+
+        // Validate block ID
         String name = nbt.getString("Name");
         ResourceLocation id = ResourceLocation.tryParse(name);
-        if (id == null || !ForgeRegistries.BLOCKS.containsKey(id))
+        if (id == null || !ForgeRegistries.BLOCKS.containsKey(id)) {
             throw new IllegalArgumentException("Invalid or unknown block ID: " + name);
+        }
 
-        return NbtUtils.readBlockState(nbt);
+        // Updated: Pass the HolderGetter<Block>
+        return NbtUtils.readBlockState(blockGetter, nbt);
     }
 
     public static JsonObject writeBlockState(BlockState state) {

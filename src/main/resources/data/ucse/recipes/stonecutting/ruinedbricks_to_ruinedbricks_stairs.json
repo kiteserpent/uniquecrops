@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "ucse:ruinedbricks"
-  },
-  "result": "ucse:ruinedbricks_stairs",
-  "count": 1
-}

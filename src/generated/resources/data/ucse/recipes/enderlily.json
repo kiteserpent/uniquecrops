@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "L": {
+      "item": "minecraft:lily_pad"
+    },
+    "P": {
+      "item": "ucse:lilytwine"
+    }
+  },
+  "pattern": [
+    " E ",
+    "PLP",
+    " P "
+  ],
+  "result": {
+    "item": "ucse:enderlily"
+  },
+  "show_notification": true
+}

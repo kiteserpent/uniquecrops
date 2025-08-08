@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "minecraft:lapis_block"
+    },
+    "M": {
+      "item": "ucse:millenniumeye"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LML",
+    " S "
+  ],
+  "result": {
+    "item": "ucse:totemhead"
+  },
+  "show_notification": true
+}

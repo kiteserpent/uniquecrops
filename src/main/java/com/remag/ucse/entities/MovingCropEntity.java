@@ -3,6 +3,7 @@ package com.remag.ucse.entities;
 import com.remag.ucse.blocks.crops.Magnes;
 import com.remag.ucse.init.UCBlocks;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.entity.Entity;
@@ -54,28 +55,28 @@ public class MovingCropEntity extends Entity {
             return;
         }
         if (this.getPersistentData().contains("UC:markedForDrop")) {
-            if (!level.isClientSide) {
+            if (!level().isClientSide) {
                 BlockState heldState = ((FallingBlockEntity)this.getPassengers().get(0)).getBlockState();
                 this.getPassengers().forEach(p -> p.discard());
                 int chance = Math.max(8 - this.distance, 1);
-                if (level.random.nextInt(chance) == 0 && heldState.getBlock() == UCBlocks.MAGNES_CROP.get() && heldState.getValue(Magnes.POLARITY))
-                    Containers.dropItemStack(this.level, this.getX(), this.getY(), this.getZ(), new ItemStack(UCItems.FERROMAGNETICIRON.get()));
-                BlockPos toSet = new BlockPos(Math.floor(this.getX()), Math.floor(this.getY()), Math.floor(this.getZ()));
-                if (!level.isEmptyBlock(toSet)) {
+                if (level().random.nextInt(chance) == 0 && heldState.getBlock() == UCBlocks.MAGNES_CROP.get() && heldState.getValue(Magnes.POLARITY))
+                    Containers.dropItemStack(this.level(), this.getX(), this.getY(), this.getZ(), new ItemStack(UCItems.FERROMAGNETICIRON.get()));
+                BlockPos toSet = new BlockPos((int) Math.floor(this.getX()), (int) Math.floor(this.getY()), (int) Math.floor(this.getZ()));
+                if (!level().isEmptyBlock(toSet)) {
                     for (Direction facing : Direction.Plane.HORIZONTAL) {
-                        if (level.isEmptyBlock(toSet.relative(facing)) && level.getBlockState(toSet.relative(facing).below()).getBlock() instanceof FarmBlock) {
-                            level.setBlock(toSet.relative(facing), UCBlocks.MAGNES_CROP.get().defaultBlockState(), 2);
+                        if (level().isEmptyBlock(toSet.relative(facing)) && level().getBlockState(toSet.relative(facing).below()).getBlock() instanceof FarmBlock) {
+                            level().setBlock(toSet.relative(facing), UCBlocks.MAGNES_CROP.get().defaultBlockState(), 2);
                             break;
                         }
                     }
                 } else {
-                    level.setBlock(toSet, UCBlocks.MAGNES_CROP.get().defaultBlockState(), 2);
+                    level().setBlock(toSet, UCBlocks.MAGNES_CROP.get().defaultBlockState(), 2);
                 }
                 this.getPersistentData().remove("UC:markedForDrop");
             }
             return;
         }
-        List<MovingCropEntity> entities = level.getEntitiesOfClass(MovingCropEntity.class, this.getBoundingBox());
+        List<MovingCropEntity> entities = level().getEntitiesOfClass(MovingCropEntity.class, this.getBoundingBox());
         if (entities.size() == 2) {
             entities.forEach(e -> this.getPersistentData().putBoolean("UC:markedForDrop", true));
         }
@@ -101,7 +102,7 @@ public class MovingCropEntity extends Entity {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
 
         return NetworkHooks.getEntitySpawningPacket(this);
     }

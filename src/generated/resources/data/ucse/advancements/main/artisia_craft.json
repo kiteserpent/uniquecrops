@@ -1,0 +1,38 @@
+{
+  "parent": "ucse:main/guidebook_craft",
+  "criteria": {
+    "seed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:seedartisia"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.ucse:craftingArtisia.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "ucse:seedartisia"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.ucse:craftingArtisia"
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

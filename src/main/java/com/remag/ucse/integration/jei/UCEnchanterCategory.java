@@ -3,45 +3,47 @@ package com.remag.ucse.integration.jei;
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.api.IEnchanterRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.remag.ucse.crafting.RecipeEnchanter;
+import com.remag.ucse.crafting.RecipeHeater;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
-public class UCEnchanterCategory implements IRecipeCategory<IEnchanterRecipe> {
+public class UCEnchanterCategory implements IRecipeCategory<RecipeEnchanter> {
 
-    public static final ResourceLocation UID = new ResourceLocation(UniqueCrops.MOD_ID, "enchanter");
+    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "enchanter");
     private final IDrawable background;
 
     public UCEnchanterCategory(IGuiHelper helper) {
 
-        this.background = helper.createDrawable(new ResourceLocation(UniqueCrops.MOD_ID, "textures/gui/enchanter.png"), 0, 0, 100, 83);
+        this.background = helper.createDrawable(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/gui/enchanter.png"), 0, 0, 100, 83);
     }
 
     @Override
-    public ResourceLocation getUid() {
-
-        return UID;
-    }
-
-    @Override
-    public Class<? extends IEnchanterRecipe> getRecipeClass() {
-
-        return IEnchanterRecipe.class;
+    public RecipeType<RecipeEnchanter> getRecipeType() {
+        return JEIRecipeTypesUC.ENCHANTER;
     }
 
     @Override
     public Component getTitle() {
 
-        return new TranslatableComponent("container.jei.ucse.enchanter");
+        return Component.translatable("container.jei.ucse.enchanter");
+    }
+
+    @Override
+    public @Nullable ResourceLocation getRegistryName(RecipeEnchanter recipe) {
+        return ID;
     }
 
     @Override
@@ -57,19 +59,24 @@ public class UCEnchanterCategory implements IRecipeCategory<IEnchanterRecipe> {
     }
 
     @Override
-    public void draw(IEnchanterRecipe recipe, IRecipeSlotsView view, PoseStack ms, double mouseX, double mouseY) {
-
+    public void draw(RecipeEnchanter recipe, IRecipeSlotsView view, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         final String text = I18n.get(recipe.getEnchantment().getDescriptionId()) + " " + recipe.getEnchantment().getMaxLevel();
         Minecraft minecraft = Minecraft.getInstance();
         int stringWidth = minecraft.font.width(text);
-        minecraft.font.draw(ms, text, 50 - stringWidth / 2, -20, 0x555555);
+
+        // Draw the enchantment name and level
+        guiGraphics.drawString(minecraft.font, text, 50 - stringWidth / 2, -20, 0x555555, false);
+
+        // Draw the cost
         final String cost = "Cost: " + recipe.getCost();
         int costWidth = minecraft.font.width(cost);
-        minecraft.font.draw(ms, cost, 50 - costWidth / 2, 95, 0x555555);
+
+        guiGraphics.drawString(minecraft.font, cost, 50 - costWidth / 2, 95, 0x555555, false
+        );
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, IEnchanterRecipe recipe, IFocusGroup ingredients) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeEnchanter recipe, IFocusGroup ingredients) {
 
         var inputs = recipe.getIngredients();
         if (inputs.size() > 1) {

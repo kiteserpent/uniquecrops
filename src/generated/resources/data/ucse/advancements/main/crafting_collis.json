@@ -1,0 +1,38 @@
+{
+  "parent": "ucse:main/artisia_craft",
+  "criteria": {
+    "seed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:seedcollis"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.ucse:craftingCollis.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "ucse:seedcollis"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.ucse:craftingCollis"
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

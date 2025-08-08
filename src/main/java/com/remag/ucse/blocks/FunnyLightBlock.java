@@ -2,6 +2,7 @@ package com.remag.ucse.blocks;
 
 import com.remag.ucse.core.enums.EnumParticle;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -38,7 +39,7 @@ public class FunnyLightBlock extends Block {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         double d0 = (float)pos.getX() + 0.5F + (rand.nextFloat() - rand.nextFloat()) / 4;
         double d1 = (float)pos.getY() + 0.5F;

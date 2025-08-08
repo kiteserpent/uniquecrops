@@ -8,7 +8,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 
@@ -32,16 +31,16 @@ public class ItemBaseUC extends Item {
 
         if (stack.getItem() instanceof IBookUpgradeable) {
             if (((IBookUpgradeable)stack.getItem()).getLevel(stack) > -1)
-                list.add(new TextComponent(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
+                list.add(Component.literal(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
             else
-                list.add(new TextComponent(ChatFormatting.GOLD + "Upgradeable"));
+                list.add(Component.literal(ChatFormatting.GOLD + "Upgradeable"));
         }
     }
 
     @Override
     public boolean isFoil(ItemStack stack) {
 
-        if (stack.getItem().getRegistryName().getPath().contains("potion"))
+        if (stack.getItem().getName(stack).getString().contains("potion") || stack.getItem().getName(stack).getString().contains("Potion"))
             return true;
 
         return super.isFoil(stack);
@@ -51,8 +50,8 @@ public class ItemBaseUC extends Item {
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
 
         if (entity instanceof Player) {
-            if (stack.hasContainerItem()) {
-                ItemStack container = stack.getContainerItem();
+            if (stack.getItem().hasCraftingRemainingItem()) {
+                ItemStack container = stack.getCraftingRemainingItem();
                 if (!((Player)entity).isCreative()) {
                     ((Player)entity).getInventory().add(container);
                 }

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:fire_charge"
+    },
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "ODO",
+    "OOO"
+  ],
+  "result": {
+    "item": "ucse:emblem_weight"
+  },
+  "show_notification": true
+}

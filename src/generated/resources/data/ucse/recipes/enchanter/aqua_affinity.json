@@ -1,0 +1,21 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 30,
+  "enchantment": "aqua_affinity",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:diamond_pickaxe"
+      },
+      {
+        "item": "minecraft:water_bucket"
+      },
+      {
+        "item": "ucse:timedust"
+      },
+      {
+        "item": "ucse:timedust"
+      }
+    ]
+  ]
+}

@@ -3,6 +3,7 @@ package com.remag.ucse.blocks.crops;
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.tiles.TileSucco;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,14 +27,14 @@ public class Succo extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (world.dimensionType().moonPhase(world.dayTime()) == 0.0F)
             super.randomTick(state, world, pos, rand);
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         if (world.dimensionType().moonPhase(world.dayTime()) == 0.0F)
             super.performBonemeal(world, rand, pos, state);

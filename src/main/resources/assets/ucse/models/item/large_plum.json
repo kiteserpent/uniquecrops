@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/large_plum"
+    "layer0": "ucse:item/large_plum"
   }
 }

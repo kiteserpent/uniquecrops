@@ -2,6 +2,7 @@ package com.remag.ucse.blocks.crops;
 
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -66,7 +67,7 @@ public class Hexis extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         //NO-OP
     }

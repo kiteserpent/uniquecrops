@@ -2,7 +2,6 @@ package com.remag.ucse.blocks;
 
 import com.remag.ucse.blocks.tiles.TileBarrel;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.material.FluidState;
@@ -18,13 +17,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.network.NetworkHooks;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
@@ -36,7 +36,7 @@ public class AbstractBarrelBlock extends Block implements SimpleWaterloggedBlock
 
     public AbstractBarrelBlock() {
 
-        super(Properties.of(Material.WOOD).strength(3.0F, 5.0F).sound(SoundType.WOOD));
+        super(Properties.of().strength(3.0F, 5.0F).sound(SoundType.WOOD).mapColor(MapColor.WOOD));
         registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
@@ -65,7 +65,7 @@ public class AbstractBarrelBlock extends Block implements SimpleWaterloggedBlock
         if (!world.isClientSide) {
             BlockEntity tile = world.getBlockEntity(pos);
             if (tile instanceof TileBarrel)
-                NetworkHooks.openGui((ServerPlayer)player, (MenuProvider)tile, pos);
+                NetworkHooks.openScreen((ServerPlayer)player, (MenuProvider)tile, pos);
         }
         return InteractionResult.SUCCESS;
     }
@@ -77,7 +77,7 @@ public class AbstractBarrelBlock extends Block implements SimpleWaterloggedBlock
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileBarrel) {
-            tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)
+            tile.getCapability(ForgeCapabilities.ITEM_HANDLER, null)
                     .ifPresent(inventory -> {
                         for (int i = 0; i < inventory.getSlots(); i++) {
                             ItemStack stack = inventory.getStackInSlot(i);

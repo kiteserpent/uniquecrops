@@ -1,5 +1,6 @@
 package com.remag.ucse.render.tile;
 
+import com.mojang.math.Axis;
 import com.remag.ucse.blocks.tiles.TileFascino;
 import com.remag.ucse.events.UCTickHandler;
 import com.remag.ucse.render.model.ModelCubeyThingy;
@@ -13,13 +14,14 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.math.Vector3f;
+import net.minecraft.world.level.Level;
 
 public class RenderFascino implements BlockEntityRenderer<TileFascino> {
 
-    private static final ResourceLocation RES = new ResourceLocation("textures/entity/enchanting_table_book.png");
+    private static final ResourceLocation RES = ResourceLocation.tryParse("textures/entity/enchanting_table_book.png");
     final BookModel book;
     final ModelCubeyThingy cube;
     private final BlockRenderDispatcher renderDispatcher;
@@ -49,7 +51,7 @@ public class RenderFascino implements BlockEntityRenderer<TileFascino> {
         double wave = Math.sin(time * 0.2) / 32F;
 
         ms.pushPose();
-        ms.mulPose(Vector3f.YP.rotationDegrees((float)time * 4F));
+        ms.mulPose(Axis.YP.rotationDegrees((float)time * 4F));
         ms.translate(-0.25, wave + 0.65, 0);
 
         this.book.setupAnim(0, 0, 0, 0.005F);
@@ -57,45 +59,48 @@ public class RenderFascino implements BlockEntityRenderer<TileFascino> {
         ms.popPose();
 
         if (tile != null) {
-            ms.pushPose();
-            int items = 0;
-            for (int i = 0; i < tile.getInventory().getSlots(); i++) {
-                ItemStack stack = tile.getInventory().getStackInSlot(i);
-                if (!stack.isEmpty())
-                    items++;
-                else break;
-            }
-            if (items > 0) {
-                float offsetPerItem = 180F / items;
-                float totalAngle = 0F;
-                float[] angles = new float[tile.getInventory().getSlots()];
-                ms.translate(0, 0.75, 0);
-                float playerView = Minecraft.getInstance().gameRenderer.getMainCamera().getYRot();
-                ms.mulPose(Vector3f.YP.rotationDegrees((180F - playerView) + 89F));
-                ms.mulPose(Vector3f.XP.rotationDegrees(90F));
-                ms.mulPose(Vector3f.XP.rotationDegrees(90.0F / items));
-                ms.mulPose(Vector3f.ZP.rotationDegrees(90F));
-                for (int l = 0; l < items; l++) {
-                    angles[l] = totalAngle += offsetPerItem;
-                    ms.pushPose();
-                    ms.mulPose(Vector3f.YP.rotationDegrees(angles[l]));
-                    ms.translate(0.75 + wave, 0, 0);
-                    ms.mulPose(Vector3f.YP.rotationDegrees(-angles[l]));
-                    ms.mulPose(Vector3f.YP.rotationDegrees((90.0F / items) + 90.0F));
-                    ItemStack stack = tile.getInventory().getStackInSlot(l);
-                    ms.mulPose(Vector3f.ZP.rotationDegrees(-90F));
-                    ms.pushPose();
-                    ms.mulPose(Vector3f.YP.rotationDegrees(90F));
-                    Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.GROUND, 0xF000F0, overlay, ms, buffer, 0);
-                    ms.popPose();
-                    ms.popPose();
+            Level level = tile.getLevel();
+            if (level != null) {
+                ms.pushPose();
+                int items = 0;
+                for (int i = 0; i < tile.getInventory().getSlots(); i++) {
+                    ItemStack stack = tile.getInventory().getStackInSlot(i);
+                    if (!stack.isEmpty())
+                        items++;
+                    else break;
+                }
+                if (items > 0) {
+                    float offsetPerItem = 180F / items;
+                    float totalAngle = 0F;
+                    float[] angles = new float[tile.getInventory().getSlots()];
+                    ms.translate(0, 0.75, 0);
+                    float playerView = Minecraft.getInstance().gameRenderer.getMainCamera().getYRot();
+                    ms.mulPose(Axis.YP.rotationDegrees((180F - playerView) + 89F));
+                    ms.mulPose(Axis.XP.rotationDegrees(90F));
+                    ms.mulPose(Axis.XP.rotationDegrees(90.0F / items));
+                    ms.mulPose(Axis.ZP.rotationDegrees(90F));
+                    for (int l = 0; l < items; l++) {
+                        angles[l] = totalAngle += offsetPerItem;
+                        ms.pushPose();
+                        ms.mulPose(Axis.YP.rotationDegrees(angles[l]));
+                        ms.translate(0.75 + wave, 0, 0);
+                        ms.mulPose(Axis.YP.rotationDegrees(-angles[l]));
+                        ms.mulPose(Axis.YP.rotationDegrees((90.0F / items) + 90.0F));
+                        ItemStack stack = tile.getInventory().getStackInSlot(l);
+                        ms.mulPose(Axis.ZP.rotationDegrees(-90F));
+                        ms.pushPose();
+                        ms.mulPose(Axis.YP.rotationDegrees(90F));
+                        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GROUND, 0xF000F0, overlay, ms, buffer, tile.getLevel(), 0);
+                        ms.popPose();
+                        ms.popPose();
+                    }
                 }
             }
             ms.popPose();
         }
         RenderSystem.setShaderTexture(0, RES);
         for (int i = 0; i < 8; i++) {
-            ms.mulPose(Vector3f.YP.rotationDegrees((float)time * 4F));
+            ms.mulPose(Axis.YP.rotationDegrees((float)time * 4F));
             for (int m = 0; m < cubes; m++) {
                 float offset = cubeOffset * m;
                 float deg = (int)(time / rotationMod % 360F + offset);

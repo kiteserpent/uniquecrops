@@ -8,8 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -27,12 +27,15 @@ public class TEISR extends BlockEntityWithoutLevelRenderer {
     }
 
     @Override
-    public void renderByItem(ItemStack stack, ItemTransforms.TransformType mode, PoseStack ms, MultiBufferSource buffers, int light, int overlay) {
-
+    public void renderByItem(ItemStack stack, ItemDisplayContext context, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
         if (stack.getItem() == UCItems.DUMMY_FASCINO.get()) {
-            BlockEntityRenderer<?> r = Minecraft.getInstance().getBlockEntityRenderDispatcher().getRenderer(dummy.get());
-            if (r != null)
-                r.render(null, 0, ms, buffers, light, overlay);
+            BlockEntityRenderer<?> renderer = Minecraft.getInstance()
+                    .getBlockEntityRenderDispatcher()
+                    .getRenderer(dummy.get());
+
+            if (renderer != null) {
+                renderer.render(null, 0F, poseStack, buffer, packedLight, packedOverlay);
+            }
         }
     }
 }

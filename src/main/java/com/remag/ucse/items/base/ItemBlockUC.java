@@ -26,8 +26,8 @@ public class ItemBlockUC extends BlockItem {
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
 
         if (stack.is(UCBlocks.HOURGLASS.get().asItem())) {
-            if (!entity.getLevel().isClientSide() && entity.getLevel().getGameTime() % 200 == 0)
-                HourglassBlock.searchAroundBlocks(entity.getLevel(), entity.blockPosition(), entity.getLevel().random);
+            if (!entity.level().isClientSide() && entity.level().getGameTime() % 200 == 0)
+                HourglassBlock.searchAroundBlocks(entity.level(), entity.blockPosition(), entity.level().random);
         }
         return super.onEntityItemUpdate(stack, entity);
     }

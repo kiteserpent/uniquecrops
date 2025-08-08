@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "item": "minecraft:hay_block"
+    }
+  },
+  "pattern": [
+    "HH",
+    "HH"
+  ],
+  "result": {
+    "count": 4,
+    "item": "ucse:driedthatch"
+  },
+  "show_notification": true
+}

@@ -24,7 +24,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,7 +31,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 
 import javax.annotation.Nullable;
@@ -50,10 +49,10 @@ public class StaffWildwoodItem extends ItemBaseUC {
 
     private void onCropGrowth(BlockEvent.CropGrowEvent.Pre event) {
 
-        if (event.getWorld().isClientSide()) return;
+        if (event.getLevel().isClientSide()) return;
 
         BlockPos pos = event.getPos();
-        List<Player> players = event.getWorld().getEntitiesOfClass(Player.class, new AABB(pos.offset(-7, -3, -7), pos.offset(7, 3, 7)));
+        List<Player> players = event.getLevel().getEntitiesOfClass(Player.class, new AABB(pos.offset(-7, -3, -7), pos.offset(7, 3, 7)));
         for (Player player : players) {
             ItemStack itemCap = player.getMainHandItem();
             ItemStack offhand = player.getOffhandItem();
@@ -75,14 +74,14 @@ public class StaffWildwoodItem extends ItemBaseUC {
         }
         if (!(event.getState().getBlock() instanceof CropBlock)) return;
 
-        if (!(event.getWorld() instanceof Level)) return;
-        BlockEntity tile = UCUtils.getClosestTile(TileDigger.class, (Level)event.getWorld(), pos, 8.0D);
+        if (!(event.getLevel() instanceof Level)) return;
+        BlockEntity tile = UCUtils.getClosest(pos, 8.0D, TileDigger.class);
         if (tile instanceof TileDigger) {
             if (((TileDigger)tile).isJobDone()) {
                 event.setResult(Event.Result.DEFAULT);
                 return;
             }
-            boolean flag = ((TileDigger)tile).digBlock((Level)event.getWorld());
+            boolean flag = ((TileDigger)tile).digBlock((Level)event.getLevel());
             if (flag)
                 event.setResult(Event.Result.DENY);
             else
@@ -90,7 +89,7 @@ public class StaffWildwoodItem extends ItemBaseUC {
         }
     }
 
-    @Override
+    /*@Override
     public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> items) {
 
         if (allowdedIn(tab)) {
@@ -100,7 +99,7 @@ public class StaffWildwoodItem extends ItemBaseUC {
             fullStaff.getCapability(CPProvider.CROP_POWER, null).ifPresent(crop -> crop.setPower(crop.getCapacity()));
             items.add(fullStaff);
         }
-    }
+    }*/
 
     @Override
     @OnlyIn(Dist.CLIENT)
@@ -109,10 +108,10 @@ public class StaffWildwoodItem extends ItemBaseUC {
         boolean flag = Screen.hasShiftDown();
         stack.getCapability(CPProvider.CROP_POWER, null).ifPresent(crop -> {
             if (flag)
-                list.add(new TextComponent(ChatFormatting.GREEN + "Crop Power: " + crop.getPower() + "/" + crop.getCapacity()));
+                list.add(Component.literal(ChatFormatting.GREEN + "Crop Power: " + crop.getPower() + "/" + crop.getCapacity()));
         });
         if (!flag)
-            list.add(new TextComponent(ChatFormatting.LIGHT_PURPLE + "<Press shift>"));
+            list.add(Component.literal(ChatFormatting.LIGHT_PURPLE + "<Press shift>"));
     }
 
     @Override
@@ -152,7 +151,7 @@ public class StaffWildwoodItem extends ItemBaseUC {
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return !ItemStack.isSame(oldStack, newStack);
+        return !ItemStack.isSameItem(oldStack, newStack);
     }
 
     @Nullable

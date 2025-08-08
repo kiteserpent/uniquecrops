@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "ucse:book_guide"
+    },
+    "D": {
+      "item": "ucse:seeddyeius"
+    }
+  },
+  "pattern": [
+    " D ",
+    "DBD",
+    " D "
+  ],
+  "result": {
+    "item": "ucse:book_multiblock"
+  },
+  "show_notification": true
+}

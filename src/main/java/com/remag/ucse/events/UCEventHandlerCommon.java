@@ -6,15 +6,21 @@ import com.remag.ucse.api.ICropPower;
 import com.remag.ucse.api.IMultiblockRecipe;
 import com.remag.ucse.capabilities.CPProvider;
 import com.remag.ucse.core.DyeUtils;
+import com.remag.ucse.core.NBTUtils;
+import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.enums.EnumBonemealDye;
 import com.remag.ucse.core.enums.EnumLily;
 import com.remag.ucse.init.UCBlocks;
 import com.remag.ucse.init.UCFeatures;
 import com.remag.ucse.init.UCItems;
+import com.remag.ucse.integration.patchouli.PatchouliUtils;
 import com.remag.ucse.items.DyedBonemealItem;
 import com.remag.ucse.items.GoodieBagItem;
+import com.remag.ucse.items.LeagueBootsItem;
 import com.remag.ucse.network.PacketSyncCap;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.GrassBlock;
@@ -27,25 +33,32 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.world.BlockEvent;
 
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+import static com.remag.ucse.items.LeagueBootsItem.CMONSTEPITUP;
+import static com.remag.ucse.items.LeagueBootsItem.DEFAULT_SPEED;
+
+@Mod.EventBusSubscriber(modid = UniqueCrops.MOD_ID)
 public class UCEventHandlerCommon {
 
     public static void updateAnvilCost(AnvilUpdateEvent event) {
@@ -72,32 +85,25 @@ public class UCEventHandlerCommon {
 
     public static void onBonemealEvent(BonemealEvent event) {
 
-        if (!(event.getBlock().getBlock() instanceof GrassBlock) || event.getWorld().isClientSide()) return;
+        if (!(event.getBlock().getBlock() instanceof GrassBlock) || event.getLevel().isClientSide()) return;
         ItemStack stack = event.getStack();
         if (stack.getItem() instanceof DyedBonemealItem) {
             DyeUtils.BONEMEAL_DYE.forEach((key, value) -> {
                 if (value.asItem() == stack.getItem()) {
-                    event.setResult(EnumBonemealDye.values()[key.ordinal()].grow(event.getWorld(), event.getPos()));
+                    event.setResult(EnumBonemealDye.values()[key.ordinal()].grow(event.getLevel(), event.getPos()));
                 }
             });
         }
     }
 
-    public static void onBiomeLoading(BiomeLoadingEvent event) {
-
-        if (event.getCategory() == Biome.BiomeCategory.NETHER || event.getCategory() == Biome.BiomeCategory.THEEND) return;
-
-        event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, UCFeatures.ORE_PIXELGEN);
-    }
-
     public static void jumpTele(LivingEvent.LivingJumpEvent event) {
 
-        LivingEntity elb = event.getEntityLiving();
-        if (elb.level.isClientSide) return;
+        LivingEntity elb = event.getEntity();
+        if (elb.level().isClientSide) return;
 
         if (elb instanceof Player) {
-            if (elb.level.getBlockState(elb.blockPosition()).getBlock() == UCBlocks.LILY_ENDER.get()) {
-                EnumLily.searchNearbyPads(elb.level, elb.blockPosition(), elb, Direction.UP);
+            if (elb.level().getBlockState(elb.blockPosition()).getBlock() == UCBlocks.LILY_ENDER.get()) {
+                EnumLily.searchNearbyPads(elb.level(), elb.blockPosition(), elb, Direction.UP);
             }
         }
     }
@@ -105,7 +111,7 @@ public class UCEventHandlerCommon {
     public static void addSeed(BlockEvent.BreakEvent event) {
 
         if (event.getState().is(Blocks.GRASS) || event.getState().is(Blocks.TALL_GRASS) || event.getState().is(Blocks.FERN) || event.getState().is(Blocks.LARGE_FERN)) {
-            if (event.getWorld() instanceof ServerLevel serverlevel) {
+            if (event.getLevel() instanceof ServerLevel serverlevel) {
                 BlockPos pos = event.getPos();
                 float value = serverlevel.random.nextFloat();
                 if (value > 0.90F) {
@@ -138,27 +144,27 @@ public class UCEventHandlerCommon {
 
     private static LootPoolEntryContainer.Builder<?> getInjectEntry(String name, int weight) {
 
-        ResourceLocation injectFolder = new ResourceLocation(UniqueCrops.MOD_ID, "inject/" + name);
+        ResourceLocation injectFolder = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "inject/" + name);
         return LootTableReference.lootTableReference(injectFolder).setWeight(weight);
     }
 
     public static void onBlockInteract(PlayerInteractEvent.RightClickBlock event) {
 
-        IMultiblockRecipe recipe = findRecipe(event.getWorld(), event.getPos());
+        IMultiblockRecipe recipe = findRecipe(event.getLevel(), event.getPos());
         if (recipe != null) {
-            Player player = event.getPlayer();
+            Player player = event.getEntity();
             ItemStack held = player.getItemInHand(event.getHand());
-            if (!ItemStack.isSame(held, recipe.getCatalyst())) return;
+            if (!ItemStack.isSameItem(held, recipe.getCatalyst())) return;
             int cropPower = recipe.getPower();
 
             LazyOptional<ICropPower> cap = held.getCapability(CPProvider.CROP_POWER, null);
             if (cropPower > 0 && !cap.isPresent()) {
-                player.displayClientMessage(new TextComponent("Crop power is not present in this item: " + held.getDisplayName()), true);
+                player.displayClientMessage(Component.literal("Crop power is not present in this item: " + held.getDisplayName()), true);
                 return;
             }
             cap.ifPresent(crop -> {
                 if (crop.getPower() < cropPower) {
-                    player.displayClientMessage(new TextComponent("Insufficient crop power. Needed: " + cropPower), true);
+                    player.displayClientMessage(Component.literal("Insufficient crop power. Needed: " + cropPower), true);
                     event.setCanceled(true);
                     return;
                 }
@@ -168,10 +174,10 @@ public class UCEventHandlerCommon {
                         UCPacketHandler.sendTo((ServerPlayer)player, new PacketSyncCap(crop.serializeNBT()));
                 }
             });
-            if (cropPower <= 0 && !event.getWorld().isClientSide && !player.isCreative()) {
+            if (cropPower <= 0 && !event.getLevel().isClientSide && !player.isCreative()) {
                 held.shrink(1);
             }
-            recipe.setResult(event.getWorld(), event.getPos());
+            recipe.setResult(event.getLevel(), event.getPos());
             event.setCanceled(true);
             player.swing(event.getHand());
         }
@@ -181,7 +187,7 @@ public class UCEventHandlerCommon {
 
         var stack = event.getObject();
         if (stack.getItem() == UCItems.WILDWOOD_STAFF.get()) {
-            event.addCapability(new ResourceLocation(UniqueCrops.MOD_ID, "crop_power"), new CPProvider());
+            event.addCapability(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "crop_power"), new CPProvider());
         }
     }
 
@@ -192,5 +198,47 @@ public class UCEventHandlerCommon {
                 return ((IMultiblockRecipe) recipe);
         }
         return null;
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+
+        Player player = event.player;
+        Level world = player.level();
+
+        ItemStack stack = player.getItemBySlot(EquipmentSlot.FEET); // Or HEAD, CHEST, LEGS
+        if (!(stack.getItem() instanceof LeagueBootsItem leagueBootsItem)) return;
+
+        String name = getPlayerStr(player);
+        if (CMONSTEPITUP.contains(name)) {
+            if (world.isClientSide) {
+                float SPEED = NBTUtils.getFloat(stack, UCStrings.SPEED_MODIFIER, DEFAULT_SPEED);
+                if ((player.onGround() || player.getAbilities().flying) && player.zza > 0F && !player.isInWaterOrBubble()) {
+                    player.moveRelative(SPEED, new Vec3(0F, 0F, 1F));
+                }
+
+                if (player.isCrouching()) {
+                    player.setMaxUpStep(0.60001F);
+                } else {
+                    player.setMaxUpStep(1.0625F);
+                }
+
+                leagueBootsItem.snapForward(player, stack);
+            }
+        } else {
+            CMONSTEPITUP.add(name);
+            player.setMaxUpStep(1.0625F);
+        }
+    }
+
+    private static String getPlayerStr(Player player) {
+        return player.getStringUUID();
+    }
+
+    @SubscribeEvent
+    public static void onServerStarted(ServerStartedEvent event) {
+        System.out.println("Running Registering Multiblocks...");
+        PatchouliUtils.registerMultiblocks();
     }
 }

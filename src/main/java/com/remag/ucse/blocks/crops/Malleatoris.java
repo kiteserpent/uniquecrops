@@ -5,6 +5,7 @@ import com.remag.ucse.core.enums.EnumParticle;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -47,7 +48,7 @@ public class Malleatoris extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (this.isMaxAge(state)) return;
 
@@ -63,7 +64,7 @@ public class Malleatoris extends BaseCropsBlock {
         }
     }
 
-    private boolean calcGrowth(ItemEntity stack, Random rand) {
+    private boolean calcGrowth(ItemEntity stack, RandomSource rand) {
 
         if (!stack.getItem().getItem().isRepairable(stack.getItem())) return false;
 
@@ -74,7 +75,7 @@ public class Malleatoris extends BaseCropsBlock {
             int newDamage = (int)damage + stack.getItem().getDamageValue();
             if (newDamage < stack.getItem().getMaxDamage()) {
                 stack.getItem().setDamageValue(stack.getItem().getDamageValue() + (int)damage);
-                UCPacketHandler.sendToNearbyPlayers(stack.level, stack.blockPosition(), new PacketUCEffect(EnumParticle.CLOUD, stack.getX(), stack.getY(), stack.getZ(), 6));
+                UCPacketHandler.sendToNearbyPlayers(stack.level(), stack.blockPosition(), new PacketUCEffect(EnumParticle.CLOUD, stack.getX(), stack.getY(), stack.getZ(), 6));
                 return true;
             }
         }

@@ -2,6 +2,7 @@ package com.remag.ucse.blocks;
 
 import com.remag.ucse.blocks.tiles.TileSunBlock;
 import com.remag.ucse.init.UCBlocks;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -172,7 +173,7 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (worldIn.getRawBrightness(pos, 0) >= 9) {
@@ -227,18 +228,6 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
         return f;
     }
 
-    @Override
-    public boolean isValidBonemealTarget(BlockGetter iBlockReader, BlockPos blockPos, BlockState state, boolean b) {
-
-        return !this.isMaxAge(state);
-    }
-
-    @Override
-    public boolean isBonemealSuccess(Level world, Random random, BlockPos blockPos, BlockState blockState) {
-
-        return this.isBonemealable();
-    }
-
     public boolean isBonemealable() {
 
         return this.bonemealable;
@@ -266,20 +255,29 @@ public class BaseCropsBlock extends Block implements BonemealableBlock, IPlantab
         return false;
     }
 
-    @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    protected int getBonemealAgeIncrease(Level world) {
 
+        return Mth.nextInt(world.random, 2, 5);
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader p_256559_, BlockPos p_50898_, BlockState state, boolean p_50900_) {
+        return !this.isMaxAge(state);
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level p_220878_, RandomSource p_220879_, BlockPos p_220880_, BlockState p_220881_) {
+        return this.isBonemealable();
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel world, RandomSource p_220875_, BlockPos pos, BlockState state) {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(world);
         int j = this.getMaxAge();
         if (i > j) {
             i = j;
         }
         world.setBlock(pos, this.setValueAge(i), 2);
-    }
-
-    protected int getBonemealAgeIncrease(Level world) {
-
-        return Mth.nextInt(world.random, 2, 5);
     }
 
     @Override

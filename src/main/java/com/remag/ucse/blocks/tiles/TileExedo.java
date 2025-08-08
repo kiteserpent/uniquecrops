@@ -4,6 +4,10 @@ import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCTiles;
 import com.remag.ucse.network.UCPacketDispatcher;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.EvokerFangs;
@@ -82,7 +86,12 @@ public class TileExedo extends BaseTileUC {
             float f = (float) Mth.atan2(elb.getZ() - worldPosition.getZ(), elb.getX() - worldPosition.getX());
             EvokerFangs evoke = new EvokerFangs(level, elb.getX(), elb.getY(), elb.getZ(), f, 0, null);
             level.addFreshEntity(evoke);
-            elb.hurt(DamageSource.MAGIC, elb.getMaxHealth());
+            Holder<DamageType> magicDamage = level.registryAccess()
+                    .registryOrThrow(Registries.DAMAGE_TYPE)
+                    .getHolderOrThrow(DamageTypes.MAGIC);
+
+            DamageSource source = new DamageSource(magicDamage);
+            elb.hurt(source, elb.getMaxHealth());
         }
         entityId = null;
     }

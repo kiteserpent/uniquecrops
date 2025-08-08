@@ -1,0 +1,9 @@
+{
+  "type": "ucse:heater",
+  "input": {
+    "item": "ucse:flywood_planks"
+  },
+  "output": {
+    "item": "ucse:rosewood_planks"
+  }
+}

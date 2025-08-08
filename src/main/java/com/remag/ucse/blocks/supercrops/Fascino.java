@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -26,7 +26,7 @@ public class Fascino extends BaseSuperCropsBlock implements EntityBlock {
 
     public Fascino() {
 
-        super(Properties.of(Material.PLANT).noCollission().randomTicks().strength(5.0F, 1000.0F).sound(SoundType.CROP).lightLevel(l -> 1));
+        super(Properties.of().noCollission().randomTicks().strength(5.0F, 1000.0F).sound(SoundType.CROP).lightLevel(l -> 1).mapColor(MapColor.GRASS));
     }
 
     @Override

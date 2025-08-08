@@ -1,0 +1,21 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 40,
+  "enchantment": "fire_protection",
+  "ingredients": [
+    [
+      {
+        "item": "ucse:cinderleaf"
+      },
+      {
+        "item": "minecraft:lava_bucket"
+      },
+      {
+        "item": "ucse:cinderleaf"
+      },
+      {
+        "item": "minecraft:bricks"
+      }
+    ]
+  ]
+}

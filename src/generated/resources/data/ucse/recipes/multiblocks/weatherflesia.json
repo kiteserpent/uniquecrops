@@ -1,0 +1,95 @@
+{
+  "type": "ucse:multiblock",
+  "catalyst": {
+    "item": "ucse:wildwood_staff",
+    "power": 45
+  },
+  "definition": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "0": {
+      "states": [
+        "minecraft:beacon"
+      ]
+    },
+    "K": {
+      "states": [
+        "ucse:crop_knowledge[age-0]"
+      ]
+    },
+    "T": {
+      "states": [
+        "ucse:crop_industria[age-0]"
+      ]
+    }
+  },
+  "definitionresult": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "C": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-up]"
+      ]
+    },
+    "D": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-southwest]"
+      ]
+    },
+    "E": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-east]"
+      ]
+    },
+    "G": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-southeast]"
+      ]
+    },
+    "H": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-northwest]"
+      ]
+    },
+    "N": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-north]"
+      ]
+    },
+    "P": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-northeast]"
+      ]
+    },
+    "S": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-south]"
+      ]
+    },
+    "W": {
+      "states": [
+        "ucse:weatherflesia[rafflesia-west]"
+      ]
+    }
+  },
+  "origin": {
+    "x": 1,
+    "y": 1
+  },
+  "shape": [
+    "TKT",
+    "K0K",
+    "TKT"
+  ],
+  "shaperesult": [
+    "HNP",
+    "WCE",
+    "DSG"
+  ]
+}

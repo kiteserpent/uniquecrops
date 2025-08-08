@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "ucse:invisitwine"
+    },
+    "P": {
+      "item": "ucse:pixels"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " S ",
+    "ISI",
+    "PPP"
+  ],
+  "result": {
+    "item": "ucse:pixel_brush"
+  },
+  "show_notification": true
+}

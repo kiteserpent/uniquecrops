@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "minecraft:lily_pad"
+    },
+    "P": {
+      "item": "minecraft:packed_ice"
+    }
+  },
+  "pattern": [
+    " P ",
+    "PLP",
+    " P "
+  ],
+  "result": {
+    "item": "ucse:icelily"
+  },
+  "show_notification": true
+}

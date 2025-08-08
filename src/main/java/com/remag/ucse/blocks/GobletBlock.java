@@ -7,11 +7,14 @@ import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCItems;
 import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerChunkCache;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -26,6 +29,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -48,29 +52,36 @@ public class GobletBlock extends Block implements EntityBlock {
 
     public GobletBlock() {
 
-        super(Properties.of(Material.CLAY).sound(SoundType.METAL).strength(0.3F, 1.0F).noCollission());
+        super(Properties.of().sound(SoundType.METAL).strength(0.3F, 1.0F).noCollission().mapColor(MapColor.CLAY));
         registerDefaultState(defaultBlockState().setValue(FILLED, false));
         MinecraftForge.EVENT_BUS.addListener(this::onLivingAttack);
     }
 
     private void onLivingAttack(LivingAttackEvent event) {
+        if (!(event.getEntity() instanceof Player)) return;
 
-        if (!(event.getEntityLiving() instanceof Player)) return;
-        if (event.getSource() != DamageSource.MAGIC && event.getSource().getEntity() instanceof LivingEntity) {
-            if (event.getEntityLiving().getLevel().getChunkSource() instanceof ServerChunkCache cache) {
-                for (ChunkHolder holder : cache.chunkMap.getChunks()) {
-                    if (holder.getFullChunk() == null) continue;
-                    for (Map.Entry<BlockPos, BlockEntity> entries : holder.getFullChunk().getBlockEntities().entrySet()) {
-                        BlockEntity tile = entries.getValue();
-                        if (tile instanceof TileGoblet goblet) {
-                            LivingEntity tagged = UCUtils.getTaggedEntity(goblet.entityId);
-                            if (tagged != null) {
-                                event.setCanceled(true);
-                                tagged.hurt(event.getSource(), event.getAmount());
-                                if (!tagged.isAlive())
-                                    goblet.eraseTaglock();
-                                return;
+        DamageSource source = event.getSource();
+        if (!source.is(DamageTypes.MAGIC) && source.getEntity() instanceof LivingEntity) {
+            if (event.getEntity().level() instanceof ServerLevel serverLevel) {
+                BlockPos center = event.getEntity().blockPosition();
+                int radius = 8;
+
+                Iterable<BlockPos> positions = BlockPos.betweenClosed(
+                        center.offset(-radius, -radius, -radius),
+                        center.offset(radius, radius, radius)
+                );
+
+                for (BlockPos pos : positions) {
+                    BlockEntity tile = serverLevel.getBlockEntity(pos);
+                    if (tile instanceof TileGoblet goblet) {
+                        LivingEntity tagged = UCUtils.getTaggedEntity(goblet.entityId);
+                        if (tagged != null) {
+                            event.setCanceled(true);
+                            tagged.hurt(source, event.getAmount());
+                            if (!tagged.isAlive()) {
+                                goblet.eraseTaglock();
                             }
+                            return; // exit early once found and processed
                         }
                     }
                 }
@@ -140,7 +151,7 @@ public class GobletBlock extends Block implements EntityBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level worldIn, BlockPos pos, RandomSource rand) {
 
         if (!isFilled(state)) return;
 

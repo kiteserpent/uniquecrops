@@ -1,0 +1,21 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 80,
+  "enchantment": "protection",
+  "ingredients": [
+    [
+      {
+        "item": "ucse:darkblock"
+      },
+      {
+        "item": "ucse:darkblock"
+      },
+      {
+        "item": "minecraft:iron_block"
+      },
+      {
+        "item": "minecraft:gold_block"
+      }
+    ]
+  ]
+}

@@ -1,8 +1,8 @@
 {
     "textures": {
-        "0": "ucse:items/waffle_uncooked",
-        "1": "ucse:items/waffle_uncooked",
-		"particle": "ucse:items/waffle_uncooked"
+        "0": "ucse:item/waffle_uncooked",
+        "1": "ucse:item/waffle_uncooked",
+		"particle": "ucse:item/waffle_uncooked"
     },
 	"display": {
         "gui": {

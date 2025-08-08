@@ -1,0 +1,24 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 70,
+  "enchantment": "looting",
+  "ingredients": [
+    [
+      {
+        "item": "ucse:emeradic_diamond"
+      },
+      {
+        "item": "minecraft:bone_block"
+      },
+      {
+        "item": "minecraft:tnt"
+      },
+      {
+        "item": "minecraft:cobweb"
+      },
+      {
+        "item": "minecraft:soul_soil"
+      }
+    ]
+  ]
+}

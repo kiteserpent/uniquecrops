@@ -1,6 +1,10 @@
 package com.remag.ucse.entities;
 
 import com.remag.ucse.init.UCItems;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -43,15 +47,20 @@ public class BattleCropEntity extends PathfinderMob {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
+        Holder<DamageType> thornsDamage = level().registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(DamageTypes.THORNS);
+
+        DamageSource thornsSource = new DamageSource(thornsDamage);
 
         if (source.getEntity() instanceof Player player) {
             if (player.isCreative())
                 return super.hurt(source, amount);
 
-            if (!source.isExplosion())
-                player.hurt(DamageSource.thorns(this), amount);
+            if (!source.is(DamageTypes.EXPLOSION))
+                player.hurt(thornsSource, amount);
         }
-        if (!(source.getEntity() instanceof Player) || source.isFire())
+        if (!(source.getEntity() instanceof Player) || source.is(DamageTypes.ON_FIRE))
             return super.hurt(source, amount);
 
         return super.hurt(source, 0);

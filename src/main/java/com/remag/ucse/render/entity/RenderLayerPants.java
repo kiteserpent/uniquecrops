@@ -17,7 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class RenderLayerPants extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
 
-    private static final ResourceLocation LIGHTNING_TEXTURE = new ResourceLocation("textures/entity/creeper/creeper_armor.png");
+    private static final ResourceLocation LIGHTNING_TEXTURE = ResourceLocation.tryParse("textures/entity/creeper/creeper_armor.png");
 
     public RenderLayerPants(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> renderer) {
 

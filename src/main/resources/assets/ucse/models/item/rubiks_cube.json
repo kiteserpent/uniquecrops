@@ -1,13 +1,13 @@
 {
     "parent": "block/cube",
 	"textures": {
-		"0": "ucse:items/rubiks_cube_white",
-		"1": "ucse:items/rubiks_cube_green",
-		"2": "ucse:items/rubiks_cube_orange",
-		"3": "ucse:items/rubiks_cube_blue",
-		"4": "ucse:items/rubiks_cube_red",
-		"5": "ucse:items/rubiks_cube_yellow",
-		"particle": "ucse:items/rubiks_cube_white"
+		"0": "ucse:item/rubiks_cube_white",
+		"1": "ucse:item/rubiks_cube_green",
+		"2": "ucse:item/rubiks_cube_orange",
+		"3": "ucse:item/rubiks_cube_blue",
+		"4": "ucse:item/rubiks_cube_red",
+		"5": "ucse:item/rubiks_cube_yellow",
+		"particle": "ucse:item/rubiks_cube_white"
 	},
 	"elements": [
 		{

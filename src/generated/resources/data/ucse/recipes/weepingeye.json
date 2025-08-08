@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "T": {
+      "item": "ucse:weepingtear"
+    }
+  },
+  "pattern": [
+    " T ",
+    "TET",
+    " T "
+  ],
+  "result": {
+    "item": "ucse:weepingeye"
+  },
+  "show_notification": true
+}

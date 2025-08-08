@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "ucse:goldenrods"
+    }
+  },
+  "pattern": [
+    "RRR"
+  ],
+  "result": {
+    "item": "ucse:golden_bread"
+  },
+  "show_notification": true
+}

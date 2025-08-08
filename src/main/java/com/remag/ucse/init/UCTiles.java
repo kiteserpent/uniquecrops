@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 
 public class UCTiles {
 
-    public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, UniqueCrops.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, UniqueCrops.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<TileArtisia>> ARTISIA = register("artisia", TileArtisia::new, set(UCBlocks.ARTISIA_CROP));
     public static final RegistryObject<BlockEntityType<TileFeroxia>> FEROXIA = register("feroxia", TileFeroxia::new, set(UCBlocks.FEROXIA_CROP));

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/cubey_thingy"
+    "layer0": "ucse:item/cubey_thingy"
   }
 }

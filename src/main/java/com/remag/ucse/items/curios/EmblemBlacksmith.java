@@ -13,8 +13,8 @@ public class EmblemBlacksmith extends ItemCurioUC {
 
     private void blacksmithAnvil(AnvilRepairEvent event) {
 
-        if (event.getPlayer() == null) return;
+        if (event.getEntity() == null) return;
 
-        if (hasCurio(event.getPlayer())) event.setBreakChance(0.0F);
+        if (hasCurio(event.getEntity())) event.setBreakChance(0.0F);
     }
 }

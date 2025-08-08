@@ -5,6 +5,7 @@ import com.remag.ucse.core.enums.EnumParticle;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +23,7 @@ public class Dirigible extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         super.randomTick(state, world, pos, rand);
         if ((this.getAge(state) + 1) >= getMaxAge()) {

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "g": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "pattern": [
+    "g g",
+    "gRg",
+    " P "
+  ],
+  "result": {
+    "item": "ucse:goblet"
+  },
+  "show_notification": true
+}

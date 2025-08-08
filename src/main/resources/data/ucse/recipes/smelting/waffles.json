@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "ucse:uncookedwaffle"
-  },
-  "result": "ucse:waffle",
-  "experience": 0.35,
-  "cookingtime": 200
-}

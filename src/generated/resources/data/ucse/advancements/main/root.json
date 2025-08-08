@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "seed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ucse:seednormal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "ucse:textures/block/oldgravel.png",
+    "description": {
+      "translate": "ucse.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "ucse:ruinedbricks"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "itemGroup.ucse"
+    }
+  },
+  "requirements": [
+    [
+      "seed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

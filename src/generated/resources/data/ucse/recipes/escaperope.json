@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:lilytwine"
+    },
+    "I": {
+      "item": "ucse:invisitwine"
+    }
+  },
+  "pattern": [
+    "EI",
+    "IE",
+    "EI"
+  ],
+  "result": {
+    "count": 2,
+    "item": "ucse:escaperope"
+  },
+  "show_notification": true
+}

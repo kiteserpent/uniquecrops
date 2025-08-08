@@ -33,7 +33,7 @@ public class PacketOpenCube {
         if (ctx.get().getDirection().getReceptionSide().isClient()) {
             ctx.get().enqueueWork(() -> {
                 Player player = UniqueCrops.proxy.getPlayer();
-                Entity entity = player.level.getEntity(packet.id);
+                Entity entity = player.level().getEntity(packet.id);
                 if (entity instanceof Player && packet.id == player.getId()) {
                     UniqueCrops.proxy.openCube();
                 }

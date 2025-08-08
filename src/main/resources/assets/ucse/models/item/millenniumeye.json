@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/millennium_eye"
+    "layer0": "ucse:item/millennium_eye"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "V": {
+      "item": "minecraft:vine"
+    }
+  },
+  "pattern": [
+    "V V",
+    " V ",
+    "V V"
+  ],
+  "result": {
+    "item": "ucse:spirit_bait"
+  },
+  "show_notification": true
+}

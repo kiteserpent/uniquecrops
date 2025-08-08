@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "ucse:book_discount"
+    },
+    "F": {
+      "item": "ucse:invisifeather"
+    }
+  },
+  "pattern": [
+    " F ",
+    "FBF",
+    " F "
+  ],
+  "result": {
+    "item": "ucse:book_upgrade"
+  },
+  "show_notification": true
+}

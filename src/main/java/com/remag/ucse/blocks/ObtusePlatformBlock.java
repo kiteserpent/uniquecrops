@@ -22,7 +22,7 @@ public class ObtusePlatformBlock extends Block {
         if (!(entity instanceof LivingEntity)) return;
 
         float prevFallDistance = entity.fallDistance;
-        if (!world.isClientSide && !entity.isOnGround() && (prevFallDistance > 1.0F || prevFallDistance > 20.0F))
+        if (!world.isClientSide && !entity.onGround() && (prevFallDistance > 1.0F || prevFallDistance > 20.0F))
             entity.fallDistance = 20.0F;
     }
 }

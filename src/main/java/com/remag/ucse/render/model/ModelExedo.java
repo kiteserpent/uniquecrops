@@ -11,12 +11,13 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 
 import java.util.Random;
 
 public class ModelExedo extends Model {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(UniqueCrops.MOD_ID, "modelexedo"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "modelexedo"), "main");
     private final ModelPart stalk;
     private final ModelPart stalk2;
     private final ModelPart stalk3;
@@ -80,7 +81,7 @@ public class ModelExedo extends Model {
 
     public void renderWithWiggle(TileExedo te, PoseStack ms, VertexConsumer buffer, int light, int overlay) {
 
-        Random rand = te.getLevel().random;
+        RandomSource rand = te.getLevel().random;
         boolean flag = te.isWiggling;
 
         ms.pushPose();

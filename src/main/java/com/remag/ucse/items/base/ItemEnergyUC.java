@@ -8,9 +8,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +31,7 @@ public class ItemEnergyUC extends ItemBaseUC implements IItemEnergy {
     @Override
     public int getBarWidth(ItemStack stack) {
 
-        LazyOptional<IEnergyStorage> optional = stack.getCapability(CapabilityEnergy.ENERGY);
+        LazyOptional<IEnergyStorage> optional = stack.getCapability(ForgeCapabilities.ENERGY);
         if (optional.isPresent()) {
             IEnergyStorage storage = optional.orElseThrow(IllegalStateException::new);
             return Math.round((float)storage.getEnergyStored() * 13.0F / (float)storage.getMaxEnergyStored());
@@ -48,7 +48,7 @@ public class ItemEnergyUC extends ItemBaseUC implements IItemEnergy {
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return !ItemStack.isSame(oldStack, newStack);
+        return !ItemStack.isSameItem(oldStack, newStack);
     }
 
     public void setEnergyStored(ItemStack stack, int value) {
@@ -97,7 +97,7 @@ public class ItemEnergyUC extends ItemBaseUC implements IItemEnergy {
             @Override
             public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 
-                if (cap == CapabilityEnergy.ENERGY)
+                if (cap == ForgeCapabilities.ENERGY)
                     return LazyOptional.of(() -> new UCEnergyImpl(stack, container)).cast();
                 return LazyOptional.empty();
             }

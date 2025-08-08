@@ -4,7 +4,6 @@ import com.remag.ucse.core.UCStrings;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Phantom;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +22,7 @@ public class StaffPhantomItem extends StaffBatItem {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
 
-        tooltip.add(new TranslatableComponent(UCStrings.TOOLTIP + "phantomstaff").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(UCStrings.TOOLTIP + "phantomstaff").withStyle(ChatFormatting.GRAY));
     }
 
     @Override

@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -41,14 +41,14 @@ public class TileLacusia extends BaseTileUC {
                     if (!level.hasChunkAt(looppos)) return;
 
                     BlockEntity tile = level.getBlockEntity(looppos);
-                    if (tile != null && tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face).isPresent()) {
+                    if (tile != null && tile.getCapability(ForgeCapabilities.ITEM_HANDLER, face).isPresent()) {
                         tileInv = tile;
                         dir = face.ordinal();
                         break;
                     }
                 }
                 if (tileInv != null) {
-                    tileInv.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.from2DDataValue(dir))
+                    tileInv.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.from2DDataValue(dir))
                             .ifPresent(cap -> {
                                 for (int i = 0; i < cap.getSlots(); i++) {
                                     ItemStack extract = cap.getStackInSlot(i);
@@ -88,9 +88,9 @@ public class TileLacusia extends BaseTileUC {
                             lacusia.dir = face.ordinal();
                         }
                     }
-                    if (tile != null && tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face).isPresent()) {
+                    if (tile != null && tile.getCapability(ForgeCapabilities.ITEM_HANDLER, face).isPresent()) {
                         Direction finalFace = face;
-                        tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face).ifPresent(cap -> {
+                        tile.getCapability(ForgeCapabilities.ITEM_HANDLER, face).ifPresent(cap -> {
                             ItemStack simulate = ItemHandlerHelper.insertItem(cap, getItem().copy(), true);
                             int available = getItem().getCount() - simulate.getCount();
 

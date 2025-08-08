@@ -6,6 +6,7 @@ import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionResultHolder;
@@ -47,9 +48,9 @@ public class GoodieBagItem extends ItemBaseUC {
         if (isHolidayTime(player)) {
             ItemStack stack;
             if (rand.nextBoolean())
-                stack = new ItemStack(UCUtils.selectRandom(rand, ForgeRegistries.BLOCKS.getValues().stream().toList()));
+                stack = new ItemStack(UCUtils.selectRandom(RandomSource.create(), ForgeRegistries.BLOCKS.getValues().stream().toList()));
             else
-                stack = new ItemStack(UCUtils.selectRandom(rand, ForgeRegistries.ITEMS.getValues().stream().toList()));
+                stack = new ItemStack(UCUtils.selectRandom(RandomSource.create(), ForgeRegistries.ITEMS.getValues().stream().toList()));
             return stack;
         }
         return new ItemStack(UCItems.USELESS_LUMP.get());

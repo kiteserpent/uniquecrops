@@ -3,6 +3,7 @@ package com.remag.ucse.blocks.crops;
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCBlocks;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +28,7 @@ public class Instabilis extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (!canGrow(world, pos)) return;
 
@@ -35,7 +36,7 @@ public class Instabilis extends BaseCropsBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         if (!canGrow(world, pos)) return;
 

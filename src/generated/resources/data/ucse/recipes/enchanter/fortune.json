@@ -1,0 +1,18 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 80,
+  "enchantment": "fortune",
+  "ingredients": [
+    [
+      {
+        "item": "ucse:savageessence"
+      },
+      {
+        "item": "minecraft:diamond_pickaxe"
+      },
+      {
+        "item": "ucse:pregem"
+      }
+    ]
+  ]
+}

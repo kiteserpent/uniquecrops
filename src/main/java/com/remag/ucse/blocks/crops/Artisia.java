@@ -4,6 +4,7 @@ import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.tiles.TileArtisia;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.UCPacketDispatcher;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -32,7 +33,7 @@ public class Artisia extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         super.randomTick(state, world, pos, rand);
         BlockEntity te = world.getBlockEntity(pos);
@@ -41,7 +42,7 @@ public class Artisia extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         super.performBonemeal(world, rand, pos, state);
         if (!world.isClientSide) {

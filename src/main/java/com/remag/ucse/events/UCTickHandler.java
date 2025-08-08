@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = UniqueCrops.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class UCTickHandler {
 
-    public static final ResourceLocation BITS = new ResourceLocation("minecraft", "shaders/post/bits.json");
+    public static final ResourceLocation BITS = ResourceLocation.fromNamespaceAndPath("minecraft", "shaders/post/bits.json");
 
     private UCTickHandler() {}
 

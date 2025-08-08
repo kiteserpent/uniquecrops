@@ -59,8 +59,8 @@ public abstract class MixinAnimatedTextureStitch {
 
     private boolean isUniqueTexture(String texName) {
 
-        if (!this.this$0.getName().getNamespace().equals(UniqueCrops.MOD_ID)) return false;
+        if (!this.this$0.atlasLocation().getNamespace().equals(UniqueCrops.MOD_ID)) return false;
 
-        return this.this$0.getName().getPath().contains(texName);
+        return this.this$0.atlasLocation().getPath().contains(texName);
     }
 }

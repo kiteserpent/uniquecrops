@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:lilytwine"
+    },
+    "P": {
+      "item": "minecraft:ender_pearl"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "EPE",
+    "PSP",
+    "EPE"
+  ],
+  "result": {
+    "item": "ucse:endersnooker"
+  },
+  "show_notification": true
+}

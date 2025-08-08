@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "minecraft:lily_pad"
+    },
+    "P": {
+      "item": "minecraft:jungle_leaves"
+    }
+  },
+  "pattern": [
+    " P ",
+    "PLP",
+    " P "
+  ],
+  "result": {
+    "item": "ucse:junglelily"
+  },
+  "show_notification": true
+}

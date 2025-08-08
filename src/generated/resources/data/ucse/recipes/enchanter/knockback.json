@@ -1,0 +1,18 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 40,
+  "enchantment": "knockback",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:piston"
+      },
+      {
+        "item": "minecraft:piston"
+      },
+      {
+        "item": "minecraft:iron_sword"
+      }
+    ]
+  ]
+}

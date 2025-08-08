@@ -23,15 +23,15 @@ import java.util.List;
 
 public class LeagueBootsItem extends ItemArmorUC implements IBookUpgradeable {
 
-    private static final float DEFAULT_SPEED = 0.055F;
+    public static final float DEFAULT_SPEED = 0.055F;
     private static final float JUMP_FACTOR = 0.2F;
     private static final float FALL_BUFFER = 2F;
 
-    private static final List<String> CMONSTEPITUP = new ArrayList<>();
+    public static final List<String> CMONSTEPITUP = new ArrayList<>();
 
     public LeagueBootsItem() {
 
-        super(EnumArmorMaterial.BOOTS_LEAGUE, EquipmentSlot.FEET);
+        super(EnumArmorMaterial.BOOTS_LEAGUE, Type.BOOTS);
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerJump);
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerFall);
         MinecraftForge.EVENT_BUS.addListener(this::playerTick);
@@ -40,18 +40,18 @@ public class LeagueBootsItem extends ItemArmorUC implements IBookUpgradeable {
 
     private void onPlayerJump(LivingEvent.LivingJumpEvent event) {
 
-        if (event.getEntityLiving() instanceof Player) {
-            ItemStack boots = event.getEntityLiving().getItemBySlot(EquipmentSlot.FEET);
+        if (event.getEntity() instanceof Player) {
+            ItemStack boots = event.getEntity().getItemBySlot(EquipmentSlot.FEET);
             if (boots.getItem() == UCItems.SEVEN_LEAGUE_BOOTS.get()) {
-                event.getEntityLiving().setDeltaMovement(event.getEntityLiving().getDeltaMovement().add(0, JUMP_FACTOR, 0));
-                event.getEntityLiving().fallDistance -= FALL_BUFFER;
+                event.getEntity().setDeltaMovement(event.getEntity().getDeltaMovement().add(0, JUMP_FACTOR, 0));
+                event.getEntity().fallDistance -= FALL_BUFFER;
             }
         }
     }
 
     private void onPlayerFall(LivingFallEvent event) {
 
-        LivingEntity entity = event.getEntityLiving();
+        LivingEntity entity = event.getEntity();
         if (entity instanceof Player) {
             ItemStack boots = entity.getItemBySlot(EquipmentSlot.FEET);
             if (boots.getItem() == this) {
@@ -60,15 +60,15 @@ public class LeagueBootsItem extends ItemArmorUC implements IBookUpgradeable {
         }
     }
 
-    private void playerTick(LivingEvent.LivingUpdateEvent event) {
+    private void playerTick(LivingEvent.LivingTickEvent event) {
 
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player)event.getEntityLiving();
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player)event.getEntity();
             String name = getPlayerStr(player);
             if (CMONSTEPITUP.contains(name)) {
                 ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
                 if (boots.getItem() != this) {
-                    player.maxUpStep = 0.6F;
+                    player.setMaxUpStep(0.6F);
                     CMONSTEPITUP.remove(name);
                 }
             }
@@ -77,34 +77,12 @@ public class LeagueBootsItem extends ItemArmorUC implements IBookUpgradeable {
 
     private void playerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
 
-        String username = event.getPlayer().getGameProfile().getName();
+        String username = event.getEntity().getGameProfile().getName();
         CMONSTEPITUP.remove(username + ":false");
         CMONSTEPITUP.remove(username + ":true");
     }
 
-    @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player) {
-
-        String name = getPlayerStr(player);
-        if (CMONSTEPITUP.contains(name)) {
-            if (world.isClientSide) {
-                float SPEED = NBTUtils.getFloat(stack, UCStrings.SPEED_MODIFIER, DEFAULT_SPEED);
-                if ((player.isOnGround() || player.getAbilities().flying) && player.zza > 0F && !player.isInWaterOrBubble()) {
-                    player.moveRelative(SPEED, new Vec3(0F, 0F, 1F));
-                }
-                if (player.isCrouching())
-                    player.maxUpStep = 0.60001F; // Botania's ItemTravelBelt uses this value to avoid setting the default value of 0.6F, so I'm not gonna step on any toes here
-                else player.maxUpStep = 1.0625F;
-
-                snapForward(player, stack);
-            }
-        } else {
-            CMONSTEPITUP.add(name);
-            player.maxUpStep = 1.0625F;
-        }
-    }
-
-    private void snapForward(Player player, ItemStack stack) {
+    public void snapForward(Player player, ItemStack stack) {
 
 //        if (player.world.provider.getDimension() == UCDimension.dimID) return;
 
@@ -137,7 +115,7 @@ public class LeagueBootsItem extends ItemArmorUC implements IBookUpgradeable {
 
     private String getPlayerStr(Player player) {
 
-        return player.getGameProfile().getName() + ":" + player.level.isClientSide;
+        return player.getGameProfile().getName() + ":" + player.level().isClientSide;
     }
 
     @Override

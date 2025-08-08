@@ -6,6 +6,8 @@ import com.remag.ucse.core.enums.EnumParticle;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.core.Vec3i;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.FarmBlock;
@@ -34,12 +36,12 @@ public class Enderlily extends BaseCropsBlock {
     private void onEnderpearl(EntityTeleportEvent.EnderPearl event) {
 
         if (event.getAttackDamage() > 0) {
-            BlockPos targetPos = new BlockPos(event.getTarget());
+            BlockPos targetPos = new BlockPos(new Vec3i((int) event.getTarget().x, (int) event.getTarget().y, (int) event.getTarget().z));
             BlockPos.betweenClosed(targetPos.offset(-2, -1, -2), targetPos.offset(2, 1, 2))
                     .forEach(loopPos -> {
-                        BlockState loopState = event.getPlayer().level.getBlockState(loopPos);
+                        BlockState loopState = event.getPlayer().level().getBlockState(loopPos);
                         if (loopState.getBlock() == this) {
-                            if (this.isEnderlilyGrown(event.getPlayer().level, loopPos, loopState))
+                            if (this.isEnderlilyGrown(event.getPlayer().level(), loopPos, loopState))
                                 return;
                         }
                     });
@@ -47,14 +49,14 @@ public class Enderlily extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         this.enderlilyTele(world, pos, state);
         super.randomTick(state, world, pos, rand);
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         this.enderlilyTele(world, pos, state);
     }

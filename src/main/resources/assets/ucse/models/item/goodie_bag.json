@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/goodie_bag"
+    "layer0": "ucse:item/goodie_bag"
   }
 }

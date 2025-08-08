@@ -13,7 +13,6 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 
@@ -21,20 +20,22 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemArmorUC extends ArmorItem {
-
-    public ItemArmorUC(ArmorMaterial material, EquipmentSlot slot) {
-
-        super(material, slot, UCItems.defaultBuilder().stacksTo(1));
+    public ItemArmorUC(ArmorMaterial armorMaterial, Type type) {
+        super(armorMaterial, type, UCItems.defaultBuilder().stacksTo(1));
     }
+
+    /* public ItemArmorUC(ArmorMaterial material, EquipmentSlot slot) {
+        super(material, slot, UCItems.defaultBuilder().stacksTo(1));
+    } */
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> list, TooltipFlag flag) {
 
         if (stack.getItem() instanceof IBookUpgradeable) {
             if (((IBookUpgradeable)stack.getItem()).getLevel(stack) > -1)
-                list.add(new TextComponent(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
+                list.add(Component.literal(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
             else
-                list.add(new TextComponent(ChatFormatting.GOLD + "Upgradeable"));
+                list.add(Component.literal(ChatFormatting.GOLD + "Upgradeable"));
         }
     }
 

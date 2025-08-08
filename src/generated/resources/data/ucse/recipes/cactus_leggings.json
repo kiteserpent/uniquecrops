@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cactus"
+    },
+    "I": {
+      "item": "minecraft:iron_leggings"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "CIC",
+    "C C"
+  ],
+  "result": {
+    "item": "ucse:cactus_leggings"
+  },
+  "show_notification": true
+}

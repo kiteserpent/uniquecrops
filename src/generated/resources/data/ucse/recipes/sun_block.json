@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:savageessence"
+    },
+    "G": {
+      "item": "ucse:invisibilia_glass"
+    }
+  },
+  "pattern": [
+    "EGE",
+    "GEG",
+    "EGE"
+  ],
+  "result": {
+    "item": "ucse:sun_block"
+  },
+  "show_notification": true
+}

@@ -3,6 +3,10 @@ package com.remag.ucse.items;
 import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,10 +32,15 @@ public class ImpactShieldItem extends ItemBaseUC {
 
     private void onShieldBlock(LivingAttackEvent event) {
 
-        if (event.getEntityLiving().level.isClientSide || !(event.getEntityLiving() instanceof Player)) return;
+        if (event.getEntity().level().isClientSide || !(event.getEntity() instanceof Player)) return;
 
-        Player player = (Player)event.getEntityLiving();
-        if (event.getSource() != DamageSource.MAGIC && event.getSource().getEntity() instanceof LivingEntity) {
+        Player player = (Player)event.getEntity();
+        Holder<DamageType> magicDamage = player.level().registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(DamageTypes.MAGIC);
+
+        DamageSource source = new DamageSource(magicDamage);
+        if (event.getSource() != source && event.getSource().getEntity() instanceof LivingEntity) {
             ItemStack activeStack = player.getUseItem();
             if (activeStack.getItem() == UCItems.IMPACT_SHIELD.get()) {
                 damageImpactShield(player, activeStack, event.getAmount());
@@ -68,7 +77,7 @@ public class ImpactShieldItem extends ItemBaseUC {
         stack.setDamageValue(stack.getDamageValue() + 1);
         float strength = NBTUtils.getFloat(stack, DAMAGE_POOL, 0);
         if (stack.getDamageValue() > stack.getMaxDamage()) {
-            player.level.explode(player, player.getX(), player.getY(), player.getZ(), Math.min(strength, 50F), Explosion.BlockInteraction.NONE);
+            player.level().explode(player, player.getX(), player.getY(), player.getZ(), Math.min(strength, 50F), Level.ExplosionInteraction.NONE);
 
             stack.setDamageValue(0);
             player.getCooldowns().addCooldown(this, 300);

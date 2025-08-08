@@ -1,0 +1,18 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 60,
+  "enchantment": "projectile_protection",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:shield"
+      },
+      {
+        "item": "minecraft:arrow"
+      },
+      {
+        "item": "minecraft:armor_stand"
+      }
+    ]
+  ]
+}

@@ -10,11 +10,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -34,16 +33,16 @@ public class PrecisionShovelItem extends ShovelItem implements IBookUpgradeable 
 
         if (stack.getItem() instanceof IBookUpgradeable) {
             if (((IBookUpgradeable)stack.getItem()).getLevel(stack) > -1)
-                list.add(new TextComponent(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
+                list.add(Component.literal(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
             else
-                list.add(new TextComponent(ChatFormatting.GOLD + "Upgradeable"));
+                list.add(Component.literal(ChatFormatting.GOLD + "Upgradeable"));
         }
     }
 
-    public void onBlockFall(EntityJoinWorldEvent event) {
+    public void onBlockFall(EntityJoinLevelEvent event) {
 
         if (event.getEntity() instanceof FallingBlockEntity) {
-            Player player = event.getEntity().level.getNearestPlayer(event.getEntity(), RANGE);
+            Player player = event.getEntity().level().getNearestPlayer(event.getEntity(), RANGE);
             if (player != null && player.getMainHandItem().getItem() == this) {
                 if (isMaxLevel(player.getMainHandItem()))
                     event.setCanceled(true);

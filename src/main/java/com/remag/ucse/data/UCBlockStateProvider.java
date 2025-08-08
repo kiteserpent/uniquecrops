@@ -8,12 +8,16 @@ import net.minecraft.core.Registry;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UCBlockStateProvider extends BlockStateProvider {
 
     public UCBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
 
-        super(gen, UniqueCrops.MOD_ID, exFileHelper);
+        super(gen.getPackOutput(), UniqueCrops.MOD_ID, exFileHelper);
     }
 
     @Override
@@ -25,7 +29,7 @@ public class UCBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
 
-        //Set<Block> moddedBlocks = Registry.BLOCK.stream().filter(b -> UniqueCrops.MOD_ID.equals(Registry.BLOCK.getKey(b).getNamespace())).collect(Collectors.toSet());
+        // Set<Block> moddedBlocks = Registry.BLOCK.stream().filter(b -> UniqueCrops.MOD_ID.equals(Registry.BLOCK.getKey(b).getNamespace())).collect(Collectors.toSet());
 
 //        stairsBlock(FLYWOOD_STAIRS, prefix("block/flywood_planks"));
 //        simpleBlock(OLDBRICK);
@@ -48,12 +52,12 @@ public class UCBlockStateProvider extends BlockStateProvider {
 
     private ResourceLocation prefix(String path) {
 
-        return new ResourceLocation(UniqueCrops.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, path);
     }
 
     private void cubeIt(Block block, String sideTexture, String bottomTexture, String topTexture) {
 
-        String modelName = Registry.BLOCK.getKey(block).getPath();
+        String modelName = ForgeRegistries.BLOCKS.getKey(block).getPath();
         ModelFile cube = models().cubeBottomTop(modelName, prefix(sideTexture), prefix(bottomTexture), prefix(topTexture));
         simpleBlock(block, cube);
     }

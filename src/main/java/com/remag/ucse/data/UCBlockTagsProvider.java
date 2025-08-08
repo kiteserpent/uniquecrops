@@ -2,31 +2,37 @@ package com.remag.ucse.data;
 
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.init.UCBlocks;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
-import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Predicate;
 
 import static com.remag.ucse.init.UCBlocks.*;
 
 public class UCBlockTagsProvider extends BlockTagsProvider {
 
-    public static final Predicate<Block> UC_BLOCKS = b -> UniqueCrops.MOD_ID.equals(Registry.BLOCK.getKey(b).getNamespace());
+    public static final Predicate<Block> UC_BLOCKS = b -> UniqueCrops.MOD_ID.equals(ForgeRegistries.BLOCKS.getKey(b).getNamespace());
 
-    public UCBlockTagsProvider(DataGenerator gen, ExistingFileHelper helper) {
-
-        super(gen, UniqueCrops.MOD_ID, helper);
+    public UCBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, UniqueCrops.MOD_ID, existingFileHelper);
     }
 
     @Override
-    public void addTags() {
+    public void addTags(HolderLookup.@NotNull Provider provider) {
 
         tag(BlockTags.STAIRS).add(UCBlocks.RUINEDBRICKS_STAIRS.get());
         tag(BlockTags.SLABS).add(UCBlocks.RUINEDBRICKS_SLAB.get(), UCBlocks.RUINEDBRICKSCARVED_SLAB.get());
@@ -46,7 +52,7 @@ public class UCBlockTagsProvider extends BlockTagsProvider {
 
     private void registerBlockMineable() {
 
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(getModBlocks(b -> Registry.BLOCK.getKey(b).getPath().contains("ruined")));
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(getModBlocks(b -> ForgeRegistries.BLOCKS.getKey(b).getPath().contains("ruined")));
         var pickaxe = Set.of(
                 BUCKET_ROPE.get(), CINDER_TORCH.get(), GOBLET.get(), HOURGLASS.get(),
                 OLDCOBBLE.get(), OLDGOLD.get(), OLDDIAMOND.get(), OLDIRON.get(),
@@ -74,9 +80,10 @@ public class UCBlockTagsProvider extends BlockTagsProvider {
     }
 
     private Block[] getModBlocks(Predicate<Block> predicate) {
-
-        return registry.stream().filter(UC_BLOCKS.and(predicate))
-                .sorted(Comparator.comparing(Registry.BLOCK::getKey))
+        return ForgeRegistries.BLOCKS.getValues().stream()
+                .filter(UC_BLOCKS.and(predicate))
+                .filter(block -> ForgeRegistries.BLOCKS.getKey(block) != null) // defensive check
+                .sorted(Comparator.comparing(block -> Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block))))
                 .toArray(Block[]::new);
     }
 }

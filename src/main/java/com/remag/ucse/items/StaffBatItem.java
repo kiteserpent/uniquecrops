@@ -17,7 +17,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -31,7 +30,7 @@ public class StaffBatItem extends ItemBaseUC {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
 
-        tooltip.add(new TranslatableComponent(UCStrings.TOOLTIP + "batstaff").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(UCStrings.TOOLTIP + "batstaff").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -47,7 +46,7 @@ public class StaffBatItem extends ItemBaseUC {
         boolean damage = false;
         if (stack.getItem() == this) {
             BlockPos pos = player.blockPosition();
-            List<? extends LivingEntity> entities = getEntityToErase(player.level, pos);
+            List<? extends LivingEntity> entities = getEntityToErase(player.level(), pos);
             for (LivingEntity ent : entities) {
                 if (ent != entities && !world.isClientSide) {
                     UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.WITCH, ent.getX(), ent.getY(), ent.getZ(), 4));

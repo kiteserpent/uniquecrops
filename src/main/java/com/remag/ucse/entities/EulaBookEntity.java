@@ -4,6 +4,7 @@ import com.remag.ucse.init.UCEntities;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketOpenBook;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.LivingEntity;
@@ -37,7 +38,7 @@ public class EulaBookEntity extends ThrowableProjectile implements ItemSupplier 
 
     public EulaBookEntity(LivingEntity thrower) {
 
-        super(UCEntities.THROWABLE_BOOK.get(), thrower, thrower.level);
+        super(UCEntities.THROWABLE_BOOK.get(), thrower, thrower.level());
     }
 
     @Override
@@ -46,9 +47,9 @@ public class EulaBookEntity extends ThrowableProjectile implements ItemSupplier 
     @Override
     protected void onHit(HitResult rtr) {
 
-        if (!level.isClientSide) {
+        if (!level().isClientSide) {
             AABB aabb = this.getBoundingBox().inflate(2.0D, 2.0D, 2.0D);
-            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb);
+            List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, aabb);
             for (LivingEntity elb : entities) {
                 if (elb instanceof Player) {
                     double d0 = this.distanceToSqr(elb);
@@ -62,7 +63,7 @@ public class EulaBookEntity extends ThrowableProjectile implements ItemSupplier 
             if (rtr.getType() == HitResult.Type.BLOCK) {
                 BlockPos pos = new BlockPos(((BlockHitResult)rtr).getBlockPos().relative(((BlockHitResult)rtr).getDirection()));
                 ItemStack book = new ItemStack(UCItems.BOOK_EULA.get());
-                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), book);
+                Containers.dropItemStack(level(), pos.getX(), pos.getY(), pos.getZ(), book);
             }
         }
     }
@@ -74,7 +75,7 @@ public class EulaBookEntity extends ThrowableProjectile implements ItemSupplier 
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
 
         return NetworkHooks.getEntitySpawningPacket(this);
     }

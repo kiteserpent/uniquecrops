@@ -1,7 +1,10 @@
 package com.remag.ucse.integration.patchouli;
 
+import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.core.UCUtils;
+import com.remag.ucse.crafting.RecipeMultiblock;
 import com.remag.ucse.init.UCItems;
+import com.remag.ucse.init.UCRecipes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -13,7 +16,9 @@ import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -40,7 +45,7 @@ public final class PatchouliUtils {
     public static String serialize(BlockState state) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append(state.getBlock().getRegistryName().toString());
+        sb.append(ForgeRegistries.BLOCKS.getKey(state.getBlock()));
         if (!state.getValues().isEmpty()) {
             sb.append("[");
             sb.append(state.getValues().entrySet().stream().map(PROPERTIES_COMPARABLE).collect(Collectors.joining(",")));
@@ -55,7 +60,7 @@ public final class PatchouliUtils {
             String[] split = string.split("\\[");
             split[1] = split[1].substring(0, split[1].lastIndexOf("]"));
 
-            Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(split[0]));
+            Block block = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(split[0]));
             if (block == Blocks.AIR) return Blocks.AIR.defaultBlockState();
 
             StateDefinition blockState = block.getStateDefinition();

@@ -18,7 +18,6 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
@@ -41,20 +40,20 @@ public class PrecisionAxeItem extends AxeItem implements IBookUpgradeable {
 
         if (stack.getItem() instanceof IBookUpgradeable) {
             if (((IBookUpgradeable)stack.getItem()).getLevel(stack) > -1)
-                list.add(new TextComponent(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
+                list.add(Component.literal(ChatFormatting.GOLD + "+" + ((IBookUpgradeable)stack.getItem()).getLevel(stack)));
             else
-                list.add(new TextComponent(ChatFormatting.GOLD + "Upgradeable"));
+                list.add(Component.literal(ChatFormatting.GOLD + "Upgradeable"));
         }
     }
 
     private void checkDrops(LivingDropsEvent event) {
 
-        if (!(event.getEntityLiving() instanceof Player) && event.getSource().getEntity() instanceof Player) {
-            LivingEntity el = event.getEntityLiving();
+        if (!(event.getEntity() instanceof Player) && event.getSource().getEntity() instanceof Player) {
+            LivingEntity el = event.getEntity();
             Player player = (Player)event.getSource().getEntity();
             ItemStack boots = el.getItemBySlot(EquipmentSlot.FEET);
             if (!boots.isEmpty() && player.getInventory().contains(new ItemStack(UCItems.SLIPPERGLASS.get()))) {
-                if (player.level.random.nextInt(5) == 0) {
+                if (player.level().random.nextInt(5) == 0) {
                     addDrop(event, new ItemStack(UCItems.GLASS_SLIPPERS.get()));
                     for (int i = 0; i < player.getInventory().items.size(); i++) {
                         ItemStack oneboot = player.getInventory().getItem(i);
@@ -68,7 +67,7 @@ public class PrecisionAxeItem extends AxeItem implements IBookUpgradeable {
             if (player.getMainHandItem().getItem() == this) {
                 ItemStack axe = player.getMainHandItem();
                 if (((IBookUpgradeable)axe.getItem()).isMaxLevel(axe)) {
-                    Random rand = el.level.random;
+                    Random rand = (Random) el.level().random;
                     int looting = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, player.getMainHandItem());
                     if (rand.nextInt(15) <= 2 + looting) {
                         if (el instanceof Skeleton)
@@ -87,7 +86,7 @@ public class PrecisionAxeItem extends AxeItem implements IBookUpgradeable {
 
     private void addDrop(LivingDropsEvent event, ItemStack drop) {
 
-        ItemEntity ei = new ItemEntity(event.getEntityLiving().level, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), drop);
+        ItemEntity ei = new ItemEntity(event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), drop);
         ei.setPickUpDelay(10);
         event.getDrops().add(ei);
     }

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "d": {
+      "item": "minecraft:diamond_sword"
+    },
+    "g": {
+      "item": "minecraft:golden_sword"
+    },
+    "i": {
+      "item": "minecraft:iron_sword"
+    },
+    "w": {
+      "item": "minecraft:wooden_sword"
+    }
+  },
+  "pattern": [
+    " d ",
+    "gDi",
+    " w "
+  ],
+  "result": {
+    "item": "ucse:emblem_melee"
+  },
+  "show_notification": true
+}

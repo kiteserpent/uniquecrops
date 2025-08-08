@@ -6,6 +6,8 @@ import com.remag.ucse.core.enums.EnumParticle;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,8 +33,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
@@ -47,22 +50,22 @@ public class Imperia extends BaseCropsBlock {
         MinecraftForge.EVENT_BUS.addListener(this::checkEntityDeath);
     }
 
-    private void checkDenySpawn(LivingSpawnEvent.CheckSpawn event) {
+    private void checkDenySpawn(MobSpawnEvent.FinalizeSpawn event) {
 
-        ChunkPos cPos = new ChunkPos(event.getEntityLiving().blockPosition());
-        if (!event.getWorld().isClientSide() && !event.isSpawner() && event.getEntityLiving() instanceof Monster || event.getEntityLiving() instanceof Slime) {
-            if (UCProtectionHandler.getInstance().getChunkInfo(event.getEntityLiving().level).contains(cPos))
+        ChunkPos cPos = new ChunkPos(event.getEntity().blockPosition());
+        if (!event.getLevel().isClientSide() && !event.getSpawnType().equals(MobSpawnType.SPAWNER) && event.getEntity() instanceof Monster || event.getEntity() instanceof Slime) {
+            if (UCProtectionHandler.getInstance().getChunkInfo(event.getEntity().level()).contains(cPos))
                 event.setResult(Event.Result.DENY);
         }
     }
 
     private void checkEntityDeath(LivingDeathEvent event) {
 
-        if (event.getEntityLiving() instanceof Monster) {
-            CompoundTag tag = event.getEntityLiving().getPersistentData();
+        if (event.getEntity() instanceof Monster) {
+            CompoundTag tag = event.getEntity().getPersistentData();
             if (tag.contains("ImperiaPosTag") && tag.contains("ImperiaStage")) {
                 BlockPos cropPos = NbtUtils.readBlockPos(tag.getCompound("ImperiaPosTag"));
-                Level world = event.getEntityLiving().level;
+                Level world = event.getEntity().level();
                 if (!world.isEmptyBlock(cropPos) && world.hasChunkAt(cropPos)) {
                     if (world.getBlockState(cropPos).getBlock() == this && !world.isClientSide) {
                         int stage = tag.getInt("ImperiaStage");
@@ -74,7 +77,7 @@ public class Imperia extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (isMaxAge(state)) {
@@ -82,7 +85,7 @@ public class Imperia extends BaseCropsBlock {
                 return;
             }
             String[] mobList = new String[] { "minecraft:witch", "minecraft:skeleton", "minecraft:zombie", "minecraft:spider" };
-            EntityType type = Registry.ENTITY_TYPE.get(new ResourceLocation(mobList[rand.nextInt(mobList.length)]));
+            EntityType type = ForgeRegistries.ENTITY_TYPES.getValue(ResourceLocation.tryParse(mobList[rand.nextInt(mobList.length)]));
             Entity entity = type.create(world);
             if (!(entity instanceof LivingEntity)) return;
 
@@ -130,7 +133,7 @@ public class Imperia extends BaseCropsBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         if (isMaxAge(state))
             world.addParticle(ParticleTypes.END_ROD, pos.getX() + rand.nextFloat(), pos.getY() + 0.3, pos.getZ() + rand.nextFloat(), 0, 0, 0);

@@ -3,6 +3,9 @@ package com.remag.ucse.blocks.crops;
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -14,14 +17,12 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -40,7 +41,7 @@ public class Knowledge extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (this.isMaxAge(state) || world.isClientSide) return;
 
@@ -55,36 +56,40 @@ public class Knowledge extends BaseCropsBlock {
     }
 
     private int consumeKnowledge(Level world, BlockPos pos) {
-
         AtomicInteger result = new AtomicInteger();
         Iterable<BlockPos> getBox = BlockPos.betweenClosed(pos.offset(-4, -2, -4), pos.offset(4, 2, 4));
+
         for (BlockPos posit : getBox) {
             BlockState loopState = world.getBlockState(posit);
-            if (loopState.getBlock().getEnchantPowerBonus(loopState, world, posit) >= 1F) {
-                BlockEntity te = world.getBlockEntity(posit.above());
-                if (te != null && te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN).isPresent()) {
-                    te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.DOWN).ifPresent(cap -> {
+            if (loopState.getEnchantPowerBonus(world, posit) >= 1F) {
+                BlockEntity be = world.getBlockEntity(posit.above());
+                if (be != null) {
+                    be.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.DOWN).ifPresent(cap -> {
                         for (int i = 0; i < cap.getSlots(); i++) {
                             ItemStack book = cap.getStackInSlot(i);
                             if (!book.isEmpty() && book.getItem() == Items.WRITTEN_BOOK) {
                                 CompoundTag tag = book.getTag();
-                                if (WrittenBookItem.makeSureTagIsValid(tag) && !NBTUtils.getBoolean(book, BOOKMARK, false) && WrittenBookItem.getGeneration(book) == 0) {
-                                    ListTag tagList = tag.getList("pages", 8);
+                                if (tag != null && WrittenBookItem.makeSureTagIsValid(tag)
+                                        && !NBTUtils.getBoolean(book, BOOKMARK, false)
+                                        && WrittenBookItem.getGeneration(book) == 0) {
+
+                                    ListTag tagList = tag.getList("pages", Tag.TAG_STRING);
                                     for (int j = 0; j < tagList.size(); j++) {
                                         String str = tagList.getString(j);
                                         Component text;
                                         try {
-                                            text = Component.Serializer.fromJsonLenient(str);
-
+                                            text = Component.Serializer.fromJson(str); // use strict parsing
                                         } catch (Exception e) {
                                             e.printStackTrace();
-                                            text = new TextComponent(str);
+                                            text = Component.literal(str); // fallback
                                         }
-                                        String newString = eatSomeVowels(text.getContents());
-                                        Component newComponent = new TextComponent(newString);
+
+                                        String newString = eatSomeVowels(text.getString()); // use getString(), not getContents()
+                                        Component newComponent = Component.literal(newString);
                                         tagList.set(j, StringTag.valueOf(Component.Serializer.toJson(newComponent)));
                                         result.set(j + 1);
                                     }
+
                                     tag.put("pages", tagList);
                                     NBTUtils.setBoolean(book, BOOKMARK, true);
                                 }
@@ -94,6 +99,7 @@ public class Knowledge extends BaseCropsBlock {
                 }
             }
         }
+
         return result.get();
     }
 
@@ -109,7 +115,7 @@ public class Knowledge extends BaseCropsBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level worldIn, BlockPos pos, RandomSource rand) {
 
         if (isMaxAge(state)) {
             double x = pos.getX() + rand.nextFloat();

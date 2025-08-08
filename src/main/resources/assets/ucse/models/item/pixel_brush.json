@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "ucse:items/biome_painter"
+    "layer0": "ucse:item/biome_painter"
   }
 }

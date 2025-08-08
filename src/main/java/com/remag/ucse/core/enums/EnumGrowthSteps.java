@@ -8,6 +8,7 @@ import com.remag.ucse.init.UCBlocks;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.animal.Chicken;
@@ -22,7 +23,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.Level;
@@ -200,7 +200,7 @@ public enum EnumGrowthSteps {
                 List<Entity> list = world.getEntities(chicken, aabb);
                 for (Entity entity : list) {
                     if (entity != null && entity == item) {
-                        ItemEntity ei = new ItemEntity(item.level, item.getX(), item.getY(), item.getZ(), new ItemStack(UCItems.TERIYAKI.get()));
+                        ItemEntity ei = new ItemEntity(item.level(), item.getX(), item.getY(), item.getZ(), new ItemStack(UCItems.TERIYAKI.get()));
                         ((ItemEntity)item).getItem().shrink(1);
                         if (((ItemEntity)item).getItem().getCount() <= 0)
                             item.discard();
@@ -348,7 +348,7 @@ public enum EnumGrowthSteps {
                 if (!world.isClientSide && player != null) {
                     CompoundTag tag = player.getPersistentData();
                     if (!tag.contains("hasSacrificed")) {
-                        player.sendMessage(new TextComponent(ChatFormatting.RED + "The savage plant whispers: \"The Time is right to perform a self sacrifice.\""), player.getUUID());
+                        player.sendSystemMessage(Component.literal(ChatFormatting.RED + "The savage plant whispers: \"The Time is right to perform a self sacrifice.\""));
                         tag.putBoolean("hasSacrificed", false);
                     }
                 }

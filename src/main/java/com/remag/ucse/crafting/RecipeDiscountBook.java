@@ -4,18 +4,20 @@ import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.init.UCRecipes;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 
-public class RecipeDiscountBook extends CustomRecipe {
+/* public class RecipeDiscountBook extends CustomRecipe {
 
     public RecipeDiscountBook(ResourceLocation id) {
 
-        super(id);
+        super(id, CraftingBookCategory.MISC);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class RecipeDiscountBook extends CustomRecipe {
             if (!stack.isEmpty()) {
                 if (stack.getItem() == UCItems.BOOK_DISCOUNT.get())
                     foundDiscountBook = true;
-                else if (!foundItem && !(NBTUtils.detectNBT(stack) && NBTUtils.getBoolean(stack, UCStrings.TAG_DISCOUNT, false)) && !stack.getItem().hasContainerItem(stack) && isStackValid(stack))
+                else if (!foundItem && !(NBTUtils.detectNBT(stack) && NBTUtils.getBoolean(stack, UCStrings.TAG_DISCOUNT, false)) && !stack.getItem().hasCraftingRemainingItem(stack) && isStackValid(stack))
                     foundItem = true;
                 else return false;
             }
@@ -38,7 +40,7 @@ public class RecipeDiscountBook extends CustomRecipe {
     }
 
     @Override
-    public ItemStack assemble(CraftingContainer ic) {
+    public ItemStack assemble(CraftingContainer ic, RegistryAccess registryAccess) {
 
         ItemStack item = ItemStack.EMPTY;
 
@@ -69,4 +71,4 @@ public class RecipeDiscountBook extends CustomRecipe {
 
         return stack.getItem().canBeDepleted() && !NBTUtils.getBoolean(stack, UCStrings.TAG_DISCOUNT, false);
     }
-}
+} */

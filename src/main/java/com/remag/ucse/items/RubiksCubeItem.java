@@ -7,6 +7,7 @@ import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
 import com.remag.ucse.network.PacketOpenCube;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +19,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
 
 public class RubiksCubeItem extends ItemBaseUC {
@@ -38,7 +38,7 @@ public class RubiksCubeItem extends ItemBaseUC {
                 BlockPos savedPos = ctx.getClickedPos().above();
                 if (!ctx.getLevel().isClientSide) {
                     this.savePosition(stack, rot, savedPos);
-                    ctx.getPlayer().sendMessage(new TextComponent("Teleport position saved"), ctx.getPlayer().getUUID());
+                    ctx.getPlayer().displayClientMessage(Component.literal("Teleport position saved"), false);
                 }
                 return InteractionResult.SUCCESS;
             }
@@ -88,8 +88,8 @@ public class RubiksCubeItem extends ItemBaseUC {
 
     public void teleportToPosition(Player player, int rotation, boolean teleport) {
 
-        if (player.level.dimension() != Level.OVERWORLD) {
-            player.displayClientMessage(new TextComponent("Not in the overworld!"), true);
+        if (player.level().dimension() != Level.OVERWORLD) {
+            player.displayClientMessage(Component.literal("Not in the overworld!"), true);
             return;
         }
         ItemStack stack = player.getMainHandItem();
@@ -101,10 +101,10 @@ public class RubiksCubeItem extends ItemBaseUC {
             BlockPos pos = getSavedPosition(stack, rotation);
             if (!pos.equals(BlockPos.ZERO)) {
                 player.teleportTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-                player.level.levelEvent(2003, pos, 0);
+                player.level().levelEvent(2003, pos, 0);
                 player.getCooldowns().addCooldown(this, UCConfig.COMMON.cubeCooldown.get());
             } else {
-                player.displayClientMessage(new TextComponent("No teleport position saved here!"), true);
+                player.displayClientMessage(Component.literal("No teleport position saved here!"), true);
             }
             saveRotation(stack, rotation);
         }

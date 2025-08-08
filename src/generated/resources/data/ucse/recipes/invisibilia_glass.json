@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "forge:glass"
+    },
+    "T": {
+      "item": "ucse:invisitwine"
+    }
+  },
+  "pattern": [
+    "TGT",
+    "GTG",
+    "TGT"
+  ],
+  "result": {
+    "count": 4,
+    "item": "ucse:invisibilia_glass"
+  },
+  "show_notification": true
+}

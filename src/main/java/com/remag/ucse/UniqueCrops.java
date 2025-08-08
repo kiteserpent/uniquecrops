@@ -7,13 +7,12 @@ import com.remag.ucse.core.UCWorldData;
 import com.remag.ucse.data.DataGenerators;
 import com.remag.ucse.events.UCEventHandlerCommon;
 import com.remag.ucse.init.*;
-import com.remag.ucse.integration.CuriosIntegration;
+import com.remag.ucse.integration.patchouli.PatchouliUtils;
 import com.remag.ucse.items.curios.EmblemIronStomach;
 import com.remag.ucse.items.curios.EmblemScarab;
 import com.remag.ucse.network.UCPacketHandler;
 import com.remag.ucse.proxies.ClientProxy;
 import com.remag.ucse.proxies.CommonProxy;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -35,8 +34,8 @@ public class UniqueCrops {
     public static final String MOD_ID = "ucse";
 
     public static CommonProxy proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-    public static final UCTab TAB = new UCTab();
 
+    @SuppressWarnings("removal")
     public UniqueCrops() {
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, UCConfig.CLIENT_SPEC);
@@ -48,7 +47,7 @@ public class UniqueCrops {
         bus.addListener(this::processIMC);
         UCSounds.SOUNDS.register(bus);
         UCItems.ITEMS.register(bus);
-        bus.addGenericListener(Item.class, UCItems::registerItemsButNotReally);
+        // bus.addGenericListener(Item.class, UCItems::registerItemsButNotReally);
         UCBlocks.BLOCKS.register(bus);
         UCTiles.TILES.register(bus);
         UCScreens.CONTAINERS.register(bus);
@@ -57,13 +56,14 @@ public class UniqueCrops {
         UCParticles.PARTICLE_TYPES.register(bus);
         UCFeatures.FEATURE.register(bus);
         UCPotions.POTIONS.register(bus);
-        UCRecipes.RECIPES.register(bus);
+        UCRecipes.RECIPE_SERIALIZERS.register(bus);
+        UCRecipes.RECIPE_TYPES.register(bus);
+        UCTab.CREATIVE_MODE_TABS.register(bus);
         bus.addListener(DataGenerators::gatherData);
 
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         forgeBus.addListener(UCEventHandlerCommon::onBlockInteract);
         forgeBus.addGenericListener(ItemStack.class, UCEventHandlerCommon::attachItemCaps);
-        forgeBus.addListener(UCEventHandlerCommon::onBiomeLoading);
         forgeBus.addListener(UCEventHandlerCommon::updateAnvilCost);
         forgeBus.addListener(UCEventHandlerCommon::onBonemealEvent);
         forgeBus.addListener(UCEventHandlerCommon::jumpTele);
@@ -84,7 +84,6 @@ public class UniqueCrops {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
 
-        CuriosIntegration.sendImc(event);
     }
 
     private void processIMC(final InterModProcessEvent event) {

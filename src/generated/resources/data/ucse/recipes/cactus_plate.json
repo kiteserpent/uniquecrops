@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:cactus"
+    },
+    "I": {
+      "item": "minecraft:iron_chestplate"
+    }
+  },
+  "pattern": [
+    "C C",
+    "CIC",
+    "CCC"
+  ],
+  "result": {
+    "item": "ucse:cactus_plate"
+  },
+  "show_notification": true
+}

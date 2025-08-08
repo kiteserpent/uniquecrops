@@ -15,12 +15,12 @@ import net.minecraftforge.network.simple.SimpleChannel;
 public final class UCPacketHandler {
 
     private static final String PROTOCOL = "9";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(UniqueCrops.MOD_ID, "chan"), () -> PROTOCOL, PROTOCOL::equals, PROTOCOL::equals);
+    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "chan"), () -> PROTOCOL, PROTOCOL::equals, PROTOCOL::equals);
 
     public static void init() {
         int id = 0;
         INSTANCE.registerMessage(id++, PacketSyncCap.class, PacketSyncCap::encode, PacketSyncCap::decode, PacketSyncCap::handle);
-        INSTANCE.registerMessage(id++, PacketChangeBiome.class, PacketChangeBiome::encode, PacketChangeBiome::decode, PacketChangeBiome::handle);
+        // INSTANCE.registerMessage(id++, PacketChangeBiome.class, PacketChangeBiome::encode, PacketChangeBiome::decode, PacketChangeBiome::handle);
         INSTANCE.registerMessage(id++, PacketSendKey.class, PacketSendKey::encode, PacketSendKey::decode, PacketSendKey::handle);
         INSTANCE.registerMessage(id++, PacketColorfulCube.class, PacketColorfulCube::encode, PacketColorfulCube::decode, PacketColorfulCube::handle);
         INSTANCE.registerMessage(id++, PacketUCEffect.class, PacketUCEffect::encode, PacketUCEffect::decode, PacketUCEffect::handle);
@@ -42,6 +42,6 @@ public final class UCPacketHandler {
 
     public static void sendTo(ServerPlayer playerMP, Object toSend) {
 
-        INSTANCE.sendTo(toSend, playerMP.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+        INSTANCE.sendTo(toSend, playerMP.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 }

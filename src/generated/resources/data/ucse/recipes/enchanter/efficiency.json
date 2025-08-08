@@ -1,0 +1,24 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 50,
+  "enchantment": "efficiency",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:redstone_block"
+      },
+      {
+        "item": "minecraft:redstone"
+      },
+      {
+        "item": "minecraft:redstone_block"
+      },
+      {
+        "item": "minecraft:redstone_torch"
+      },
+      {
+        "item": "minecraft:beetroot"
+      }
+    ]
+  ]
+}

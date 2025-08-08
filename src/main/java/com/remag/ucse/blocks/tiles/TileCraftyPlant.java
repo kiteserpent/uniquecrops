@@ -10,7 +10,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -72,7 +71,7 @@ public class TileCraftyPlant extends BaseTileUC implements MenuProvider {
     @Override
     public Component getDisplayName() {
 
-        return new TranslatableComponent("container.ucse.craftyplant");
+        return Component.translatable("container.ucse.craftyplant");
     }
 
     @Nullable

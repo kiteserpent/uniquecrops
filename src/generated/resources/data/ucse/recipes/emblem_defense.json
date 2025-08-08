@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:arrow"
+    },
+    "B": {
+      "item": "minecraft:bow"
+    },
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "S": {
+      "item": "minecraft:shield"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "SDS",
+    "ABA"
+  ],
+  "result": {
+    "item": "ucse:emblem_defense"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,8 @@
+{
+  "description_id": "death.attack.zombification",
+  "damage_effect": {
+    "bypass_armor": true,
+    "bypass_invulnerability": true,
+    "bypass_magic": true
+  }
+}

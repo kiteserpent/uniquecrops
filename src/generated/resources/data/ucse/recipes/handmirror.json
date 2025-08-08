@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "ucse:millenniumeye"
+    },
+    "G": {
+      "tag": "forge:glass_panes"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "  E",
+    " G ",
+    "S  "
+  ],
+  "result": {
+    "item": "ucse:handmirror"
+  },
+  "show_notification": true
+}

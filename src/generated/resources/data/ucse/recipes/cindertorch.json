@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:smooth_stone_slab"
+    },
+    "X": {
+      "item": "ucse:cinderleaf"
+    }
+  },
+  "pattern": [
+    "S",
+    "X",
+    "S"
+  ],
+  "result": {
+    "count": 4,
+    "item": "ucse:cindertorch"
+  },
+  "show_notification": true
+}

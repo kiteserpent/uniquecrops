@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:enchanted_book"
+    },
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "P": {
+      "item": "minecraft:potato"
+    }
+  },
+  "pattern": [
+    " B ",
+    "PDP",
+    " B "
+  ],
+  "result": {
+    "item": "ucse:emblem_bookworm"
+  },
+  "show_notification": true
+}

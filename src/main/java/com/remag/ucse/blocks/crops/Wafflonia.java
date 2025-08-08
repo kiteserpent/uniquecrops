@@ -2,6 +2,7 @@ package com.remag.ucse.blocks.crops;
 
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
@@ -18,14 +19,14 @@ public class Wafflonia extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (waffleAbout(world, state, pos))
             super.randomTick(state, world, pos, rand);
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         if (waffleAbout(world, state, pos))
             super.performBonemeal(world, rand, pos, state);

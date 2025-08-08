@@ -5,6 +5,10 @@ import com.remag.ucse.core.enums.EnumParticle;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +19,6 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
@@ -37,20 +40,20 @@ public class BrassKnucklesItem extends SwordItem {
 
     private void knuckleDuster(LivingAttackEvent event) {
 
-        if (event.getEntityLiving().level.isClientSide) return;
-        if (event.getEntityLiving() instanceof LivingEntity && event.getSource().getDirectEntity() instanceof Player) {
+        if (event.getEntity().level().isClientSide) return;
+        if (event.getEntity() != null && event.getSource().getDirectEntity() instanceof Player) {
             Player player = (Player)event.getSource().getDirectEntity();
             ItemStack brassKnuckles = player.getMainHandItem();
             if (brassKnuckles.getItem() == this) {
-                boolean flag = event.getSource() instanceof IndirectEntityDamageSource;
+                boolean flag = event.getSource().getDirectEntity() != event.getSource().getEntity();
                 if (flag) return;
 //                boolean flag = NBTUtils.getList(brassKnuckles, HIT_LIST, 10, true) != null && NBTUtils.getList(brassKnuckles, HIT_LIST, 10, true).isEmpty();
 //                if (!flag) return;
                 float damage = event.getAmount();
-                addHitEntity(event.getEntityLiving(), brassKnuckles, damage);
+                addHitEntity(event.getEntity(), brassKnuckles, damage);
                 event.setCanceled(true);
-                BlockPos pos = event.getEntityLiving().blockPosition();
-                UCPacketHandler.sendToNearbyPlayers(player.level, player.blockPosition(), new PacketUCEffect(EnumParticle.CRIT, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, 6));
+                BlockPos pos = event.getEntity().blockPosition();
+                UCPacketHandler.sendToNearbyPlayers(player.level(), player.blockPosition(), new PacketUCEffect(EnumParticle.CRIT, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, 6));
                 return;
             }
         }
@@ -72,7 +75,7 @@ public class BrassKnucklesItem extends SwordItem {
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return !ItemStack.isSame(oldStack, newStack);
+        return !ItemStack.isSameItem(oldStack, newStack);
     }
 
     private void addHitEntity(LivingEntity target, ItemStack stack, float damage) {
@@ -107,7 +110,12 @@ public class BrassKnucklesItem extends SwordItem {
                 LivingEntity elb = (LivingEntity)world.getEntity(nbt.getInt(HIT_ENTITY));
                 if (elb != null) {
                     float damage = nbt.getFloat(HIT_AMOUNT);
-                    elb.hurt(DamageSource.indirectMobAttack(player, player), damage);
+                    Holder<DamageType> playerDamage = player.level().registryAccess()
+                            .registryOrThrow(Registries.DAMAGE_TYPE)
+                            .getHolderOrThrow(DamageTypes.PLAYER_ATTACK);
+
+                    DamageSource source = new DamageSource(playerDamage);
+                    elb.hurt(source, damage);
                     elb.knockback(damage * 0.131F, (double) Mth.sin(player.yRotO * ((float)Math.PI / 180F)), (double)(-Mth.cos(player.yRotO * ((float)Math.PI / 180F))));
                     elb.invulnerableTime = 0;
                 }

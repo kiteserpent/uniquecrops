@@ -1,0 +1,24 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 60,
+  "enchantment": "power",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:bow"
+      },
+      {
+        "item": "minecraft:arrow"
+      },
+      {
+        "item": "minecraft:crossbow"
+      },
+      {
+        "item": "minecraft:arrow"
+      },
+      {
+        "item": "ucse:weepingtear"
+      }
+    ]
+  ]
+}

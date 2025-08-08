@@ -5,6 +5,7 @@ import com.remag.ucse.init.UCEntities;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,7 +39,7 @@ public class WeepingEyeEntity extends ThrowableProjectile implements ItemSupplie
 
     public WeepingEyeEntity(LivingEntity thrower) {
 
-        super(UCEntities.WEEPING_EYE.get(), thrower, thrower.level);
+        super(UCEntities.WEEPING_EYE.get(), thrower, thrower.level());
     }
 
     @Override
@@ -47,14 +48,14 @@ public class WeepingEyeEntity extends ThrowableProjectile implements ItemSupplie
     @Override
     protected void onHit(HitResult rtr) {
 
-        if (!level.isClientSide) {
-            BlockPos pos = new BlockPos(rtr.getLocation());
-            List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos.offset(-10, -5, -10), pos.offset(10, 5, 10)));
+        if (!level().isClientSide) {
+            BlockPos pos = new BlockPos((int) rtr.getLocation().x, (int) rtr.getLocation().y, (int) rtr.getLocation().z);
+            List<LivingEntity> entities = level().getEntitiesOfClass(LivingEntity.class, new AABB(pos.offset(-10, -5, -10), pos.offset(10, 5, 10)));
             for (LivingEntity ent : entities) {
                 if (ent.isAlive() && (ent instanceof Monster || ent instanceof Slime))
                     ent.addEffect(new MobEffectInstance(MobEffects.GLOWING, 300));
             }
-            UCPacketHandler.sendToNearbyPlayers(level, pos, new PacketUCEffect(EnumParticle.CLOUD, pos.getX() - 0.5D, pos.getY() + 0.1D, pos.getZ() - 0.5D, 5));
+            UCPacketHandler.sendToNearbyPlayers(level(), pos, new PacketUCEffect(EnumParticle.CLOUD, pos.getX() - 0.5D, pos.getY() + 0.1D, pos.getZ() - 0.5D, 5));
         }
     }
 
@@ -65,7 +66,7 @@ public class WeepingEyeEntity extends ThrowableProjectile implements ItemSupplie
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
 
         return NetworkHooks.getEntitySpawningPacket(this);
     }

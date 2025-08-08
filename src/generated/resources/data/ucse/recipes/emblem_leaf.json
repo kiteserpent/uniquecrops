@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "ucse:darkblock"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "l": {
+      "tag": "minecraft:leaves"
+    }
+  },
+  "pattern": [
+    "lLl",
+    "LDL",
+    "lLl"
+  ],
+  "result": {
+    "item": "ucse:emblem_leaf"
+  },
+  "show_notification": true
+}

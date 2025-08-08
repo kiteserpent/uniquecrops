@@ -6,6 +6,7 @@ import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.core.enums.EnumGrowthSteps;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -40,7 +41,7 @@ public class Feroxia extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (isMaxAge(state)) return;
         if (this.canIgnoreGrowthRestrictions(world, pos)) {
@@ -57,7 +58,7 @@ public class Feroxia extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, Random rand, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource rand, BlockPos pos, BlockState state) {
 
         int stage = getStage(world, pos, state);
 

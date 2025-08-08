@@ -13,34 +13,23 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 
 public class PonchoItem extends ItemArmorUC implements IBookUpgradeable {
 
     public PonchoItem() {
 
-        super(EnumArmorMaterial.PONCHO, EquipmentSlot.CHEST);
+        super(EnumArmorMaterial.PONCHO, Type.CHESTPLATE);
         MinecraftForge.EVENT_BUS.addListener(this::checkSetTarget);
     }
 
-    @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player) {
+    private void checkSetTarget(LivingChangeTargetEvent event) {
 
-        player.flyingSpeed = (0.025F + 1 * 0.02F);
-        if (player.getDeltaMovement().y < -0.175F && !player.isOnGround() && !player.getAbilities().flying && !player.isCrouching()) {
-            float fallVel = -0.175F;
-            player.setDeltaMovement(player.getDeltaMovement().x, fallVel, player.getDeltaMovement().z);
-            player.fallDistance = 0;
-        }
-    }
-
-    private void checkSetTarget(LivingSetAttackTargetEvent event) {
-
-        if (event.getTarget() == null) return;
-        if (!(event.getTarget() instanceof Player) || event.getTarget() instanceof FakePlayer) return;
+        if (event.getNewTarget() == null) return;
+        if (!(event.getNewTarget() instanceof Player) || event.getNewTarget() instanceof FakePlayer) return;
         if (!(event.getEntity() instanceof Mob)) return;
 
-        Player player = (Player)event.getTarget();
+        Player player = (Player)event.getNewTarget();
         Mob ent = (Mob)event.getEntity();
         if (player.getEffect(UCPotions.IGNORANCE.get()) != null) {
             ent.setTarget(null);

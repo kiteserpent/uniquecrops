@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ucse:boiled_milk"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "ucse:seeddyeius"
+    }
+  ],
+  "result": {
+    "item": "ucse:yogurt"
+  }
+}

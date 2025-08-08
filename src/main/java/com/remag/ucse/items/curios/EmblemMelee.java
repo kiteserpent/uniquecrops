@@ -9,6 +9,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import com.google.common.collect.Multimap;
 
+@SuppressWarnings("ALL")
 public class EmblemMelee extends ItemCurioUC {
 
     @Override

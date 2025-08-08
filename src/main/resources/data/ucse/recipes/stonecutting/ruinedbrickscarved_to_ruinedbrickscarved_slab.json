@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "ucse:ruinedbrickscarved"
-  },
-  "result": "ucse:ruinedbrickscarved_slab",
-  "count": 2
-}

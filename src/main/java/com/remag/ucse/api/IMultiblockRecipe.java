@@ -2,6 +2,7 @@ package com.remag.ucse.api;
 
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.crafting.RecipeMultiblock;
+import com.remag.ucse.init.UCRecipes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -11,12 +12,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
+import java.util.Objects;
 
 public interface IMultiblockRecipe extends Recipe<Container> {
 
-    ResourceLocation RES = new ResourceLocation(UniqueCrops.MOD_ID, "multiblock");
+    ResourceLocation RES = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "multiblock");
 
     boolean match(Level world, BlockPos originBlock);
     boolean isOriginBlock(BlockState state);
@@ -29,9 +33,9 @@ public interface IMultiblockRecipe extends Recipe<Container> {
     void setResult(Level world, BlockPos originBlock);
 
     @Override
-    default RecipeType<?> getType() {
+    default @NotNull RecipeType<?> getType() {
 
-        return Registry.RECIPE_TYPE.getOptional(RES).get();
+        return UCRecipes.MULTIBLOCK_TYPE.get();
     }
 
     @Override
@@ -41,21 +45,9 @@ public interface IMultiblockRecipe extends Recipe<Container> {
     }
 
     @Override
-    default ItemStack assemble(Container inv) {
-
-        return ItemStack.EMPTY;
-    }
-
-    @Override
     default boolean canCraftInDimensions(int width, int height) {
 
         return false;
-    }
-
-    @Override
-    default ItemStack getResultItem() {
-
-        return ItemStack.EMPTY;
     }
 
     @Override

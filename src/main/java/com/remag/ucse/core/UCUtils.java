@@ -7,11 +7,14 @@ import com.remag.ucse.network.PacketChangeBiome;
 import com.remag.ucse.network.UCPacketHandler;
 import com.google.gson.JsonArray;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ChunkHolder;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.block.Block;
@@ -40,11 +43,15 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.chunk.PalettedContainer;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -121,29 +128,30 @@ public class UCUtils {
         return map;
     }
 
-    public static BlockEntity getClosestTile(Class<?> tileToFind, Level world, BlockPos pos, double dist) {
+    private static final Set<BlockEntity> tracked = ConcurrentHashMap.newKeySet();
 
+    public static void register(BlockEntity tile) {
+        tracked.add(tile);
+    }
+
+    public static void unregister(BlockEntity tile) {
+        tracked.remove(tile);
+    }
+
+    public static BlockEntity getClosest(BlockPos pos, double maxDistSqr, Class<?> clazz) {
         BlockEntity closest = null;
-        ChunkPos cPos = new ChunkPos(pos);
-
-        if (world.getChunkSource() instanceof ServerChunkCache cache) {
-            for (ChunkHolder holder : cache.chunkMap.getChunks()) {
-                if (holder.getFullChunk() == null) continue;
-                if (cPos.getChessboardDistance(holder.getPos()) >= (dist / 4)) continue;
-                for (Map.Entry<BlockPos, BlockEntity> entries : holder.getFullChunk().getBlockEntities().entrySet()) {
-                    BlockEntity tile = entries.getValue();
-                    if (tile.getClass() == tileToFind && !pos.equals(entries.getKey())) {
-                        double distance = tile.getBlockPos().distSqr(pos);
-                        if (distance <= dist) {
-                            closest = tile;
-                            break;
-                        }
-                    }
+        for (BlockEntity tile : tracked) {
+            if (clazz.isInstance(tile) && !tile.getBlockPos().equals(pos)) {
+                double dist = tile.getBlockPos().distSqr(pos);
+                if (dist <= maxDistSqr) {
+                    closest = tile;
+                    maxDistSqr = dist;
                 }
             }
         }
         return closest;
     }
+
 
     public static ListTag getServerTaglist(UUID uuid) {
 
@@ -172,10 +180,10 @@ public class UCUtils {
         return inv;
     }
 
-    public static void drawSplitString(PoseStack ms, Font font, Component text, float x, float y, int wordWrap, int color) {
-
-        for (FormattedCharSequence proc : font.split(text, wordWrap)) {
-            font.drawShadow(ms, proc, x, y, color);
+    public static void drawSplitString(GuiGraphics guiGraphics, Font font, Component text, float x, float y, int wordWrap, int color) {
+        List<FormattedCharSequence> lines = font.split(text, wordWrap);
+        for (FormattedCharSequence line : lines) {
+            guiGraphics.drawString(font, line, (int) x, (int) y, color, true);
             y += font.lineHeight;
         }
     }
@@ -222,38 +230,47 @@ public class UCUtils {
     }
 
     public static boolean setBiome(ResourceLocation biomeId, Level world, BlockPos pos) {
-
         if (world.isClientSide()) return false;
 
-        ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, biomeId);
+        ResourceKey<Biome> key = ResourceKey.create(Registries.BIOME, biomeId);
+        Holder<Biome> biome = world.registryAccess()
+                .registryOrThrow(Registries.BIOME)
+                .getHolderOrThrow(key);
 
         if (world.getBiome(pos).is(key)) return false;
-        Holder<Biome> biome = world.registryAccess().ownedRegistryOrThrow(Registry.BIOME_REGISTRY).getHolderOrThrow(key);
-
-        int minY = QuartPos.fromBlock(world.getMinBuildHeight());
-        int maxY = minY + QuartPos.fromBlock(world.getHeight()) - 1;
 
         int x = QuartPos.fromBlock(pos.getX());
+        int y = QuartPos.fromBlock(pos.getY());
         int z = QuartPos.fromBlock(pos.getZ());
 
-        LevelChunk chunkAt = world.getChunk(pos.getX() >> 4, pos.getZ() >> 4);
-        for (LevelChunkSection section : chunkAt.getSections()) {
-            for (int dy = 0; dy < 16; dy += 4) {
-                int y = Mth.clamp(QuartPos.fromBlock(dy), minY, maxY);
-                if (section.getBiomes().get(x & 3, y & 3, z & 3).is(key)) continue;
+        LevelChunk chunk = (LevelChunk) world.getChunk(pos);
+        LevelChunkSection[] sections = chunk.getSections();
 
-                section.getBiomes().set(x & 3, y & 3, z & 3, biome);
-            }
-        }
-        if (!chunkAt.isUnsaved())
-            chunkAt.setUnsaved(true);
+        int quartX = x & 3;
+        int quartY = y & 3;
+        int quartZ = z & 3;
 
-        if (world instanceof ServerLevel) {
+        int sectionIndex = (QuartPos.fromBlock(pos.getY()) - QuartPos.fromBlock(world.getMinBuildHeight())) / 4;
+        if (sectionIndex < 0 || sectionIndex >= sections.length) return false;
+
+        LevelChunkSection section = sections[sectionIndex];
+        PalettedContainer<Holder<Biome>> biomes = (PalettedContainer<Holder<Biome>>) section.getBiomes();
+
+        Holder<Biome> current = biomes.get(quartX, quartY, quartZ);
+        if (current.is(key)) return false;
+
+        biomes.set(quartX, quartY, quartZ, biome);
+
+        chunk.setUnsaved(true);
+
+        if (world instanceof ServerLevel serverLevel) {
             PacketChangeBiome msg = new PacketChangeBiome(pos, biomeId);
-            UCPacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunkAt), msg);
+            UCPacketHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), msg);
         }
+
         return true;
     }
+
 
     public static <T extends Recipe<C>, C extends Container> Collection<T> loadType(RecipeType<T> type) {
 
@@ -274,12 +291,12 @@ public class UCUtils {
         return list;
     }
 
-    public static <T> T selectRandom(Random rand, T[] type) {
+    public static <T> T selectRandom(RandomSource rand, T[] type) {
 
         return type[rand.nextInt(type.length)];
     }
 
-    public static <T> T selectRandom(Random rand, List<T> list) {
+    public static <T> T selectRandom(RandomSource rand, List<T> list) {
 
         return list.get(rand.nextInt(list.size()));
     }

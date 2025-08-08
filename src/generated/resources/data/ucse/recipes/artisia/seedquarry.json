@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "ingredients": [
+    {
+      "item": "ucse:seedhexis"
+    },
+    {
+      "item": "ucse:seedpetramia"
+    },
+    {
+      "item": "ucse:seedhexis"
+    },
+    {
+      "item": "ucse:seedpetramia"
+    },
+    {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    {
+      "item": "ucse:seedpetramia"
+    },
+    {
+      "item": "ucse:seedhexis"
+    },
+    {
+      "item": "ucse:seedpetramia"
+    },
+    {
+      "item": "ucse:seedhexis"
+    }
+  ],
+  "output": {
+    "item": "ucse:seedquarry"
+  }
+}

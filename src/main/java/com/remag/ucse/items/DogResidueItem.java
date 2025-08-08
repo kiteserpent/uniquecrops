@@ -2,11 +2,11 @@ package com.remag.ucse.items;
 
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
 
 public class DogResidueItem extends ItemBaseUC {
@@ -30,9 +30,9 @@ public class DogResidueItem extends ItemBaseUC {
             }
             if (!world.isClientSide) {
                 if (canFill)
-                    player.sendMessage(new TextComponent("The rest of your inventory filled up with dog residue."), player.getUUID());
+                    player.sendSystemMessage(Component.literal("The rest of your inventory filled up with dog residue."));
                 else
-                    player.sendMessage(new TextComponent("You finished using it. An uneasy silence fills the room."), player.getUUID());
+                    player.sendSystemMessage(Component.literal("You finished using it. An uneasy silence fills the room."));
             }
             return InteractionResultHolder.success(player.getMainHandItem());
         }

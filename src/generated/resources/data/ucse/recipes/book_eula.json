@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "L": {
+      "item": "ucse:legalstuff"
+    }
+  },
+  "pattern": [
+    " L ",
+    "LBL",
+    " L "
+  ],
+  "result": {
+    "item": "ucse:book_eula"
+  },
+  "show_notification": true
+}

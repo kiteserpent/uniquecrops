@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "M": {
+      "item": "minecraft:melon_seeds"
+    },
+    "N": {
+      "item": "ucse:seednormal"
+    },
+    "P": {
+      "item": "minecraft:pumpkin_seeds"
+    },
+    "W": {
+      "item": "minecraft:wheat_seeds"
+    }
+  },
+  "pattern": [
+    " N ",
+    "WBM",
+    " P "
+  ],
+  "result": {
+    "item": "ucse:book_guide"
+  },
+  "show_notification": true
+}

@@ -25,9 +25,8 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,14 +40,30 @@ public class UCClient {
 
     @SubscribeEvent
     public static void init(FMLClientSetupEvent event) {
-
         registerRenderTypes();
         registerScreens();
-        registerKeys();
         event.enqueueWork(UCClient::registerColorHandler);
         event.enqueueWork(UCClient::registerPropertyGetters);
+        event.enqueueWork(() -> {
+            Minecraft.getInstance().particleEngine.register(
+                    UCParticles.SPARK.get(),
+                    SparkFX.Factory::new
+            );
+        });
     }
 
+    @SubscribeEvent
+    public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
+        PIXEL_GLASSES = new KeyMapping(
+                "key.ucse.pixelglasses",                      // Translation key
+                KeyConflictContext.IN_GAME,                   // When the keybinding is active
+                InputConstants.getKey(GLFW.GLFW_KEY_V, 0),    // Default key
+                "key.categories.uc"                           // Category
+        );
+        event.register(PIXEL_GLASSES);
+    }
+
+    @SuppressWarnings("removal")
     private static void registerRenderTypes() {
 
         for (Block block : UCBlocks.CROPS)
@@ -78,17 +93,11 @@ public class UCClient {
         MenuScreens.register(UCScreens.CRAFTYPLANT.get(), GuiCraftyPlant::new);
     }
 
-    private static void registerKeys() {
-
-        PIXEL_GLASSES = new KeyMapping("key.ucse.pixelglasses", KeyConflictContext.IN_GAME, InputConstants.getKey(GLFW.GLFW_KEY_V, 0), "key.uc.pixelglasses");
-        ClientRegistry.registerKeyBinding(UCClient.PIXEL_GLASSES);
-    }
-
     private static void registerPropertyGetters() {
 
-        registerPropertyGetter(UCItems.DIAMONDS.get(), new ResourceLocation(UniqueCrops.MOD_ID, "diamonds"),
+        registerPropertyGetter(UCItems.DIAMONDS.get(), ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "diamonds"),
                 (stack, world, entity, seed) -> NBTUtils.getInt(stack, UCStrings.TAG_DIAMONDS, 0));
-        registerPropertyGetter(UCItems.IMPACT_SHIELD.get(), new ResourceLocation(UniqueCrops.MOD_ID, "blocking"),
+        registerPropertyGetter(UCItems.IMPACT_SHIELD.get(), ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "blocking"),
                 (stack, world, entity, seed) -> (entity != null && entity.getUseItem() == stack) ? 1.0F : 0.0F);
     }
 
@@ -115,7 +124,7 @@ public class UCClient {
             return 0xffffff;
         }, UCItems.POTION_ENNUI.get(), UCItems.POTION_IGNORANCE.get(), UCItems.POTION_REVERSE.get(), UCItems.POTION_ZOMBIFICATION.get());
 
-        DyeUtils.BONEMEAL_DYE.forEach((key, value) -> ic.register((stack, tintIndex) -> tintIndex == 0 ? key.getMaterialColor().col : -1, value.asItem()));
+        DyeUtils.BONEMEAL_DYE.forEach((key, value) -> ic.register((stack, tintIndex) -> tintIndex == 0 ? key.getMapColor().col : -1, value.asItem()));
     }
 
     @SubscribeEvent
@@ -155,9 +164,4 @@ public class UCClient {
         });
     }
 
-    @SubscribeEvent
-    public static void registerParticles(ParticleFactoryRegisterEvent event) {
-
-        Minecraft.getInstance().particleEngine.register(UCParticles.SPARK.get(), SparkFX.Factory::new);
-    }
 }

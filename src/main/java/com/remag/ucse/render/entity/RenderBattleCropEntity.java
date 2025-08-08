@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class RenderBattleCropEntity extends MobRenderer<BattleCropEntity, ModelBattleCrop> {
 
-    private static final ResourceLocation CROP_TEXTURE = new ResourceLocation(UniqueCrops.MOD_ID, "textures/models/entity/model_original.png");
+    private static final ResourceLocation CROP_TEXTURE = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/models/entity/model_original.png");
 
     public RenderBattleCropEntity(EntityRendererProvider.Context ctx) {
 

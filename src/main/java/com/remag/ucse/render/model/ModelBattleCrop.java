@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ModelBattleCrop extends EntityModel<BattleCropEntity> {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(UniqueCrops.MOD_ID, "modelbattlecrop"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "modelbattlecrop"), "main");
 
     private final ModelPart crop1;
     private final ModelPart crop2;

@@ -4,6 +4,7 @@ import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.BaseSuperCropsBlock;
 import com.remag.ucse.blocks.tiles.TileItero;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -30,7 +31,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 
 import java.util.Random;
 
@@ -56,7 +57,7 @@ public class Itero extends BaseSuperCropsBlock implements EntityBlock {
         if (event.getState().getBlock() == Blocks.STONE_PRESSURE_PLATE) {
             if (event.getState().getValue(PressurePlateBlock.POWERED)) {
                 for (BlockPos loopPos : TileItero.PLATES) {
-                    BlockEntity tile = event.getWorld().getBlockEntity(event.getPos().subtract(loopPos));
+                    BlockEntity tile = event.getLevel().getBlockEntity(event.getPos().subtract(loopPos));
                     if (tile instanceof TileItero) {
                         ((TileItero)tile).matchCombo(event.getPos());
                         break;
@@ -116,7 +117,7 @@ public class Itero extends BaseSuperCropsBlock implements EntityBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         if (rand.nextInt(2) == 0) {
             BlockEntity tile = world.getBlockEntity(pos);

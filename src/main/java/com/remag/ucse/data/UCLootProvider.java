@@ -37,7 +37,6 @@ import java.util.function.Function;
 
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
@@ -49,8 +48,9 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.predicates.TimeCheck;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraftforge.registries.ForgeRegistries;
 
-public class UCLootProvider implements DataProvider {
+/* public class UCLootProvider {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final LootItemCondition.Builder SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))));
@@ -175,38 +175,6 @@ public class UCLootProvider implements DataProvider {
         .withPool(seed(UCItems.DYEIUS_SEED.get())));
     }
 
-    @Override
-    public void run(HashCache cache) throws IOException {
-
-        Map<ResourceLocation, LootTable.Builder> tables = new HashMap<>();
-
-        for (Block block : Registry.BLOCK) {
-            ResourceLocation id = Registry.BLOCK.getKey(block);
-
-            if (!id.getNamespace().equals(UniqueCrops.MOD_ID)) continue;
-            if (block == UCBlocks.FLYWOOD_LEAVES.get()) continue;
-            if (block == UCBlocks.DUMMY_CROP.get()) continue;
-
-//            if (block instanceof BaseCropsBlock && (block != UCBlocks.DYEIUS_CROP.get() || block != UCBlocks.NORMAL_CROP.get())) {
-//                if (((BaseCropsBlock)block).isIncludeSeed())
-//                    functionTable.put(block, UCLootProvider::genCropsWithBonus);
-//                else
-//                    functionTable.put(block, UCLootProvider::genCrops);
-//            }
-            Function<Block, LootTable.Builder> func = functionTable.getOrDefault(block, UCLootProvider::genRegular);
-            tables.put(id, func.apply(block));
-        }
-        for (Map.Entry<ResourceLocation, LootTable.Builder> e : tables.entrySet()) {
-            Path path = getPath(gen.getOutputFolder(), e.getKey());
-            DataProvider.save(GSON, cache, LootTables.serialize(e.getValue().setParamSet(LootContextParamSets.BLOCK).build()), path);
-        }
-    }
-
-    private static Path getPath(Path root, ResourceLocation id) {
-
-        return root.resolve("data/" + id.getNamespace() + "/loot_tables/blocks/" + id.getPath() + ".json");
-    }
-
     private static LootTable.Builder genCrops(Block block) {
 
         LootItemCondition.Builder condition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseCropsBlock.AGE, ((BaseCropsBlock)block).getHarvestAge()));
@@ -316,4 +284,4 @@ public class UCLootProvider implements DataProvider {
             return null;
         }
     }
-}
+} */

@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "ingredients": [
+    {
+      "item": "ucse:seedweepingbells"
+    },
+    {
+      "item": "ucse:seedknowledge"
+    },
+    {
+      "item": "ucse:seedweepingbells"
+    },
+    {
+      "item": "ucse:seedknowledge"
+    },
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "item": "ucse:seedknowledge"
+    },
+    {
+      "item": "ucse:seedweepingbells"
+    },
+    {
+      "item": "ucse:seedknowledge"
+    },
+    {
+      "item": "ucse:seedweepingbells"
+    }
+  ],
+  "output": {
+    "item": "ucse:seedferoxia"
+  }
+}

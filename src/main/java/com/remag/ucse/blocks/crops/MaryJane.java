@@ -2,6 +2,7 @@ package com.remag.ucse.blocks.crops;
 
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -59,14 +60,14 @@ public class MaryJane extends BaseCropsBlock {
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, Random random, BlockPos blockPos, BlockState blockState) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos blockPos, BlockState blockState) {
 
         return world.dimensionType().ultraWarm();
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         if (isMaxAge(state))
             world.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.85, pos.getZ() + 0.5, 0.0D, 0.0D, 0.0D);

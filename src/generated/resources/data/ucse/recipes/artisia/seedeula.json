@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "ingredients": [
+    {
+      "item": "ucse:seedcobblonia"
+    },
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "ucse:seedcobblonia"
+    },
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "ucse:seedcobblonia"
+    },
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "ucse:seedcobblonia"
+    }
+  ],
+  "output": {
+    "item": "ucse:seedeula"
+  }
+}

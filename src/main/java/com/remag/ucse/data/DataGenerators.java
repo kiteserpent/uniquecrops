@@ -1,31 +1,34 @@
 package com.remag.ucse.data;
 
-import com.remag.ucse.data.recipes.MultiblockProvider;
+import com.remag.ucse.data.recipes.*;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
+
+import java.util.concurrent.CompletableFuture;
+
 
 public class DataGenerators {
 
     public static void gatherData(GatherDataEvent event) {
 
-        ExistingFileHelper helper = event.getExistingFileHelper();
+        DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         if (event.includeServer()) {
-//            event.getGenerator().addProvider(new UCLootProvider(event.getGenerator()));
-//            BlockTagsProvider blockTagsProvider = new UCBlockTagsProvider(event.getGenerator(), helper);
-//            event.getGenerator().addProvider(blockTagsProvider);
-//            event.getGenerator().addProvider(new UCItemTagsProvider(event.getGenerator(), blockTagsProvider, helper));
-//            event.getGenerator().addProvider(new UCAdvancementProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new SmeltingProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new StoneCuttingProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new UCRecipeProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new ArtisiaProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new HourglassProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new EnchanterProvider(event.getGenerator()));
-//            event.getGenerator().addProvider(new HeaterProvider(event.getGenerator()));
-            event.getGenerator().addProvider(new MultiblockProvider(event.getGenerator()));
+            // generator.addProvider(true, new UCLootProvider(generator));
+            UCBlockTagsProvider blockTagGenerator = generator.addProvider(event.includeServer(),
+                    new UCBlockTagsProvider(packOutput, lookupProvider, existingFileHelper));
+            generator.addProvider(event.includeServer(), new UCItemTagsProvider(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
+            generator.addProvider(true, new UCAdvancementProvider(generator, lookupProvider, existingFileHelper));
+            generator.addProvider(true, new UCRecipeProvider(generator));
         }
         if (event.includeClient()) {
-//            event.getGenerator().addProvider(new UCBlockStateProvider(event.getGenerator(), helper));
+            generator.addProvider(true, new UCBlockStateProvider(generator, existingFileHelper));
         }
     }
 }

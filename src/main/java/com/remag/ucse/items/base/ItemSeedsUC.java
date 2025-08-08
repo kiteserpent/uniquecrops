@@ -9,7 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -32,11 +31,11 @@ public class ItemSeedsUC extends ItemNameBlockItem {
         boolean flag = Screen.hasShiftDown();
 
         if (flag) {
-            list.add(new TextComponent("Bonemealable: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isBonemealable())));
-            list.add(new TextComponent("Click Harvest: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isClickHarvest())));
-            list.add(new TextComponent("Ignores Growth Restrictions: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isIgnoreGrowthRestrictions())));
+            list.add(Component.literal("Bonemealable: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isBonemealable())));
+            list.add(Component.literal("Click Harvest: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isClickHarvest())));
+            list.add(Component.literal("Ignores Growth Restrictions: ").withStyle(ChatFormatting.GRAY).append(tf(getCrop().isIgnoreGrowthRestrictions())));
         } else
-            list.add(new TextComponent("<Press Shift>").withStyle(ChatFormatting.GRAY));
+            list.add(Component.literal("<Press Shift>").withStyle(ChatFormatting.GRAY));
     }
 
     private BaseCropsBlock getCrop() {
@@ -46,7 +45,7 @@ public class ItemSeedsUC extends ItemNameBlockItem {
 
     private Component tf(boolean flag) {
 
-        return new TextComponent(String.valueOf(flag)).withStyle(flag ? ChatFormatting.GREEN : ChatFormatting.RED);
+        return Component.literal(String.valueOf(flag)).withStyle(flag ? ChatFormatting.GREEN : ChatFormatting.RED);
     }
 
     @Override

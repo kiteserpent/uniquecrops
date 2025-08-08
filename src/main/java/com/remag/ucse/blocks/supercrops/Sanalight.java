@@ -4,12 +4,13 @@ import com.remag.ucse.blocks.BaseSuperCropsBlock;
 import com.remag.ucse.init.UCBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class Sanalight extends BaseSuperCropsBlock {
 
     public Sanalight() {
 
-        super(Properties.of(Material.DECORATION).noCollission().instabreak().sound(SoundType.CROP).lightLevel((func) -> 15));
+        super(Properties.of().noCollission().instabreak().sound(SoundType.CROP).lightLevel((func) -> 15).mapColor(MapColor.PLANT));
     }
 
     @Override
@@ -39,12 +40,12 @@ public class Sanalight extends BaseSuperCropsBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         glowUp(world, pos, rand);
     }
 
-    private void glowUp(ServerLevel world, BlockPos pos, Random rand) {
+    private void glowUp(ServerLevel world, BlockPos pos, RandomSource rand) {
 
         int x = pos.getX() + rand.nextInt(16) - rand.nextInt(16);
         int y = pos.getY() + rand.nextInt(8) - rand.nextInt(8);

@@ -1,9 +1,0 @@
-{
-  "type": "ucse:hourglass",
-  "input": {
-    "name": "minecraft:red_terracotta"
-  },
-  "output": {
-    "name": "ucse:ruinedbricksred"
-  }
-}

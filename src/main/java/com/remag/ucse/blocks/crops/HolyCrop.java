@@ -2,6 +2,11 @@ package com.remag.ucse.blocks.crops;
 
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.MobType;
@@ -40,13 +45,18 @@ public class HolyCrop extends BaseCropsBlock {
             }
             if (((LivingEntity)entity).getMobType() == MobType.UNDEAD) {
                 entity.setSecondsOnFire(2);
-                entity.hurt(DamageSource.MAGIC, blessed ? 3.0F : 1.5F);
+                Holder<DamageType> magicDamage = world.registryAccess()
+                        .registryOrThrow(Registries.DAMAGE_TYPE)
+                        .getHolderOrThrow(DamageTypes.MAGIC);
+
+                DamageSource source = new DamageSource(magicDamage);
+                entity.hurt(source, blessed ? 3.0F : 1.5F);
             }
         }
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
 
         // NO-OP
     }

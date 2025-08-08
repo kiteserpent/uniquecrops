@@ -1,11 +1,12 @@
 package com.remag.ucse.items;
 
+import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.items.base.ItemBaseUC;
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +21,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import javax.annotation.Nullable;
@@ -42,23 +44,25 @@ public class GuideBookItem extends ItemBaseUC {
     public static Component getEdition() {
 
         try {
-            return PatchouliAPI.get().getSubtitle(Registry.ITEM.getKey(UCItems.BOOK_GUIDE.get()));
+            return PatchouliAPI.get().getSubtitle(ForgeRegistries.ITEMS.getKey(UCItems.BOOK_GUIDE.get()));
         } catch (IllegalArgumentException e) {
-            return new TextComponent("");
+            return Component.literal("");
         }
 //        return PatchouliAPI.get().getSubtitle(UCItems.BOOK_GUIDE.getId());
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
 
-        ItemStack stack = player.getMainHandItem();
-
-        if (player instanceof ServerPlayer) {
-            ServerPlayer sPlayer = (ServerPlayer)player;
-            PatchouliAPI.get().openBookGUI(sPlayer, UCItems.BOOK_GUIDE.getId());
+        if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            // Use the ResourceLocation ID of the Patchouli book, not the item ID
+            ResourceLocation bookId = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "book_guide");
+            PatchouliAPI.get().openBookGUI(serverPlayer, bookId);
+            return InteractionResultHolder.consume(stack); // Server consumed action
         }
-        return InteractionResultHolder.success(stack);
+
+        return InteractionResultHolder.pass(stack); // Pass on client or if not server player
     }
 
     @Override
@@ -78,6 +82,6 @@ public class GuideBookItem extends ItemBaseUC {
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return !ItemStack.isSame(oldStack, newStack);
+        return !ItemStack.isSameItem(oldStack, newStack);
     }
 }

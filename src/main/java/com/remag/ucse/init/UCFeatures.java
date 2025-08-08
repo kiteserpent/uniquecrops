@@ -5,23 +5,23 @@ import com.remag.ucse.core.UCOreHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.SectionPos;
-import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.features.OreFeatures;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.BulkSectionAccess;
 import net.minecraft.world.level.chunk.LevelChunkSection;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -30,29 +30,27 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.BitSet;
-import java.util.Random;
 
 public class UCFeatures {
 
     public static final DeferredRegister<Feature<?>> FEATURE = DeferredRegister.create(ForgeRegistries.FEATURES, UniqueCrops.MOD_ID);
 
     public static final RegistryObject<UCOreFeature> UC_ORE_FEATURE = FEATURE.register("uc_ore", UCOreFeature::new);
-    public static Holder<PlacedFeature> ORE_PIXELGEN;
+    // public static Holder<PlacedFeature> ORE_PIXELGEN;
     public static Holder<ConfiguredFeature<TreeConfiguration, ?>> FLYWOOD;
 
     public static void registerOre() {
 
-        OreConfiguration pixelOreConfig = new OreConfiguration(OreFeatures.NATURAL_STONE, UCBlocks.CINDER_TORCH.get().defaultBlockState(), 1);
-        ORE_PIXELGEN = PlacementUtils.register("invisibleore", Holder.direct(new ConfiguredFeature<>(UC_ORE_FEATURE.get(), pixelOreConfig)),
+        OreConfiguration pixelOreConfig = new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), UCBlocks.CINDER_TORCH.get().defaultBlockState(), 1);
+        /*ORE_PIXELGEN = PlacementUtils.register("invisibleore", Holder.direct(new ConfiguredFeature<>(UC_ORE_FEATURE.get(), pixelOreConfig)),
                 CountPlacement.of(1),
                 InSquarePlacement.spread(),
                 BiomeFilter.biome(),
                 HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(30))
                 );
-        FLYWOOD = FeatureUtils.register("flywood", Feature.TREE, createFlywood().build());
+        FLYWOOD = FeatureUtils.register("flywood", Feature.TREE, createFlywood().build());*/
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createFlywood() {
@@ -67,11 +65,10 @@ public class UCFeatures {
 
     public static class FlywoodTreeGrower extends AbstractTreeGrower {
 
-        @Nullable
         @Override
-        protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random rand, boolean largeHive) {
+        protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand, boolean largeHive) {
 
-            return FLYWOOD;
+            return null; //FLYWOOD;
         }
     }
 
@@ -84,7 +81,7 @@ public class UCFeatures {
 
         // copied from OreFeature, with a few small changes..
         @Override
-        protected boolean doPlace(WorldGenLevel p_66533_, Random p_66534_, OreConfiguration p_66535_, double p_66536_, double p_66537_, double p_66538_, double p_66539_, double p_66540_, double p_66541_, int p_66542_, int p_66543_, int p_66544_, int p_66545_, int p_66546_) {
+        protected boolean doPlace(WorldGenLevel p_66533_, RandomSource p_66534_, OreConfiguration p_66535_, double p_66536_, double p_66537_, double p_66538_, double p_66539_, double p_66540_, double p_66541_, int p_66542_, int p_66543_, int p_66544_, int p_66545_, int p_66546_) {
             int i = 0;
             BitSet bitset = new BitSet(p_66545_ * p_66546_ * p_66545_);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();

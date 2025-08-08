@@ -15,13 +15,13 @@ public class EmblemPacifism extends ItemCurioUC {
     private void noDamage(LivingAttackEvent event) {
 
         Player player = null;
-        if (event.getEntityLiving() instanceof Player) player = (Player)event.getEntityLiving();
+        if (event.getEntity() instanceof Player) player = (Player)event.getEntity();
         if (event.getSource().getDirectEntity() instanceof Player) player = (Player)event.getSource().getDirectEntity();
         if (player == null) return;
 
         if (!hasCurio(player)) return;
 
-        if (event.getEntityLiving() instanceof Player && event.getSource().getDirectEntity() != null || event.getSource().getDirectEntity() == player)
+        if (event.getEntity() instanceof Player && event.getSource().getDirectEntity() != null || event.getSource().getDirectEntity() == player)
             event.setCanceled(true);
     }
 }

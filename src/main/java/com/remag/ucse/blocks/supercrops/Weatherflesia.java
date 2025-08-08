@@ -6,6 +6,7 @@ import com.remag.ucse.core.NBTUtils;
 import com.remag.ucse.core.UCStrings;
 import com.remag.ucse.core.enums.EnumDirectional;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -26,6 +27,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
@@ -58,7 +60,7 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
             ItemStack stack = player.getItemInHand(hand);
             if (stack.getItem() == UCItems.PIXEL_BRUSH.get() && !player.isCrouching()) {
                 Biome biome = world.getBiome(pos).value();
-                String biomeId = biome.getRegistryName().toString();
+                String biomeId = ForgeRegistries.BIOMES.getKey(biome).toString();
                 NBTUtils.setString(stack, UCStrings.TAG_BIOME, biomeId);
                 weather.setBrush(stack);
                 player.setItemInHand(hand, ItemStack.EMPTY);
@@ -97,7 +99,7 @@ public class Weatherflesia extends BaseSuperCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileWeatherflesia) {

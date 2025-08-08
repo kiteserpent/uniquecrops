@@ -18,19 +18,19 @@ public class PotionEnnui extends MobEffect {
 
     private void onPlayerJump(LivingEvent.LivingJumpEvent event) {
 
-        if (event.getEntityLiving().getEffect(this) != null)
-            event.getEntityLiving().setDeltaMovement(event.getEntityLiving().getDeltaMovement().x, 0, event.getEntityLiving().getDeltaMovement().z);
+        if (event.getEntity().getEffect(this) != null)
+            event.getEntity().setDeltaMovement(event.getEntity().getDeltaMovement().x, 0, event.getEntity().getDeltaMovement().z);
     }
 
     private void onPlayerClickBlock(PlayerInteractEvent.RightClickBlock event) {
 
-        if (event.getPlayer().getEffect(this) != null)
+        if (event.getEntity().getEffect(this) != null)
             event.setCanceled(true);
     }
 
     private void onPlayerClickItem(PlayerInteractEvent.RightClickItem event) {
 
-        if (event.getPlayer().getEffect(this) != null)
+        if (event.getEntity().getEffect(this) != null)
             event.setCanceled(true);
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 30,
+  "enchantment": "bane_of_arthropods",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:iron_sword"
+      },
+      {
+        "item": "minecraft:spider_eye"
+      },
+      {
+        "item": "minecraft:fermented_spider_eye"
+      },
+      {
+        "item": "minecraft:fermented_spider_eye"
+      }
+    ]
+  ]
+}

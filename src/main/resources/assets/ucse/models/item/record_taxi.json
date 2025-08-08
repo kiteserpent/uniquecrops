@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/record_taxi"
+    "layer0": "ucse:item/record_taxi"
   }
 }

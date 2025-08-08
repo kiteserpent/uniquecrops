@@ -5,7 +5,9 @@ import com.remag.ucse.init.UCRecipes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -15,7 +17,7 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -64,39 +66,41 @@ public class RecipeArtisia implements IArtisiaRecipe {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
-
-        return getResultItem().copy();
+    public @NotNull ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
+        return getResultItem(p_267165_).copy();
     }
 
     @Override
+    public @NotNull ItemStack getResultItem(RegistryAccess p_267052_) {
+        return output.copy();
+    }
+
     public ItemStack getResultItem() {
-
-        return output;
+        return output.copy();
     }
 
     @Override
-    public NonNullList<Ingredient> getIngredients() {
+    public @NotNull NonNullList<Ingredient> getIngredients() {
 
         return this.inputs;
     }
 
     @Override
-    public ResourceLocation getId() {
+    public @NotNull ResourceLocation getId() {
 
         return id;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
 
         return UCRecipes.ARTISIA_SERIALIZER.get();
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<RecipeArtisia> {
+    public static class Serializer implements RecipeSerializer<RecipeArtisia> {
 
         @Override
-        public RecipeArtisia fromJson(ResourceLocation id, JsonObject json) {
+        public @NotNull RecipeArtisia fromJson(ResourceLocation id, JsonObject json) {
 
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");

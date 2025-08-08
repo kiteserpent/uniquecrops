@@ -2,6 +2,7 @@ package com.remag.ucse.items.curios;
 
 import com.remag.ucse.entities.DonkItemEntity;
 import com.remag.ucse.items.base.ItemCurioUC;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Mth;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +23,7 @@ public class EmblemWeight extends ItemCurioUC {
 
         if (this.hasCurio(event.getPlayer())) {
             Player player = event.getPlayer();
-            DonkItemEntity ei = new DonkItemEntity(player.level, event.getEntityItem(), event.getEntityItem().getItem());
+            DonkItemEntity ei = new DonkItemEntity(player.level(), event.getEntity(), event.getEntity().getItem());
             ei.getPersistentData().putBoolean("UC:canDonk", true);
             Random rand = new Random();
             event.setCanceled(true);
@@ -38,8 +39,8 @@ public class EmblemWeight extends ItemCurioUC {
             motionZ += Math.sin((double)f3) * (double)f2;
             ei.setDeltaMovement(motionX, motionY, motionZ);
 
-            if (!player.level.isClientSide)
-                player.level.addFreshEntity(ei);
+            if (!player.level().isClientSide)
+                player.level().addFreshEntity(ei);
         }
     }
 }

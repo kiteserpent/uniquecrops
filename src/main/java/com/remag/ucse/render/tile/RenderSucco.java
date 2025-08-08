@@ -1,13 +1,12 @@
 package com.remag.ucse.render.tile;
 
+import com.mojang.math.Axis;
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.tiles.TileSucco;
 import com.remag.ucse.render.CustomRenderType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.world.level.dimension.DimensionType;
+import org.joml.Matrix4f;
 
 import java.util.stream.IntStream;
 
@@ -32,7 +32,7 @@ public class RenderSucco implements BlockEntityRenderer<TileSucco> {
     public void render(TileSucco te, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
 
         int age = te.getBlockState().getValue(BaseCropsBlock.AGE);
-        ResourceLocation res = new ResourceLocation(UniqueCrops.MOD_ID, "textures/block/vampire" + textureSkipper[age] + ".png");
+        ResourceLocation res = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/block/vampire" + textureSkipper[age] + ".png");
         final VertexConsumer buff = buffer.getBuffer(CustomRenderType.CUSTOM_BEAM.apply(res, true));
 
         ms.pushPose();
@@ -41,11 +41,11 @@ public class RenderSucco implements BlockEntityRenderer<TileSucco> {
         float moon = DimensionType.MOON_BRIGHTNESS_PER_PHASE[Minecraft.getInstance().level.getMoonPhase()];
         Matrix4f mat = ms.last().pose();
 
-        ms.mulPose(Vector3f.YP.rotationDegrees(45.0F));
+        ms.mulPose(Axis.YP.rotationDegrees(45.0F));
         ms.translate(0, 0.45, 0.75);
-        ms.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+        ms.mulPose(Axis.ZP.rotationDegrees(90.0F));
         this.quad(buff, mat, 0.5F, 0.5F, 0, moon);
-        ms.mulPose(Vector3f.XP.rotationDegrees(180.0F));
+        ms.mulPose(Axis.XP.rotationDegrees(180.0F));
         this.quad(buff, mat, 0.5F, 0.5F, 0, moon);
 
         ms.popPose();

@@ -1,0 +1,18 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 40,
+  "enchantment": "depth_strider",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:sponge"
+      },
+      {
+        "item": "minecraft:prismarine_shard"
+      },
+      {
+        "item": "minecraft:water_bucket"
+      }
+    ]
+  ]
+}

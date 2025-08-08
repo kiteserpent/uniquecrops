@@ -17,14 +17,14 @@ public class EmblemDefense extends ItemCurioUC {
 
     private void autoShield(LivingAttackEvent event) {
 
-        if (!(event.getEntityLiving() instanceof ServerPlayer)) return;
+        if (!(event.getEntity() instanceof ServerPlayer)) return;
         if (!(event.getSource().getDirectEntity() instanceof Arrow)) return;
-        if (!this.hasCurio(event.getEntityLiving())) return;
+        if (!this.hasCurio(event.getEntity())) return;
 
-        ItemStack shield = event.getEntityLiving().getOffhandItem();
+        ItemStack shield = event.getEntity().getOffhandItem();
         if (!(shield.getItem() instanceof ShieldItem)) return;
 
-        shield.hurt(1, event.getEntityLiving().level.random, (ServerPlayer)event.getEntityLiving());
+        shield.hurt(1, event.getEntity().level().random, (ServerPlayer)event.getEntity());
         event.setCanceled(true);
     }
 }

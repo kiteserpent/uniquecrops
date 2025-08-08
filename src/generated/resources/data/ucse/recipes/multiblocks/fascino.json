@@ -1,0 +1,50 @@
+{
+  "type": "ucse:multiblock",
+  "catalyst": {
+    "item": "ucse:wildwood_staff",
+    "power": 75
+  },
+  "definition": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "0": {
+      "states": [
+        "minecraft:enchanting_table"
+      ]
+    },
+    "L": {
+      "states": [
+        "minecraft:lapis_block"
+      ]
+    }
+  },
+  "definitionresult": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "D": {
+      "states": [
+        "ucse:fascino"
+      ]
+    }
+  },
+  "origin": {
+    "x": 1,
+    "y": 1
+  },
+  "shape": [
+    "L L",
+    " 0 ",
+    "L L"
+  ],
+  "shaperesult": [
+    "   ",
+    " D ",
+    "   "
+  ]
+}

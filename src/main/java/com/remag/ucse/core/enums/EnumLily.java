@@ -2,7 +2,6 @@ package com.remag.ucse.core.enums;
 
 import com.remag.ucse.init.UCBlocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -16,6 +15,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.MapColor;
 
 public enum EnumLily {
 
@@ -25,7 +25,7 @@ public enum EnumLily {
         public void collide(BlockState state, Level world, BlockPos pos, Entity entity) {
             if (entity instanceof Player) {
                 if (world.getGameTime() % 20 == 0) {
-                    if (entity.isOnGround() && entity.isCrouching())
+                    if (entity.onGround() && entity.isCrouching())
                         searchNearbyPads(world, pos, entity, Direction.DOWN);
                 }
             }
@@ -46,7 +46,7 @@ public enum EnumLily {
         public boolean isValidGround(BlockState state, BlockGetter reader, BlockPos pos) {
 
             FluidState fluidUp = reader.getFluidState(pos.above());
-            return (state.getMaterial() == Material.ICE || state.getMaterial() == Material.ICE_SOLID) && fluidUp.getType() == Fluids.EMPTY;
+            return (state.getMapColor(reader, pos) == MapColor.ICE || state.getMapColor(reader, pos) == MapColor.WATER) && fluidUp.getType() == Fluids.EMPTY;
         }
     },
     JUNGLE(ParticleTypes.ITEM_SLIME) {
@@ -80,7 +80,7 @@ public enum EnumLily {
 
             FluidState fluid = reader.getFluidState(pos);
             FluidState fluidUp = reader.getFluidState(pos.above());
-            return (fluid.getType() == Fluids.LAVA || state.getMaterial() == Material.LAVA) && fluidUp.getType() == Fluids.EMPTY;
+            return (fluid.getType() == Fluids.LAVA) && fluidUp.getType() == Fluids.EMPTY;
         }
     };
 
@@ -102,7 +102,7 @@ public enum EnumLily {
 
         FluidState fluid = reader.getFluidState(pos);
         FluidState fluidUp = reader.getFluidState(pos.above());
-        return (fluid.getType() == Fluids.WATER || state.getMaterial() == Material.ICE) && fluidUp.getType() == Fluids.EMPTY;
+        return (fluid.getType() == Fluids.WATER || state.getMapColor(reader, pos) == MapColor.WATER) && fluidUp.getType() == Fluids.EMPTY;
     }
 
     public static void searchNearbyPads(Level world, BlockPos pos, Entity entity, Direction dir) {

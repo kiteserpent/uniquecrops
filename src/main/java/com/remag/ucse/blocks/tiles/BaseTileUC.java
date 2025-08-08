@@ -1,8 +1,10 @@
 package com.remag.ucse.blocks.tiles;
 
+import com.remag.ucse.core.UCUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
@@ -65,5 +67,19 @@ public abstract class BaseTileUC extends BlockEntity {
     public void markBlockForRenderUpdate() {
 
         getLevel().setBlocksDirty(worldPosition, getLevel().getBlockState(worldPosition), getLevel().getBlockState(worldPosition));
+    }
+
+    @Override
+    public void setLevel(Level level) {
+        super.setLevel(level);
+        if (!level.isClientSide) {
+            UCUtils.register(this);
+        }
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        UCUtils.unregister(this);
     }
 }

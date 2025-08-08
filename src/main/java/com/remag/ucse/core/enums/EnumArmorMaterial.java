@@ -1,6 +1,7 @@
 package com.remag.ucse.core.enums;
 
 import com.remag.ucse.init.UCItems;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
@@ -54,15 +55,15 @@ public enum EnumArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
+    public int getDurabilityForType(ArmorItem.Type type) {
 
-        return durabilityMultiplier * MAX_DAMAGE_ARRAY[slot.getIndex()];
+        return durabilityMultiplier * MAX_DAMAGE_ARRAY[type.getSlot().getIndex()];
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
+    public int getDefenseForType(ArmorItem.Type type) {
 
-        return damageReduction[slot.getIndex()];
+        return damageReduction[type.getSlot().getIndex()];
     }
 
     @Override

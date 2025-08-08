@@ -2,12 +2,14 @@ package com.remag.ucse.crafting;
 
 import com.remag.ucse.api.IMultiblockRecipe;
 import com.remag.ucse.core.UCUtils;
-import com.remag.ucse.data.recipes.MultiblockProvider;
+import com.remag.ucse.data.recipes.UCRecipeProvider;
 import com.remag.ucse.init.UCRecipes;
 import com.google.gson.reflect.TypeToken;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
 import com.google.gson.annotations.JsonAdapter;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.Container;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -16,18 +18,18 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class RecipeMultiblock implements IMultiblockRecipe {
 
@@ -72,6 +74,20 @@ public class RecipeMultiblock implements IMultiblockRecipe {
                 if (definitionResult.get(letter) == null)
                     throw new IllegalStateException(id + ": " + letter + " is not defined");
         }
+    }
+
+    @Override
+    public ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
+        return getResultItem(p_267165_).copy();
+    }
+
+    @Override
+    public ItemStack getResultItem(RegistryAccess p_267052_) {
+        return ItemStack.EMPTY;
+    }
+
+    public ItemStack getResultItem() {
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -122,6 +138,10 @@ public class RecipeMultiblock implements IMultiblockRecipe {
         return this.shape;
     }
 
+    public Point getOrigin() {
+        return this.origin;
+    }
+
     @Override
     public Map<Character, Slot> getDefinition() {
 
@@ -151,7 +171,7 @@ public class RecipeMultiblock implements IMultiblockRecipe {
 
     public static class Slot implements Predicate<BlockState> {
 
-        @JsonAdapter(MultiblockProvider.SerializerBlockState.class)
+        @JsonAdapter(UCRecipeProvider.SerializerBlockState.class)
         public final Set<BlockState> states;
 
         public Slot(BlockState... states) {
@@ -181,14 +201,14 @@ public class RecipeMultiblock implements IMultiblockRecipe {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<RecipeMultiblock> {
+    public static class Serializer implements RecipeSerializer<RecipeMultiblock> {
 
         @Override
         public RecipeMultiblock fromJson(ResourceLocation id, JsonObject obj) {
 
-            ResourceLocation itemId = new ResourceLocation(obj.getAsJsonObject("catalyst").getAsJsonPrimitive("item").getAsString());
+            ResourceLocation itemId = ResourceLocation.tryParse(obj.getAsJsonObject("catalyst").getAsJsonPrimitive("item").getAsString());
             int power = obj.getAsJsonObject("catalyst").getAsJsonPrimitive("power").getAsInt();
-            ItemStack catalyst = new ItemStack(Registry.ITEM.get(itemId));
+            ItemStack catalyst = new ItemStack(Objects.requireNonNull(ForgeRegistries.ITEMS.getValue(itemId)));
 
             String[] shape = UCUtils.convertJson(obj.getAsJsonArray("shape"));
             String[] shapeResult = UCUtils.convertJson(obj.getAsJsonArray("shaperesult"));

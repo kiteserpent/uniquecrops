@@ -1,5 +1,6 @@
 package com.remag.ucse.core;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceKey;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 
@@ -47,7 +49,7 @@ public class UCWorldData extends SavedData {
 
         String[] allDims = UCProtectionHandler.getInstance().getUnsavedDims().toArray(new String[0]);
         for (String s : allDims) {
-            ResourceKey<Level> key = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(s));
+            ResourceKey<Level> key = ResourceKey.create(Registries.DIMENSION, ResourceLocation.tryParse(s));
             Level world = ServerLifecycleHooks.getCurrentServer().getLevel(key);
             if (world != null) {
                 ListTag savedList = new ListTag();

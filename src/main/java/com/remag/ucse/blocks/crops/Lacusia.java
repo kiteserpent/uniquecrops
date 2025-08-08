@@ -3,6 +3,7 @@ package com.remag.ucse.blocks.crops;
 import com.remag.ucse.blocks.BaseCropsBlock;
 import com.remag.ucse.blocks.tiles.TileLacusia;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.Containers;
@@ -25,7 +26,7 @@ public class Lacusia extends BaseCropsBlock implements EntityBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (isMaxAge(state)) {
             BlockEntity tile = world.getBlockEntity(pos);

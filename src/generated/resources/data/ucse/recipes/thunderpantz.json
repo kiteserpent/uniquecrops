@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "ucse:invisifeather"
+    },
+    "P": {
+      "item": "minecraft:leather_leggings"
+    },
+    "W": {
+      "item": "minecraft:blue_wool"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WPW",
+    "WFW"
+  ],
+  "result": {
+    "item": "ucse:thunderpantz"
+  },
+  "show_notification": true
+}

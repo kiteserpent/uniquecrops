@@ -1,0 +1,21 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 40,
+  "enchantment": "blast_protection",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:tnt"
+      },
+      {
+        "item": "minecraft:gunpowder"
+      },
+      {
+        "item": "minecraft:flint_and_steel"
+      },
+      {
+        "item": "minecraft:obsidian"
+      }
+    ]
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/goldenrods"
+    "layer0": "ucse:item/goldenrods"
   }
 }

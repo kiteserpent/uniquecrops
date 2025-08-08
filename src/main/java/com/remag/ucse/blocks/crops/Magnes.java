@@ -5,6 +5,7 @@ import com.remag.ucse.core.UCUtils;
 import com.remag.ucse.entities.MovingCropEntity;
 import com.remag.ucse.init.UCEntities;
 import com.remag.ucse.init.UCItems;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -73,7 +74,7 @@ public class Magnes extends BaseCropsBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         super.randomTick(state, world, pos, rand);
         if (this.isMaxAge(state))

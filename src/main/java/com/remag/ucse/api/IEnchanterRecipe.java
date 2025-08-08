@@ -1,6 +1,7 @@
 package com.remag.ucse.api;
 
 import com.remag.ucse.UniqueCrops;
+import com.remag.ucse.init.UCRecipes;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
@@ -8,15 +9,19 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public interface IEnchanterRecipe extends Recipe<Container> {
 
-    ResourceLocation RES = new ResourceLocation(UniqueCrops.MOD_ID, "enchanter");
+    ResourceLocation RES = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "enchanter");
 
     @Override
-    default RecipeType<?> getType() {
+    default @NotNull RecipeType<?> getType() {
 
-        return Registry.RECIPE_TYPE.getOptional(RES).get();
+        return UCRecipes.ENCHANTER_TYPE.get();
     }
 
     @Override

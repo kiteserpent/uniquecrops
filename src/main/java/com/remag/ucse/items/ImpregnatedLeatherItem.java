@@ -11,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,10 +38,10 @@ public class ImpregnatedLeatherItem extends ItemBaseUC {
         boolean flag = Screen.hasShiftDown();
         stack.getCapability(CPProvider.CROP_POWER, null).ifPresent(crop -> {
             if (flag)
-                list.add(new TextComponent(ChatFormatting.GREEN + "Crop Power: " + crop.getPower() + "/" + crop.getCapacity()));
+                list.add(Component.literal(ChatFormatting.GREEN + "Crop Power: " + crop.getPower() + "/" + crop.getCapacity()));
         });
         if (!flag)
-            list.add(new TextComponent(ChatFormatting.LIGHT_PURPLE + "<Press shift>"));
+            list.add(Component.literal(ChatFormatting.LIGHT_PURPLE + "<Press shift>"));
     }
 
     @Override
@@ -85,7 +84,7 @@ public class ImpregnatedLeatherItem extends ItemBaseUC {
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 
-        return !ItemStack.isSame(oldStack, newStack);
+        return !ItemStack.isSameItem(oldStack, newStack);
     }
 
     @Nullable

@@ -1,10 +1,12 @@
 package com.remag.ucse.integration.patchouli.component;
 
+import com.mojang.math.Axis;
 import com.remag.ucse.UniqueCrops;
 import com.remag.ucse.integration.patchouli.PatchouliUtils;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,7 +16,6 @@ import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import com.mojang.math.Vector3f;
 import net.minecraft.network.chat.Component;
 import vazkii.patchouli.api.IComponentRenderContext;
 import vazkii.patchouli.api.ICustomComponent;
@@ -24,7 +25,7 @@ import java.util.function.UnaryOperator;
 
 public class CropComponent implements ICustomComponent {
 
-    final ResourceLocation RES = new ResourceLocation(UniqueCrops.MOD_ID, "textures/gui/croppage.png");
+    final ResourceLocation RES = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/gui/croppage.png");
     private transient int x, y;
     private transient BlockState state;
 
@@ -38,7 +39,8 @@ public class CropComponent implements ICustomComponent {
     }
 
     @Override
-    public void render(PoseStack ms, IComponentRenderContext ctx, float pticks, int mouseX, int mouseY) {
+    public void render(GuiGraphics guiGraphics, IComponentRenderContext ctx, float pticks, int mouseX, int mouseY) {
+        PoseStack ms = guiGraphics.pose();
 
         Minecraft mc = Minecraft.getInstance();
         Font font = mc.font;
@@ -46,13 +48,13 @@ public class CropComponent implements ICustomComponent {
         Component name = state.getBlock().getName();
         ms.pushPose();
         ms.scale(0.9F, 0.9F, 0.9F);
-        ctx.getGui().blit(ms, x / 2 - 25, y / 2 - 60, 0, 0, 175, 228);
+        guiGraphics.blit(RES,x / 2 - 25, y / 2 - 60, 0, 0, 175, 228);
         ms.popPose();
-        font.drawShadow(ms, name, x + 102 / 2 - font.width(name) / 2, y + 41, 0);
+        guiGraphics.drawString(font, name, x + 102 / 2 - font.width(name) / 2, y + 41, 0, false);
         ms.pushPose();
         ms.translate(25, 58, 100);
-        ms.mulPose(Vector3f.XP.rotationDegrees(145.0F));
-        ms.mulPose(Vector3f.YP.rotationDegrees(45.0F));
+        ms.mulPose(Axis.XP.rotationDegrees(145.0F));
+        ms.mulPose(Axis.YP.rotationDegrees(45.0F));
         ms.scale(45, 45, 45);
         BlockRenderDispatcher brd = mc.getBlockRenderer();
         MultiBufferSource.BufferSource renderBuffer = mc.renderBuffers().bufferSource();
@@ -66,6 +68,7 @@ public class CropComponent implements ICustomComponent {
         renderBuffer.endBatch();
         ms.popPose();
     }
+
 
     @Override
     public void onVariablesAvailable(UnaryOperator<IVariable> lookup) {

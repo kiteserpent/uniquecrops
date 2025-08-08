@@ -1,43 +1,43 @@
 package com.remag.ucse.integration.jei;
 
 import com.remag.ucse.UniqueCrops;
-import com.remag.ucse.api.IArtisiaRecipe;
+import com.remag.ucse.crafting.RecipeArtisia;
+import com.remag.ucse.crafting.RecipeHeater;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
-public class UCArtisiaCategory implements IRecipeCategory<IArtisiaRecipe> {
+public class UCArtisiaCategory implements IRecipeCategory<RecipeArtisia> {
 
-    public static final ResourceLocation UID = new ResourceLocation(UniqueCrops.MOD_ID, "artisia");
+    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "artisia");
     private final IDrawable background;
 
     public UCArtisiaCategory(IGuiHelper helper) {
 
-        this.background = helper.createDrawable(new ResourceLocation(UniqueCrops.MOD_ID, "textures/gui/craftyplant.png"), 0, 0, 126, 64);
+        this.background = helper.createDrawable(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "textures/gui/craftyplant.png"), 0, 0, 126, 64);
     }
 
     @Override
-    public ResourceLocation getUid() {
-
-        return UID;
-    }
-
-    @Override
-    public Class<? extends IArtisiaRecipe> getRecipeClass() {
-
-        return IArtisiaRecipe.class;
+    public RecipeType<RecipeArtisia> getRecipeType() {
+        return JEIRecipeTypesUC.ARTISIA;
     }
 
     @Override
     public Component getTitle() {
 
-        return new TranslatableComponent("container.jei.ucse.craftyplant");
+        return Component.translatable("container.jei.ucse.craftyplant");
+    }
+
+    @Override
+    public @Nullable ResourceLocation getRegistryName(RecipeArtisia recipe) {
+        return ID;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class UCArtisiaCategory implements IRecipeCategory<IArtisiaRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, IArtisiaRecipe recipe, IFocusGroup ingredients) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeArtisia recipe, IFocusGroup ingredients) {
 
         for (int y = 0; y < 3; ++y) {
             for (int x = 0; x < 3; ++x) {

@@ -1,0 +1,15 @@
+{
+  "type": "ucse:enchanter",
+  "cost": 90,
+  "enchantment": "mending",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:experience_bottle"
+      },
+      {
+        "item": "ucse:seedmalleatoris"
+      }
+    ]
+  ]
+}

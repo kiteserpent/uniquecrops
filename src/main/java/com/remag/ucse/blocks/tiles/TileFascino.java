@@ -10,6 +10,7 @@ import com.remag.ucse.init.UCTiles;
 import com.remag.ucse.items.StaffWildwoodItem;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,7 +25,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -91,7 +91,7 @@ public class TileFascino extends BaseTileUC {
 
             Optional<IEnchanterRecipe> fascinoRecipe = level.getRecipeManager().getRecipeFor(UCItems.ENCHANTER_TYPE, wrap(), level);
             if (!fascinoRecipe.isPresent())
-                player.displayClientMessage(new TranslatableComponent("ucse.enchanting.unknownrecipe"), true);
+                player.displayClientMessage(Component.translatable("ucse.enchanting.unknownrecipe"), true);
 
             fascinoRecipe.ifPresent(recipe -> {
                     ItemStack heldItem = ItemStack.EMPTY;
@@ -103,22 +103,22 @@ public class TileFascino extends BaseTileUC {
                         }
                     }
                     if (heldItem.isEmpty()) {
-                        player.displayClientMessage(new TranslatableComponent("ucse.enchanting.nothing"), true);
+                        player.displayClientMessage(Component.translatable("ucse.enchanting.nothing"), true);
                         return;
                     }
                     if (!recipe.getEnchantment().category.canEnchant(heldItem.getItem())) {
-                        player.displayClientMessage(new TranslatableComponent("ucse.enchanting.unenchantable",heldItem.getDisplayName()), true);
+                        player.displayClientMessage(Component.translatable("ucse.enchanting.unenchantable",heldItem.getDisplayName()), true);
                         return;
                     }
                     if (EnchantmentHelper.getEnchantments(heldItem).containsKey(recipe.getEnchantment())) {
-                        player.displayClientMessage(new TranslatableComponent("ucse.enchanting.enchantmentexists"), true);
+                        player.displayClientMessage(Component.translatable("ucse.enchanting.enchantmentexists"), true);
                         return;
                     }
                     Map<Enchantment, Integer> enchantSet = EnchantmentHelper.getEnchantments(heldItem);
                     Set<Enchantment> enchantments = enchantSet.keySet();
                     for (Enchantment ench : enchantments) {
                         if (!ench.isCompatibleWith(recipe.getEnchantment())) {
-                            player.displayClientMessage(new TranslatableComponent("ucse.enchanting.incompatible", ench.getDescriptionId()), true);
+                            player.displayClientMessage(Component.translatable("ucse.enchanting.incompatible", ench.getDescriptionId()), true);
                             return;
                         }
                     }
@@ -155,19 +155,19 @@ public class TileFascino extends BaseTileUC {
                     maxGrowth = age;
             }
             else {
-                player.displayClientMessage(new TranslatableComponent("ucse.enchanting.missingcrops"), true);
+                player.displayClientMessage(Component.translatable("ucse.enchanting.missingcrops"), true);
                 this.showMissingCrops = true;
                 enchantItem = ItemStack.EMPTY;
                 return;
             }
         }
         if (maxGrowth < enchantmentSize) {
-            player.displayClientMessage(new TranslatableComponent("ucse.enchanting.cropgrowth",enchantmentSize), true);
+            player.displayClientMessage(Component.translatable("ucse.enchanting.cropgrowth",enchantmentSize), true);
             enchantItem = ItemStack.EMPTY;
             return;
         }
         if (!StaffWildwoodItem.adjustPower(staff, powerCost)) {
-            player.displayClientMessage(new TranslatableComponent("ucse.enchanting.notenoughpower", powerCost), true);
+            player.displayClientMessage(Component.translatable("ucse.enchanting.notenoughpower", powerCost), true);
             enchantItem = ItemStack.EMPTY;
             return;
         }
@@ -233,27 +233,27 @@ public class TileFascino extends BaseTileUC {
         }
         if (heldItem.isEmpty()) {
             advanceStage();
-            player.displayClientMessage(new TranslatableComponent("ucse.enchanting.nothing"), true);
+            player.displayClientMessage(Component.translatable("ucse.enchanting.nothing"), true);
             enchantItem = ItemStack.EMPTY;
             return;
         }
-        if (!ItemStack.isSame(heldItem, enchantItem)) {
+        if (!ItemStack.isSameItem(heldItem, enchantItem)) {
             advanceStage();
-            player.displayClientMessage(new TranslatableComponent("ucse.enchanting.nomatch"), true);
+            player.displayClientMessage(Component.translatable("ucse.enchanting.nomatch"), true);
             enchantItem = ItemStack.EMPTY;
             return;
         }
         Optional<IEnchanterRecipe> enchanterRecipe = level.getRecipeManager().getRecipeFor(UCItems.ENCHANTER_TYPE, wrap(), level);
         if (!enchanterRecipe.isPresent()) {
             advanceStage();
-            player.displayClientMessage(new TranslatableComponent("ucse.enchanting.unknownrecipe"), true);
+            player.displayClientMessage(Component.translatable("ucse.enchanting.unknownrecipe"), true);
         }
         if (enchanterRecipe.isPresent()) {
             IEnchanterRecipe recipe = enchanterRecipe.get();
             recipe.applyEnchantment(heldItem);
             this.clearInv();
             advanceStage();
-            level.levelEvent(2004, getBlockPos().offset(0, 0.7, 0), 0);
+            level.levelEvent(2004, getBlockPos().offset(0, 1, 0), 0);
         }
         enchantItem = ItemStack.EMPTY;
     }

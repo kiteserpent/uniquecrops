@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/time_meal"
+    "layer0": "ucse:item/time_meal"
   }
 }

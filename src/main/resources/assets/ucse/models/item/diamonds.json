@@ -1,7 +1,7 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "ucse:items/diamonds6"
+		"layer0": "ucse:item/diamonds6"
 	},
 	"overrides": [
 		{ "predicate": { "ucse:diamonds": 0.0 }, "model": "ucse:item/diamonds" },

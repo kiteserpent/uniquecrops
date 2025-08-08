@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "ingredients": [
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "minecraft:potion"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "ucse:seedinvisibilia"
+    }
+  ],
+  "output": {
+    "item": "ucse:seedsucco"
+  }
+}

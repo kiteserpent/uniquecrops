@@ -17,7 +17,7 @@ public class VampiricOintmentItem extends ItemBaseUC {
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
 
         if (!(target instanceof Player)) {
-            if (!hasTaglock(stack) && !player.level.isClientSide) {
+            if (!hasTaglock(stack) && !player.level().isClientSide) {
                 ItemStack newStack = new ItemStack(this);
                 setTaglock(newStack, target);
                 ItemHandlerHelper.giveItemToPlayer(player, newStack);

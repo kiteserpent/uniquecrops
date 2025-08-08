@@ -1,0 +1,50 @@
+{
+  "type": "ucse:multiblock",
+  "catalyst": {
+    "item": "ucse:emeradic_diamond",
+    "power": 0
+  },
+  "definition": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "0": {
+      "states": [
+        "minecraft:melon"
+      ]
+    },
+    "I": {
+      "states": [
+        "minecraft:iron_bars[east-false,north-false,south-false,waterlogged-false,west-false]"
+      ]
+    }
+  },
+  "definitionresult": {
+    " ": {
+      "states": [
+        "minecraft:air"
+      ]
+    },
+    "L": {
+      "states": [
+        "ucse:lignator"
+      ]
+    }
+  },
+  "origin": {
+    "x": 1,
+    "y": 1
+  },
+  "shape": [
+    " I ",
+    "I0I",
+    " I "
+  ],
+  "shaperesult": [
+    "   ",
+    " L ",
+    "   "
+  ]
+}

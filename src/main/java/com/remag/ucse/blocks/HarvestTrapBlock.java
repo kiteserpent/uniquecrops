@@ -6,10 +6,10 @@ import com.remag.ucse.core.enums.EnumParticle;
 import com.remag.ucse.init.UCItems;
 import com.remag.ucse.network.PacketUCEffect;
 import com.remag.ucse.network.UCPacketHandler;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -19,6 +19,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -42,7 +43,7 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
 
     public HarvestTrapBlock() {
 
-        super(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.85F, 15.0F).randomTicks());
+        super(Properties.of().sound(SoundType.WOOD).strength(0.85F, 15.0F).randomTicks().mapColor(MapColor.WOOD));
         registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH));
     }
 
@@ -89,13 +90,13 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
 
         if (world.isClientSide) return;
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileHarvestTrap) {
-            if (UCUtils.getClosestTile(TileHarvestTrap.class, world, pos, 10.0D) != null) {
+            if (UCUtils.getClosest(pos, 10.0D, TileHarvestTrap.class) != null) {
                 UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.BARRIER, pos.getX(), pos.getY() + 0.75, pos.getZ(), 0));
                 return;
             }
@@ -128,7 +129,7 @@ public class HarvestTrapBlock extends Block implements EntityBlock {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
 
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof TileHarvestTrap trap && trap.hasSpirit()) {

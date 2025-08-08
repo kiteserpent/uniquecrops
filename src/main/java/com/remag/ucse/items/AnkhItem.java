@@ -35,24 +35,24 @@ public class AnkhItem extends ItemBaseUC {
 
     private void checkPlayerDeath(LivingDeathEvent event) {
 
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player)event.getEntityLiving();
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player)event.getEntity();
             this.saveAnkhItems(player);
 
             CompoundTag tag = player.getPersistentData();
             if (tag.contains("hasSacrificed") && !tag.getBoolean("hasSacrificed")) {
                 tag.putBoolean("hasSacrificed", true);
-                if (!player.level.isClientSide)
-                    Containers.dropItemStack(player.level, player.getX(), player.getY(), player.getZ(), new ItemStack(UCItems.STEVE_HEART.get()));
+                if (!player.level().isClientSide)
+                    Containers.dropItemStack(player.level(), player.getX(), player.getY(), player.getZ(), new ItemStack(UCItems.STEVE_HEART.get()));
             }
         }
     }
 
     private void onPlayerClone(PlayerEvent.Clone event) {
 
-        if (event.isWasDeath() && !event.getPlayer().level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
+        if (event.isWasDeath() && !event.getEntity().level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
             Player oldPlayer = event.getOriginal();
-            Player newPlayer = event.getPlayer();
+            Player newPlayer = event.getEntity();
 
             this.putAnkhItems(oldPlayer, newPlayer);
 
@@ -108,7 +108,7 @@ public class AnkhItem extends ItemBaseUC {
                             tag.putInt("Slot", slot);
                             stack.save(tag);
                             tagList.add(tag);
-                            if (!player.level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY))
+                            if (!player.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY))
                                 player.getInventory().items.set(slot, ItemStack.EMPTY);
                         }
                     }

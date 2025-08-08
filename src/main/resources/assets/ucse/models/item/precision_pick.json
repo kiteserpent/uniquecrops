@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "ucse:items/precision_pick"
+    "layer0": "ucse:item/precision_pick"
   }
 }

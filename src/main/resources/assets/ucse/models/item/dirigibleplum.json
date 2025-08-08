@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/dirigible_plum"
+    "layer0": "ucse:item/dirigible_plum"
   }
 }

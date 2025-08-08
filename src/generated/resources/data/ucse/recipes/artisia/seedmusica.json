@@ -1,0 +1,35 @@
+{
+  "type": "ucse:artisia",
+  "ingredients": [
+    {
+      "item": "ucse:seedmaryjane"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "ucse:seedmaryjane"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "minecraft:jukebox"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "ucse:seedmaryjane"
+    },
+    {
+      "item": "ucse:seednormal"
+    },
+    {
+      "item": "ucse:seedmaryjane"
+    }
+  ],
+  "output": {
+    "item": "ucse:seedmusica"
+  }
+}

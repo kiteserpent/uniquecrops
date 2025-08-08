@@ -1,5 +1,6 @@
 package com.remag.ucse.render.tile;
 
+import com.mojang.math.Axis;
 import com.remag.ucse.blocks.tiles.TileArtisia;
 import com.remag.ucse.blocks.tiles.TileLacusia;
 import com.remag.ucse.blocks.tiles.TileWeatherflesia;
@@ -10,17 +11,18 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import org.joml.Matrix4f;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class RenderItemTile {
@@ -55,7 +57,7 @@ public class RenderItemTile {
                 ms.pushPose();
                 RenderSystem.disableDepthTest();
                 ms.translate(0.5D, 0.85 + wave, 0.5D);
-                renderItem(stack, ms, light, overlay, buffer);
+                renderItem(stack, ms, light, overlay, buffer, tile.getLevel());
                 RenderSystem.enableDepthTest();
                 ms.popPose();
 
@@ -64,16 +66,16 @@ public class RenderItemTile {
                 ms.pushPose();
                 ms.translate(0.5D, 0.85, 0.5D);
                 ms.scale(scale, scale, scale);
-                ms.mulPose(Vector3f.XP.rotationDegrees((float)time * 4F));
-                ms.mulPose(Vector3f.YP.rotationDegrees((float)time * 4F));
+                ms.mulPose(Axis.XP.rotationDegrees((float)time * 4F));
+                ms.mulPose(Axis.YP.rotationDegrees((float)time * 4F));
 
                 for(int i = 0; (float)i < (f + f * f) / 2.0F * 60.0F; ++i) {
-                    ms.mulPose(Vector3f.XP.rotationDegrees(random.nextFloat() * 360.0F));
-                    ms.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360.0F));
-                    ms.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360.0F));
-                    ms.mulPose(Vector3f.XP.rotationDegrees(random.nextFloat() * 360.0F));
-                    ms.mulPose(Vector3f.YP.rotationDegrees(random.nextFloat() * 360.0F));
-                    ms.mulPose(Vector3f.ZP.rotationDegrees(random.nextFloat() * 360.0F + f1 * 90.0F));
+                    ms.mulPose(Axis.XP.rotationDegrees(random.nextFloat() * 360.0F));
+                    ms.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360.0F));
+                    ms.mulPose(Axis.ZP.rotationDegrees(random.nextFloat() * 360.0F));
+                    ms.mulPose(Axis.XP.rotationDegrees(random.nextFloat() * 360.0F));
+                    ms.mulPose(Axis.YP.rotationDegrees(random.nextFloat() * 360.0F));
+                    ms.mulPose(Axis.ZP.rotationDegrees(random.nextFloat() * 360.0F + f1 * 90.0F));
                     float f3 = random.nextFloat() * 20.0F + 5.0F + f1 * 10.0F;
                     float f4 = random.nextFloat() * 2.0F + 1.0F + f1 * 2.0F;
                     Matrix4f matrix4f = ms.last().pose();
@@ -108,7 +110,7 @@ public class RenderItemTile {
             if (!tile.getItem().isEmpty()) {
                 ms.pushPose();
                 ms.translate(0.5F, 1.25F, 0.5F);
-                renderItem(tile.getItem(), ms, light, overlay, buffer);
+                renderItem(tile.getItem(), ms, light, overlay, buffer, tile.getLevel());
                 ms.popPose();
             }
         }
@@ -132,20 +134,20 @@ public class RenderItemTile {
                 if (!stack.isEmpty()) {
                     ms.pushPose();
                     ms.translate(0.5, 0.65, 0.5);
-                    renderItem(stack, ms, light, overlay, buffer);
+                    renderItem(stack, ms, light, overlay, buffer, tile.getLevel());
                     ms.popPose();
                 }
             }
         }
     }
 
-    public static void renderItem(ItemStack stack, PoseStack ms, int light, int overlay, MultiBufferSource buffer) {
+    public static void renderItem(ItemStack stack, PoseStack ms, int light, int overlay, MultiBufferSource buffer, @Nullable Level level) {
 
         float toScale = (stack.getItem() instanceof BlockItem && !(stack.getItem() instanceof ItemNameBlockItem)) ? 0.25F : 0.4375F;
         ms.scale(toScale, toScale, toScale);
         float playerView = Minecraft.getInstance().gameRenderer.getMainCamera().getYRot();
-        ms.mulPose(Vector3f.YP.rotationDegrees(180.0F - playerView));
-        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemTransforms.TransformType.NONE, light, overlay, ms, buffer, 0);
+        ms.mulPose(Axis.YP.rotationDegrees(180.0F - playerView));
+        Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.NONE, light, overlay, ms, buffer, level, 0);
     }
 
     private static final float field_229057_l_ = (float)(Math.sqrt(3.0D) / 2.0D);

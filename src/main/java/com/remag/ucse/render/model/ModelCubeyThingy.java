@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ModelCubeyThingy extends Model {
 
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(UniqueCrops.MOD_ID, "modelcubeythingy"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(UniqueCrops.MOD_ID, "modelcubeythingy"), "main");
     private final ModelPart cube;
 
     public ModelCubeyThingy(ModelPart root) {

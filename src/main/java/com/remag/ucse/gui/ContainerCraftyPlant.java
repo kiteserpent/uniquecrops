@@ -108,7 +108,7 @@ public class ContainerCraftyPlant extends AbstractContainerMenu {
             AtomicReference<ItemStack> result = new AtomicReference<>(ItemStack.EMPTY);
             tile.getLevel().getRecipeManager().getRecipeFor(UCItems.ARTISIA_TYPE, UCUtils.wrap(stacks), tile.getLevel())
                     .ifPresent(recipe -> {
-                        result.set(recipe.getResultItem().copy());
+                        result.set(recipe.getResultItem(tile.getLevel().registryAccess()).copy());
                     });
             if (!result.get().isEmpty()) {
                 tile.setResult(result.get());

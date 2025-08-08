@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ucse:items/seeds_maryjane"
+    "layer0": "ucse:item/seeds_maryjane"
   }
 }
