@@ -15,7 +15,7 @@ import java.util.Map;
 public interface AccessorRecipeManager {
 
     @Invoker("byType")
-    <C extends Container, T extends Recipe<C>> Map<ResourceLocation, Recipe<C>> uc_byType(RecipeType<T> type);
+    <C extends Container, T extends Recipe<C>> Map<ResourceLocation, T> uc_byType(RecipeType<T> type);
 
     @Invoker("getAllRecipesFor")
     <C extends Container, T extends Recipe<C>> List<T> uc_getRecipes(RecipeType<T> type);

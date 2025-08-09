@@ -6,26 +6,10 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-/*mixin {
+mixin {
     add sourceSets.main, "ucse.refmap.json"
     config 'assets/ucse/ucse.mixins.json'
-} */
-
-/*
-    mixins
-    "AccessorRecipeManager",
-    "MixinItemFood",
-    "MixinFoodStats",
-    "MixinItemCombinerMenu",
-    "MixinAnvilMenu"
-
-    client
-    "MixinAnimatedTextureStitch",
-    "MixinRecipeLoad",
-    "MixinWorldRenderer",
-    "AccessorBS"
-
-  */
+}
 
 version = mod_version
 group = mod_group_id
