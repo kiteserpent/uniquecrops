@@ -32,26 +32,30 @@ public class TileMusica extends BaseTileUC{
             return;
 
         int otherBeats = 0;
-        for (int i = 0; i < beats.size(); i++) {
+        for (int i = beats.size() - 1; i >= 0; i--) {
             Beat beat = beats.get(i);
-            removeIfTooOld(beat, i);
+            if (!removeIfTooOld(beat, i))
+            	if ((oldestBeatTime > 0L) && (beat.getTime() != oldestBeatTime))
+            		++otherBeats;
+        }
 
-            if (beat.getTime() != oldestBeatTime)
-                ++otherBeats;
-
+        // If plant's clock is on a half-second, we've heard at least 2 notes in the last 2.5 sec,
+        // and at least one of those is percussion, then grow 1.1% of the time.
+        // (roughly 3x the speed of a baseline best-case vanilla crop)
+        if (level.getGameTime() % 10 == 0) {
             if ((otherBeats > 0) && !beats.isEmpty()) {
-                if ((level.getGameTime() % 10 == 0) && (oldestBeatTime > 0L)) {
-                    int randomtick = level.random.nextInt(2000) + 5 - otherBeats;
-                    if (this.oldestPercussion() != null && (randomtick < getTimeDelta(level.getGameTime(), oldestBeatTime)))
-                    {
-                		level.setBlock(worldPosition, getBlockState().setValue(BaseCropsBlock.AGE, getBlockState().getValue(BaseCropsBlock.AGE) + 1), 2);
-                        return;
-                    }
+                int dicethrow = level.random.nextInt(90);
+                if (this.oldestPercussion() != null && (dicethrow == 0))
+                {
+            		level.setBlock(worldPosition, getBlockState().setValue(BaseCropsBlock.AGE, getBlockState().getValue(BaseCropsBlock.AGE) + 1), 2);
+            		removeOldestBeat();
+            		return;
                 }
             }
+
+	        if (this.oldestPercussion() != null)
+	            oldestBeatTime = this.oldestPercussion().getTime();
         }
-        if (oldestBeatTime == 0L && this.oldestPercussion() != null)
-            oldestBeatTime = this.oldestPercussion().getTime();
     }
 
     @Override
@@ -104,11 +108,15 @@ public class TileMusica extends BaseTileUC{
         return this.beats.size() < 12;
     }
 
+    public Beat addNote(Beat beatToAdd) {
+
+        beats.add(beatToAdd);
+        return beatToAdd;
+    }
+
     public Beat addNote(NoteBlockEvent.Note note, NoteBlockInstrument instrument, NoteBlockEvent.Octave octave, long time) {
 
-        Beat beat = new Beat(note, instrument, octave, time);
-        beats.add(beat);
-        return beat;
+        return addNote(new Beat(note, instrument, octave, time));
     }
 
     public Beat setNewBeatTime(int index, long newtime) {
@@ -122,15 +130,29 @@ public class TileMusica extends BaseTileUC{
 
         beats.clear();
     }
+    
+    public void removeOldestBeat() {
+    	if (beats.isEmpty() || beats.size() == 0) {
+    		oldestBeatTime = 0L;
+    		return;
+    	}
+    	beats.remove(0);
+    	if (this.oldestPercussion() == null)
+    		oldestBeatTime = 0L;
+    	else
+    		oldestBeatTime = this.oldestPercussion().getTime();
+    }
 
-    public void removeIfTooOld(Beat beat, int index) {
+    public boolean removeIfTooOld(Beat beat, int index) {
 
         long diff = getTimeDelta(level.getGameTime(), beat.getTime());
         if (diff > 50) {
             if (beat.getTime() == oldestBeatTime)
                 oldestBeatTime = 0L;
             beats.remove(index);
+            return true;
         }
+        return false;
     }
 
     public boolean isPercussion(NoteBlockInstrument instrument) {

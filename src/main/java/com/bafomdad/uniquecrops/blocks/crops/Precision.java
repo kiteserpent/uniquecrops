@@ -38,9 +38,9 @@ public class Precision extends BaseCropsBlock {
         if (this.getAge(state) != 6) return InteractionResult.PASS;
 
         if (!world.isClientSide) {
-            world.setBlock(pos, this.setValueAge(0), 3);
             int fortune = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, player.getMainHandItem());
             harvestItems(world, pos, state, fortune);
+            world.setBlock(pos, this.setValueAge(0), 3);
         }
         return InteractionResult.SUCCESS;
     }

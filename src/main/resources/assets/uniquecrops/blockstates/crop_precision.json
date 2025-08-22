@@ -4,19 +4,19 @@
       "model": "uniquecrops:block/precision1"
     },
     "age=1": {
-      "model": "uniquecrops:block/precision2"
+      "model": "uniquecrops:block/precision1"
     },
     "age=2": {
       "model": "uniquecrops:block/precision2"
     },
     "age=3": {
-      "model": "uniquecrops:block/precision3"
+      "model": "uniquecrops:block/precision2"
     },
     "age=4": {
       "model": "uniquecrops:block/precision3"
     },
     "age=5": {
-      "model": "uniquecrops:block/precision4"
+      "model": "uniquecrops:block/precision3"
     },
     "age=6": {
       "model": "uniquecrops:block/precision4"

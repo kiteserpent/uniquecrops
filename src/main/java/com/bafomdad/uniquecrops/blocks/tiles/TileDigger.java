@@ -2,6 +2,7 @@ package com.bafomdad.uniquecrops.blocks.tiles;
 
 import com.bafomdad.uniquecrops.blocks.BaseCropsBlock;
 import com.bafomdad.uniquecrops.core.UCUtils;
+import com.bafomdad.uniquecrops.init.UCBlocks;
 import com.bafomdad.uniquecrops.init.UCTiles;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Block;
@@ -17,7 +18,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -63,6 +63,7 @@ public class TileDigger extends BaseTileUC {
         if (digPos == BlockPos.ZERO) return false;
         BlockState digState = digWorld.getBlockState(digPos);
         if (digState.getDestroySpeed(digWorld, digPos) < 0 ||
+        		digState.getBlock() == UCBlocks.DARK_BLOCK.get() ||
         		digState.getBlock() instanceof FarmBlock ||
         		digState.getBlock() instanceof CropBlock ||
         		digState.getBlock() instanceof BaseCropsBlock ||
@@ -106,7 +107,7 @@ public class TileDigger extends BaseTileUC {
     private void startDig(Level digWorld) {
 
         ChunkPos chunkPos = new ChunkPos(getBlockPos());
-        digPos = new BlockPos(chunkPos.getMinBlockX(), getBlockPos().getY(), chunkPos.getMinBlockZ());
+        digPos = new BlockPos(chunkPos.getMinBlockX(), getBlockPos().getY()-1, chunkPos.getMinBlockZ());
     }
 
     private void advance(Level digWorld) {
@@ -117,13 +118,13 @@ public class TileDigger extends BaseTileUC {
         if (digPos.getY() < digWorld.getMinBuildHeight() + 1) {
             ChunkPos cPos = new ChunkPos(digPos);
             if (digPos.getX() < cPos.getMaxBlockX()) {
-                digPos = digPos.offset(1, 0, 0).atY(getBlockPos().getY());
+                digPos = digPos.offset(1, 0, 0).atY(getBlockPos().getY()-1);
                 if (digWorld.isEmptyBlock(digPos))
                     advance(digWorld);
                 return;
             }
             if (digPos.getZ() < cPos.getMaxBlockZ()) {
-                digPos = digPos.offset(-15, 0, 1).atY(getBlockPos().getY());
+                digPos = digPos.offset(-15, 0, 1).atY(getBlockPos().getY()-1);
                 if (digWorld.isEmptyBlock(digPos))
                     advance(digWorld);
                 return;

@@ -24,5 +24,5 @@ public class UCFoods {
     public static final FoodProperties EDIBLE_GEM = new FoodProperties.Builder().nutrition(14).saturationMod(0.65F).build();
     public static final FoodProperties EDIBLE_DIAMOND = new FoodProperties.Builder().nutrition(14).saturationMod(0.65F).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 5000, 1), 1F).build();
     public static final FoodProperties EDIBLE_GOLD = new FoodProperties.Builder().nutrition(10).saturationMod(0.65F).effect(() -> new MobEffectInstance(MobEffects.LUCK, 5000, 1), 1F).build();
-    public static final FoodProperties EDIBLE_EMERALD = new FoodProperties.Builder().nutrition(14).saturationMod(0.65F).effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 5000, 1), 1F).build();
+    public static final FoodProperties EDIBLE_EMERALD = new FoodProperties.Builder().nutrition(14).saturationMod(0.65F).effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION, 5000, 0), 1F).build();
 }

@@ -6,6 +6,7 @@ Fixes
 
 * Fixed crash when Collis seeds grow at y256+.
 * Fixed crash when Fossura operates without a chest above it.
+* Fixed client crash when charging Pixelsius Brush while playing on a server.
 * Fixed broken Feroxia growth steps, except brewing stand one, which is now internally disabled.
 * Guidebook shows Feroxia growth steps, and updates if they change.
 * Standardized drops for mature vs. immature crops, and made extra seeds consistent between right- and left-clicking.
@@ -14,6 +15,7 @@ Fixes
 * Mary Jane correctly only plants in the Nether and only drops Cinder Leaf if you're on fire. Removed a secret extra harvest restriction. ONLY bonemealable with Blaze Powder now, and the powder gets consumed.
 * Knowledge crops only read one book per growth tick instead of using up all of them.
 * Fixed Sun Block.
+* Ender Lilies no longer randomly overwrite crops or duplicate.
 
 Tweaks
 
@@ -26,5 +28,4 @@ Tweaks
 
 NOT FIXED / ToDo someday
 
-* Ender Lilies still randomly duplicate.
 * Harvest Trap doesn't use its original custom particles.
