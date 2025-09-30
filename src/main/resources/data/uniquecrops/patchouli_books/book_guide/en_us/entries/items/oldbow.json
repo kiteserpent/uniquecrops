@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.oldbow",
+  "icon": "uniquecrops:oldbow",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:oldbow",
+      "text": "uniquecrops.book.page.oldbow"
+    }
+  ]
+}

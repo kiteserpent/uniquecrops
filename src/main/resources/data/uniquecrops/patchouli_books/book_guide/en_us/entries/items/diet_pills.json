@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.diet_pills",
+  "icon": "uniquecrops:diet_pills",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:diet_pills",
+      "text": "uniquecrops.book.page.diet_pills"
+    }
+  ]
+}

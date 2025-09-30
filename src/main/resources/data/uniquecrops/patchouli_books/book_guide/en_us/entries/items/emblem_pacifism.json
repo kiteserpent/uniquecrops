@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_pacifism",
+  "icon": "uniquecrops:emblem_pacifism",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_pacifism",
+      "text": "uniquecrops.book.page.emblem_pacifism"
+    }
+  ]
+}

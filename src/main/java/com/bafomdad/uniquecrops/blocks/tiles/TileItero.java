@@ -62,10 +62,10 @@ public class TileItero extends BaseTileUC {
         if (gameCombos != null)
             return false;
 
-        int rand = 4 + level.random.nextInt(age + 1);
-        gameCombos = new int[rand];
-        for (int i = 0; i < gameCombos.length; i++) {
-            gameCombos[i] = level.random.nextInt(PLATES.length);
+        int puzzleSteps = 3 + (age / 2);
+        gameCombos = new int[puzzleSteps];
+        for (int i = 0; i < puzzleSteps; i++) {
+        	gameCombos[i] = level.random.nextInt(PLATES.length);
         }
         return true;
     }
@@ -81,15 +81,15 @@ public class TileItero extends BaseTileUC {
         }
         if (PLATES[gameCombos[gameIndex]].equals(subPos)) {
             if (++this.gameIndex >= this.gameCombos.length) {
-                UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.END_ROD, this.worldPosition.getX(), this.worldPosition.getY() + 0.3, this.worldPosition.getZ(), 4));
+                UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.END_ROD, this.worldPosition.getX() - 0.5f, this.worldPosition.getY() + 0.5f, this.worldPosition.getZ() - 0.5f, 4));
                 advanceStage();
                 reset();
                 return;
             }
-            UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.HEART, this.worldPosition.getX(), this.worldPosition.getY() + 0.3, this.worldPosition.getZ(), 0));
+            UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.HEART, this.worldPosition.getX(), this.worldPosition.getY() + 0.5f, this.worldPosition.getZ(), 0));
             return;
         } else {
-            UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.EXPLOSION, this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.3, this.worldPosition.getZ() + 0.5, 0));
+            UCPacketHandler.sendToNearbyPlayers(level, this.worldPosition, new PacketUCEffect(EnumParticle.EXPLOSION, this.worldPosition.getX(), this.worldPosition.getY() + 0.5f, this.worldPosition.getZ(), 0));
             regressStage();
             reset();
         }

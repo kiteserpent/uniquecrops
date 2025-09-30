@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.prenugget",
+  "icon": "uniquecrops:prenugget",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:prenugget",
+      "text": "uniquecrops.book.page.prenugget"
+    }
+  ]
+}

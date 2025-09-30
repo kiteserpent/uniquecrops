@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.endersnooker",
+  "icon": "uniquecrops:endersnooker",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:endersnooker",
+      "text": "uniquecrops.book.page.endersnooker"
+    }
+  ]
+}

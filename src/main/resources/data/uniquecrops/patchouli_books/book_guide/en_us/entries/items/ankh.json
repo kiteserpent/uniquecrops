@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.ankh",
+  "icon": "uniquecrops:ankh",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:ankh",
+      "text": "uniquecrops.book.page.ankh"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.brass_knuckles",
+  "icon": "uniquecrops:brass_knuckles",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:brass_knuckles",
+      "text": "uniquecrops.book.page.brass_knuckles"
+    }
+  ]
+}

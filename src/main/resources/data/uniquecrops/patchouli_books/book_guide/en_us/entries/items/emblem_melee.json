@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_melee",
+  "icon": "uniquecrops:emblem_melee",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_melee",
+      "text": "uniquecrops.book.page.emblem_melee"
+    }
+  ]
+}

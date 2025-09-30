@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.seven_league_boots",
+  "icon": "uniquecrops:seven_league_boots",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:seven_league_boots",
+      "text": "uniquecrops.book.page.seven_league_boots"
+    }
+  ]
+}

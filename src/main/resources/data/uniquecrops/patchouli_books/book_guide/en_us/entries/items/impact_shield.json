@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.impact_shield",
+  "icon": "uniquecrops:impact_shield",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:impact_shield",
+      "text": "uniquecrops.book.page.impact_shield"
+    }
+  ]
+}

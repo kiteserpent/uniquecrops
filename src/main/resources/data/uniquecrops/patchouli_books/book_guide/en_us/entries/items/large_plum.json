@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.large_plum",
+  "icon": "uniquecrops:large_plum",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:large_plum",
+      "text": "uniquecrops.book.page.large_plum"
+    }
+  ]
+}

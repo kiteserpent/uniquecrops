@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_rainbow",
+  "icon": "uniquecrops:emblem_rainbow",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_rainbow",
+      "text": "uniquecrops.book.page.emblem_rainbow"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_leaf",
+  "icon": "uniquecrops:emblem_leaf",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_leaf",
+      "text": "uniquecrops.book.page.emblem_leaf"
+    }
+  ]
+}

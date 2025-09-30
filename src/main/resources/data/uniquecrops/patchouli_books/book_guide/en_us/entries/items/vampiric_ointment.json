@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.vampiric_ointment",
+  "icon": "uniquecrops:vampiric_ointment",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:vampiric_ointment",
+      "text": "uniquecrops.book.page.vampiric_ointment"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.eggupgrade",
+  "icon": "uniquecrops:eggupgrade",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:eggupgrade",
+      "text": "uniquecrops.book.page.eggupgrade"
+    }
+  ]
+}

@@ -23,11 +23,13 @@ public class Glasses3DItem extends ItemArmorUC implements IBookUpgradeable {
 
         if (world.isClientSide) return;
         if (!isMaxLevel(stack)) return;
-
-        int sunlight = world.getBrightness(LightLayer.SKY, player.blockPosition().offset(0, player.getEyeHeight(), 0));
-        if (sunlight <= 3)
-            player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 30));
-    }
+        if ((world.getGameTime() % 40) != 0) return;
+        
+        int light = world.getRawBrightness(player.blockPosition().offset(0, (int) player.getEyeHeight(), 0),
+                world.getSkyDarken());
+        if (light <= 3)
+        	player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 250));
+}
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {

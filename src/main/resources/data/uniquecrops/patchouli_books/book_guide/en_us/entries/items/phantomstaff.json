@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.phantomstaff",
+  "icon": "uniquecrops:phantomstaff",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:phantomstaff",
+      "text": "uniquecrops.book.page.phantomstaff"
+    }
+  ]
+}

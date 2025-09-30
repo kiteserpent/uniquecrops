@@ -1,0 +1,13 @@
+{
+  "name": "Cactus Armor",
+  "icon": "uniquecrops:cactus_plate",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Cactus Armor",
+      "item": "uniquecrops:cactus_helm,uniquecrops:cactus_plate,uniquecrops:cactus_leggings,uniquecrops:cactus_boots",
+      "text": "uniquecrops.book.page.cactus_armor"
+    }
+  ]
+}

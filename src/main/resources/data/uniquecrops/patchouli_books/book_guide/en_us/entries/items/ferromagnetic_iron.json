@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.ferromagnetic_iron",
+  "icon": "uniquecrops:ferromagnetic_iron",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:ferromagnetic_iron",
+      "text": "uniquecrops.book.page.ferromagnetic_iron"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.potionreverse",
+  "icon": "uniquecrops:potionreverse",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:potionreverse",
+      "text": "uniquecrops.book.page.potionreverse"
+    }
+  ]
+}

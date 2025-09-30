@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.precision_hammer",
+  "icon": "uniquecrops:precision_hammer",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:precision_hammer",
+      "text": "uniquecrops.book.page.precision_hammer"
+    }
+  ]
+}

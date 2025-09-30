@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.harvest_trap",
+  "icon": "uniquecrops:harvest_trap",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:harvest_trap",
+      "text": "uniquecrops.book.page.harvest_trap"
+    }
+  ]
+}

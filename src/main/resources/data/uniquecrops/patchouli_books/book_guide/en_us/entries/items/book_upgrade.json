@@ -1,0 +1,16 @@
+{
+  "name": "item.uniquecrops.book_upgrade",
+  "icon": "uniquecrops:book_upgrade",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:book_upgrade",
+      "text": "uniquecrops.book.page.book_upgrade1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "uniquecrops.book.page.book_upgrade2"
+    }
+  ]
+}

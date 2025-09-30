@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.thunderpantz",
+  "icon": "uniquecrops:thunderpantz",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:thunderpantz",
+      "text": "uniquecrops.book.page.thunderpantz"
+    }
+  ]
+}

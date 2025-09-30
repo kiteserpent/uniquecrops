@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.potionennui",
+  "icon": "uniquecrops:potionennui",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:potionennui",
+      "text": "uniquecrops.book.page.potionennui"
+    }
+  ]
+}

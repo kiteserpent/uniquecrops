@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.bean_battery",
+  "icon": "uniquecrops:bean_battery",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:bean_battery",
+      "text": "uniquecrops.book.page.bean_battery"
+    }
+  ]
+}

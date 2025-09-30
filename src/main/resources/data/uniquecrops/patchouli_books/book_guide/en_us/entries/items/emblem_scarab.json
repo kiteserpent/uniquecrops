@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_scarab",
+  "icon": "uniquecrops:emblem_scarab",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_scarab",
+      "text": "uniquecrops.book.page.emblem_scarab"
+    }
+  ]
+}

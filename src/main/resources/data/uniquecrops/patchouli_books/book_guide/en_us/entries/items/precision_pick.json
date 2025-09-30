@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.precision_pick",
+  "icon": "uniquecrops:precision_pick",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:precision_pick",
+      "text": "uniquecrops.book.page.precision_pick"
+    }
+  ]
+}

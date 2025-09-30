@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.spirit_bait",
+  "icon": "uniquecrops:spirit_bait",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:spirit_bait",
+      "text": "uniquecrops.book.page.spirit_bait"
+    }
+  ]
+}

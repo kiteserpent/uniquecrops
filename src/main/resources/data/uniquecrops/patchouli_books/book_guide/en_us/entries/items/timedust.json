@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.timedust",
+  "icon": "uniquecrops:timedust",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:timedust",
+      "text": "uniquecrops.book.page.timedust"
+    }
+  ]
+}

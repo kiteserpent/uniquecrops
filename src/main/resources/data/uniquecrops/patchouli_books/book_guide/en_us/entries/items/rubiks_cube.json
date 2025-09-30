@@ -1,0 +1,16 @@
+{
+  "name": "item.uniquecrops.rubiks_cube",
+  "icon": "uniquecrops:rubiks_cube",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:rubiks_cube",
+      "text": "uniquecrops.book.page.rubiks_cube1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "uniquecrops.book.page.rubiks_cube2"
+    }
+  ]
+}

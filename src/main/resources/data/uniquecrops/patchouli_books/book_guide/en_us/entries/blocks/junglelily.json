@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.junglelily",
+  "icon": "uniquecrops:junglelily",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:junglelily",
+      "text": "uniquecrops.book.page.junglelily"
+    }
+  ]
+}

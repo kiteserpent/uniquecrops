@@ -10,6 +10,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.PlantType;
 
 import java.util.Random;
 
@@ -21,6 +22,11 @@ public class BaseLilyBlock extends WaterlilyBlock {
 
         super(Properties.copy(Blocks.LILY_PAD));
         this.lily = lily;
+    }
+
+    @Override
+    public PlantType getPlantType(BlockGetter world, BlockPos pos) {
+        return PlantType.WATER;
     }
 
     @Override

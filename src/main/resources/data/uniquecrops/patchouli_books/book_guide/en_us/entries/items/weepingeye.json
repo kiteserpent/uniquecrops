@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.weepingeye",
+  "icon": "uniquecrops:weepingeye",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:weepingeye",
+      "text": "uniquecrops.book.page.weepingeye"
+    }
+  ]
+}

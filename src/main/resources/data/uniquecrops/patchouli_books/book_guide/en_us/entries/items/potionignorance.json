@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.potionignorance",
+  "icon": "uniquecrops:potionignorance",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:potionignorance",
+      "text": "uniquecrops.book.page.potionignorance"
+    }
+  ]
+}

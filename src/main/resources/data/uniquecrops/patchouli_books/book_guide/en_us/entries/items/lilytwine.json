@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.lilytwine",
+  "icon": "uniquecrops:lilytwine",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:lilytwine",
+      "text": "uniquecrops.book.page.lilytwine"
+    }
+  ]
+}

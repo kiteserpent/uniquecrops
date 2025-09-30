@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_powerfist",
+  "icon": "uniquecrops:emblem_powerfist",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_powerfist",
+      "text": "uniquecrops.book.page.emblem_powerfist"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.dreamcatcher",
+  "icon": "uniquecrops:dreamcatcher",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:dreamcatcher",
+      "text": "uniquecrops.book.page.dreamcatcher"
+    }
+  ]
+}

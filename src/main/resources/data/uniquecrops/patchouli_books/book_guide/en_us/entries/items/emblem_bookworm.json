@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_bookworm",
+  "icon": "uniquecrops:emblem_bookworm",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_bookworm",
+      "text": "uniquecrops.book.page.emblem_bookworm"
+    }
+  ]
+}

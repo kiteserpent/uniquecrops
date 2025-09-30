@@ -54,12 +54,12 @@ public class PrecisionAxeItem extends AxeItem implements IBookUpgradeable {
             Player player = (Player)event.getSource().getEntity();
             ItemStack boots = el.getItemBySlot(EquipmentSlot.FEET);
             if (!boots.isEmpty() && player.getInventory().contains(new ItemStack(UCItems.SLIPPERGLASS.get()))) {
-                if (player.level.random.nextInt(5) == 0) {
+                if (player.level.random.nextInt(3) == 0) {
                     addDrop(event, new ItemStack(UCItems.GLASS_SLIPPERS.get()));
                     for (int i = 0; i < player.getInventory().items.size(); i++) {
                         ItemStack oneboot = player.getInventory().getItem(i);
                         if (oneboot.getItem() == UCItems.SLIPPERGLASS.get()) {
-                            player.getInventory().setItem(i, ItemStack.EMPTY);
+                        	oneboot.shrink(1);
                             break;
                         }
                     }

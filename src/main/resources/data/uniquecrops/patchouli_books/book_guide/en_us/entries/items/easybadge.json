@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.easybadge",
+  "icon": "uniquecrops:easybadge",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:easybadge",
+      "text": "uniquecrops.book.page.easybadge"
+    }
+  ]
+}

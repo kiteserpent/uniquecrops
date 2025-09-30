@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.invisibilia_glass",
+  "icon": "uniquecrops:invisibilia_glass",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:invisibilia_glass",
+      "text": "uniquecrops.book.page.invisibilia_glass"
+    }
+  ]
+}

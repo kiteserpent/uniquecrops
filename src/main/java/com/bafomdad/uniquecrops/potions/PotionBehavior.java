@@ -5,8 +5,12 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
+import java.util.ArrayList;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.bafomdad.uniquecrops.init.UCPotions;
 
 public class PotionBehavior {
 
@@ -29,9 +33,11 @@ public class PotionBehavior {
 
     public static void reverseEffects(Player player) {
 
-        if (!player.getActiveEffects().isEmpty()) {
-            for (MobEffectInstance eff : player.getActiveEffects()) {
-                setReverseEffects(eff, player);
+    	player.removeEffect(UCPotions.REVERSE.get());
+        List<MobEffectInstance> activeEffects = new ArrayList<>(player.getActiveEffects());
+        if (!activeEffects.isEmpty()) {
+            for (MobEffectInstance eff : activeEffects) {
+            	setReverseEffects(eff, player);
             }
         }
     }
@@ -42,10 +48,8 @@ public class PotionBehavior {
             if (key == eff.getEffect()) {
                 player.addEffect(new MobEffectInstance(value, eff.getDuration(), eff.getAmplifier()));
                 player.removeEffect(eff.getEffect());
-                return;
-            }
-            if (value == eff.getEffect()) {
-                player.addEffect(new MobEffectInstance(key, eff.getDuration(), eff.getAmplifier()));
+            } else if (value == eff.getEffect()) {
+            	player.addEffect(new MobEffectInstance(key, eff.getDuration(), eff.getAmplifier()));
                 player.removeEffect(eff.getEffect());
             }
         });

@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.bucketrope",
+  "icon": "uniquecrops:bucketrope",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:bucketrope",
+      "text": "uniquecrops.book.page.bucketrope"
+    }
+  ]
+}

@@ -33,10 +33,10 @@ public class MaryJane extends BaseCropsBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
-    	return world.dimensionType().ultraWarm() &&
-    			super.canSurvive(state,  world,  pos);
+        if (world.dimensionType().ultraWarm())
+            super.randomTick(state, world, pos, rand);
     }
 
     @Override
@@ -63,7 +63,9 @@ public class MaryJane extends BaseCropsBlock {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
-        if (isMaxAge(state)) return InteractionResult.PASS;
+        if (isMaxAge(state) || !world.dimensionType().ultraWarm())
+            return InteractionResult.FAIL;
+
 
         if (player.getItemInHand(hand).getItem() == Items.BLAZE_POWDER) {
             if (!world.isClientSide) {

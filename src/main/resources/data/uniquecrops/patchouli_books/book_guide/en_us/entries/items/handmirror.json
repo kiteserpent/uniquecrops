@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.handmirror",
+  "icon": "uniquecrops:handmirror",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:handmirror",
+      "text": "uniquecrops.book.page.handmirror"
+    }
+  ]
+}

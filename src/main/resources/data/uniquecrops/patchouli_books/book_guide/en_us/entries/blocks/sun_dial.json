@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.sun_dial",
+  "icon": "uniquecrops:sun_dial",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:sun_dial",
+      "text": "uniquecrops.book.page.sun_dial"
+    }
+  ]
+}

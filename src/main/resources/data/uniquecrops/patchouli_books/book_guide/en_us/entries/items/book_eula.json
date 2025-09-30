@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.book_eula",
+  "icon": "uniquecrops:book_eula",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:book_eula",
+      "text": "uniquecrops.book.page.book_eula"
+    }
+  ]
+}

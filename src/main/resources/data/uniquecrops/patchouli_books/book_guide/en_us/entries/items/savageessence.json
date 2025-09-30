@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.savageessence",
+  "icon": "uniquecrops:savageessence",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:savageessence",
+      "text": "uniquecrops.book.page.savageessence"
+    }
+  ]
+}

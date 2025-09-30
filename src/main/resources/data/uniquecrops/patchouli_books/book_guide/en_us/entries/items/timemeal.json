@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.timemeal",
+  "icon": "uniquecrops:timemeal",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:timemeal",
+      "text": "uniquecrops.book.page.timemeal"
+    }
+  ]
+}

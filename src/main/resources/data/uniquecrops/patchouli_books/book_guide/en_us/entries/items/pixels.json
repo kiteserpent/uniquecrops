@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.pixels",
+  "icon": "uniquecrops:pixels",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:pixels",
+      "text": "uniquecrops.book.page.pixels"
+    }
+  ]
+}

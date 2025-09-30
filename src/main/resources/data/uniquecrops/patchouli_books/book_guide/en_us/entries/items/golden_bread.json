@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.golden_bread",
+  "icon": "uniquecrops:golden_bread",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:golden_bread",
+      "text": "uniquecrops.book.page.golden_bread"
+    }
+  ]
+}

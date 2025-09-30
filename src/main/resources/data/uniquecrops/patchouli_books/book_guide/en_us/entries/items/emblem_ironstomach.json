@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_ironstomach",
+  "icon": "uniquecrops:emblem_ironstomach",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_ironstomach",
+      "text": "uniquecrops.book.page.emblem_ironstomach"
+    }
+  ]
+}

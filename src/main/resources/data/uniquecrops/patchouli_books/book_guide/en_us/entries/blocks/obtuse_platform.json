@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.obtuse_platform",
+  "icon": "uniquecrops:obtuse_platform",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:obtuse_platform",
+      "text": "uniquecrops.book.page.obtuse_platform"
+    }
+  ]
+}

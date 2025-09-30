@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.invisitwine",
+  "icon": "uniquecrops:invisitwine",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:invisitwine",
+      "text": "uniquecrops.book.page.invisitwine"
+    }
+  ]
+}

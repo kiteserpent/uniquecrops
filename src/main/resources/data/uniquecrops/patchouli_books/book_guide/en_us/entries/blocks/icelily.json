@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.icelily",
+  "icon": "uniquecrops:icelily",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:icelily",
+      "text": "uniquecrops.book.page.icelily"
+    }
+  ]
+}

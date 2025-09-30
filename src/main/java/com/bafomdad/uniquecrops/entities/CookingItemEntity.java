@@ -53,7 +53,7 @@ public class CookingItemEntity extends ItemEntity {
         if (cookTime >= 100) {
             UCPacketHandler.sendToNearbyPlayers(this.level, this.blockPosition(), new PacketUCEffect(EnumParticle.FLAME, this.getX(), this.getY() + 0.2, this.getZ(), 5));
             if (!this.level.isClientSide)
-                Containers.dropItemStack(this.level, this.getX(), this.getY(), this.getZ(), getCookedItem());
+                Containers.dropItemStack(this.level, this.getX(), this.getY()+0.5D, this.getZ(), getCookedItem());
             this.discard();
             return;
         }

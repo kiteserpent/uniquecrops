@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.lavalily",
+  "icon": "uniquecrops:lavalily",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:lavalily",
+      "text": "uniquecrops.book.page.lavalily"
+    }
+  ]
+}

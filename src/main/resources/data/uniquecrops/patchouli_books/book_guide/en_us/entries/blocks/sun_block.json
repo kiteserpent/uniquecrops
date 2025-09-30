@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.sun_block",
+  "icon": "uniquecrops:sun_block",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:sun_block",
+      "text": "uniquecrops.book.page.sun_block"
+    }
+  ]
+}

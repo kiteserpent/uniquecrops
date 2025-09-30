@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_transformation",
+  "icon": "uniquecrops:emblem_transformation",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_transformation",
+      "text": "uniquecrops.book.page.emblem_transformation"
+    }
+  ]
+}

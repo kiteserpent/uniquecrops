@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.book_discount",
+  "icon": "uniquecrops:book_discount",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:book_discount",
+      "text": "uniquecrops.book.page.book_discount"
+    }
+  ]
+}

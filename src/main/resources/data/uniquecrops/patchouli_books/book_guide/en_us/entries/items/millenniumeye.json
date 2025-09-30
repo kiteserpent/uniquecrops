@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.millenniumeye",
+  "icon": "uniquecrops:millenniumeye",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:millenniumeye",
+      "text": "uniquecrops.book.page.millenniumeye"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.glasses_3d",
+  "icon": "uniquecrops:glasses_3d",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:glasses_3d",
+      "text": "uniquecrops.book.page.glasses_3d"
+    }
+  ]
+}

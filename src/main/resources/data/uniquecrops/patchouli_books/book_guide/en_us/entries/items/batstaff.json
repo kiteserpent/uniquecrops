@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.batstaff",
+  "icon": "uniquecrops:batstaff",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:batstaff",
+      "text": "uniquecrops.book.page.batstaff"
+    }
+  ]
+}

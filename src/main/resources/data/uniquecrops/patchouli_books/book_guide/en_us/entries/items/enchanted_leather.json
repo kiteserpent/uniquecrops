@@ -1,0 +1,13 @@
+{
+  "name": "item.uniquecrops.enchanted_leather",
+  "icon": "uniquecrops:enchanted_leather",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+	  "title": "Enchanted Leather",
+      "item": "uniquecrops:impregnated_leather,uniquecrops:enchanted_leather",
+      "text": "uniquecrops.book.page.enchanted_leather"
+    }
+  ]
+}

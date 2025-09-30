@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.demo_cord",
+  "icon": "uniquecrops:demo_cord",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:demo_cord",
+      "text": "uniquecrops.book.page.demo_cord"
+    }
+  ]
+}

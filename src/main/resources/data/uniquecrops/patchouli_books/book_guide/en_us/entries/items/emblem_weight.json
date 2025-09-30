@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.emblem_weight",
+  "icon": "uniquecrops:emblem_weight",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:emblem_weight",
+      "text": "uniquecrops.book.page.emblem_weight"
+    }
+  ]
+}

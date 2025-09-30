@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.uncookedwaffle",
+  "icon": "uniquecrops:uncookedwaffle",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:uncookedwaffle",
+      "text": "uniquecrops.book.page.uncookedwaffle"
+    }
+  ]
+}

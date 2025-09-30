@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.precision_sword",
+  "icon": "uniquecrops:precision_sword",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:precision_sword",
+      "text": "uniquecrops.book.page.precision_sword"
+    }
+  ]
+}

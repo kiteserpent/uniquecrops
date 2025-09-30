@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.wildwood_staff",
+  "icon": "uniquecrops:wildwood_staff",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:wildwood_staff,uniquecrops:emeradic_diamond",
+      "text": "uniquecrops.book.page.wildwood_staff"
+    }
+  ]
+}

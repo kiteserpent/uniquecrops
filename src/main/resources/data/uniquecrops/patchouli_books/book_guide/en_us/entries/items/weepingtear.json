@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.weepingtear",
+  "icon": "uniquecrops:weepingtear",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:weepingtear",
+      "text": "uniquecrops.book.page.weepingtear"
+    }
+  ]
+}

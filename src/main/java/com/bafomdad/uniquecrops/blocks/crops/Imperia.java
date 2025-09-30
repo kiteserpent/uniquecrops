@@ -9,10 +9,12 @@ import com.bafomdad.uniquecrops.network.UCPacketHandler;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
@@ -52,10 +54,12 @@ public class Imperia extends BaseCropsBlock {
 
     private void checkDenySpawn(LivingSpawnEvent.CheckSpawn event) {
 
-        ChunkPos cPos = new ChunkPos(event.getEntityLiving().blockPosition());
-        if (!event.getWorld().isClientSide() && !event.isSpawner() && event.getEntityLiving() instanceof Monster || event.getEntityLiving() instanceof Slime) {
-            if (UCProtectionHandler.getInstance().getChunkInfo(event.getEntityLiving().level).contains(cPos))
+    	if (event.getWorld().isClientSide())  return;
+    	ChunkPos cPos = new ChunkPos(event.getEntityLiving().blockPosition());
+        if (event.getSpawnReason().equals(MobSpawnType.NATURAL) && event.getEntityLiving() instanceof Monster || event.getEntityLiving() instanceof Slime) {
+            if (UCProtectionHandler.getInstance().getChunkInfo(event.getEntityLiving().level).contains(cPos)) {
                 event.setResult(Event.Result.DENY);
+            }
         }
     }
 
@@ -79,23 +83,19 @@ public class Imperia extends BaseCropsBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
 
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (isMaxAge(state)) {
-                setChunksAsNeeded(world, pos, false);
-                return;
-            }
-            String[] mobList = new String[] { "minecraft:witch", "minecraft:skeleton", "minecraft:zombie", "minecraft:spider" };
-            EntityType type = Registry.ENTITY_TYPE.get(new ResourceLocation(mobList[rand.nextInt(mobList.length)]));
-            Entity entity = type.create(world);
-            if (!(entity instanceof LivingEntity)) return;
+        if (world.isClientSide() || isMaxAge(state) || world.getDifficulty() == Difficulty.PEACEFUL)
+        	return;
 
-            entity.setPos(pos.getX(), pos.getY() + 0.5D, pos.getZ());
-            CompoundTag tag = entity.getPersistentData();
-            tag.put("ImperiaPosTag", NbtUtils.writeBlockPos(pos));
-            tag.putInt("ImperiaStage", getAge(state));
-            world.addFreshEntity(entity);
-        }
-        super.randomTick(state, world, pos, rand);
+        String[] mobList = new String[] { "minecraft:witch", "minecraft:skeleton", "minecraft:zombie", "minecraft:spider" };
+        EntityType type = Registry.ENTITY_TYPE.get(new ResourceLocation(mobList[rand.nextInt(mobList.length)]));
+        Entity entity = type.create(world);
+        if (!(entity instanceof LivingEntity)) return;
+
+        entity.setPos(pos.getX(), pos.getY() + 0.25D, pos.getZ());
+        CompoundTag tag = entity.getPersistentData();
+        tag.put("ImperiaPosTag", NbtUtils.writeBlockPos(pos));
+        tag.putInt("ImperiaStage", getAge(state));
+        world.addFreshEntity(entity);
     }
 
     @Override
@@ -108,13 +108,14 @@ public class Imperia extends BaseCropsBlock {
 
     public void advanceStage(ServerLevel world, BlockPos pos, BlockState state, int stage) {
 
-        if (isMaxAge(state) || stage != getAge(state)) return;
+    	int currentAge = getAge(state);
+        if (isMaxAge(state) || stage != currentAge) return;
 
-        if (getAge(state) + 1 >= getMaxAge())
+        if (currentAge + 1 >= getMaxAge())
             setChunksAsNeeded(world, pos, false);
 
-        UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.CLOUD, pos.getX(), pos.getY(), pos.getZ(), 6));
-        world.setBlock(pos, this.setValueAge(getAge(state) + 1), 3);
+        UCPacketHandler.sendToNearbyPlayers(world, pos, new PacketUCEffect(EnumParticle.CLOUD, pos.getX()-0.5D, pos.getY()+0.5D, pos.getZ()-0.5D, 6));
+        world.setBlock(pos, setValueAge(currentAge + 1), Block.UPDATE_CLIENTS);
     }
 
     public void setChunksAsNeeded(ServerLevel world, BlockPos pos, boolean remove) {
@@ -136,6 +137,6 @@ public class Imperia extends BaseCropsBlock {
     public void animateTick(BlockState state, Level world, BlockPos pos, Random rand) {
 
         if (isMaxAge(state))
-            world.addParticle(ParticleTypes.END_ROD, pos.getX() + rand.nextFloat(), pos.getY() + 0.3, pos.getZ() + rand.nextFloat(), 0, 0, 0);
+            world.addParticle(ParticleTypes.END_ROD, pos.getX() + rand.nextFloat(), pos.getY() + 0.3D, pos.getZ() + rand.nextFloat(), 0, 0, 0);
     }
 }

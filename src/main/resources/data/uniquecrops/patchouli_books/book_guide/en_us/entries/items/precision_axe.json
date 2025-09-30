@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.precision_axe",
+  "icon": "uniquecrops:precision_axe",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:precision_axe",
+      "text": "uniquecrops.book.page.precision_axe"
+    }
+  ]
+}

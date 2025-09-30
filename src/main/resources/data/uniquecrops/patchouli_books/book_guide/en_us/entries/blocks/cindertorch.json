@@ -1,0 +1,12 @@
+{
+  "name": "block.uniquecrops.cindertorch",
+  "icon": "uniquecrops:cindertorch",
+  "category": "uniquecrops:blocks",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:cindertorch",
+      "text": "uniquecrops.book.page.cindertorch"
+    }
+  ]
+}

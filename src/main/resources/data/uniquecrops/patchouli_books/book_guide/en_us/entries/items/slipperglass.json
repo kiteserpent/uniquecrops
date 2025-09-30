@@ -1,0 +1,13 @@
+{
+  "name": "item.uniquecrops.slipperglass",
+  "icon": "uniquecrops:slipperglass",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+	  "title": "Glass Slippers",
+      "item": "uniquecrops:slipperglass,uniquecrops:slippers",
+      "text": "uniquecrops.book.page.slippers"
+    }
+  ]
+}

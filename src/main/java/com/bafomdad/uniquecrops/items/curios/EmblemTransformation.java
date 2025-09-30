@@ -1,6 +1,8 @@
 package com.bafomdad.uniquecrops.items.curios;
 
 import com.bafomdad.uniquecrops.items.base.ItemCurioUC;
+
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,9 +25,12 @@ public class EmblemTransformation extends ItemCurioUC {
     @SuppressWarnings("deprecation")
     private void onHitEntity(LivingHurtEvent event) {
 
-        if (event.getAmount() <= 0 || event.getEntityLiving() instanceof Player) return;
-        if (!(event.getSource().getDirectEntity() instanceof Player)) return;
+        if (event.getAmount() <= 0) return;
+    	if (!(event.getSource().getDirectEntity() instanceof Player)) return;
         if (!hasCurio((LivingEntity)event.getSource().getDirectEntity())) return;
+        Entity entityHurt = event.getEntity();
+        if (entityHurt instanceof Player || entityHurt instanceof WitherBoss ||
+                entityHurt instanceof EnderDragon) return;
 
         Random rand = new Random();
         if (rand.nextInt(100) == 0) {

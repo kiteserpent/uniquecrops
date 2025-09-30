@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.item_magnet",
+  "icon": "uniquecrops:item_magnet",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:item_magnet",
+      "text": "uniquecrops.book.page.item_magnet"
+    }
+  ]
+}

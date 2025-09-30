@@ -1,0 +1,13 @@
+{
+  "name": "Dyed Bone Meal",
+  "icon": "uniquecrops:dyedbonemeal.pink",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+	  "title": "Dyed Bone Meal",
+      "item": "uniquecrops:dyedbonemeal.red,uniquecrops:dyedbonemeal.green,uniquecrops:dyedbonemeal.brown,uniquecrops:dyedbonemeal.blue,uniquecrops:dyedbonemeal.purple,uniquecrops:dyedbonemeal.cyan,uniquecrops:dyedbonemeal.silver,uniquecrops:dyedbonemeal.gray,uniquecrops:dyedbonemeal.pink,uniquecrops:dyedbonemeal.lime,uniquecrops:dyedbonemeal.yellow,uniquecrops:dyedbonemeal.light_blue,uniquecrops:dyedbonemeal.magenta,uniquecrops:dyedbonemeal.orange,uniquecrops:dyedbonemeal.white,uniquecrops:dyedbonemeal.black",
+      "text": "uniquecrops.book.page.dyedbonemeal"
+    }
+  ]
+}

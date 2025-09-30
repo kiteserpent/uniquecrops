@@ -45,8 +45,11 @@ public enum EnumLily {
         @Override
         public boolean isValidGround(BlockState state, BlockGetter reader, BlockPos pos) {
 
+            FluidState fluid = reader.getFluidState(pos);
             FluidState fluidUp = reader.getFluidState(pos.above());
-            return (state.getMaterial() == Material.ICE || state.getMaterial() == Material.ICE_SOLID) && fluidUp.getType() == Fluids.EMPTY;
+            return (fluid.getType() == Fluids.WATER || state.getMaterial() == Material.SNOW ||
+            		state.getMaterial() == Material.ICE || state.getMaterial() == Material.ICE_SOLID) &&
+            		fluidUp.getType() == Fluids.EMPTY;
         }
     },
     JUNGLE(ParticleTypes.ITEM_SLIME) {
@@ -102,7 +105,7 @@ public enum EnumLily {
 
         FluidState fluid = reader.getFluidState(pos);
         FluidState fluidUp = reader.getFluidState(pos.above());
-        return (fluid.getType() == Fluids.WATER || state.getMaterial() == Material.ICE) && fluidUp.getType() == Fluids.EMPTY;
+        return (fluid.getType() == Fluids.WATER) && fluidUp.getType() == Fluids.EMPTY;
     }
 
     public static void searchNearbyPads(Level world, BlockPos pos, Entity entity, Direction dir) {

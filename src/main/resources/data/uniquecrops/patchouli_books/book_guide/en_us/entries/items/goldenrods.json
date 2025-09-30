@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.goldenrods",
+  "icon": "uniquecrops:goldenrods",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:goldenrods",
+      "text": "uniquecrops.book.page.goldenrods"
+    }
+  ]
+}

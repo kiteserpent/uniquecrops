@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.precision_shovel",
+  "icon": "uniquecrops:precision_shovel",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:precision_shovel",
+      "text": "uniquecrops.book.page.precision_shovel"
+    }
+  ]
+}

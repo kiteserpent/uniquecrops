@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.poncho",
+  "icon": "uniquecrops:poncho",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:poncho",
+      "text": "uniquecrops.book.page.poncho"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "item.uniquecrops.steel_donut",
+  "icon": "uniquecrops:steel_donut",
+  "category": "uniquecrops:items",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "uniquecrops:steel_donut",
+      "text": "uniquecrops.book.page.steel_donut"
+    }
+  ]
+}
