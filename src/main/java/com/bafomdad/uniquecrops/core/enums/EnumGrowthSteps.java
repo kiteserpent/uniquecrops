@@ -1,5 +1,6 @@
 package com.bafomdad.uniquecrops.core.enums;
 
+import com.bafomdad.uniquecrops.blocks.crops.Feroxia;
 import com.bafomdad.uniquecrops.blocks.tiles.TileFeroxia;
 import com.bafomdad.uniquecrops.core.UCConfig;
 import com.bafomdad.uniquecrops.core.UCStrings;
@@ -351,6 +352,10 @@ public enum EnumGrowthSteps {
                     if (!tag.contains("hasSacrificed")) {
                         player.sendMessage(new TextComponent(ChatFormatting.RED + "The savage plant whispers: \"The Time is right to perform a self sacrifice.\""), player.getUUID());
                         tag.putBoolean("hasSacrificed", false);
+                    } else if (tag.getBoolean("hasSacrificed")) {
+                        Feroxia fc = (Feroxia) state.getBlock();
+                        world.setBlock(pos, fc.setValueAge(fc.getMaxAge()), Block.UPDATE_ALL);
+                        tag.remove("hasSacrificed");
                     }
                 }
             }
