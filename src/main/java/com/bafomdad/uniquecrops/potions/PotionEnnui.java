@@ -14,6 +14,7 @@ public class PotionEnnui extends MobEffect {
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerClickBlock);
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerClickItem);
         MinecraftForge.EVENT_BUS.addListener(this::onPlayerJump);
+        MinecraftForge.EVENT_BUS.addListener(this::onPlayerHitBlock);
     }
 
     private void onPlayerJump(LivingEvent.LivingJumpEvent event) {
@@ -29,6 +30,12 @@ public class PotionEnnui extends MobEffect {
     }
 
     private void onPlayerClickItem(PlayerInteractEvent.RightClickItem event) {
+
+        if (event.getPlayer().getEffect(this) != null)
+            event.setCanceled(true);
+    }
+
+    private void onPlayerHitBlock(PlayerInteractEvent.LeftClickBlock event) {
 
         if (event.getPlayer().getEffect(this) != null)
             event.setCanceled(true);
