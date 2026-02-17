@@ -9,6 +9,7 @@ version="${file.jarVersion}"
 displayName="Unique Crops"
 logoFile="logo.png"
 authors="bafomdad"
+credits="kiteserpent (bug fixes and updates)"
 description="Unique crops, unique growth, unique drops"
 
 [[dependencies.uniquecrops]]
